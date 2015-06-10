@@ -17,7 +17,6 @@ public class PlayerState : CharacterState {
 
 	public override void RunAction(){
 		base.RunAction();
-		print ("????????????");
 	}
 
 	public override void CharacterStateControll(string s){
