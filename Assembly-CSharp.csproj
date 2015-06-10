@@ -96,7 +96,15 @@
      <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\Point2D.cs" />
      <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\Point2DList.cs" />
      <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\Rect2D.cs" />
-     <Compile Include="Assets\Script\CharacterAnim.cs" />
+     <Compile Include="Assets\Script\CharacterAni.cs" />
+     <Compile Include="Assets\Script\CharacterState.cs" />
+     <Compile Include="Assets\Script\GameController.cs" />
+     <Compile Include="Assets\Script\GameStateController.cs" />
+     <Compile Include="Assets\Script\HUDController.cs" />
+     <Compile Include="Assets\Script\HUDHandler.cs" />
+     <Compile Include="Assets\Script\PlayerState.cs" />
+     <Compile Include="Assets\Script\StageController.cs" />
+     <Compile Include="Assets\Script\StageScroll.cs" />
      <Compile Include="Assets\Script\TestStageController.cs" />
      <None Include="Assets\Puppet2D\Shaders\BlackAndWhite.shader" />
      <None Include="Assets\Puppet2D\Shaders\VertColor.shader" />

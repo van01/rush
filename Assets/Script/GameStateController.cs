@@ -1,13 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CharacterAnim : MonoBehaviour {
+public class GameStateController : MonoBehaviour {
 
-	Animator anim;
 	// Use this for initialization
 	void Start () {
-		anim = GetComponent<Animator>();
-		anim.SetInteger("aniNumber", 1);
 	
 	}
 	
