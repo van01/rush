@@ -2,42 +2,30 @@
 using System.Collections;
 
 public class CharacterHandler : MonoBehaviour {
-	public GameObject weaponR;
-	public GameObject weaponL;
 
-	public Sprite[] weaponRSprite;
-	public Sprite[] weaponLSprite;
-
-	public int weponRNumber;
-	public int weponLNumber;
-
-	private Transform weaponRPosition;
-	private Transform weaponLPosition;
-
-	private SpriteRenderer useWeaponR;
-	private SpriteRenderer useWeaponL;
+	private GameObject tmpGameController;
 
 	void Start(){
-		useWeaponR = weaponR.GetComponentInChildren<SpriteRenderer>();
-		useWeaponL = weaponL.GetComponentInChildren<SpriteRenderer>();
-
-		UseWeaponInialize();
+		tmpGameController = GameObject.Find("GameController");
 	}
 
-	void UseWeaponInialize(){
-		if (weaponRSprite.Length == 0){
-			weaponR.SetActive(false);
-			print ("Null WeaponR");
+	void OnCollisionEnter2D(Collision2D c){
+		if(c.gameObject.tag == "Enemy"){
+			tmpGameController.SendMessage("CharacterEnterCheckTrue");
+
+			GameStateHoldOn();
 		}
-		else{
-			useWeaponR.sprite = weaponRSprite[weponRNumber];
-		}
-		if (weaponLSprite.Length == 0){
-			weaponL.SetActive(false);
-			print ("Null WeaponL");
-		}
-		else{
-			useWeaponL.sprite = weaponLSprite[weponLNumber];
-		}
+	}
+
+	public void GameStateHoldOn(){
+		tmpGameController.SendMessage("GameStateControll", "Hold");
+	}
+
+	public void CharacterStateBattleOn(){
+		tmpGameController.SendMessage("CharacterBattlePredicateOn");
+	}
+
+	public void CharacterStateMoveOn(){
+		tmpGameController.SendMessage("CharacterMovePredicateOn");
 	}
 }

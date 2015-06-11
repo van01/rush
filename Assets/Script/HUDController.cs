@@ -3,23 +3,43 @@ using System.Collections;
 
 public class HUDController : MonoBehaviour {
 
+	public GameObject HUD;
+
 	public void LeftHitZoneDown(){
-		gameObject.SendMessage("DeliveryScrollOnFalse");
+		SendMessage("CharacterGuardPredicateOn");
 	}
 
 	public void LeftHitZoneUp(){
-		gameObject.SendMessage("DeliveryScrollOnTrue");
+		SendMessage("CharacterGuardPredicateOff");
 	}
 
 	public void RightHitZoneDown(){
-		gameObject.SendMessage("RunScrollOn");
-		gameObject.SendMessage("CharacterStateChange", "Run");
+		SendMessage("RunScrollOn");
+		SendMessage("CharacterRunPredicateOn");
 	}
 
 	public void RightHitZoneUp(){
-		gameObject.SendMessage("RunScrollOff");
-		gameObject.SendMessage("CharacterStateChange", "Move");
+		SendMessage("RunScrollOff");
+		SendMessage("CharacterRunPredicateOff");
 	}
 
-	//gameStateController 완성 후 그쪽으로 모아야 함
+
+	public void HitZoneOff(){
+		HUD.SendMessage("HitZoneDisable");
+	}
+
+	public void HitZoneOn(){
+		HUD.SendMessage("HitZoneAble");
+	}
+
+	public void TestMonsterDestroy(){
+		GameObject tmpPlayer;
+		GameObject target;
+
+		tmpPlayer = GameObject.Find ("Pawn");
+
+		target = tmpPlayer.GetComponent<PlayerAI>().GetCurrentTarget();
+
+		Destroy(target);
+	}
 }

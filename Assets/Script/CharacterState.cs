@@ -42,8 +42,6 @@ public class CharacterState : MonoBehaviour {
 			currentState = State.Back;
 		if(s == "Dead")
 			currentState = State.Dead;
-		if(s == "Dead")
-			currentState = State.Dead;
 		if(s == "Jump")
 			currentState = State.Jump;
 		if(s == "Midair")
@@ -99,57 +97,54 @@ public class CharacterState : MonoBehaviour {
 	}
 
 	public virtual void SpawnAction(){
-		SendMessage("ChangeAni", 3);
-		print ("Character Spawn");
+		//Debug.Log(":::Character State::: Character Spawn");
 	}
 
 	public virtual void IdleAction(){
-		print ("Character Idle");
+		//Debug.Log(":::Character State::: Character Idle");
 	}
 
 	public virtual void MoveAction(){
-		SendMessage("ChangeAni", 3);
-		print ("Character Move");
+		//Debug.Log(":::Character State::: Character Move");
 	}
 
 	public virtual void RunAction(){
-		SendMessage("ChangeAni", 4);
-		print ("Character Run");
+		//Debug.Log(":::Character State::: Character Run");
 	}
 
 	public virtual void BattleAction(){
-		print ("Character Attack");
+		//Debug.Log(":::Character State::: Character Battle");
 	}
 
 	public virtual void AttackAction(){
-		print ("Character Attack");
+		//Debug.Log(":::Character State::: Character Attack");
 	}
 
 	public virtual void SkillAction(){
-		print ("Character Skill");
+		//Debug.Log(":::Character State::: Character Skill");
 	}
 
 	public virtual void GuardAction(){
-		print ("Character Guard");
+		//Debug.Log(":::Character State::: Character Guard");
 	}
 
 	public virtual void BackAction(){
-		print ("Character Back");
+		//Debug.Log(":::Character State::: Character Back");
 	}
 
 	public virtual void DeadAction(){
-		print ("Character Dead");
+		//Debug.Log(":::Character State::: Character Dead");
 	}
 
 	public virtual void JumpAction(){
-		print ("Character Jump");
+		//Debug.Log(":::Character State::: Character Jump");
 	}
 
 	public virtual void MidairAction(){
-		print ("Character Midair");
+		//Debug.Log(":::Character State::: Character Midair");
 	}
 
 	public virtual void LandingAction(){
-		print ("Character Landing");
+		//Debug.Log(":::Character State::: Character Landing");
 	}
 }

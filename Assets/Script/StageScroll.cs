@@ -2,11 +2,11 @@
 using System.Collections;
 
 public class StageScroll : MonoBehaviour {
-
-	public GameObject mainCamera;
 	
 	public GameObject[] distanteA;
 	public GameObject[] distanteB;
+
+	public float scrollSpeedDropValue;
 
 	private float scrollSpeed;
 	private float[] distanteEachScrollSpeed;
@@ -40,7 +40,7 @@ public class StageScroll : MonoBehaviour {
 		distanteEachScrollSpeed = new float[distanteA.Length];
 		
 		for (int i = 0 ; i < distanteA.Length ; i++){
-			distanteEachScrollSpeed[i] = (i + 1) * scrollSpeed * 0.7f;
+			distanteEachScrollSpeed[i] = (i + 1) * scrollSpeed * scrollSpeedDropValue;
 		}
 	}
 
