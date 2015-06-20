@@ -18,7 +18,7 @@ public class CharacterAni : MonoBehaviour {
 	
 	Animator anim;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		anim = GetComponent<Animator>();
 	}
 
