@@ -3,26 +3,48 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
 
+	public float CharacterPositionInializeTime = 1.0f;
+
 	private GameObject[] tmpPlayer;
 	private bool characterEnterCheckTrueValue = false;
 
 	private bool characterMovePredicate = false;
 	private bool characterBattlePredicate = false;
-	private bool characterGuardPredicate = false;
-	private bool characterRunPredicate = false;
 
-	void Start() {
+	public enum States{
+		Spawns,		//자기자리 찾아가기
+		Idles,		//대기
+		Moves,		//이동
+		Runs,		//달리기
+		Battles,		//전투
+		Attacks,		//공격
+		Skills,		//스킬
+		Guards,		//방어
+		Backs,		//후퇴
+		Forwards,	//전방으로
+		Deads,		//죽음
+		Jumps,		//점프 시작
+		Midairs,		//공중
+		Landings,	//착지
+	}
+
+    public States currentStates;
+    public States previousStates;
+
+	void Awake() {
 		characterMovePredicate = true;
-		//CharacterActionCheck();
-		SendMessage("GameStateControll", "Playing"); //임시
+
+        SendMessage("GameStateControll", "Ready"); //임시
+        
+        CharacterActionCheck();
 	}
 	
 	// Update is called once per frame
 	public void CharacterInialize(){
-		tmpPlayer = GameObject.FindGameObjectsWithTag("Player");
-		
+        tmpPlayer = GameObject.FindGameObjectsWithTag("Player");
+
 		for (int i = 0; i < tmpPlayer.Length; i++){
-			//Debug.Log(tmpPlayer[i]);
+			tmpPlayer[i].gameObject.SendMessage("CharacterPositionInialize", CharacterPositionInializeTime);
 		}
 	}
 
@@ -36,7 +58,6 @@ public class GameController : MonoBehaviour {
 		if(characterEnterCheckTrueValue == true){
 			characterMovePredicate = false;
 			characterBattlePredicate = true;
-			CharacterActionCheck();
 		}
 
 	}
@@ -46,76 +67,91 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void CharacterActionCheck(){
-		if (characterMovePredicate == false){
-			if (characterBattlePredicate == true){
-				if (characterGuardPredicate == true) CharacterStateChange("Guard");
-				else CharacterStateChange("Battle");
-			}
-			else if (characterRunPredicate == true) CharacterStateChange("Run");
-			else CharacterStateChange("Idle");
-		}
-		else if (characterMovePredicate == true){
-			if (characterGuardPredicate == true){ CharacterStateChange("Guard"); CharacterBattleStop();}
-			else if(characterBattlePredicate == true){
-				if (characterGuardPredicate == true) CharacterStateChange("Guard");
-				else CharacterStateChange("Battle");
-			}
-			else if (characterRunPredicate == true) CharacterStateChange("Run");
-			else CharacterStateChange("Move");
+		switch(currentStates){
+		case States.Spawns:
+			CharacterStateChange("Spawn");
+			break;
+        case States.Idles:
+			CharacterStateChange("Idle");
+			break;
+        case States.Moves:
+			CharacterStateChange("Move");
+			break;
+        case States.Runs:
+			CharacterStateChange("Run");
+			break;
+        case States.Battles:
+			CharacterStateChange("Battle");
+			break;
+        case States.Guards:
+			CharacterStateChange("Guard");
+			break;
+        case States.Backs:
+			CharacterStateChange("Back");
+			break;
+        case States.Forwards:
+			CharacterStateChange("Forward");
+			break;
 		}
 	}
 
 	public void CharacterMovePredicateOn(){
-		characterMovePredicate = true;
+        previousStates = currentStates;
+        currentStates = States.Moves;
 		CharacterActionCheck();
 	}
 	
 	public void CharacterMovePredicateOff(){
-		characterMovePredicate = false;
+        currentStates = previousStates;
 		CharacterActionCheck();
 	}
 	
 	public void CharacterGuardPredicateOn(){
-		characterGuardPredicate = true;
 		SendMessage("GameStateControll", "Hold");
+        previousStates = currentStates;
+        currentStates = States.Guards;
 		CharacterActionCheck();
 	}
 	
 	public void CharacterGuardPredicateOff(){
-		characterGuardPredicate = false;
-
-		if (characterBattlePredicate == true)
-			SendMessage("GameStateControll", "Hold");
-		else
-			SendMessage("GameStateControll", "Playing");
-
+        if (characterBattlePredicate == true)
+            SendMessage("GameStateControll", "Hold");
+        else
+            SendMessage("GameStateControll", "Playing");
+        
+        currentStates = previousStates;
 		CharacterActionCheck();
 	}
 	
 	public void CharacterBattlePredicateOn(){
+        SendMessage("GameStateControll", "Hold");
 		characterBattlePredicate = true;
+        previousStates = currentStates;
+        currentStates = States.Battles;
 		CharacterActionCheck();
 	}
 	
 	public void CharacterBattlePredicateOff(){
 		characterBattlePredicate = false;
+        currentStates = previousStates;
 		CharacterActionCheck();
 	}
 
 	public void CharacterRunPredicateOn(){
-		characterRunPredicate = true;
+        previousStates = currentStates;
+        currentStates = States.Runs;
 		CharacterActionCheck();
 	}
 
 	public void CharacterRunPredicateOff(){
-		characterRunPredicate = false;
-
-		if(characterBattlePredicate == false){
-			if (characterBattlePredicate == true)
-				SendMessage("GameStateControll", "Hold");
-			else
-				SendMessage("GameStateControll", "Playing");
-		}
+        if (characterBattlePredicate == true)
+			SendMessage("GameStateControll", "Hold");
+		else
+			SendMessage("GameStateControll", "Playing");
+		
+        
+        currentStates = previousStates;
+        CharacterActionCheck();
 	}
 
 	private void CharacterBattleStop(){
@@ -124,4 +160,58 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
+	public void CharacterBackPredicateOn(){
+		SendMessage("GameStateControll", "Hold");
+        previousStates = currentStates;
+        currentStates = States.Backs;
+		CharacterActionCheck();
+	}
+	
+	public void CharacterBackPredicateOff(){
+        currentStates = States.Moves;
+		CharacterActionCheck();
+	}
+
+	public void CharacterFowardPredicateOn(){
+        previousStates = currentStates;
+        currentStates = States.Forwards;
+		CharacterActionCheck();
+	}
+	
+	public void CharacterFowardPredicateOff(){
+        currentStates = previousStates;
+		CharacterActionCheck();
+	}
+
+    public void CharacterBattlingOn()
+    {
+        for (int i = 0; i < tmpPlayer.Length; i++)
+        {
+            tmpPlayer[i].gameObject.SendMessage("BattlingOn");
+        }
+    }
+
+    public void CharacterBattlingOff()
+    {
+        for (int i = 0; i < tmpPlayer.Length; i++)
+        {
+            tmpPlayer[i].gameObject.SendMessage("BattlingOff");
+        }
+    }
+
+    public void CharacterAttactDistanceOn()
+    {
+        for (int i = 0; i < tmpPlayer.Length; i++)
+        {
+            tmpPlayer[i].gameObject.SendMessage("AttDistanceOn");
+        }
+    }
+
+    public void CharacterAttactDistanceOff()
+    {
+        for (int i = 0; i < tmpPlayer.Length; i++)
+        {
+            tmpPlayer[i].gameObject.SendMessage("AttDistanceOff");
+        }
+    }
 }

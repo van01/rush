@@ -13,6 +13,7 @@ public class CharacterState : MonoBehaviour {
 		Skill,		//스킬
 		Guard,		//방어
 		Back,		//후퇴
+		Forward,	//전방으로
 		Dead,		//죽음
 		Jump,		//점프 시작
 		Midair,		//공중
@@ -40,6 +41,8 @@ public class CharacterState : MonoBehaviour {
 			currentState = State.Guard;
 		if(s == "Back")
 			currentState = State.Back;
+		if(s == "Forward")
+			currentState = State.Forward;
 		if(s == "Dead")
 			currentState = State.Dead;
 		if(s == "Jump")
@@ -80,6 +83,9 @@ public class CharacterState : MonoBehaviour {
 			break;
 		case State.Back:
 			BackAction();
+			break;
+		case State.Forward:
+			ForwardAction();
 			break;
 		case State.Dead:
 			DeadAction();
@@ -130,6 +136,10 @@ public class CharacterState : MonoBehaviour {
 
 	public virtual void BackAction(){
 		//Debug.Log(":::Character State::: Character Back");
+	}
+
+	public virtual void ForwardAction(){
+		//Debug.Log(":::Character State::: Character Forward");
 	}
 
 	public virtual void DeadAction(){

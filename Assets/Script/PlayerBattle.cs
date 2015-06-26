@@ -7,7 +7,7 @@ public class PlayerBattle : CharacterBattle {
 	private GameObject testGameController;
 
 	void Start(){
-		testGameController = GameObject.Find ("GameController");
+		testGameController = GameObject.Find ("GameController");      
 	}
 
 	public override void StartBattle(){
@@ -21,6 +21,7 @@ public class PlayerBattle : CharacterBattle {
 	}
 
 	public override void DoBattle(){
+        print("Do Battle");
 		SendMessage("CharacterStateControll", "Attack");
 
 		StartCoroutine("SuccessRoll");
@@ -35,10 +36,8 @@ public class PlayerBattle : CharacterBattle {
 		CheckEnemyCurHP();
 
 		yield return new WaitForSeconds(0.7f);
-		//SendMessage("CheckDistanceFromTarget");
+		
 		SendMessage("CharacterStateControll", "Battle");
-
-
 	}
 
 	public void BattleStop(){
@@ -54,10 +53,11 @@ public class PlayerBattle : CharacterBattle {
 	}
 
 	public void BattleEnd(){
-		target.SetActive(false);
-		testGameController.SendMessage("PlayingAction");
-		StopCoroutine("SuccessRoll");
+        Destroy(target);
+        BattleStop();
 		SendMessage("CharacterStateControll", "Move");
 		SendMessage("SearchEnemy");
+        SendMessage("BattlingOff");
+        SendMessage("PositionDistanceReset");
 	}
 }

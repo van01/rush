@@ -49,11 +49,11 @@ public class GameState : MonoBehaviour {
 	}
 
 	public virtual void ReadyAction(){
+        SendMessage("CharacterInialize");
 		//Debug.Log("■■Game State■■ReadyAction");
 	}
 		
 	public virtual void PlayingAction(){
-		SendMessage("CharacterInialize");
 		SendMessage("StageScrollInialize");
 		SendMessage("CharacterActionCheck");
 
@@ -67,14 +67,17 @@ public class GameState : MonoBehaviour {
 		//SendMessage("HitZoneOff");
 		//Debug.Log("■■Game State■■ HoldAction");
 	}
-	
+
+    public virtual void BattleAction()
+    {
+        //Debug.Log("■■Game State■■Character Attack");
+    }
+
 	public virtual void SuccessAction(){
 		//Debug.Log("■■Game State■■SuccessAction");
 	}
 	
-	public virtual void BattleAction(){
-		//Debug.Log("■■Game State■■Character Attack");
-	}
+	
 	
 	public virtual void FailAction(){
 		//Debug.Log("■■Game State■■FailAction");

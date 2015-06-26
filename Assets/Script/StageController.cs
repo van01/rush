@@ -37,7 +37,6 @@ public class StageController : MonoBehaviour {
 
 	public void RunScrollOff(){
 		tmpStage.SendMessage("DeliveryScrollSpeed", scrollSpeed);
-
 		tmpEnemy.SendMessage("DeliveryScrollSpeed", scrollSpeed);
 	}
 
