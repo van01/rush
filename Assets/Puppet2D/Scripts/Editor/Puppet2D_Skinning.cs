@@ -8,6 +8,9 @@ using System.Text.RegularExpressions;
 
 public class Puppet2D_Skinning : Editor 
 {
+	private static GameObject _workingMesh;
+	private static GameObject[] _workingBones;
+
     [MenuItem ("GameObject/Puppet2D/Skin/ConvertSpriteToMesh")]
     public static void ConvertSpriteToMesh(int triIndex)
     {
@@ -214,6 +217,31 @@ public class Puppet2D_Skinning : Editor
         float u = 1.0f - v - w;
         return new Vector3(v, w, u);
     }
+
+//	public static void UndoDeleteMeshRenderer ()
+//	{
+//		Undo.undoRedoPerformed -= UndoDeleteMeshRenderer;
+//		if(_workingMesh)
+//		{
+//			Material m = _workingMesh.GetComponent<SkinnedMeshRenderer> ().sharedMaterial;
+//			DestroyImmediate (_workingMesh.GetComponent<SkinnedMeshRenderer> ());
+//			MeshRenderer mr = _workingMesh.AddComponent<MeshRenderer> ();
+//			mr.sharedMaterial = m;
+//		}
+//
+//	}
+	/*public static void UndoAddSkinnedMeshRenderer ()
+	{
+
+
+		//Selection 
+		BindSmoothSkin ();
+
+		Undo.undoRedoPerformed += UndoDeleteMeshRenderer;
+		Undo.undoRedoPerformed -= UndoAddSkinnedMeshRenderer;
+
+	}*/
+
     [MenuItem ("GameObject/Puppet2D/Skin/Bind Smooth Skin")]
     public static GameObject BindSmoothSkin()
     {
@@ -254,6 +282,7 @@ public class Puppet2D_Skinning : Editor
                 //return null;
             }
         }
+
         if (selectedBones.Count == 0)
         {
             if (selectedMeshes.Count > 0)
@@ -278,7 +307,7 @@ public class Puppet2D_Skinning : Editor
 
             }
             return null;
-        }
+		}
         for (int i = selectedMeshes.Count - 1; i >= 0; i--)
         {
             // check to make sure its not a FFD mesh
@@ -300,6 +329,7 @@ public class Puppet2D_Skinning : Editor
         if ((ffdControls.Count > 0)&&selectedMeshes.Count==0 && ffdControls[0].GetComponent<Puppet2D_FFDLineDisplay>().outputSkinnedMesh)
         {
             GameObject preSkinnedMesh = new GameObject();
+			//Undo.RegisterCreatedObjectUndo (preSkinnedMesh, "CreatePreskinMesh");
             MeshFilter mf = preSkinnedMesh.AddComponent<MeshFilter>();
             preSkinnedMesh.AddComponent<MeshRenderer>();
             Mesh mesh = new Mesh();
@@ -320,217 +350,186 @@ public class Puppet2D_Skinning : Editor
                 go.GetComponent<Puppet2D_FFDLineDisplay>().skinnedMesh = newGO.GetComponent<SkinnedMeshRenderer>();
                 go.GetComponent<Puppet2D_FFDLineDisplay>().Init();
             }
-            Undo.DestroyObjectImmediate(newGO);
+			DestroyImmediate(newGO);//Undo.DestroyObjectImmediate(newGO);
 
             return preSkinnedMesh;   
-        }
-        foreach (GameObject mesh in selectedMeshes)
+		}
+        for (int ind = 0; ind < selectedMeshes.Count; ind++)
         {
-
+            GameObject mesh = selectedMeshes[ind];
             Material mat = null;
             string sortingLayer = "";
             int sortingOrder = 0;
-            if(mesh.GetComponent<MeshRenderer>()!=null )
+            if (mesh.GetComponent<MeshRenderer>() != null)
             {
                 mat = mesh.GetComponent<MeshRenderer>().sharedMaterial;
+                sortingLayer = mesh.GetComponent<Renderer>().sortingLayerName;
+                sortingOrder = mesh.GetComponent<Renderer>().sortingOrder;
+//				if(_undoableSkinning)
+//				{
+//					MeshRenderer mr = mesh.GetComponent<MeshRenderer> ();
+//					Undo.DestroyObjectImmediate(mr);
+//				}
+                DestroyImmediate(mesh.GetComponent<MeshRenderer>());
+				
 
-				sortingLayer = mesh.GetComponent<Renderer>().sortingLayerName;
-				sortingOrder = mesh.GetComponent<Renderer>().sortingOrder;
-
-                Undo.DestroyObjectImmediate(mesh.GetComponent<MeshRenderer>());
-            }
-
+				//Undo.DestroyObjectImmediate(mesh.GetComponent<SkinnedMeshRenderer);
+				//Undo.AddComponent<SkinnedMeshRenderer>(mesh);
+				//_workingMesh = mesh;
+//				_workingBones = selectedBones;
+				//Undo.undoRedoPerformed += UndoDeleteMeshRenderer;
+			}
             SkinnedMeshRenderer renderer = mesh.GetComponent<SkinnedMeshRenderer>();
-            if(renderer == null)
-                renderer = Undo.AddComponent<SkinnedMeshRenderer>(mesh);
-
-			renderer.updateWhenOffscreen = true;
-
+            if (renderer == null)
+            {
+                //Undo.RecordObject(mesh, "meshToBeSKinned");
+                renderer = mesh.AddComponent<SkinnedMeshRenderer>();
+                //renderer = Undo.AddComponent<SkinnedMeshRenderer>(mesh);
+            }
+            renderer.updateWhenOffscreen = true;
             Puppet2D_SortingLayer puppet2D_SortingLayer = mesh.GetComponent<Puppet2D_SortingLayer>();
-            if(puppet2D_SortingLayer != null)
-                Undo.DestroyObjectImmediate(puppet2D_SortingLayer);
-
-
+            if (puppet2D_SortingLayer != null)
+                DestroyImmediate(puppet2D_SortingLayer);
+            //Undo.DestroyObjectImmediate(puppet2D_SortingLayer);
             Mesh sharedMesh = mesh.transform.GetComponent<MeshFilter>().sharedMesh;
             Vector3[] verts = sharedMesh.vertices;
-
             Matrix4x4[] bindPoses = new Matrix4x4[selectedBones.Count];
-
-
-            List<Transform> closestBones =  new List<Transform>();
+            List<Transform> closestBones = new List<Transform>();
             closestBones.Clear();
             BoneWeight[] weights = new BoneWeight[verts.Length];
             int index = 0;
             int index2 = 0;
             int index3 = 0;
-
             for (int j = 0; j < weights.Length; j++)
             {
                 float testdist = 1000000;
                 float testdist2 = 1000000;
                 for (int i = 0; i < selectedBones.Count; i++)
                 {
-
                     Vector3 worldPt = mesh.transform.TransformPoint(verts[j]);
-
-					float dist = Vector2.Distance(new Vector2(selectedBones[i].GetComponent<Renderer>().bounds.center.x,selectedBones[i].GetComponent<Renderer>().bounds.center.y), new Vector2(worldPt.x,worldPt.y));
-
+                    float dist = Vector2.Distance(new Vector2(selectedBones[i].GetComponent<Renderer>().bounds.center.x, selectedBones[i].GetComponent<Renderer>().bounds.center.y), new Vector2(worldPt.x, worldPt.y));
                     if (dist < testdist)
                     {
                         testdist = dist;
                         index = selectedBones.IndexOf(selectedBones[i]);
-
                     }
-
-
                     Transform bone = selectedBones[i];
                     bindPoses[i] = bone.worldToLocalMatrix * mesh.transform.localToWorldMatrix;
                 }
                 for (int i = 0; i < selectedBones.Count; i++)
                 {
-                    if(!(index==(selectedBones.IndexOf(selectedBones[i]))))
+                    if (!(index == (selectedBones.IndexOf(selectedBones[i]))))
                     {
                         Vector3 worldPt = mesh.transform.TransformPoint(verts[j]);
-						float dist = Vector2.Distance(new Vector2(selectedBones[i].GetComponent<Renderer>().bounds.center.x,selectedBones[i].GetComponent<Renderer>().bounds.center.y), new Vector2(worldPt.x,worldPt.y));
-
+                        float dist = Vector2.Distance(new Vector2(selectedBones[i].GetComponent<Renderer>().bounds.center.x, selectedBones[i].GetComponent<Renderer>().bounds.center.y), new Vector2(worldPt.x, worldPt.y));
                         if (dist < testdist2)
                         {
                             testdist2 = dist;
-                            index2 = selectedBones.IndexOf(selectedBones[i]);                           
-
-
+                            index2 = selectedBones.IndexOf(selectedBones[i]);
                         }
                     }
-
                 }
-
-                float combinedDistance = testdist+testdist2;
-                float weight1 = (testdist/combinedDistance);
-                float weight2 =  (testdist2/combinedDistance);
+                float combinedDistance = testdist + testdist2;
+                float weight1 = (testdist / combinedDistance);
+                float weight2 = (testdist2 / combinedDistance);
                 weight1 = Mathf.Lerp(1, 0, weight1);
                 weight2 = Mathf.Lerp(1, 0, weight2);
-
-                weight1= Mathf.Clamp01((weight1+0.5f)*(weight1+0.5f)*(weight1+0.5f) - 0.5f);
-                weight2= Mathf.Clamp01((weight2+0.5f)*(weight2+0.5f)*(weight2+0.5f) - 0.5f);
-
+                weight1 = Mathf.Clamp01((weight1 + 0.5f) * (weight1 + 0.5f) * (weight1 + 0.5f) - 0.5f);
+                weight2 = Mathf.Clamp01((weight2 + 0.5f) * (weight2 + 0.5f) * (weight2 + 0.5f) - 0.5f);
                 if (Puppet2D_Editor._numberBonesToSkinToIndex == 1)
                 {
-					renderer.quality = SkinQuality.Bone2;
-
-					weights [j].boneIndex0 = index;
-                    weights [j].weight0 = weight1;
-                    weights [j].boneIndex1 = index2;
-                    weights [j].weight1 = weight2;
-                } 
-                else if(Puppet2D_Editor._numberBonesToSkinToIndex == 2)
-                {
-
-                    Vector3 worldPt = mesh.transform.TransformPoint(verts[j]);
-                    //Vector3 worldPt = verts[j];
-
-                    renderer.quality = SkinQuality.Bone4;
-
-                    if (ffdControls.Count == 0)
+                    renderer.quality = SkinQuality.Bone2;
+                    weights[j].boneIndex0 = index;
+                    weights[j].weight0 = weight1;
+                    weights[j].boneIndex1 = index2;
+                    weights[j].weight1 = weight2;
+                }
+                else
+                    if (Puppet2D_Editor._numberBonesToSkinToIndex == 2)
                     {
-                        Debug.LogWarning("You must select some FFD controls to bind to");
-                        return null;
-                    }
-                    if (ffdControls[0].GetComponent<Puppet2D_FFDLineDisplay>().outputSkinnedMesh == null || ffdControls[0].GetComponent<Puppet2D_FFDLineDisplay>().outputSkinnedMesh.sharedMesh == null)
-                    {
-                        Debug.LogWarning("You need the original FFD output mesh to copy skin weights. Make sure the outputSkinnedMesh is assigned to the ffdControl");
-                        return null;
-                    }
-                    if (!ffdControls[0].transform.parent || !ffdControls[0].transform.parent.parent)
-                    {
-                        Debug.LogWarning("Your FFD Controls need a parent Group for offset");
-                        return null;
-                    }
-
-                    int[] tris = ffdControls[0].GetComponent<Puppet2D_FFDLineDisplay>().outputSkinnedMesh.sharedMesh.triangles;
-                    Vector3[] ffdMeshVerts = ffdControls[0].GetComponent<Puppet2D_FFDLineDisplay>().outputSkinnedMesh.sharedMesh.vertices;
-
-                    bool insideTriangle = false;
-                    for (int t =0; t<tris.Length-2; t+=3)
-                    {
-                        Vector3[] polygon = new Vector3[3];
-                        polygon[0] = ffdControls[0].transform.parent.parent.TransformPoint(ffdMeshVerts[tris[t]]);
-                        polygon[1] = ffdControls[0].transform.parent.parent.TransformPoint(ffdMeshVerts[tris[t+1]]);
-                        polygon[2] = ffdControls[0].transform.parent.parent.TransformPoint(ffdMeshVerts[tris[t+2]]);
-
-                        //Debug.Log(worldPt+" "+polygon[0]+" "+polygon[1]+" "+polygon[2]);
-                        if (ContainsPoint(polygon, worldPt))
-                        {                           
-                            index = Puppet2D_FFD.GetIndexOfVector3(ffdControls,polygon[0] );
-                            index2 = Puppet2D_FFD.GetIndexOfVector3(ffdControls,polygon[1] );
-                            index3 = Puppet2D_FFD.GetIndexOfVector3(ffdControls,polygon[2] );
-                            insideTriangle = true;
-                        }
-
-
-                    }
-                    if(insideTriangle)
-                    {
-                        Vector3 weightBary = Barycentric(ffdControls[index].transform.position, ffdControls[index2].transform.position, ffdControls[index3].transform.position, worldPt);
-                        //Debug.Log(ffdControls[index] + " " + ffdControls[index2] + " " + ffdControls[index3]);
-                        //if (index != -1 && weights[j].weight0 > 0)
+                        Vector3 worldPt = mesh.transform.TransformPoint(verts[j]);
+                        //Vector3 worldPt = verts[j];
+                        renderer.quality = SkinQuality.Bone4;
+                        if (ffdControls.Count == 0)
                         {
-                            weights[j].boneIndex0 = index;
-                            weights[j].weight0 = weightBary.z;
+                            Debug.LogWarning("You must select some FFD controls to bind to");
+                            return null;
                         }
-                        //if (index2 != -1 && weights[j].weight1 > 0)
+                        if (ffdControls[0].GetComponent<Puppet2D_FFDLineDisplay>().outputSkinnedMesh == null || ffdControls[0].GetComponent<Puppet2D_FFDLineDisplay>().outputSkinnedMesh.sharedMesh == null)
                         {
-                            weights[j].boneIndex1 = index2;
-                            weights[j].weight1 = weightBary.x;
+                            Debug.LogWarning("You need the original FFD output mesh to copy skin weights. Make sure the outputSkinnedMesh is assigned to the ffdControl");
+                            return null;
                         }
-                        //if (index3 != -1 && weights[j].weight2 > 0)
+                        if (!ffdControls[0].transform.parent || !ffdControls[0].transform.parent.parent)
                         {
-                            weights[j].boneIndex2 = index3;
-                            weights[j].weight2 = weightBary.y;
+                            Debug.LogWarning("Your FFD Controls need a parent Group for offset");
+                            return null;
                         }
-
-
-
+                        int[] tris = ffdControls[0].GetComponent<Puppet2D_FFDLineDisplay>().outputSkinnedMesh.sharedMesh.triangles;
+                        Vector3[] ffdMeshVerts = ffdControls[0].GetComponent<Puppet2D_FFDLineDisplay>().outputSkinnedMesh.sharedMesh.vertices;
+                        bool insideTriangle = false;
+                        for (int t = 0; t < tris.Length - 2; t += 3)
+                        {
+                            Vector3[] polygon = new Vector3[3];
+                            polygon[0] = ffdControls[0].transform.parent.parent.TransformPoint(ffdMeshVerts[tris[t]]);
+                            polygon[1] = ffdControls[0].transform.parent.parent.TransformPoint(ffdMeshVerts[tris[t + 1]]);
+                            polygon[2] = ffdControls[0].transform.parent.parent.TransformPoint(ffdMeshVerts[tris[t + 2]]);
+                            //Debug.Log(worldPt+" "+polygon[0]+" "+polygon[1]+" "+polygon[2]);
+                            if (ContainsPoint(polygon, worldPt))
+                            {
+                                index = Puppet2D_FFD.GetIndexOfVector3(ffdControls, polygon[0]);
+                                index2 = Puppet2D_FFD.GetIndexOfVector3(ffdControls, polygon[1]);
+                                index3 = Puppet2D_FFD.GetIndexOfVector3(ffdControls, polygon[2]);
+                                insideTriangle = true;
+                            }
+                        }
+                        if (insideTriangle)
+                        {
+                            Vector3 weightBary = Barycentric(ffdControls[index].transform.position, ffdControls[index2].transform.position, ffdControls[index3].transform.position, worldPt);
+                            //Debug.Log(ffdControls[index] + " " + ffdControls[index2] + " " + ffdControls[index3]);
+                            //if (index != -1 && weights[j].weight0 > 0)
+                            {
+                                weights[j].boneIndex0 = index;
+                                weights[j].weight0 = weightBary.z;
+                            }
+                            //if (index2 != -1 && weights[j].weight1 > 0)
+                            {
+                                weights[j].boneIndex1 = index2;
+                                weights[j].weight1 = weightBary.x;
+                            }
+                            //if (index3 != -1 && weights[j].weight2 > 0)
+                            {
+                                weights[j].boneIndex2 = index3;
+                                weights[j].weight2 = weightBary.y;
+                            }
+                        }
+                        else
+                        {
+                            weights[j].boneIndex0 = 0;
+                            weights[j].weight0 = 1;
+                        }
                     }
                     else
                     {
-                        weights [j].boneIndex0 = 0;
-                        weights [j].weight0 = 1;
-
+                        renderer.quality = SkinQuality.Bone1;
+                        weights[j].boneIndex0 = index;
+                        weights[j].weight0 = 1;
                     }
-
-                }
-                else
-                {
-					renderer.quality = SkinQuality.Bone1;
-
-					weights [j].boneIndex0 = index;
-					weights [j].weight0 = 1;
-					
-                }
-
             }
-
             sharedMesh.boneWeights = weights;
-
             sharedMesh.bindposes = bindPoses;
-
             renderer.bones = selectedBones.ToArray();
-
             renderer.sharedMesh = sharedMesh;
-            if(mat)
+            if (mat)
                 renderer.sharedMaterial = mat;
-
             renderer.sortingLayerName = sortingLayer;
             renderer.sortingOrder = sortingOrder;
             mesh.AddComponent<Puppet2D_SortingLayer>();
-
-
-			sharedMesh.colors = new Color[sharedMesh.vertices.Length];
-			EditorUtility.SetDirty(mesh);
-			EditorUtility.SetDirty(sharedMesh);
-			AssetDatabase.SaveAssets();
-			EditorApplication.SaveAssets();
-
+            sharedMesh.colors = new Color[sharedMesh.vertices.Length];
+            EditorUtility.SetDirty(mesh);
+            EditorUtility.SetDirty(sharedMesh);
+            AssetDatabase.SaveAssets();
+            EditorApplication.SaveAssets();
         }
         foreach (Transform bone in selectedBones) 
         {

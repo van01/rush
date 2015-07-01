@@ -101,7 +101,8 @@ public class Puppet2D_BakeAnimation : MonoBehaviour {
 			newClip.wrapMode = clip.wrapMode;
 			AnimationClipSettings animClipSettings = new AnimationClipSettings();
 			animClipSettings.stopTime = clip.length;
-			#if UNITY_5_0
+					#if (!UNITY_4_3 && !UNITY_4_4 && !UNITY_4_5 && !UNITY_4_6)
+
 			newClip.legacy = false;
 			#else
 			AnimationUtility.SetAnimationType(newClip, ModelImporterAnimationType.Generic);
@@ -154,7 +155,7 @@ public class Puppet2D_BakeAnimation : MonoBehaviour {
 		GetAllChilds(transform.gameObject);
 		foreach (GameObject child in childsOfGameobject)
 		{
-            if (child.transform.GetComponent<SpriteRenderer>() && child.transform.GetComponent<SpriteRenderer>().sprite && child.transform.GetComponent<SpriteRenderer>().sprite.name.Contains("Bone"))
+			if (child.transform.GetComponent<SpriteRenderer>() && child.transform.GetComponent<SpriteRenderer>().sprite && child.transform.GetComponent<SpriteRenderer>().sprite.name.Contains("Bone") && !child.transform.GetComponent<Puppet2D_HiddenBone>())
             {            
                 returnList.Add(child.transform);
                 if (child.transform.GetComponent<SpriteRenderer>().sprite.name.Contains("ffd"))
@@ -370,7 +371,7 @@ public class Puppet2D_BakeAnimation : MonoBehaviour {
 	List<AnimationClip> GetAnimationLengths()
 	{
 		List<AnimationClip> animationClips = new List<AnimationClip>();
-		#if UNITY_5_0
+		#if (!UNITY_4_3 && !UNITY_4_4 && !UNITY_4_5 && !UNITY_4_6)
 		RuntimeAnimatorController controller = transform.GetComponent<Animator>().runtimeAnimatorController;
 
 		for (int i = 0; i < controller.animationClips.Length; i++)				

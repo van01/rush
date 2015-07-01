@@ -33,16 +33,7 @@ public class Puppet2D_FFD : Editor
 
 
         Puppet2D_FFDLineDisplay ffdline = newCtrl.AddComponent<Puppet2D_FFDLineDisplay>();
-        //ffdline.vertNumber = ffdStoreData.FFDCtrls.Count - 1;
 
-////		if(ffdline.vertNumber % 4 == 0) 
-////			ffdline.vertNumber  = 0;
-//		if(ffdline.vertNumber % 4 == 3) 
-//			ffdline.vertNumber  = 1;
-//		else if(ffdline.vertNumber % 4 == 1) 
-//			ffdline.vertNumber  = 2;
-//		else if(ffdline.vertNumber % 4 == 2) 
-//			ffdline.vertNumber  = 3;
         if(ffdStoreData.FFDCtrls.Count>1)
         {
             if (ffdStoreData.FFDPathNumber.Count > 0)
@@ -86,9 +77,10 @@ public class Puppet2D_FFD : Editor
 
     }
 
-    public static void CloseFFDPath ()
+
+	public static void CloseFFDPath ()
     {
-        if (ffdStoreData !=null &&ffdStoreData.FFDCtrls.Count > 2)
+		if (ffdStoreData !=null &&ffdStoreData.FFDCtrls.Count > 2)
         {
             if (ffdStoreData.FFDCtrls[ffdStoreData.FFDCtrls.Count - 1] && ffdStoreData.FFDCtrls[ffdStoreData.FFDCtrls.Count - 1].GetComponent<Puppet2D_FFDLineDisplay>().target2 == null)
             {
@@ -96,12 +88,14 @@ public class Puppet2D_FFD : Editor
                     ffdStoreData.FFDCtrls[ffdStoreData.FFDCtrls.Count - 1].GetComponent<Puppet2D_FFDLineDisplay>().target2 = ffdStoreData.FFDCtrls[ffdStoreData.FFDPathNumber[ffdStoreData.FFDPathNumber.Count - 1]];
                 else
                     ffdStoreData.FFDCtrls[ffdStoreData.FFDCtrls.Count - 1].GetComponent<Puppet2D_FFDLineDisplay>().target2 = ffdStoreData.FFDCtrls[0];
-                Undo.RecordObject (ffdStoreData, "Adding FFD Control");
+                Undo.RecordObject (ffdStoreData, "Adding FFD Count");
+				Undo.RegisterCompleteObjectUndo (ffdStoreData, "FFDPathChange");
                 ffdStoreData.FFDPathNumber.Add(ffdStoreData.FFDCtrls.Count);
             }
         }
 
     }
+
     public static void FFDFinishCreation ()
     {
         if (ffdStoreData == null)
@@ -109,16 +103,15 @@ public class Puppet2D_FFD : Editor
         Puppet2D_Editor.FFDCreation = false;
         CloseFFDPath();
 
+
+
         Texture spriteTexture = null;
 
         //GameObject FFDControlsGrp = new GameObject(Puppet2D_BoneCreation.GetUniqueBoneName("FFD_Ctrls_GRP"));
 
-        if (Puppet2D_Editor.FFDGameObject)
+		if (Puppet2D_Editor.FFDGameObject && Puppet2D_Editor.FFDGameObject.GetComponent<SpriteRenderer>()&& Puppet2D_Editor.FFDGameObject.GetComponent<SpriteRenderer>().sprite)
         {
             spriteTexture = Puppet2D_Editor.FFDGameObject.GetComponent<SpriteRenderer>().sprite.texture;
-
-
-            //            FFDControlsGrp.name = Puppet2D_Editor.GetUniqueBoneName(Puppet2D_Editor.FFDGameObject.GetComponent<SpriteRenderer>().sprite.texture.name);
 
             foreach (Transform FFDCtrl in ffdStoreData.FFDCtrls)
                 FFDCtrl.transform.position = Puppet2D_Editor.FFDGameObject.transform.InverseTransformPoint(FFDCtrl.transform.position);
@@ -128,24 +121,18 @@ public class Puppet2D_FFD : Editor
             FFDControlsGrp.transform.rotation = Puppet2D_Editor.FFDGameObject.transform.rotation;
             FFDControlsGrp.transform.localScale = Puppet2D_Editor.FFDGameObject.transform.localScale;
 
-
-            //            FFDControlsGrp.transform.position = Vector3.zero;
-            //            FFDControlsGrp.transform.rotation = Quaternion.identity;
-            //            FFDControlsGrp.transform.localScale = Vector3.one;
-
-
-            Puppet2D_Editor.FFDGameObject.transform.position = Vector3.zero;
-            Puppet2D_Editor.FFDGameObject.transform.rotation = Quaternion.identity;
-            Puppet2D_Editor.FFDGameObject.transform.localScale = Vector3.one;
+            //Puppet2D_Editor.FFDGameObject.transform.position = Vector3.zero;
+            //Puppet2D_Editor.FFDGameObject.transform.rotation = Quaternion.identity;
+            //Puppet2D_Editor.FFDGameObject.transform.localScale = Vector3.one;
 
         }
 
         if ( ffdStoreData.FFDCtrls.Count < 3)
         {
-            Undo.DestroyObjectImmediate(ffdStoreData);
+            //Undo.DestroyObjectImmediate(ffdStoreData);
             return;
         }
-
+	
         Puppet2D_CreatePolygonFromSprite polyFromSprite = ScriptableObject.CreateInstance("Puppet2D_CreatePolygonFromSprite") as Puppet2D_CreatePolygonFromSprite;
 
         List<Vector3> verts = new List<Vector3>();
@@ -156,19 +143,22 @@ public class Puppet2D_FFD : Editor
                 verts.Add(new Vector3(ffdStoreData.FFDCtrls[i].position.x, ffdStoreData.FFDCtrls[i].position.y, 0));
             else
             {
-                Debug.LogWarning("A FFD control point has been removed, no mesh created");
-                Undo.DestroyObjectImmediate(ffdStoreData);
-                return;
+//                Debug.LogWarning("A FFD control point has been removed, no mesh created");
+//                Undo.DestroyObjectImmediate(ffdStoreData);
+//                return;
             }
 
         }
-
         GameObject newMesh;
+
 
         if(ffdStoreData.FFDPathNumber.Count>0 && verts.Count>2)
         {
             if (Puppet2D_Editor.FFDGameObject == null)
+			{
                 Puppet2D_Editor.FFDGameObject = new GameObject();
+				Undo.RegisterCreatedObjectUndo (Puppet2D_Editor.FFDGameObject, "newGameObject");
+			}
 
 
             Puppet2D_Editor._numberBonesToSkinToIndex = 0;
@@ -197,10 +187,15 @@ public class Puppet2D_FFD : Editor
         }
         else
         {
-            Undo.DestroyObjectImmediate(ffdStoreData);
+            //Undo.DestroyObjectImmediate(ffdStoreData);
             return;
         }
-        DestroyImmediate(polyFromSprite); 
+
+
+
+        Undo.DestroyObjectImmediate(polyFromSprite); 
+
+
 
         if (Puppet2D_Editor.FFDGameObject)
         {
@@ -212,45 +207,60 @@ public class Puppet2D_FFD : Editor
 
             ffdStoreData.FFDCtrls.Add(newMesh.transform);
 
-
             Undo.DestroyObjectImmediate(Puppet2D_Editor.FFDGameObject);
         }
 
+
+
         GameObject globalCtrl = Puppet2D_CreateControls.CreateGlobalControl();
-        FFDControlsGrp.transform.parent = globalCtrl.transform;
-		newMesh.transform.parent = globalCtrl.transform;
+		Undo.SetTransformParent (FFDControlsGrp.transform, globalCtrl.transform, "parentToGlobal");
+		Undo.SetTransformParent (newMesh.transform, globalCtrl.transform, "parentToGlobal");
+
 
         List<Object> newObjs = new List<Object>();
         foreach(Transform tr in ffdStoreData.FFDCtrls)
-            newObjs.Add(tr.gameObject);
+		{
+			if(tr)
+            	newObjs.Add(tr.gameObject);
+		}
         Selection.objects = newObjs.ToArray();
 
         Puppet2D_Editor._numberBonesToSkinToIndex = 1;
-        Puppet2D_Skinning.BindSmoothSkin();
 
+
+		//Undo.RecordObjects (newObjs.ToArray(), "recordingStuff");
+		//Undo.RegisterCompleteObjectUndo (newObjs.ToArray(), "recordingStuff");
+        
+		Puppet2D_Skinning.BindSmoothSkin();
 
         for (int i = 0; i < ffdStoreData.FFDCtrls.Count-1; i++)
         {
             //Debug.Log(ffdStoreData.FFDCtrls[i]);
-			Puppet2D_FFDLineDisplay ffdLine = ffdStoreData.FFDCtrls[i].GetComponent<Puppet2D_FFDLineDisplay>();
-			ffdLine.outputSkinnedMesh = newMesh.GetComponent<SkinnedMeshRenderer>();
-			for (int j = 0; j < ffdLine.outputSkinnedMesh.sharedMesh.vertices.Length; j++) 
+			if (ffdStoreData.FFDCtrls [i]) 
 			{
-				Vector3 vert = ffdLine.outputSkinnedMesh.sharedMesh.vertices [j];
-				if (Vector3.Distance (vert, ffdStoreData.FFDCtrls [i].transform.position) < .001f)
-					ffdStoreData.FFDCtrls [i].GetComponent<Puppet2D_FFDLineDisplay> ().vertNumber = j;
+				Puppet2D_FFDLineDisplay ffdLine = ffdStoreData.FFDCtrls [i].GetComponent<Puppet2D_FFDLineDisplay> ();
+				ffdLine.outputSkinnedMesh = newMesh.GetComponent<SkinnedMeshRenderer> ();
+				for (int j = 0; j < ffdLine.outputSkinnedMesh.sharedMesh.vertices.Length; j++) {
+					Vector3 vert = ffdLine.outputSkinnedMesh.sharedMesh.vertices [j];
+					if (Vector3.Distance (vert, ffdStoreData.FFDCtrls [i].transform.position) < .001f)
+						ffdStoreData.FFDCtrls [i].GetComponent<Puppet2D_FFDLineDisplay> ().vertNumber = j;
+
+				}
+				Undo.SetTransformParent (ffdStoreData.FFDCtrls [i].parent.transform, FFDControlsGrp.transform, "parentFFDControls");
+
+				ffdStoreData.FFDCtrls [i].transform.localPosition = Vector3.zero;
 
 			}
-            ffdStoreData.FFDCtrls[i].parent.transform.parent = FFDControlsGrp.transform; 
-            ffdStoreData.FFDCtrls[i].transform.localPosition = Vector3.zero;
-
-
         }
-
-
-        Undo.DestroyObjectImmediate(ffdStoreData);
+		Selection.activeGameObject = ffdStoreData.FFDCtrls [ffdStoreData.FFDCtrls.Count - 1].gameObject;
+		ffdStoreData.FFDCtrls.RemoveAt(ffdStoreData.FFDCtrls.Count-1);
+		Undo.RegisterCompleteObjectUndo (ffdStoreData, "changinEditable");
+		ffdStoreData.Editable = false;
+//        Undo.DestroyObjectImmediate(ffdStoreData);
 		if (globalCtrl.GetComponent<Puppet2D_GlobalControl>().AutoRefresh)
 			globalCtrl.GetComponent<Puppet2D_GlobalControl>().Init();
+
+
 
     }
     public static int GetIndexOfVector3(List<GameObject> checkList, Vector3 match)

@@ -105,8 +105,8 @@ public class Puppet2D_CreateControls : Editor {
         Undo.RegisterCreatedObjectUndo (control, "Created control");
         control.name = (bone.name+"_CTRL");
         GameObject controlGroup = new GameObject();
+		Undo.RegisterCreatedObjectUndo (controlGroup, "new control grp");
         controlGroup.name = (bone.name+"_CTRL_GRP");
-        Undo.RegisterCreatedObjectUndo (controlGroup, "Created controlgrp");
 
         control.transform.parent = controlGroup.transform;
         controlGroup.transform.position = bone.transform.position;
@@ -226,7 +226,7 @@ public class Puppet2D_CreateControls : Editor {
         Undo.RegisterCreatedObjectUndo (control, "Created control");
         control.name = (bone.name+"_CTRL");
         GameObject controlGroup = new GameObject();
-        Undo.RegisterCreatedObjectUndo (controlGroup, "Created controlgrp");
+        Undo.RegisterCreatedObjectUndo (controlGroup, "CreatedControlGrp");
         controlGroup.name = (bone.name+"_CTRL_GRP");
         control.transform.parent = controlGroup.transform;
         controlGroup.transform.position = bone.transform.position;

@@ -330,8 +330,8 @@ public class Puppet2D_CreatePolygonFromSprite : Editor {
 
 
         MeshedSprite =new GameObject();
-
         Undo.RegisterCreatedObjectUndo (MeshedSprite, "Created Mesh");
+
         mf = MeshedSprite.AddComponent<MeshFilter>();
         mr = MeshedSprite.AddComponent<MeshRenderer>();
         mesh = new Mesh();

@@ -474,18 +474,75 @@ public class Puppet2D_Editor : EditorWindow
 
             if (GUI.Button(new Rect(80, 360+offsetControls+SkinWeightsPaintOffset, 150, 30), "Create FFD Tool"))
             {   
-				if (!FFDCreation)
+//				if (FindObjectOfType<Puppet2D_FFDStoreData> () == null)
+//					FFDCreation = false;
+
+				// RECREATE FFD CHECK
+				if (Selection.activeGameObject != null && Selection.activeGameObject.GetComponent<SkinnedMeshRenderer>()  ) 
+				{
+					SkinnedMeshRenderer smr = Selection.activeGameObject.GetComponent<SkinnedMeshRenderer>() ;
+
+
+					Puppet2D_FFDStoreData[] storeDatas = FindObjectsOfType<Puppet2D_FFDStoreData> ();
+					foreach(Puppet2D_FFDStoreData storeData in storeDatas)
+					{
+						foreach(Transform ffdctrl in storeData.FFDCtrls)
+						{
+							if (ffdctrl.GetComponentInChildren<Puppet2D_FFDLineDisplay>().outputSkinnedMesh == smr)
+							{
+								storeData.Editable = true;
+
+								GameObject tempSprite = new GameObject ();
+								Undo.RegisterCreatedObjectUndo (tempSprite, "tempSprite");
+								SpriteRenderer spriteRender = tempSprite.AddComponent<SpriteRenderer> ();
+
+								Sprite thisSprite = AssetDatabase.LoadAssetAtPath(AssetDatabase.GetAssetPath(smr.sharedMaterial.mainTexture) ,typeof(Sprite)) as Sprite;
+
+								spriteRender.sprite = thisSprite;
+								tempSprite.transform.position = storeData.transform.position;
+								tempSprite.name = smr.gameObject.name;
+								Undo.DestroyObjectImmediate(smr.gameObject);
+
+								Selection.activeGameObject = storeData.FFDCtrls[storeData.FFDCtrls.Count-1].gameObject;
+
+								FFDGameObject = tempSprite;
+								break;
+							}
+						}
+					}
+
+				}
+
+
+				if (FindObjectOfType<Puppet2D_FFDStoreData> () == null)				
 				{
 
-					if (Selection.activeGameObject && Selection.activeGameObject.GetComponent<SpriteRenderer>() && Selection.activeGameObject.GetComponent<SpriteRenderer>().sprite && !Selection.activeGameObject.GetComponent<SpriteRenderer>().sprite.name.Contains("bone"))
-						FFDGameObject = Selection.activeGameObject;
-					else if (!EditorUtility.DisplayDialog("Are you sure?", "You haven't selected a sprite. Do you want to create a new FFD mesh without a sprite?", "Yes", "No")) 
+					StartFFDCreation ();
+				}
+				else
+				{
+					bool FFDExistsInScene = false;
+					foreach(Puppet2D_FFDStoreData data in FindObjectsOfType<Puppet2D_FFDStoreData>())
 					{
-						return;
+						if(data.Editable == true)
+						{
+							Puppet2D_FFD.FFDControlsGrp = data.gameObject;
+
+							FFDExistsInScene = true;
+							if(data.FFDPathNumber.Count>0)
+								data.FFDPathNumber.RemoveAt (data.FFDPathNumber.Count - 1);
+							if (data.FFDCtrls.Count >0 &&data.FFDCtrls [data.FFDCtrls.Count - 1] )
+								data.FFDCtrls [data.FFDCtrls.Count - 1].GetComponent<Puppet2D_FFDLineDisplay> ().target2 = null;
+							Puppet2D_FFD.ffdStoreData = data;
+							FFDCreation = true;
+						}
+					}
+					if(!FFDExistsInScene)
+					{
+						StartFFDCreation ();
 
 					}
-					FFDCreation = true;
-					Puppet2D_FFD.FFDSetFirstPath();
+
 				}
 
             }
@@ -493,6 +550,7 @@ public class Puppet2D_Editor : EditorWindow
                 GUI.backgroundColor = bgColor;
             if (GUI.Button(new Rect(80, 390+offsetControls+SkinWeightsPaintOffset, 150, 30), "Finish FFD"))
             {   
+				FFDCreation = false;
                 Puppet2D_FFD.FFDFinishCreation();
             }
 
@@ -763,9 +821,16 @@ public class Puppet2D_Editor : EditorWindow
                 }
 				else if(FFDCreation)
 				{
-					Ray worldRay = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
+					if (FindObjectOfType<Puppet2D_FFDStoreData> () == null)
+					{
+						FFDCreation = false;
+					}
+					else
+					{
+						Ray worldRay = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
                     
-					Puppet2D_FFD.FFDCreationMode(worldRay.GetPoint(0));
+						Puppet2D_FFD.FFDCreationMode(worldRay.GetPoint(0));
+					}
 				}
 				else if(SkinWeightsPaint)
 				{					
@@ -924,7 +989,8 @@ public class Puppet2D_Editor : EditorWindow
 		string path = (Puppet2D_Editor._puppet2DPath+"/Textures/GUI/BoneNoJoint.psd");
 		Sprite sprite =AssetDatabase.LoadAssetAtPath(path, typeof(Sprite)) as Sprite;
 		TextureImporter textureImporter = AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(sprite)) as TextureImporter;
-		#if UNITY_5_0
+		#if (!UNITY_4_3 && !UNITY_4_4 && !UNITY_4_5 && !UNITY_4_6)
+
 			textureImporter.spritePixelsPerUnit = (1-BoneSize)*(1-BoneSize)*1000f;
 		#else
 			textureImporter.spritePixelsToUnits = (1-BoneSize)*(1-BoneSize)*1000f;
@@ -933,12 +999,25 @@ public class Puppet2D_Editor : EditorWindow
 
 	}
 
+	static void StartFFDCreation ()
+	{
+		if (Selection.activeGameObject && Selection.activeGameObject.GetComponent<SpriteRenderer> () && Selection.activeGameObject.GetComponent<SpriteRenderer> ().sprite && !Selection.activeGameObject.GetComponent<SpriteRenderer> ().sprite.name.Contains ("bone") && !Selection.activeGameObject.GetComponent<Puppet2D_FFDLineDisplay> ())
+			FFDGameObject = Selection.activeGameObject;
+		else
+			if (!EditorUtility.DisplayDialog ("Are you sure?", "You haven't selected a sprite. Do you want to create a new FFD mesh without a sprite?", "Yes", "No")) {
+				return;
+			}
+		FFDCreation = true;
+		Puppet2D_FFD.FFDSetFirstPath ();
+	}
+
 	void ChangeControlSize ()
 	{
 		string path = (Puppet2D_Editor._puppet2DPath+"/Textures/GUI/IKControl.psd");
 		Sprite sprite =AssetDatabase.LoadAssetAtPath(path, typeof(Sprite)) as Sprite;
 		TextureImporter textureImporter = AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(sprite)) as TextureImporter;
-		#if UNITY_5_0
+		#if (!UNITY_4_3 && !UNITY_4_4 && !UNITY_4_5 && !UNITY_4_6)
+
 			textureImporter.spritePixelsPerUnit = (1-ControlSize)*(1-ControlSize)*1000f;
 		#else
 			textureImporter.spritePixelsToUnits = (1-ControlSize)*(1-ControlSize)*1000f;
@@ -949,7 +1028,8 @@ public class Puppet2D_Editor : EditorWindow
 		path = (Puppet2D_Editor._puppet2DPath+"/Textures/GUI/orientControl.psd");
 		sprite =AssetDatabase.LoadAssetAtPath(path, typeof(Sprite)) as Sprite;
 		textureImporter = AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(sprite)) as TextureImporter;
-		#if UNITY_5_0
+		#if (!UNITY_4_3 && !UNITY_4_4 && !UNITY_4_5 && !UNITY_4_6)
+
 			textureImporter.spritePixelsPerUnit = (1-ControlSize)*(1-ControlSize)*1000f;
 		#else
 			textureImporter.spritePixelsToUnits = (1-ControlSize)*(1-ControlSize)*1000f;
@@ -959,7 +1039,7 @@ public class Puppet2D_Editor : EditorWindow
 		path = (Puppet2D_Editor._puppet2DPath+"/Textures/GUI/parentControl.psd");
 		sprite =AssetDatabase.LoadAssetAtPath(path, typeof(Sprite)) as Sprite;
 		textureImporter = AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(sprite)) as TextureImporter;
-		#if UNITY_5_0
+		#if (!UNITY_4_3 && !UNITY_4_4 && !UNITY_4_5 && !UNITY_4_6)
 			textureImporter.spritePixelsPerUnit = (1-ControlSize)*(1-ControlSize)*1000f;
 		#else
 			textureImporter.spritePixelsToUnits = (1-ControlSize)*(1-ControlSize)*1000f;
@@ -969,7 +1049,7 @@ public class Puppet2D_Editor : EditorWindow
         path = (Puppet2D_Editor._puppet2DPath+"/Textures/GUI/splineControl.psd");
         sprite =AssetDatabase.LoadAssetAtPath(path, typeof(Sprite)) as Sprite;
         textureImporter = AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(sprite)) as TextureImporter;
-		#if UNITY_5_0
+		#if (!UNITY_4_3 && !UNITY_4_4 && !UNITY_4_5 && !UNITY_4_6)
 			textureImporter.spritePixelsPerUnit = (1-ControlSize)*(1-ControlSize)*1000f;
 		#else
 			textureImporter.spritePixelsToUnits = (1-ControlSize)*(1-ControlSize)*1000f;
@@ -979,7 +1059,7 @@ public class Puppet2D_Editor : EditorWindow
         path = (Puppet2D_Editor._puppet2DPath+"/Textures/GUI/splineMiddleControl.psd");
         sprite =AssetDatabase.LoadAssetAtPath(path, typeof(Sprite)) as Sprite;
         textureImporter = AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(sprite)) as TextureImporter;
-		#if UNITY_5_0
+		#if (!UNITY_4_3 && !UNITY_4_4 && !UNITY_4_5 && !UNITY_4_6)
 			textureImporter.spritePixelsPerUnit = (1-ControlSize)*(1-ControlSize)*1000f;
 		#else
 			textureImporter.spritePixelsToUnits = (1-ControlSize)*(1-ControlSize)*1000f;
@@ -989,7 +1069,7 @@ public class Puppet2D_Editor : EditorWindow
         path = (Puppet2D_Editor._puppet2DPath+"/Textures/GUI/ffdBone.psd");
         sprite =AssetDatabase.LoadAssetAtPath(path, typeof(Sprite)) as Sprite;
         textureImporter = AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(sprite)) as TextureImporter;
-		#if UNITY_5_0
+		#if (!UNITY_4_3 && !UNITY_4_4 && !UNITY_4_5 && !UNITY_4_6)
 			textureImporter.spritePixelsPerUnit = (1-ControlSize)*(1-ControlSize)*1000f;
 		#else
 			textureImporter.spritePixelsToUnits = (1-ControlSize)*(1-ControlSize)*1000f;
@@ -1003,7 +1083,7 @@ public class Puppet2D_Editor : EditorWindow
 		string path = (Puppet2D_Editor._puppet2DPath+"/Textures/GUI/VertexHandle.psd");
 		Sprite sprite =AssetDatabase.LoadAssetAtPath(path, typeof(Sprite)) as Sprite;
 		TextureImporter textureImporter = AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(sprite)) as TextureImporter;
-		#if UNITY_5_0
+		#if (!UNITY_4_3 && !UNITY_4_4 && !UNITY_4_5 && !UNITY_4_6)
 		textureImporter.spritePixelsPerUnit = (1-ControlSize)*(1-ControlSize)*1000f;
 		#else
 		textureImporter.spritePixelsToUnits = (1-ControlSize)*(1-ControlSize)*1000f;
