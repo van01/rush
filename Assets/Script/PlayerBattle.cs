@@ -4,44 +4,32 @@ using System.Collections;
 public class PlayerBattle : CharacterBattle {
 
 	private GameObject target;
-	private GameObject testGameController;
+	private GameObject tmpGameController;
+    private Vector3 HitTransform;
+
+    protected bool attackProssible = false;
 
 	void Start(){
-		testGameController = GameObject.Find ("GameController");      
+		tmpGameController = GameObject.Find ("GameController");      
 	}
 
 	public override void StartBattle(){
 		myState = GetComponent<PlayerState>();
 		target = GetComponent<PlayerAI>().GetCurrentTarget();
 
-		myParams = GetComponent<PlayerAbility>().GetParams();
+        playerParams = GetComponent<PlayerAbility>().GetParams();
 		enemyParams = target.GetComponent<EnemyAbility>().GetParams();
 
 		DoBattle();
 	}
 
 	public override void DoBattle(){
-        print("Do Battle");
-		SendMessage("CharacterStateControll", "Attack");
-
-		StartCoroutine("SuccessRoll");
-	}
-
-	protected IEnumerator SuccessRoll(){
-		yield return new WaitForSeconds(0.3f);
-
-		enemyParams.curHP -= myParams.attack;
-		print (enemyParams.curHP + " / " + enemyParams.maxHP);
-
-		CheckEnemyCurHP();
-
-		yield return new WaitForSeconds(0.7f);
-		
-		SendMessage("CharacterStateControll", "Battle");
+        SendMessage("CharacterStateControll", "Attack");
 	}
 
 	public void BattleStop(){
 		StopCoroutine("SuccessRoll");
+        SendMessage("beginningJoinOn");
 	}
 
 	protected void CheckEnemyCurHP(){
@@ -56,8 +44,43 @@ public class PlayerBattle : CharacterBattle {
         Destroy(target);
         BattleStop();
 		SendMessage("CharacterStateControll", "Move");
-		SendMessage("SearchEnemy");
-        SendMessage("BattlingOff");
+		//SendMessage("SearchEnemy");
+        //SendMessage("AttDistanceOn");
+        SendMessage("BattlingOn");
         SendMessage("PositionDistanceReset");
 	}
+
+    public void AttackSuccess()
+    {
+        if (attackProssible == true)
+        {
+            enemyParams.curHP -= playerParams.attack;
+
+            //HitTransform = target.transform;
+            HitTransform = new Vector3(target.transform.position.x - ((target.GetComponent<BoxCollider2D>().size.x - target.GetComponent<BoxCollider2D>().offset.x) * target.transform.localScale.x / 2) + 0.2f, target.transform.position.y, target.transform.position.z);
+
+            tmpGameController.SendMessage("HitPositionSetting", Camera.main.WorldToScreenPoint(HitTransform));
+            tmpGameController.SendMessage("MonsterHitDamage", playerParams.attack);
+            
+
+            //print("Player Attack Success ::::: " + enemyParams.curHP + " / " + enemyParams.maxHP);
+
+            attackProssible = false;
+
+            CheckEnemyCurHP();
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D c)
+    {
+        if (c.CompareTag("Enemy"))
+        {
+            attackProssible = true;
+        }
+    }
+
+    public void AttackEnd()
+    {
+        SendMessage("CharacterStateControll", "Battle");
+    }
 }

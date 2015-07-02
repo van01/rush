@@ -5,7 +5,7 @@ public class CharacterBattle : MonoBehaviour {
 
 	protected float attackDelay = 3.0f;
 
-	protected PlayerParams myParams;
+	protected PlayerParams playerParams;
 	protected EnemyParams enemyParams;
 
 	protected CharacterState myState;

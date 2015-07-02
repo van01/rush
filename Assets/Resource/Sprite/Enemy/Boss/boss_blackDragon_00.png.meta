@@ -1,0 +1,253 @@
+fileFormatVersion: 2
+guid: aebd480e504e68044a2cbb7414404d01
+timeCreated: 1435715398
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Head
+    21300002: Body_01
+    21300004: Body_00
+    21300006: Chin
+    21300008: Hind_leg_00
+    21300010: Hind_leg_01
+    21300012: Hind_leg_02
+    21300014: Neck_01
+    21300016: Neck_00
+    21300018: Fore_leg_00
+    21300020: Fore_leg_01
+    21300022: Hind_leg_03
+    21300024: Tail_00
+    21300026: Tail_01
+    21300028: Tail_02
+    21300030: Fore_leg_02
+    21300032: Tail_03
+    21300034: Tail_04
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Head
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 265
+        width: 199
+        height: 246
+      alignment: 9
+      pivot: {x: .625621557, y: .269293696}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Body_01
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 372
+        width: 158
+        height: 131
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Body_00
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 316
+        width: 150
+        height: 94
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Chin
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 193
+        width: 120
+        height: 68
+      alignment: 9
+      pivot: {x: .854710996, y: .75833267}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hind_leg_00
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 186
+        width: 71
+        height: 127
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hind_leg_01
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 192
+        width: 98
+        height: 86
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hind_leg_02
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 184
+        width: 107
+        height: 131
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Neck_01
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 126
+        width: 67
+        height: 40
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Neck_00
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 126
+        width: 98
+        height: 46
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Fore_leg_00
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 84
+        width: 87
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Fore_leg_01
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 86
+        width: 101
+        height: 74
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hind_leg_03
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 105
+        width: 94
+        height: 39
+      alignment: 9
+      pivot: {x: .715630054, y: .794509113}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Tail_00
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 7
+        width: 108
+        height: 99
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Tail_01
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 3
+        width: 95
+        height: 82
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Tail_02
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 10
+        width: 87
+        height: 68
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Fore_leg_02
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 66
+        width: 83
+        height: 36
+      alignment: 9
+      pivot: {x: .817469597, y: .781515777}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Tail_03
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 9
+        width: 77
+        height: 48
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Tail_04
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 7
+        width: 73
+        height: 19
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

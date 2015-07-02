@@ -22,7 +22,7 @@ public class PlayerAI : MonoBehaviour {
     private float tmpPositionDistance;
     private PlayerState tmpPlayerState;
 
-    private bool attDistance = true;
+    private bool attDistance = false;
 
     void Start()
     {
@@ -32,6 +32,7 @@ public class PlayerAI : MonoBehaviour {
 
 	void Update(){					//틱 추가 후 교체 필요
 		CheckDistanceFromTarget();
+
 		//캐릭터 기본 위치 잡기
         if (tmpPlayerState.currentState == CharacterState.State.Spawn || tmpPlayerState.currentState == CharacterState.State.Move)
         {
@@ -95,10 +96,11 @@ public class PlayerAI : MonoBehaviour {
 			return;
 		}
 
-
         if (tmpPlayerState.currentState == CharacterState.State.Move || tmpPlayerState.currentState == CharacterState.State.Run)
         {
             float distance = Vector3.Distance(target.position, transform.position);
+
+            distance = distance - ((target.GetComponent<BoxCollider2D>().size.x - target.GetComponent<BoxCollider2D>().offset.x) * target.transform.localScale.x / 2);
 
             if (distance < attackDistance)
             {

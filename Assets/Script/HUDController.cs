@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class HUDController : MonoBehaviour {
@@ -11,6 +12,12 @@ public class HUDController : MonoBehaviour {
 	private float catchTime = 0.25f;
 
     private int clicked = 0;
+
+    public GameObject monsterHitTxtPrefab;
+
+    private GameObject monsterHitTxt;
+    private Vector3 monsterHitPoint;
+
 	public void LeftHitZoneDown(){
         bool dtest = DoubleClick();
         
@@ -100,6 +107,28 @@ public class HUDController : MonoBehaviour {
         }
         else if (clicked > 2 || Time.time - lastClickLeftDownTime > 1) clicked = 0;
         return false;
+    }
 
+    public void MonsterHitDamage(int nDamage)
+    {
+        monsterHitTxt = Instantiate(monsterHitTxtPrefab, monsterHitPoint, HUD.transform.rotation) as GameObject;
+        monsterHitTxt.GetComponent<RectTransform>().SetParent(HUD.transform);
+        monsterHitTxt.transform.localScale = new Vector3(1, 1, 1);
+        monsterHitTxt.GetComponent<Text>().text = nDamage.ToString();
+        monsterHitTxt.SendMessage("HitTypeSetting", "Enemy");
+    }
+
+    public void PlayerHitDamage(int nDamage)
+    {
+        monsterHitTxt = Instantiate(monsterHitTxtPrefab, monsterHitPoint, HUD.transform.rotation) as GameObject;
+        monsterHitTxt.GetComponent<RectTransform>().SetParent(HUD.transform);
+        monsterHitTxt.transform.localScale = new Vector3(1, 1, 1);
+        monsterHitTxt.GetComponent<Text>().text = nDamage.ToString();
+        monsterHitTxt.SendMessage("HitTypeSetting", "Player");
+    }
+
+    public void HitPositionSetting(Vector3 nHitPoint)
+    {
+        monsterHitPoint = nHitPoint;
     }
 }

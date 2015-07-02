@@ -33,4 +33,6 @@ public class HUDHandler : MonoBehaviour {
 		hitZone_L.SetActive(true);
 		hitZone_R.SetActive(true);
 	}
+
+
 }

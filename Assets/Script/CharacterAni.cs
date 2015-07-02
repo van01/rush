@@ -29,7 +29,10 @@ public class CharacterAni : MonoBehaviour {
 
     void Update()
     {
-        AnimationStateCheck();
+        if (CompareTag("Player"))
+        {
+            AnimationStateCheck();
+        }
     }
 
 	public void ChangeAni(int aniNum){
@@ -42,5 +45,7 @@ public class CharacterAni : MonoBehaviour {
             ChangeAni(BACK);
         if (tmpPlayerState.currentState == CharacterState.State.Guard && anim.GetCurrentAnimatorStateInfo(0).nameHash != Animator.StringToHash("Base Layer.Guard"))
             ChangeAni(GUARD);
+        if (tmpPlayerState.currentState == CharacterState.State.Attack && anim.GetCurrentAnimatorStateInfo(0).nameHash != Animator.StringToHash("Base Layer.Attack01"))
+            ChangeAni(ATTACK);
     }
 }

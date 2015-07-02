@@ -102,13 +102,17 @@
      <Compile Include="Assets\Script\CharacterParams.cs" />
      <Compile Include="Assets\Script\CharacterState.cs" />
      <Compile Include="Assets\Script\CharacterWeaponHandler.cs" />
+     <Compile Include="Assets\Script\EnemyAI.cs" />
      <Compile Include="Assets\Script\EnemyAbility.cs" />
+     <Compile Include="Assets\Script\EnemyBattle.cs" />
      <Compile Include="Assets\Script\EnemyParams.cs" />
      <Compile Include="Assets\Script\EnemyScroll.cs" />
+     <Compile Include="Assets\Script\EnemyState.cs" />
      <Compile Include="Assets\Script\GameController.cs" />
      <Compile Include="Assets\Script\GameState.cs" />
      <Compile Include="Assets\Script\HUDController.cs" />
      <Compile Include="Assets\Script\HUDHandler.cs" />
+     <Compile Include="Assets\Script\HUDTextEffect.cs" />
      <Compile Include="Assets\Script\PlayerAI.cs" />
      <Compile Include="Assets\Script\PlayerAbility.cs" />
      <Compile Include="Assets\Script\PlayerBattle.cs" />

@@ -5,6 +5,7 @@ public class PlayerState : CharacterState {
 
 	private GameObject tmpGameController;
     private bool battling = true;
+    private bool beginningJoin = true;
 
 
 	void Start(){
@@ -47,9 +48,7 @@ public class PlayerState : CharacterState {
 		base.BattleAction();
 		SendMessage("ChangeAni", CharacterAni.BATTLE);
 
-        if (battling == true) {
-            SendMessage("StartBattle");
-        }
+        StartCoroutine("BattleWait");
 		
         SendMessage("CharacterBackPositionOff");
         SendMessage("CharacterFowardPositionOff");
@@ -58,13 +57,11 @@ public class PlayerState : CharacterState {
 	public override void AttackAction(){
 		base.AttackAction();
         SendMessage("ChangeAni", CharacterAni.ATTACK);
-
-		StartCoroutine("BattleWait");
-
 	}
 
 	public override void GuardAction(){
 		base.GuardAction();
+
         SendMessage("BattleStop");
 
 		SendMessage("ChangeAni", CharacterAni.GUARD);
@@ -89,10 +86,24 @@ public class PlayerState : CharacterState {
 	}
 
 	private IEnumerator BattleWait(){
-		float attackWaitTime = 0.2f;
+		float attackWaitTime = 1.0f;
+
+        if (beginningJoin == true)
+        {
+            if (battling == true)
+            {
+                SendMessage("StartBattle");
+
+                beginningJoin = false;
+            }
+        }
 
 		yield return new WaitForSeconds (attackWaitTime);
-		SendMessage("ChangeAni", CharacterAni.BATTLE);
+
+        if (battling == true)
+        {
+            SendMessage("StartBattle");
+        }
 	}
 
     public void BattlingOff()
@@ -103,5 +114,10 @@ public class PlayerState : CharacterState {
     public void BattlingOn()
     {
         battling = true;
+    }
+
+    public void beginningJoinOn()
+    {
+        beginningJoin = true;
     }
 }
