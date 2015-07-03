@@ -51,6 +51,8 @@ public class EnemyState : CharacterState
     public override void MoveAction()
     {
         base.MoveAction();
+
+        SendMessage("ChangeAni", CharacterAni.MOVE);
         beginningJoin = true;
     }
 
@@ -64,5 +66,10 @@ public class EnemyState : CharacterState
     {
         battling = true;
         CheckCharacterState();
+    }
+
+    public void beginningJoinOn()
+    {
+        beginningJoin = true;
     }
 }

@@ -6,6 +6,8 @@ public class PlayerBattle : CharacterBattle {
 	private GameObject target;
 	private GameObject tmpGameController;
     private Vector3 HitTransform;
+    private float HitTransformX;
+    private float HitTransformY;
 
     protected bool attackProssible = false;
 
@@ -28,8 +30,8 @@ public class PlayerBattle : CharacterBattle {
 	}
 
 	public void BattleStop(){
-		StopCoroutine("SuccessRoll");
         SendMessage("beginningJoinOn");
+        StopCoroutine("BattleWait");
 	}
 
 	protected void CheckEnemyCurHP(){
@@ -56,24 +58,24 @@ public class PlayerBattle : CharacterBattle {
         {
             enemyParams.curHP -= playerParams.attack;
 
-            //HitTransform = target.transform;
-            HitTransform = new Vector3(target.transform.position.x - ((target.GetComponent<BoxCollider2D>().size.x - target.GetComponent<BoxCollider2D>().offset.x) * target.transform.localScale.x / 2) + 0.2f, target.transform.position.y, target.transform.position.z);
+
+            HitTransformX = target.transform.position.x - ((target.GetComponent<BoxCollider2D>().size.x - target.GetComponent<BoxCollider2D>().offset.x) * target.transform.localScale.x / 2);
+            HitTransformY = target.transform.position.y;
+            HitTransform = new Vector3(HitTransformX, target.transform.position.y, target.transform.position.z);
 
             tmpGameController.SendMessage("HitPositionSetting", Camera.main.WorldToScreenPoint(HitTransform));
             tmpGameController.SendMessage("MonsterHitDamage", playerParams.attack);
-            
 
-            //print("Player Attack Success ::::: " + enemyParams.curHP + " / " + enemyParams.maxHP);
+            SendMessage("PlayerHitColorEffectActive");
 
             attackProssible = false;
-
             CheckEnemyCurHP();
         }
     }
 
     void OnTriggerEnter2D(Collider2D c)
     {
-        if (c.CompareTag("Enemy"))
+        if (c.transform.root.name == "Enemy")
         {
             attackProssible = true;
         }

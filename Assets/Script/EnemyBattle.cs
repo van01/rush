@@ -6,6 +6,8 @@ public class EnemyBattle : CharacterBattle{
     private GameObject target;
     private GameObject tmpGameController;
     private Vector3 HitTransform;
+    private float HitTransformX;
+    private float HitTransformY;
 
     protected bool attackProssible = false;
 
@@ -29,6 +31,13 @@ public class EnemyBattle : CharacterBattle{
         SendMessage("CharacterStateControll", "Attack");
     }
 
+    public void BattleStop()
+    {
+        SendMessage("beginningJoinOn");
+        SendMessage("CharacterStateControll", "Move");
+        StopCoroutine("BattleWait");
+    }
+
     protected void CheckEnemyCurHP()
     {
         if (playerParams.curHP > 0)
@@ -48,22 +57,19 @@ public class EnemyBattle : CharacterBattle{
     {
         if (attackProssible == true)
         {
-            print("Enemy ::::: Attack Success :: attackProssible True");
-
             playerParams.curHP -= enemyParams.attack;
 
-            //HitTransform = target.transform;
-            HitTransform = new Vector3(target.transform.position.x - ((target.GetComponent<BoxCollider2D>().size.x - target.GetComponent<BoxCollider2D>().offset.x) * target.transform.localScale.x / 2) + 0.2f, target.transform.position.y, target.transform.position.z);
 
+            HitTransformX = target.transform.position.x + ((target.GetComponent<BoxCollider2D>().size.x - target.GetComponent<BoxCollider2D>().offset.x) * target.transform.localScale.x / 2);
+            HitTransformY = target.transform.position.y;
+            HitTransform = new Vector3(HitTransformX, target.transform.position.y, target.transform.position.z);
 
             tmpGameController.SendMessage("HitPositionSetting", Camera.main.WorldToScreenPoint(HitTransform));
             tmpGameController.SendMessage("PlayerHitDamage", enemyParams.attack);
-             
 
-            print("Attack Success!!!!!!!!!!! ::: " + playerParams.curHP + " / " + playerParams.maxHP);
+            SendMessage("EnemyHitColorEffectActive");
 
             attackProssible = false;
-
             CheckEnemyCurHP();
         }
     }
@@ -74,6 +80,7 @@ public class EnemyBattle : CharacterBattle{
         {
             attackProssible = true;
         }
+        
     }
 
     public void AttackEnd()

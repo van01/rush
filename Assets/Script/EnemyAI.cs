@@ -11,6 +11,8 @@ public class EnemyAI : MonoBehaviour {
     private GameObject tmpGameController;
     private bool attDistance = false;
 
+    
+
     void Start()
     {
         tmpGameController = GameObject.Find("GameController");
@@ -30,7 +32,7 @@ public class EnemyAI : MonoBehaviour {
             float shortDist = Vector3.Distance(transform.position, arrPlayers[0].transform.position);
 
             target = arrPlayers[0].transform;
-
+            
             if (arrPlayers.Length > 1)
             {
                 for (int i = 1; i < arrPlayers.Length; i++)
@@ -66,11 +68,13 @@ public class EnemyAI : MonoBehaviour {
         else if (distance > attackDistance)
         {
             attDistance = false;
+            SendMessage("BattleStop");
         }
 
         if (attDistance == true)
         {
             SendMessage("BattlingOn");
+            SendMessage("CharacterStateControll", "Battle");
         }
     }
 
