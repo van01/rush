@@ -5,7 +5,6 @@ public class EnemyState : CharacterState
 {
     private GameObject tmpGameController;
     private bool battling = false;
-    private bool beginningJoin = true;
 
 	void Start () {
         CharacterStateControll("Battle");
@@ -18,7 +17,10 @@ public class EnemyState : CharacterState
         base.BattleAction();
         SendMessage("ChangeAni", CharacterAni.BATTLE);
 
-        StartCoroutine("BattleWait");
+        if (battling == true)
+        {
+            SendMessage("StartBattle");
+        }
     }
 
     public override void AttackAction(){
@@ -26,34 +28,11 @@ public class EnemyState : CharacterState
         SendMessage("ChangeAni", CharacterAni.ATTACK);
 	}
 
-    private IEnumerator BattleWait()
-    {
-        float attackWaitTime = 1.0f;
-
-        if (beginningJoin == true)
-        {
-            if (battling == true)
-            {
-                SendMessage("StartBattle");
-
-                beginningJoin = false;
-            }
-        }
-
-        yield return new WaitForSeconds(attackWaitTime);
-
-        if (battling == true)
-        {
-            SendMessage("StartBattle");
-        }
-    }
-
     public override void MoveAction()
     {
         base.MoveAction();
 
         SendMessage("ChangeAni", CharacterAni.MOVE);
-        beginningJoin = true;
     }
 
     public void BattlingOff()
@@ -66,10 +45,5 @@ public class EnemyState : CharacterState
     {
         battling = true;
         CheckCharacterState();
-    }
-
-    public void beginningJoinOn()
-    {
-        beginningJoin = true;
     }
 }

@@ -9,6 +9,8 @@ public class EnemyBattle : CharacterBattle{
     private float HitTransformX;
     private float HitTransformY;
 
+    private int attackCount = 0;
+
     protected bool attackProssible = false;
 
 	void Start () {
@@ -33,7 +35,6 @@ public class EnemyBattle : CharacterBattle{
 
     public void BattleStop()
     {
-        SendMessage("beginningJoinOn");
         SendMessage("CharacterStateControll", "Move");
         StopCoroutine("BattleWait");
     }
@@ -57,19 +58,26 @@ public class EnemyBattle : CharacterBattle{
     {
         if (attackProssible == true)
         {
+            attackCount = 0;
+            attackProssible = false;
+
+            SendMessage("BattlingOff");
+            StartCoroutine("BattleWait");
+
             playerParams.curHP -= enemyParams.attack;
 
+            //타격 연출 적용
+            SendMessage("EnemyHitEffectActive");
 
+            //타격 위치 알아내기
             HitTransformX = target.transform.position.x + ((target.GetComponent<BoxCollider2D>().size.x - target.GetComponent<BoxCollider2D>().offset.x) * target.transform.localScale.x / 2);
             HitTransformY = target.transform.position.y;
             HitTransform = new Vector3(HitTransformX, target.transform.position.y, target.transform.position.z);
 
+            //타격 위치 및 공격력 전송
             tmpGameController.SendMessage("HitPositionSetting", Camera.main.WorldToScreenPoint(HitTransform));
             tmpGameController.SendMessage("PlayerHitDamage", enemyParams.attack);
 
-            SendMessage("EnemyHitColorEffectActive");
-
-            attackProssible = false;
             CheckEnemyCurHP();
         }
     }
@@ -78,7 +86,12 @@ public class EnemyBattle : CharacterBattle{
     {
         if (c.transform.root.tag == "Player")
         {
-            attackProssible = true;
+            attackCount++;
+
+            if (attackCount == 1)
+            {
+                attackProssible = true;
+            }
         }
         
     }
@@ -86,5 +99,15 @@ public class EnemyBattle : CharacterBattle{
     public void AttackEnd()
     {
         SendMessage("CharacterStateControll", "Battle");
+    }
+
+    private IEnumerator BattleWait()
+    {
+        float attackWaitTime = 0.8f;
+
+        SendMessage("CharacterStateControll", "Battle");
+
+        yield return new WaitForSeconds(attackWaitTime);
+        SendMessage("BattlingOn");
     }
 }

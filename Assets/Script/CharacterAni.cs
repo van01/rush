@@ -20,13 +20,14 @@ public class CharacterAni : MonoBehaviour {
 	
 	private Animator anim;
     private PlayerState tmpPlayerState;
+    private Animation tmpAnimation;
 
 	// Use this for initialization
 	void Awake () {
 		anim = GetComponent<Animator>();
         tmpPlayerState = GetComponent<PlayerState>();
 	}
-
+    /*
     void Update()
     {
         if (CompareTag("Player"))
@@ -34,6 +35,7 @@ public class CharacterAni : MonoBehaviour {
             AnimationStateCheck();
         }
     }
+     */
 
 	public void ChangeAni(int aniNum){
 		anim.SetInteger("aniNumber", aniNum);
@@ -47,5 +49,15 @@ public class CharacterAni : MonoBehaviour {
             ChangeAni(GUARD);
         if (tmpPlayerState.currentState == CharacterState.State.Attack && anim.GetCurrentAnimatorStateInfo(0).nameHash != Animator.StringToHash("Base Layer.Attack01"))
             ChangeAni(ATTACK);
+    }
+
+    public void AnimationStop()
+    {
+        anim.speed = 0.1f;
+    }
+
+    public void AnimationPlay()
+    {
+        anim.speed = 1.0f;
     }
 }

@@ -6,7 +6,8 @@ public class EnemyParams : CharacterParams {
 	public EnemyParams(){
 		this.name = "Enemy";
 		this.id = 0;
-		this.attackType = "Short";
+        this.currentUnitType = unitTpye.Enemy;
+        this.currentAttackType = attackType.Short;
 		this.level = 1;
 		this.maxHP = 10000;
 		this.curHP = this.maxHP;

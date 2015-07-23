@@ -10,8 +10,7 @@ public class EnemyAI : MonoBehaviour {
 
     private GameObject tmpGameController;
     private bool attDistance = false;
-
-    
+    private int actionNumber = 0;
 
     void Start()
     {
@@ -61,20 +60,32 @@ public class EnemyAI : MonoBehaviour {
 
         distance = distance - ((target.GetComponent<BoxCollider2D>().size.x - target.GetComponent<BoxCollider2D>().offset.x) * target.transform.localScale.x / 2);
 
-        if (distance < attackDistance)
+        if (distance > attackDistance)
         {
-            attDistance = true;
+            if (actionNumber == 0)
+            {
+                attDistance = false;
+                SendMessage("BattleStop");
+                SendMessage("BattlingOn");
+                actionNumber = 1;
+            }
         }
-        else if (distance > attackDistance)
-        {
-            attDistance = false;
-            SendMessage("BattleStop");
-        }
+        else if (distance < attackDistance)
+            {
+                if (actionNumber == 1)
+                {
+                    attDistance = true;
+                    actionNumber = 2;
+                }
+            }
 
         if (attDistance == true)
         {
-            SendMessage("BattlingOn");
-            SendMessage("CharacterStateControll", "Battle");
+            if (actionNumber == 2)
+            {
+                SendMessage("CharacterStateControll", "Battle");
+                actionNumber = 0;
+            }
         }
     }
 

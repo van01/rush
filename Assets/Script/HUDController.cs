@@ -77,6 +77,59 @@ public class HUDController : MonoBehaviour {
 		SendMessage("CharacterFowardPredicateOff");
 	}
 
+    //new input System 20150723
+    public void Left01Down()
+    {
+        SendMessage("CharacterBattlingOff");
+        SendMessage("CharacterBackPredicateOn");
+        SendMessage("CharacterAttactDistanceOff");
+    }
+
+    public void Lef01Up()
+    {
+        SendMessage("CharacterBattlingOn");
+        SendMessage("CharacterBackPredicateOff");
+        SendMessage("CharacterAttactDistanceOn");
+    }
+
+    public void Left02Down()
+    {
+        
+        SendMessage("CharacterBattlingOff");
+        SendMessage("CharacterGuardPredicateOn");
+    }
+
+    public void Left02Up()
+    {
+        SendMessage("CharacterBattlingOn");
+        SendMessage("CharacterGuardPredicateOff");
+        SendMessage("CharacterAttactDistanceOn");
+    }
+
+    public void Right01Down()
+    {
+        SendMessage("CharacterFowardPredicateOn");
+    }
+
+    public void Right01Up()
+    {
+        SendMessage("CharacterRunPredicateOff");
+        SendMessage("CharacterFowardPredicateOff");
+    }
+
+    public void Right02Down()
+    {
+            SendMessage("RunScrollOn");
+            SendMessage("CharacterRunPredicateOn");
+    }
+
+    public void Right02Up()
+    {
+        SendMessage("CharacterRunPredicateOff");
+        SendMessage("CharacterFowardPredicateOff");
+    }
+
+
 
 	public void HitZoneOff(){
 		HUD.SendMessage("HitZoneDisable");
@@ -108,6 +161,8 @@ public class HUDController : MonoBehaviour {
         else if (clicked > 2 || Time.time - lastClickLeftDownTime > 1) clicked = 0;
         return false;
     }
+
+
 
     public void MonsterHitDamage(int nDamage)
     {

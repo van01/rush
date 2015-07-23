@@ -5,12 +5,16 @@ public class PlayerState : CharacterState {
 
 	private GameObject tmpGameController;
     private bool battling = true;
-    private bool beginningJoin = true;
 
+    private Vector2 backupColliderOffset;
+    private Vector2 backupColliderSize;
 
 	void Start(){
 		CharacterStateControll("Spawn");
 		tmpGameController = GameObject.Find("GameController");
+
+        backupColliderOffset = gameObject.GetComponent<BoxCollider2D>().offset;
+        backupColliderSize = gameObject.GetComponent<BoxCollider2D>().size;
 	}
 
 	public override void SpawnAction(){
@@ -48,8 +52,11 @@ public class PlayerState : CharacterState {
 		base.BattleAction();
 		SendMessage("ChangeAni", CharacterAni.BATTLE);
 
-        StartCoroutine("BattleWait");
-		
+        if (battling == true)
+        {
+            SendMessage("StartBattle");
+        }
+
         SendMessage("CharacterBackPositionOff");
         SendMessage("CharacterFowardPositionOff");
 	}
@@ -77,47 +84,36 @@ public class PlayerState : CharacterState {
 
 	public override void ForwardAction(){
 		base.ForwardAction();
-		
-		SendMessage("CharacterFowardPositionOn"); // test
+
+        SendMessage("ChangeAni", CharacterAni.FOWARD);
+        FowardColliderSetting();
 	}
 
 	public override void CharacterStateControll(string s){
 		base.CharacterStateControll(s);
 	}
 
-	private IEnumerator BattleWait(){
-		float attackWaitTime = 1.0f;
-
-        if (beginningJoin == true)
-        {
-            if (battling == true)
-            {
-                SendMessage("StartBattle");
-
-                beginningJoin = false;
-            }
-        }
-
-		yield return new WaitForSeconds (attackWaitTime);
-
-        if (battling == true)
-        {
-            SendMessage("StartBattle");
-        }
-	}
-
     public void BattlingOff()
     {
         battling = false;
+        CheckCharacterState();
     }
 
     public void BattlingOn()
     {
         battling = true;
+        CheckCharacterState();
     }
 
-    public void beginningJoinOn()
+    void FowardColliderSetting()
     {
-        beginningJoin = true;
+        gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(-0.12f, -0.74f);
+        gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.75f, 0.4f);
+    }
+
+    void FowardColliderOff()
+    {
+        gameObject.GetComponent<BoxCollider2D>().offset = backupColliderOffset;
+        gameObject.GetComponent<BoxCollider2D>().size = backupColliderSize;
     }
 }

@@ -16,10 +16,19 @@ public class CharacterWeaponHandler : MonoBehaviour {
 	
 	private SpriteRenderer useWeaponR;
 	private SpriteRenderer useWeaponL;
+
+    private BoxCollider2D weaponRCollider;
+    private BoxCollider2D weaponLCollider;
+
+    private bool backupWeaponRCollider;
+    private bool backupWeaponLCollider;
 	
 	void Start(){
 		useWeaponR = weaponR.GetComponentInChildren<SpriteRenderer>();
 		useWeaponL = weaponL.GetComponentInChildren<SpriteRenderer>();
+
+        weaponRCollider = weaponR.GetComponent<BoxCollider2D>();
+        weaponLCollider = weaponL.GetComponent<BoxCollider2D>();
 		
 		UseWeaponInialize();
 	}
@@ -27,17 +36,34 @@ public class CharacterWeaponHandler : MonoBehaviour {
 	void UseWeaponInialize(){
 		if (weaponRSprite.Length == 0){
 			weaponR.SetActive(false);
-			//Debug.Log("Null WeaponR");
+            weaponRCollider.enabled = false;
+            backupWeaponRCollider = false;
 		}
 		else{
 			useWeaponR.sprite = weaponRSprite[weponRNumber];
+            backupWeaponRCollider = true;
 		}
 		if (weaponLSprite.Length == 0){
 			weaponL.SetActive(false);
-			//Debug.Log("Null WeaponL");
+            weaponLCollider.enabled = false;
+            backupWeaponLCollider = false;
 		}
 		else{
 			useWeaponL.sprite = weaponLSprite[weponLNumber];
+            backupWeaponLCollider = true;
 		}
 	}
+
+    public void WeaponColliderOff()
+    {
+        weaponRCollider.enabled = false;
+        weaponLCollider.enabled = false;
+    }
+
+    public void WeaponColliderReset()
+    {
+        weaponRCollider.enabled = backupWeaponRCollider;
+        weaponLCollider.enabled = backupWeaponLCollider;
+    }
+
 }

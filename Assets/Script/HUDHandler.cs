@@ -35,4 +35,45 @@ public class HUDHandler : MonoBehaviour {
 	}
 
 
+    //new input System 20150723
+
+    void Left01ButtonDown()
+    {
+        tmpGameController.SendMessage("Left01Down");
+    }
+
+    void Left01ButtonUp()
+    {
+        tmpGameController.SendMessage("Lef01Up");
+    }
+
+    void Left02ButtonDown()
+    {
+        tmpGameController.SendMessage("Left02Down");
+    }
+
+    void Left02ButtonUp()
+    {
+        tmpGameController.SendMessage("Left02Up");
+    }
+
+    void Right01ButtonDown()
+    {
+        tmpGameController.SendMessage("Right01Down");
+    }
+
+    void Right01ButtonUp()
+    {
+        tmpGameController.SendMessage("Right01Up");
+    }
+
+    void Right02ButtonDown()
+    {
+        tmpGameController.SendMessage("Right02Down");
+    }
+
+    void Right02ButtonUp()
+    {
+        tmpGameController.SendMessage("Right02Up");
+    }
 }

@@ -176,11 +176,13 @@ public class GameController : MonoBehaviour {
         previousStates = currentStates;
         currentStates = States.Forwards;
 		CharacterActionCheck();
+        CharacterFowardColliderOn();
 	}
 	
 	public void CharacterFowardPredicateOff(){
         currentStates = previousStates;
 		CharacterActionCheck();
+        CharacterFowardColliderOff();
 	}
 
     public void CharacterBattlingOn()
@@ -212,6 +214,23 @@ public class GameController : MonoBehaviour {
         for (int i = 0; i < tmpPlayer.Length; i++)
         {
             tmpPlayer[i].gameObject.SendMessage("AttDistanceOff");
+        }
+    }
+
+    public void CharacterFowardColliderOn()
+    {
+        for (int i = 0; i < tmpPlayer.Length; i++)
+        {
+            tmpPlayer[i].gameObject.SendMessage("WeaponColliderOff");
+        }
+    }
+
+    public void CharacterFowardColliderOff()
+    {
+        for (int i = 0; i < tmpPlayer.Length; i++)
+        {
+            tmpPlayer[i].gameObject.SendMessage("FowardColliderOff");
+            tmpPlayer[i].gameObject.SendMessage("WeaponColliderReset");
         }
     }
 }

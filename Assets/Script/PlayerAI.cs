@@ -23,6 +23,7 @@ public class PlayerAI : MonoBehaviour {
     private PlayerState tmpPlayerState;
 
     private bool attDistance = false;
+    private int actionNumber = 0;
 
     void Start()
     {
@@ -102,20 +103,31 @@ public class PlayerAI : MonoBehaviour {
 
             distance = distance - ((target.GetComponent<BoxCollider2D>().size.x - target.GetComponent<BoxCollider2D>().offset.x) * target.transform.localScale.x / 2);
 
-            if (distance < attackDistance)
+            if (distance > attackDistance)
             {
-                attDistance = true;
+                if (actionNumber == 0)
+                {
+                    attDistance = false;
+                    actionNumber = 1;
+                }
             }
-            else if (distance > attackDistance)
+            else if (distance < attackDistance)
             {
-                attDistance = false;
+                if (actionNumber == 1)
+                {
+                    attDistance = true;
+                    actionNumber = 2;
+                }
             }
-
             if (attDistance == true)
             {
-                SendMessage("CharacterStateBattleOn");
-                tmpPositionDistance = positionDistance;
-                positionDistance = transform.position.x;
+                if (actionNumber == 2)
+                {
+                    SendMessage("CharacterStateBattleOn");
+                    tmpPositionDistance = positionDistance;
+                    positionDistance = transform.position.x;
+                    actionNumber = 0;
+                }
             }
         }
 

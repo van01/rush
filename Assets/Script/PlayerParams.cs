@@ -6,7 +6,8 @@ public class PlayerParams : CharacterParams {
 	public PlayerParams(){
 		this.name = "pawn";
 		this.id = 0;
-		this.attackType = "Short";
+        this.currentUnitType = unitTpye.Player;
+        this.currentAttackType = attackType.Short;
 		this.level = 1;
 		this.maxHP = 500000;
 		this.curHP = this.maxHP;
