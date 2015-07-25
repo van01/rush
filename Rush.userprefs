@@ -1,10 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\GameController.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/HUDController.cs">
     <Files>
-      <File FileName="Assets\Script\GameController.cs" Line="56" Column="1" />
-      <File FileName="Assets\Script\CharacterHandler.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\GameState.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/HUDHandler.cs" Line="21" Column="3" />
+      <File FileName="Assets/Script/HUDController.cs" Line="118" Column="28" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

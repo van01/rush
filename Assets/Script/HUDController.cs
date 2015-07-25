@@ -94,40 +94,51 @@ public class HUDController : MonoBehaviour {
 
     public void Left02Down()
     {
+		//Run On
+		SendMessage("RunScrollOn");
+		SendMessage("CharacterRunPredicateOn");
         
-        SendMessage("CharacterBattlingOff");
-        SendMessage("CharacterGuardPredicateOn");
     }
 
     public void Left02Up()
     {
-        SendMessage("CharacterBattlingOn");
-        SendMessage("CharacterGuardPredicateOff");
-        SendMessage("CharacterAttactDistanceOn");
+		//Run Off
+		SendMessage("CharacterRunPredicateOff");
+		SendMessage("CharacterFowardPredicateOff");
+
     }
 
     public void Right01Down()
     {
-        SendMessage("CharacterFowardPredicateOn");
+		//Guard On
+		SendMessage("CharacterBattlingOff");
+		SendMessage("CharacterGuardPredicateOn");
     }
 
     public void Right01Up()
     {
-        SendMessage("CharacterRunPredicateOff");
-        SendMessage("CharacterFowardPredicateOff");
+		//Guard Off
+		SendMessage("CharacterBattlingOn");
+		SendMessage("CharacterGuardPredicateOff");
+		SendMessage("CharacterAttactDistanceOn");
     }
 
     public void Right02Down()
     {
-            SendMessage("RunScrollOn");
-            SendMessage("CharacterRunPredicateOn");
+		//Foward On
+		SendMessage("CharacterFowardPredicateOn");
+
     }
 
     public void Right02Up()
     {
-        SendMessage("CharacterRunPredicateOff");
-        SendMessage("CharacterFowardPredicateOff");
+		//Foward Off
+		SendMessage("CharacterRunPredicateOff");
+		SendMessage("CharacterFowardPredicateOff");
+
     }
+
+
 
 
 
