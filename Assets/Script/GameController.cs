@@ -119,7 +119,8 @@ public class GameController : MonoBehaviour {
         else
             SendMessage("GameStateControll", "Playing");
         
-        currentStates = previousStates;
+        //currentStates = previousStates;	-- ㄱㅐㅅㅓㄴ ㅍㅣㄹㅇㅛ
+		currentStates = States.Moves;
 		CharacterActionCheck();
 	}
 	
@@ -150,7 +151,8 @@ public class GameController : MonoBehaviour {
 			SendMessage("GameStateControll", "Playing");
 		
         
-        currentStates = previousStates;
+        //currentStates = previousStates; -- ㄱㅐㅅㅓㄴ ㅍㅣㄹㅇㅛ
+		currentStates = States.Moves;
         CharacterActionCheck();
 	}
 
@@ -180,7 +182,8 @@ public class GameController : MonoBehaviour {
 	}
 	
 	public void CharacterFowardPredicateOff(){
-        currentStates = previousStates;
+        //currentStates = previousStates;	-- ㄱㅐㅅㅓㄴ ㅍㅣㄹㅇㅛ
+		currentStates = States.Moves;
 		CharacterActionCheck();
         CharacterFowardColliderOff();
 	}

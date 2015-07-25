@@ -77,7 +77,8 @@ public class HUDController : MonoBehaviour {
 		SendMessage("CharacterFowardPredicateOff");
 	}
 
-    //new input System 20150723
+
+    //new input System :::: Button Type __ 20150723
     public void Left01Down()
     {
         SendMessage("CharacterBattlingOff");
