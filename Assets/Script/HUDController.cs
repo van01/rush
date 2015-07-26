@@ -111,9 +111,9 @@ public class HUDController : MonoBehaviour {
 
     public void Right01Down()
     {
-		//Guard On
-		SendMessage("CharacterBattlingOff");
-		SendMessage("CharacterGuardPredicateOn");
+        //Guard On
+        SendMessage("CharacterGuardPredicateOn");
+        SendMessage("CharacterBattlingOff");
     }
 
     public void Right01Up()

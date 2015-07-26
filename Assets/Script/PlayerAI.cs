@@ -34,8 +34,10 @@ public class PlayerAI : MonoBehaviour {
 	void Update(){					//틱 추가 후 교체 필요
 		CheckDistanceFromTarget();
 
-		//캐릭터 기본 위치 잡기
-        if (tmpPlayerState.currentState == CharacterState.State.Spawn || tmpPlayerState.currentState == CharacterState.State.Move)
+        //캐릭터 기본 위치 잡기
+        
+        //if (tmpPlayerState.currentState == CharacterState.State.Spawn || tmpPlayerState.currentState == CharacterState.State.Move)
+        if (transform.position.x != positionDistance)
         {
             if (setPosition == true)
             {
@@ -47,9 +49,18 @@ public class PlayerAI : MonoBehaviour {
                 {
                     setPosition = false;
                     transform.position = new Vector3(positionDistance, 0, 0);
-                    SendMessage("CharacterStateMoveOn");
-                    SendMessage("CharacterStateControll", "Move");
-                    tmpGameController.SendMessage("GameStateControll", "Playing");
+
+                    if (tmpPlayerState.currentState == CharacterState.State.Spawn || tmpPlayerState.currentState == CharacterState.State.Move)
+                    {
+                        SendMessage("CharacterStateMoveOn");
+                        //SendMessage("CharacterStateControll", "Move");
+                        tmpGameController.SendMessage("GameStateControll", "Playing");
+                    }
+                    if( tmpPlayerState.currentState == CharacterState.State.Run)
+                    {
+                        tmpGameController.SendMessage("GameStateControll", "Playing");
+                        tmpGameController.SendMessage("RunScrollOn");
+                    }
                 }
             }
         }
