@@ -42,9 +42,13 @@ public class EnemyBattle : CharacterBattle{
     protected void CheckEnemyCurHP()
     {
         if (playerParams.curHP > 0)
-            return;
+        {
+            target.SendMessage("HealthBarValueUpdate", (float)playerParams.curHP / (float)playerParams.maxHP);
+        }
         else
         {
+            //target.SendMessage("HealthBarValueUpdate", 0);
+            target.SendMessage("HealthBarDestroy");
             BattleEnd();
         }
     }

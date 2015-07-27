@@ -20,6 +20,9 @@ public class EnemyAI : MonoBehaviour {
     void Update()
     {
         CheckDistanceFromTarget();
+
+        //체력 게이지 위치 잡기
+        SendMessage("HealthBarPositionUpdate", transform.position);
     }
 
     public void SearchPlayer()

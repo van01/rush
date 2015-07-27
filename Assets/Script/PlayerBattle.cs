@@ -36,11 +36,16 @@ public class PlayerBattle : CharacterBattle {
 	}
 
 	protected void CheckEnemyCurHP(){
-		if(enemyParams.curHP > 0)
-			return;
-		else{
-			BattleEnd();
-		}
+        if (enemyParams.curHP > 0)
+        {
+            target.SendMessage("HealthBarValueUpdate", (float)enemyParams.curHP / (float)enemyParams.maxHP);
+        }
+        else
+        {
+            //target.SendMessage("HealthBarValueUpdate", 0);
+            target.SendMessage("HealthBarDestroy");
+            BattleEnd();
+        }
 	}
 
 	public void BattleEnd(){

@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class CharacterHandler : MonoBehaviour {
 
     public float colorDisableDelay = 0.1f;
+
+    public float healthBarX;
+    public float healthBarY;
 
 	private GameObject tmpGameController;
     private SpriteRenderer[] myAllSpriteRenderer;
@@ -20,7 +24,14 @@ public class CharacterHandler : MonoBehaviour {
     private float totalhittingPosition;
     private float backupPosition;
 
-	void Start(){
+    public GameObject healthBarPrefab;
+    private GameObject healthBar;
+    private Vector3 healthBarPoint;
+
+    private GameObject tmpHUD;
+
+	void Awake(){
+        tmpHUD = GameObject.Find("Canvas");
 		tmpGameController = GameObject.Find("GameController");
         myAllSpriteRenderer = gameObject.GetComponentsInChildren<SpriteRenderer>();
 
@@ -38,6 +49,14 @@ public class CharacterHandler : MonoBehaviour {
             hitColorG = 0f;
             hitColorB = 0f;
         }
+
+
+        float healthBarInitX = healthBarX + transform.position.x;
+        float healthBarInitY = healthBarY + transform.position.y;
+
+        HelthBarInitPositionSetting(new Vector3(healthBarInitX, healthBarInitY, 0));
+
+        HelthBarInitialize();
 	}
 
 	void OnCollisionEnter2D(Collision2D c){
@@ -112,5 +131,32 @@ public class CharacterHandler : MonoBehaviour {
     public void hittingPositionValueSetting(float i)
     {
         hittingPosition = i;
+    }
+    
+    public void HelthBarInitPositionSetting(Vector3 vInitPoint)
+    {
+        healthBarPoint = vInitPoint;
+    }
+
+    public void HelthBarInitialize()
+    {
+        healthBar = Instantiate(healthBarPrefab, Camera.main.WorldToScreenPoint(healthBarPoint), tmpHUD.transform.rotation) as GameObject;
+        healthBar.GetComponent<RectTransform>().SetParent(tmpHUD.transform);
+        healthBar.GetComponent<RectTransform>().localScale = new Vector3 (1.0f, 1.0f, 1.0f);
+    }
+
+    public void HealthBarPositionUpdate(Vector3 vUpdatePoint)
+    {
+        healthBar.transform.position = Camera.main.WorldToScreenPoint(new Vector3(healthBarX + vUpdatePoint.x, healthBarY + vUpdatePoint.y, vUpdatePoint.z));
+    }
+
+    public void HealthBarValueUpdate(float fUpdateValue)
+    {
+        healthBar.GetComponent<Scrollbar>().size = fUpdateValue;
+    }
+
+    public void HealthBarDestroy()
+    {
+        Destroy(healthBar);
     }
 }

@@ -79,6 +79,9 @@ public class PlayerAI : MonoBehaviour {
                 transform.Translate(Time.deltaTime * fowardStepSpeed, 0, 0);
             }
 		}
+
+        //체력 게이지 위치 잡기
+        SendMessage("HealthBarPositionUpdate", transform.position);
 	}
 
 	public void SearchEnemy(){

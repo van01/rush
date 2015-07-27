@@ -14,7 +14,6 @@ public class HUDController : MonoBehaviour {
     private int clicked = 0;
 
     public GameObject monsterHitTxtPrefab;
-
     private GameObject monsterHitTxt;
     private Vector3 monsterHitPoint;
 
@@ -194,8 +193,8 @@ public class HUDController : MonoBehaviour {
         monsterHitTxt.SendMessage("HitTypeSetting", "Player");
     }
 
-    public void HitPositionSetting(Vector3 nHitPoint)
+    public void HitPositionSetting(Vector3 vHitPoint)
     {
-        monsterHitPoint = nHitPoint;
+        monsterHitPoint = vHitPoint;
     }
 }
