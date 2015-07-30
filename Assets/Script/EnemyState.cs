@@ -35,6 +35,13 @@ public class EnemyState : CharacterState
         SendMessage("ChangeAni", CharacterAni.MOVE);
     }
 
+    public override void DeadAction()
+    {
+        base.DeadAction();
+
+        SendMessage("ChangeAni", CharacterAni.DEAD);
+    }
+
     public void BattlingOff()
     {
         battling = false;

@@ -47,15 +47,24 @@ public class EnemyBattle : CharacterBattle{
         }
         else
         {
-            //target.SendMessage("HealthBarValueUpdate", 0);
-            target.SendMessage("HealthBarDestroy");
-            BattleEnd();
+            TargetDead();
         }
     }
 
     public void BattleEnd()
     {
-        Destroy(target);
+        print("Battle End");
+    }
+
+    protected void TargetDead()
+    {
+        target.SendMessage("HealthBarValueUpdate", 0f);
+        target.SendMessage("CharacterStateControll", "Dead");
+        //target.tag = "Untagged";
+        target.SendMessage("CharacterDieEffect");
+        SendMessage("SearchPlayer");
+
+        SendMessage("CharacterStateControll", "Idle");
     }
 
     public void AttackSuccess()

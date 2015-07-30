@@ -89,6 +89,13 @@ public class PlayerState : CharacterState {
         FowardColliderSetting();
 	}
 
+    public override void DeadAction()
+    {
+        base.DeadAction();
+
+        SendMessage("ChangeAni", CharacterAni.DEAD);
+    }
+
 	public override void CharacterStateControll(string s){
 		base.CharacterStateControll(s);
 	}

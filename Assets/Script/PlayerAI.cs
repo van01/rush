@@ -11,7 +11,7 @@ public class PlayerAI : MonoBehaviour {
 	private float setPositionTime;
 
 	private Transform target;
-	private GameObject[] arrMonsters;
+	public GameObject[] arrMonsters;
 
 	private GameObject tmpGameController;
 	private bool setPosition = false;
@@ -81,7 +81,10 @@ public class PlayerAI : MonoBehaviour {
 		}
 
         //체력 게이지 위치 잡기
-        SendMessage("HealthBarPositionUpdate", transform.position);
+        if (GetComponent<PlayerState>().currentState != CharacterState.State.Dead)
+        {
+            SendMessage("HealthBarPositionUpdate", transform.position);
+        }
 	}
 
 	public void SearchEnemy(){
@@ -103,6 +106,13 @@ public class PlayerAI : MonoBehaviour {
 				}
 			}
 		}
+
+        if (arrMonsters.Length == 0)
+        {
+            target = null;
+            print("game end");
+        }
+
 	}
 
 	void CheckDistanceFromTarget(){
@@ -137,10 +147,13 @@ public class PlayerAI : MonoBehaviour {
             {
                 if (actionNumber == 2)
                 {
-                    SendMessage("CharacterStateBattleOn");
-                    tmpPositionDistance = positionDistance;
-                    positionDistance = transform.position.x;
-                    actionNumber = 0;
+                    if (target.GetComponent<EnemyState>().currentState != CharacterState.State.Dead)
+                    {
+                        SendMessage("CharacterStateBattleOn");
+                        tmpPositionDistance = positionDistance;
+                        positionDistance = transform.position.x;
+                        actionNumber = 0;
+                    }
                 }
             }
         }

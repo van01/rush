@@ -3,7 +3,10 @@ using System.Collections;
 
 public class EnemyAI : MonoBehaviour {
 
-    public float attackDistance = 1.5f;
+    public float attackDistance;
+    public int groupValue;
+
+    public float chaseSpeed;        // 임시
 
     private Transform target;
     private GameObject[] arrPlayers;
@@ -12,9 +15,14 @@ public class EnemyAI : MonoBehaviour {
     private bool attDistance = false;
     private int actionNumber = 0;
 
+    private float distance;
+
+    private bool chasePlayer = false;
+
     void Start()
     {
         tmpGameController = GameObject.Find("GameController");
+        attackDistance = Random.RandomRange(1.0f, attackDistance);
     }
 
     void Update()
@@ -22,7 +30,16 @@ public class EnemyAI : MonoBehaviour {
         CheckDistanceFromTarget();
 
         //체력 게이지 위치 잡기
-        SendMessage("HealthBarPositionUpdate", transform.position);
+        if (GetComponent<EnemyState>().currentState != CharacterState.State.Dead)
+        {
+            SendMessage("HealthBarPositionUpdate", transform.position);
+            Debug.DrawLine(new Vector3(transform.position.x, -1.0f, 0), new Vector3(distance, -1.0f, 0), Color.red);
+        }
+
+        if (chasePlayer == true)
+        {
+            transform.Translate(Vector3.left * chaseSpeed * Time.deltaTime, Space.World);
+        }
     }
 
     public void SearchPlayer()
@@ -47,7 +64,13 @@ public class EnemyAI : MonoBehaviour {
                         target = arrPlayers[i].transform;
                     }
                 }
-            }
+            }   
+        }
+
+        if (arrPlayers.Length == 0)
+        {
+            target = null;
+            print("game end");
         }
     }
 
@@ -59,7 +82,7 @@ public class EnemyAI : MonoBehaviour {
             return;
         }
 
-        float distance = Vector3.Distance(target.position, transform.position);
+        distance = Vector3.Distance(target.position, transform.position);
 
         distance = distance - ((target.GetComponent<BoxCollider2D>().size.x - target.GetComponent<BoxCollider2D>().offset.x) * target.transform.localScale.x / 2);
 
@@ -68,15 +91,17 @@ public class EnemyAI : MonoBehaviour {
             if (actionNumber == 0)
             {
                 attDistance = false;
-                SendMessage("BattleStop");
-                SendMessage("BattlingOn");
+                //SendMessage("BattleStop");
+                //SendMessage("BattlingOn");        //20150730  해당 부분 때문에 시작과 동시에 자동으로 Move State로 교체되고 있었음 
                 actionNumber = 1;
+                
             }
         }
         else if (distance < attackDistance)
             {
                 if (actionNumber == 1)
                 {
+                    SendMessage("BattlingOn");
                     attDistance = true;
                     actionNumber = 2;
                 }
@@ -87,7 +112,9 @@ public class EnemyAI : MonoBehaviour {
             if (actionNumber == 2)
             {
                 SendMessage("CharacterStateControll", "Battle");
+                tmpGameController.SendMessage("EnemyStateBattleInfection", groupValue);
                 actionNumber = 0;
+                chasePlayer = false;
             }
         }
     }
@@ -95,5 +122,18 @@ public class EnemyAI : MonoBehaviour {
     public GameObject GetCurrentTarget()
     {
         return target.gameObject;
+    }
+
+    public void ChasePlayer()
+    {
+        distance = Vector3.Distance(target.position, transform.position);
+
+        distance = distance - ((target.GetComponent<BoxCollider2D>().size.x - target.GetComponent<BoxCollider2D>().offset.x) * target.transform.localScale.x / 2);
+
+        if (distance > attackDistance)
+        {
+            SendMessage("CharacterStateControll", "Move");
+            chasePlayer = true;
+        }
     }
 }

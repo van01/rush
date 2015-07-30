@@ -11,6 +11,8 @@ public class GameController : MonoBehaviour {
 	private bool characterMovePredicate = false;
 	private bool characterBattlePredicate = false;
 
+    private GameObject[] tmpMonsters;
+
 	public enum States{
 		Spawns,		//자기자리 찾아가기
 		Idles,		//대기
@@ -35,7 +37,7 @@ public class GameController : MonoBehaviour {
 		characterMovePredicate = true;
 
         SendMessage("GameStateControll", "Ready"); //임시
-        
+
         CharacterActionCheck();
 	}
 	
@@ -234,6 +236,22 @@ public class GameController : MonoBehaviour {
         {
             tmpPlayer[i].gameObject.SendMessage("FowardColliderOff");
             tmpPlayer[i].gameObject.SendMessage("WeaponColliderReset");
+        }
+    }
+
+    public void EnemyStateBattleInfection(int nBaseGroupValue)
+    {
+        tmpMonsters = GameObject.FindGameObjectsWithTag("Enemy");
+
+        for (int i = 0; i < tmpMonsters.Length; i++)
+        {
+            if (nBaseGroupValue == tmpMonsters[i].GetComponent<EnemyAI>().groupValue)
+            {
+                if (tmpMonsters[i].GetComponent<EnemyState>().currentState == CharacterState.State.Battle)
+                {
+                    tmpMonsters[i].gameObject.SendMessage("ChasePlayer");
+                }
+            }
         }
     }
 }

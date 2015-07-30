@@ -30,10 +30,19 @@ public class CharacterHandler : MonoBehaviour {
 
     private GameObject tmpHUD;
 
+    public float DeadDelay = 0.5f;
+
 	void Awake(){
         tmpHUD = GameObject.Find("Canvas");
 		tmpGameController = GameObject.Find("GameController");
         myAllSpriteRenderer = gameObject.GetComponentsInChildren<SpriteRenderer>();
+
+        for (int i = 0; i < myAllSpriteRenderer.Length; i++)
+        {
+            backupColorR = myAllSpriteRenderer[i].color.r;
+            backupColorG = myAllSpriteRenderer[i].color.g;
+            backupColorB = myAllSpriteRenderer[i].color.b;
+        }
 
         if (gameObject.CompareTag("Player"))
         {
@@ -92,10 +101,6 @@ public class CharacterHandler : MonoBehaviour {
         //타격 시 색깔 바꾸기
         for (int i = 0; i < myAllSpriteRenderer.Length; i++)
         {
-            backupColorR = myAllSpriteRenderer[i].color.r;
-            backupColorG = myAllSpriteRenderer[i].color.g;
-            backupColorB = myAllSpriteRenderer[i].color.b;
-
             myAllSpriteRenderer[i].color = new Vector4(hitColorR, hitColorG, hitColorB, 1.0f);
         }
 
@@ -158,5 +163,38 @@ public class CharacterHandler : MonoBehaviour {
     public void HealthBarDestroy()
     {
         Destroy(healthBar);
+    }
+
+    public void CharacterDieEffect()
+    {
+        ColliderOff();
+        StartCoroutine("CharacterDEAD");
+    }
+
+    IEnumerator CharacterDEAD()
+    {
+        yield return new WaitForSeconds(DeadDelay);
+
+        for (int i = 0; i < myAllSpriteRenderer.Length; i++)
+        {
+            for (float r = 1; r >= 0; r -= 0.2f)
+            {
+                myAllSpriteRenderer[i].color = new Vector4(backupColorR, backupColorG, backupColorB, r);
+                yield return new WaitForFixedUpdate();
+            }
+        }
+        SendMessage("HealthBarDestroy");
+        Destroy(gameObject);
+        
+    }
+
+    public void ColliderOff()
+    {
+        SendMessage("WeaponColliderOff");
+        if (CompareTag("Enemy"))
+        {
+            GetComponent<BoxCollider2D>().enabled = false;
+            tag = "Untagged";
+        }
     }
 }

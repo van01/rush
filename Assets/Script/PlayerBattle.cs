@@ -42,21 +42,29 @@ public class PlayerBattle : CharacterBattle {
         }
         else
         {
-            //target.SendMessage("HealthBarValueUpdate", 0);
-            target.SendMessage("HealthBarDestroy");
-            BattleEnd();
+            TargetDead();
         }
 	}
+    
+    public void BattleEnd()
+    {
+        print("Battle End");
+    }
 
-	public void BattleEnd(){
-        Destroy(target);
-        BattleStop();
-		SendMessage("CharacterStateControll", "Move");
-		//SendMessage("SearchEnemy");
-        //SendMessage("AttDistanceOn");
+    protected void TargetDead()
+    {
+        target.SendMessage("HealthBarValueUpdate", 0f);
+        target.SendMessage("CharacterStateControll", "Dead");
+        //target.tag = "Untagged";
+        target.SendMessage("CharacterDieEffect");
+
+        SendMessage("CharacterStateControll", "Move");
         SendMessage("BattlingOn");
         SendMessage("PositionDistanceReset");
-	}
+
+        //SendMessage("SearchEnemy");
+        BattleStop();
+    }
 
     public void AttackSuccess()
     {
