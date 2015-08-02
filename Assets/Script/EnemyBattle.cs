@@ -60,11 +60,14 @@ public class EnemyBattle : CharacterBattle{
 
     void OnTriggerEnter2D(Collider2D c)
     {
-        if (c.transform.root.tag == "Player")
+        if (c.transform.root.tag == "Player" || c.tag == "Player")
         {
             if (attackProssible == true)
-                currentTargetColl = c.transform.root.gameObject.GetComponent<BoxCollider2D>();
-                //currentTargetGameObject = c.transform.root.gameObject;
+                if (c.transform.root.tag == "Player")
+                    currentTargetColl = c.transform.root.gameObject.GetComponent<BoxCollider2D>();
+                if (c.tag == "Player")
+                    currentTargetColl = c;
+            //currentTargetGameObject = c.transform.root.gameObject;
             {
                 StartCoroutine("BattleWait");
 
