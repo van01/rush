@@ -20,7 +20,7 @@ public class CharacterHandler : MonoBehaviour {
     private float backupColorG;
     private float backupColorB;
 
-    private float hittingPosition = 0.05f;
+    private float hittingPosition = 0.0f;
     private float totalhittingPosition;
     private float backupPosition;
 
