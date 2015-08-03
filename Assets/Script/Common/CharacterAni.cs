@@ -87,10 +87,7 @@ public class CharacterAni : MonoBehaviour {
             if (tag == "Player" && GetComponent<PlayerAbility>().currentAttackDistanceType == PlayerAbility.attackDistanceType.melee || tag == "Enemy" && GetComponent<EnemyAbility>().currentAttackDistanceType == EnemyAbility.attackDistanceType.melee)
                 StartCoroutine("AttackSuccessWait");
             if (tag == "Player" && GetComponent<PlayerAbility>().currentAttackDistanceType == PlayerAbility.attackDistanceType.longDistance || tag == "Enemy" && GetComponent<EnemyAbility>().currentAttackDistanceType == EnemyAbility.attackDistanceType.longDistance)
-            {
-                StartCoroutine("AttackSuccessWait");
                 SendMessage("LongDistanceLunchHandler");
-            }
 
             attack = true;
         }
@@ -123,7 +120,7 @@ public class CharacterAni : MonoBehaviour {
     {
         yield return new WaitForSeconds(attackSuccessDelay);
 
-        SendMessage("AttackSuccess");
+        SendMessage("AttackSuccessCall");
     }
 
     public void AttackSuccessWaitStop()

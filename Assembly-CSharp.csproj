@@ -1,153 +1,154 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-	<ProductVersion>10.0.20506</ProductVersion>
-	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{3904BA99-EBD5-30EF-E314-1BECD68661C4}</ProjectGuid>
-	<OutputType>Library</OutputType>
-	<AppDesignerFolder>Properties</AppDesignerFolder>
-	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-CSharp</AssemblyName>
-	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-	<FileAlignment>512</FileAlignment>
-	<BaseDirectory>Assets</BaseDirectory>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AB2A0145-8463-55E1-0B7B-703DBEE64513}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>
+    </RootNamespace>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <BaseDirectory>Assets</BaseDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-	<DebugSymbols>true</DebugSymbols>
-	<DebugType>full</DebugType>
-	<Optimize>false</Optimize>
-	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_5_0_2;UNITY_5_0;UNITY_5;ENABLE_LICENSE_RENAME;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_NEW_HIERARCHY;ENABLE_PHYSICS;ENABLE_PHYSICS_PHYSX3;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_AUDIOMIXER_SUSPEND;ENABLE_NONPRO;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN</DefineConstants>
-	<ErrorReport>prompt</ErrorReport>
-	<WarningLevel>4</WarningLevel>
-	<NoWarn>0169</NoWarn>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_0_2;UNITY_5_0;UNITY_5;ENABLE_LICENSE_RENAME;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_NEW_HIERARCHY;ENABLE_PHYSICS;ENABLE_PHYSICS_PHYSX3;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_AUDIOMIXER_SUSPEND;ENABLE_NONPRO;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-	<DebugType>pdbonly</DebugType>
-	<Optimize>true</Optimize>
-	<OutputPath>Temp\bin\Release\</OutputPath>
-	<DefineConstants>TRACE</DefineConstants>
-	<ErrorReport>prompt</ErrorReport>
-	<WarningLevel>4</WarningLevel>
-	<NoWarn>0169</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Temp\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-	<Reference Include="System" />
+    <Reference Include="System" />
     <Reference Include="System.XML" />
-	<Reference Include="System.Core" />
-	<Reference Include="System.Xml.Linq" />
-	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
-	</Reference>
-	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
-	</Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\Documents\Unity\5.0.2\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>..\Documents\Unity\5.0.2\UnityEditor.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_AngleLimitNode.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_BakeAnimation.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_Bakedmesh.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_EditSkinWeights.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_FFDLineDisplay.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_FFDStoreData.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_GlobalControl.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_HiddenBone.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_IKHandle.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_ParentControl.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_SkinnedVertices.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_SortingLayer.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_SplineControl.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_VertHandler.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\DelaunayTriangle.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\AdvancingFront.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\AdvancingFrontNode.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\DTSweep.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\DTSweepBasin.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\DTSweepConstraint.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\DTSweepContext.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\DTSweepDebugContext.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\DTSweepEdgeEvent.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\DTSweepPointComparator.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\PointOnEdgeException.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\ITriangulatable.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Orientation.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\P2T.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Polygon\Contour.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Polygon\Polygon.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Polygon\PolygonPoint.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Polygon\PolygonSet.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Polygon\PolygonUtil.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Sets\ConstrainedPointSet.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Sets\PointSet.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\TriangulationAlgorithm.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\TriangulationConstraint.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\TriangulationContext.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\TriangulationDebugContext.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\TriangulationMode.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\TriangulationPoint.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Util\PointGenerator.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Util\PolygonGenerator.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Util\TriangulationUtil.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\FixedArray3.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\FixedBitArray3.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\MathUtil.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\Point2D.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\Point2DList.cs" />
-     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\Rect2D.cs" />
-     <Compile Include="Assets\Script\Common\CharacterAni.cs" />
-     <Compile Include="Assets\Script\Common\CharacterBackHandler.cs" />
-     <Compile Include="Assets\Script\Common\CharacterBattle.cs" />
-     <Compile Include="Assets\Script\Common\CharacterHandler.cs" />
-     <Compile Include="Assets\Script\Common\CharacterHelmetHandler.cs" />
-     <Compile Include="Assets\Script\Common\CharacterParams.cs" />
-     <Compile Include="Assets\Script\Common\CharacterState.cs" />
-     <Compile Include="Assets\Script\Common\CharacterWeaponHandler.cs" />
-     <Compile Include="Assets\Script\Effect\EffectHandler_a_1.cs" />
-     <Compile Include="Assets\Script\Effect\EffectHandler_s_1.cs" />
-     <Compile Include="Assets\Script\Effect\EffectMessenger_a_1.cs" />
-     <Compile Include="Assets\Script\FrontEnd\BattleButtonHandler.cs" />
-     <Compile Include="Assets\Script\FrontEnd\FrontEndController.cs" />
-     <Compile Include="Assets\Script\FrontEnd\PanelCloseButtonHandler.cs" />
-     <Compile Include="Assets\Script\FrontEnd\StageButtonHandler.cs" />
-     <Compile Include="Assets\Script\Stage\ArrowHandler.cs" />
-     <Compile Include="Assets\Script\Stage\CameraHandler.cs" />
-     <Compile Include="Assets\Script\Stage\CharacterEffectController.cs" />
-     <Compile Include="Assets\Script\Stage\EnemyAI.cs" />
-     <Compile Include="Assets\Script\Stage\EnemyAbility.cs" />
-     <Compile Include="Assets\Script\Stage\EnemyBattle.cs" />
-     <Compile Include="Assets\Script\Stage\EnemyController.cs" />
-     <Compile Include="Assets\Script\Stage\EnemyHitEffect.cs" />
-     <Compile Include="Assets\Script\Stage\EnemyParams.cs" />
-     <Compile Include="Assets\Script\Stage\EnemyScroll.cs" />
-     <Compile Include="Assets\Script\Stage\EnemyState.cs" />
-     <Compile Include="Assets\Script\Stage\GameController.cs" />
-     <Compile Include="Assets\Script\Stage\GameState.cs" />
-     <Compile Include="Assets\Script\Stage\HUDController.cs" />
-     <Compile Include="Assets\Script\Stage\HUDHandler.cs" />
-     <Compile Include="Assets\Script\Stage\HUDTextEffect.cs" />
-     <Compile Include="Assets\Script\Stage\ItemHandler.cs" />
-     <Compile Include="Assets\Script\Stage\PlayerAI.cs" />
-     <Compile Include="Assets\Script\Stage\PlayerAbility.cs" />
-     <Compile Include="Assets\Script\Stage\PlayerBattle.cs" />
-     <Compile Include="Assets\Script\Stage\PlayerController.cs" />
-     <Compile Include="Assets\Script\Stage\PlayerHitEffect.cs" />
-     <Compile Include="Assets\Script\Stage\PlayerParams.cs" />
-     <Compile Include="Assets\Script\Stage\PlayerState.cs" />
-     <Compile Include="Assets\Script\Stage\SkillButtonHandler.cs" />
-     <Compile Include="Assets\Script\Stage\StageController.cs" />
-     <Compile Include="Assets\Script\Stage\StageScroll.cs" />
-     <Compile Include="Assets\Script\TestStageController.cs" />
-     <None Include="Assets\Puppet2D\Shaders\BlackAndWhite.shader" />
-     <None Include="Assets\Puppet2D\Shaders\VertColor.shader" />
-     <None Include="Assets\Puppet2D\Shaders\unlitTransparentDouble.shader" />
- <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.iOS.Extensions.Xcode">
- <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iossupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
- </Reference>
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_AngleLimitNode.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_BakeAnimation.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_Bakedmesh.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_EditSkinWeights.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_FFDLineDisplay.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_FFDStoreData.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_GlobalControl.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_HiddenBone.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_IKHandle.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_ParentControl.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_SkinnedVertices.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_SortingLayer.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_SplineControl.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_VertHandler.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\DelaunayTriangle.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\AdvancingFront.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\AdvancingFrontNode.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\DTSweep.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\DTSweepBasin.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\DTSweepConstraint.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\DTSweepContext.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\DTSweepDebugContext.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\DTSweepEdgeEvent.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\DTSweepPointComparator.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\PointOnEdgeException.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\ITriangulatable.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Orientation.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\P2T.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Polygon\Contour.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Polygon\Polygon.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Polygon\PolygonPoint.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Polygon\PolygonSet.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Polygon\PolygonUtil.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Sets\ConstrainedPointSet.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Sets\PointSet.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\TriangulationAlgorithm.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\TriangulationConstraint.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\TriangulationContext.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\TriangulationDebugContext.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\TriangulationMode.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\TriangulationPoint.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Util\PointGenerator.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Util\PolygonGenerator.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Util\TriangulationUtil.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\FixedArray3.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\FixedBitArray3.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\MathUtil.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\Point2D.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\Point2DList.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\Rect2D.cs" />
+    <Compile Include="Assets\Script\Common\CharacterAni.cs" />
+    <Compile Include="Assets\Script\Common\CharacterBackHandler.cs" />
+    <Compile Include="Assets\Script\Common\CharacterBattle.cs" />
+    <Compile Include="Assets\Script\Common\CharacterHandler.cs" />
+    <Compile Include="Assets\Script\Common\CharacterHelmetHandler.cs" />
+    <Compile Include="Assets\Script\Common\CharacterParams.cs" />
+    <Compile Include="Assets\Script\Common\CharacterState.cs" />
+    <Compile Include="Assets\Script\Common\CharacterWeaponHandler.cs" />
+    <Compile Include="Assets\Script\Effect\EffectHandler_a_1.cs" />
+    <Compile Include="Assets\Script\Effect\EffectHandler_s_1.cs" />
+    <Compile Include="Assets\Script\Effect\EffectMessenger_a_1.cs" />
+    <Compile Include="Assets\Script\FrontEnd\BattleButtonHandler.cs" />
+    <Compile Include="Assets\Script\FrontEnd\FrontEndController.cs" />
+    <Compile Include="Assets\Script\FrontEnd\PanelCloseButtonHandler.cs" />
+    <Compile Include="Assets\Script\FrontEnd\StageButtonHandler.cs" />
+    <Compile Include="Assets\Script\Stage\ArrowHandler.cs" />
+    <Compile Include="Assets\Script\Stage\CameraHandler.cs" />
+    <Compile Include="Assets\Script\Stage\CharacterEffectController.cs" />
+    <Compile Include="Assets\Script\Stage\EnemyAI.cs" />
+    <Compile Include="Assets\Script\Stage\EnemyAbility.cs" />
+    <Compile Include="Assets\Script\Stage\EnemyBattle.cs" />
+    <Compile Include="Assets\Script\Stage\EnemyController.cs" />
+    <Compile Include="Assets\Script\Stage\EnemyHitEffect.cs" />
+    <Compile Include="Assets\Script\Stage\EnemyParams.cs" />
+    <Compile Include="Assets\Script\Stage\EnemyScroll.cs" />
+    <Compile Include="Assets\Script\Stage\EnemyState.cs" />
+    <Compile Include="Assets\Script\Stage\GameController.cs" />
+    <Compile Include="Assets\Script\Stage\GameState.cs" />
+    <Compile Include="Assets\Script\Stage\HUDController.cs" />
+    <Compile Include="Assets\Script\Stage\HUDHandler.cs" />
+    <Compile Include="Assets\Script\Stage\HUDTextEffect.cs" />
+    <Compile Include="Assets\Script\Stage\ItemHandler.cs" />
+    <Compile Include="Assets\Script\Stage\PlayerAI.cs" />
+    <Compile Include="Assets\Script\Stage\PlayerAbility.cs" />
+    <Compile Include="Assets\Script\Stage\PlayerBattle.cs" />
+    <Compile Include="Assets\Script\Stage\PlayerController.cs" />
+    <Compile Include="Assets\Script\Stage\PlayerHitEffect.cs" />
+    <Compile Include="Assets\Script\Stage\PlayerParams.cs" />
+    <Compile Include="Assets\Script\Stage\PlayerState.cs" />
+    <Compile Include="Assets\Script\Stage\SkillButtonHandler.cs" />
+    <Compile Include="Assets\Script\Stage\StageController.cs" />
+    <Compile Include="Assets\Script\Stage\StageScroll.cs" />
+    <Compile Include="Assets\Script\TestStageController.cs" />
+    <None Include="Assets\Puppet2D\Shaders\BlackAndWhite.shader" />
+    <None Include="Assets\Puppet2D\Shaders\VertColor.shader" />
+    <None Include="Assets\Puppet2D\Shaders\unlitTransparentDouble.shader" />
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\Documents\Unity\5.0.2\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/iossupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -157,5 +158,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  
 </Project>

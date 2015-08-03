@@ -8,7 +8,7 @@ public class EnemyAbility : MonoBehaviour {
     public enum attackDistanceType { melee, longDistance }
     public attackDistanceType currentAttackDistanceType;
 
-    public enum attackWeaponType { Sword, Spear, temp }
+    public enum attackWeaponType { Sword, Spear, Bow, Gun, Temp }
     public attackWeaponType currentAttackWeaponType;
 
 	public void SetParams(EnemyParams tParams){

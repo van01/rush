@@ -8,7 +8,7 @@ public class PlayerAbility : MonoBehaviour {
     public enum attackDistanceType { melee, longDistance }
     public attackDistanceType currentAttackDistanceType;
 
-    public enum attackWeaponType { Sword, Spear, Bow, temp}
+    public enum attackWeaponType { Sword, Spear, Bow, Gun, Temp}
     public attackWeaponType currentAttackWeaponType;
 
 	public void SetParams(PlayerParams tParams){
