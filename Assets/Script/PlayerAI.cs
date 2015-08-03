@@ -65,8 +65,15 @@ public class PlayerAI : MonoBehaviour {
             }
         }
 
-		//캐릭터 백스탭 위치 잡기
-		if (backSetPosition == true){
+        if (tmpPlayerState.currentState == CharacterState.State.Spawn || tmpPlayerState.currentState == CharacterState.State.Move)
+        {
+            SendMessage("CharacterStateMoveOn");
+            //SendMessage("CharacterStateControll", "Move");
+            tmpGameController.SendMessage("GameStateControll", "Playing");
+        }
+
+        //캐릭터 백스탭 위치 잡기
+        if (backSetPosition == true){
             if (transform.position.x >= -7.0f) { 
                 transform.Translate(-Time.deltaTime * backStepSpeed, 0, 0);
             }

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class GameState : MonoBehaviour {
 
+    private GameObject[] tmpPlayer;
 	public enum State{
 		Ready,		//게임 준비
 		Playing,	//게임 진행
@@ -56,7 +57,6 @@ public class GameState : MonoBehaviour {
 	public virtual void PlayingAction(){
 		SendMessage("StageScrollInialize");
 		SendMessage("CharacterActionCheck");
-
 		//Debug.Log("■■Game State■■PlayingAction");
 	}
 	
@@ -82,4 +82,23 @@ public class GameState : MonoBehaviour {
 	public virtual void FailAction(){
 		//Debug.Log("■■Game State■■FailAction");
 	}
+
+    void Start()
+    {
+        tmpPlayer = GameObject.FindGameObjectsWithTag("Player");
+    }
+
+    void Update()
+    {/*
+        if (currentState == State.Hold)
+        {
+            for (int i = 0; i < tmpPlayer.Length; i++)
+            {
+                if (tmpPlayer[i].GetComponent<PlayerState>().currentState == CharacterState.State.Move)
+                {
+                    GameStateControll("Playing");
+                }
+            }
+        }*/
+    }
 }

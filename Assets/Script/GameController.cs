@@ -100,6 +100,7 @@ public class GameController : MonoBehaviour {
 	public void CharacterMovePredicateOn(){
         previousStates = currentStates;
         currentStates = States.Moves;
+        //SendMessage("GameStateControll", "Playing");
 		CharacterActionCheck();
 	}
 	

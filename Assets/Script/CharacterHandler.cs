@@ -177,15 +177,12 @@ public class CharacterHandler : MonoBehaviour {
 
         for (int i = 0; i < myAllSpriteRenderer.Length; i++)
         {
-            for (float r = 1; r >= 0; r -= 0.2f)
-            {
-                myAllSpriteRenderer[i].color = new Vector4(backupColorR, backupColorG, backupColorB, r);
-                yield return new WaitForFixedUpdate();
-            }
+            myAllSpriteRenderer[i].color = new Vector4(backupColorR, backupColorG, backupColorB, 0.0f);
+            //yield return new WaitForFixedUpdate();
         }
+
         SendMessage("HealthBarDestroy");
         Destroy(gameObject);
-        
     }
 
     public void ColliderOff()
