@@ -148,6 +148,10 @@ public class CharacterHandler : MonoBehaviour {
         healthBar = Instantiate(healthBarPrefab, Camera.main.WorldToScreenPoint(healthBarPoint), tmpHUD.transform.rotation) as GameObject;
         healthBar.GetComponent<RectTransform>().SetParent(tmpHUD.transform);
         healthBar.GetComponent<RectTransform>().localScale = new Vector3 (1.0f, 1.0f, 1.0f);
+        if(gameObject.tag == "Player")
+            healthBar.transform.FindChild("Mask").transform.FindChild("Image").GetComponent<Image>().color = new Vector4(0.5f, 1.0f, 0.5f, 1.0f);
+        else
+            healthBar.transform.FindChild("Mask").transform.FindChild("Image").GetComponent<Image>().color = new Vector4(1.0f, 0.5f, 0.5f, 1.0f);
     }
 
     public void HealthBarPositionUpdate(Vector3 vUpdatePoint)
@@ -168,20 +172,31 @@ public class CharacterHandler : MonoBehaviour {
     public void CharacterDieEffect()
     {
         ColliderOff();
-        StartCoroutine("CharacterDEAD");
+        CharacterDEAD();
     }
 
-    IEnumerator CharacterDEAD()
+    void CharacterDEAD()
+    {
+        for (int i = 0; i < myAllSpriteRenderer.Length; i++)
+        {
+            //myAllSpriteRenderer[i].color = new Vector4(backupColorR, backupColorG, backupColorB, 0.0f);
+            StartCoroutine("CharacterOff", i);
+        }
+    }
+
+    IEnumerator CharacterOff(int i)
     {
         yield return new WaitForSeconds(DeadDelay);
 
-        for (int i = 0; i < myAllSpriteRenderer.Length; i++)
+        SendMessage("HealthBarOff");
+        SendMessage("HealthBarDestroy");
+
+        for (float r = 1; r >= 0; r -= 0.05f)
         {
-            myAllSpriteRenderer[i].color = new Vector4(backupColorR, backupColorG, backupColorB, 0.0f);
-            //yield return new WaitForFixedUpdate();
+            myAllSpriteRenderer[i].color = new Vector4(backupColorR, backupColorG, backupColorB, r);
+            yield return new WaitForFixedUpdate();
         }
 
-        SendMessage("HealthBarDestroy");
         Destroy(gameObject);
     }
 

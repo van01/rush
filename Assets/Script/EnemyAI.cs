@@ -18,6 +18,7 @@ public class EnemyAI : MonoBehaviour {
     private float distance;
 
     private bool chasePlayer = false;
+    private bool HealthBarOn = true;
 
     void Start()
     {
@@ -30,7 +31,7 @@ public class EnemyAI : MonoBehaviour {
         CheckDistanceFromTarget();
 
         //체력 게이지 위치 잡기
-        if (GetComponent<EnemyState>().currentState != CharacterState.State.Dead)
+        if (HealthBarOn == true)
         {
             SendMessage("HealthBarPositionUpdate", transform.position);
             Debug.DrawLine(new Vector3(transform.position.x, -1.0f, 0), new Vector3(distance, -1.0f, 0), Color.red);
@@ -135,5 +136,10 @@ public class EnemyAI : MonoBehaviour {
             SendMessage("CharacterStateControll", "Move");
             chasePlayer = true;
         }
+    }
+
+    public void HealthBarOff()
+    {
+        HealthBarOn = false;
     }
 }

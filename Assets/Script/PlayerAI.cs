@@ -25,6 +25,8 @@ public class PlayerAI : MonoBehaviour {
     private bool attDistance = false;
     private int actionNumber = 0;
 
+    private bool HealthBarOn = true;
+
     void Start()
     {
         tmpPlayerState = GetComponent<PlayerState>();
@@ -88,7 +90,7 @@ public class PlayerAI : MonoBehaviour {
 		}
 
         //체력 게이지 위치 잡기
-        if (GetComponent<PlayerState>().currentState != CharacterState.State.Dead)
+        if (HealthBarOn == true)
         {
             SendMessage("HealthBarPositionUpdate", transform.position);
         }
@@ -217,5 +219,10 @@ public class PlayerAI : MonoBehaviour {
     public void AttDistanceOff()
     {
         attDistance = false;
+    }
+
+    public void HealthBarOff()
+    {
+        HealthBarOn = false;
     }
 }
