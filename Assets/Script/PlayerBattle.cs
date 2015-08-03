@@ -112,7 +112,7 @@ public class PlayerBattle : CharacterBattle {
         {
             if (c.tag == "Enemy")
             {
-                print(c.name + "  " + Time.time);
+                //print(c.name + "  " + Time.time);
                 StartCoroutine("BattleWait");
 
                 enemyParams = c.GetComponent<EnemyAbility>().GetParams();

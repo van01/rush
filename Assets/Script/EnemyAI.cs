@@ -23,7 +23,7 @@ public class EnemyAI : MonoBehaviour {
     void Start()
     {
         tmpGameController = GameObject.Find("GameController");
-        attackDistance = Random.RandomRange(1.0f, attackDistance);
+        attackDistance = Random.RandomRange(attackDistance - 0.3f, attackDistance + 0.3f);
     }
 
     void Update()
