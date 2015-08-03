@@ -34,7 +34,7 @@ public class EnemyAI : MonoBehaviour {
         if (HealthBarOn == true)
         {
             SendMessage("HealthBarPositionUpdate", transform.position);
-            Debug.DrawLine(new Vector3(transform.position.x, -1.0f, 0), new Vector3(distance, -1.0f, 0), Color.red);
+            //Debug.DrawLine(new Vector3(transform.position.x, -1.0f, 0), new Vector3(distance, -1.0f, 0), Color.red);
         }
 
         if (chasePlayer == true)
