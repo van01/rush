@@ -42,8 +42,9 @@ public class CharacterHandler : MonoBehaviour {
             backupColorR = myAllSpriteRenderer[i].color.r;
             backupColorG = myAllSpriteRenderer[i].color.g;
             backupColorB = myAllSpriteRenderer[i].color.b;
-        }
+        }   //수정 필요
 
+        // 타격 색상 및 포지션 Player 음수 설정
         if (gameObject.CompareTag("Player"))
         {
             hitColorR = 1.0f;

@@ -11,7 +11,7 @@ public class PlayerBattle : CharacterBattle {
 
     private int attackCount = 0;
 
-    protected bool attackProssible = false;
+    protected bool attackProssible = true;
 
 	void Start(){
 		tmpGameController = GameObject.Find ("GameController");      
@@ -39,6 +39,7 @@ public class PlayerBattle : CharacterBattle {
         if (enemyParams.curHP > 0)
         {
             target.SendMessage("HealthBarValueUpdate", (float)enemyParams.curHP / (float)enemyParams.maxHP);    //!!
+            attackProssible = false;
         }
         else
         {
@@ -68,6 +69,8 @@ public class PlayerBattle : CharacterBattle {
 
     public void AttackSuccess()
     {
+        attackProssible = true;
+
         //if (attackProssible == true)
         //{
         //attackCount = 0;
@@ -92,7 +95,6 @@ public class PlayerBattle : CharacterBattle {
 
         //CheckEnemyCurHP();
         //}
-        attackProssible = true;
     }
 
     void OnTriggerEnter2D(Collider2D c)
@@ -108,9 +110,11 @@ public class PlayerBattle : CharacterBattle {
         //        attackProssible = true;
         //    }
         //}
-        if (attackProssible == true)
+        if (c.tag == "Enemy")
+        //if (attackProssible == true)
         {
-            if (c.tag == "Enemy")
+            if (attackProssible == true)
+            //if (c.transform.root.name == "Enemy")
             {
                 //print(c.name + "  " + Time.time);
                 StartCoroutine("BattleWait");
@@ -176,8 +180,8 @@ public class PlayerBattle : CharacterBattle {
 
         yield return new WaitForSeconds(attackWaitTime);
 
-        attackProssible = false;
-
         SendMessage("BattlingOn");
+
+        
     }
 }
