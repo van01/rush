@@ -219,21 +219,21 @@ public class PlayerController : MonoBehaviour {
         CharacterFowardColliderOff();
     }
 
-    public void CharacterBattlingOn()
-    {
-        for (int i = 0; i < tmpPlayer.Length; i++)
-        {
-            tmpPlayer[i].gameObject.SendMessage("BattlingOn");
-        }
-    }
+    //public void CharacterBattlingOn()
+    //{
+    //    for (int i = 0; i < tmpPlayer.Length; i++)
+    //    {
+    //        tmpPlayer[i].gameObject.SendMessage("BattlingOn");
+    //    }
+    //}
 
-    public void CharacterBattlingOff()
-    {
-        for (int i = 0; i < tmpPlayer.Length; i++)
-        {
-            tmpPlayer[i].gameObject.SendMessage("BattlingOff");
-        }
-    }
+    //public void CharacterBattlingOff()
+    //{
+    //    for (int i = 0; i < tmpPlayer.Length; i++)
+    //    {
+    //        tmpPlayer[i].gameObject.SendMessage("BattlingOff");
+    //    }
+    //}
 
     public void CharacterAttactDistanceOn()
     {

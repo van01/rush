@@ -48,13 +48,13 @@ public class HUDController : MonoBehaviour {
         //SendMessage("DeliveryScrollOnTrue");
         if (DobleClickLeft == true)
         {
-            SendMessage("CharacterBattlingOn");
+            //SendMessage("CharacterBattlingOn");
             SendMessage("CharacterBackPredicateOff");
             SendMessage("CharacterAttactDistanceOn");
         }
         else
         {
-            SendMessage("CharacterBattlingOn");
+            //SendMessage("CharacterBattlingOn");
             SendMessage("CharacterGuardPredicateOff");
             SendMessage("CharacterAttactDistanceOn");
         }
@@ -86,14 +86,14 @@ public class HUDController : MonoBehaviour {
     //new input System :::: Button Type __ 20150723
     public void Left01Down()
     {
-        SendMessage("CharacterBattlingOff");
+        //SendMessage("CharacterBattlingOff");
         SendMessage("CharacterBackPredicateOn");
         SendMessage("CharacterAttactDistanceOff");
     }
 
     public void Lef01Up()
     {
-        SendMessage("CharacterBattlingOn");
+        //SendMessage("CharacterBattlingOn");
         SendMessage("CharacterBackPredicateOff");
         SendMessage("CharacterAttactDistanceOn");
     }
@@ -124,7 +124,7 @@ public class HUDController : MonoBehaviour {
     public void Right01Up()
     {
 		//Guard Off
-		SendMessage("CharacterBattlingOn");
+		//SendMessage("CharacterBattlingOn");
 		SendMessage("CharacterGuardPredicateOff");
 		SendMessage("CharacterAttactDistanceOn");
     }

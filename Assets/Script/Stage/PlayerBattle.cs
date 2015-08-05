@@ -11,6 +11,8 @@ public class PlayerBattle : CharacterBattle{
     private GameObject coinParent;
     private int coinCount = 0;
 
+    public float attackWaitTime = 0.7f;
+
 
     public override void Start()
     {
@@ -44,9 +46,7 @@ public class PlayerBattle : CharacterBattle{
 
     public override void AttackSuccess()
     {
-        base.AttackSuccess();
-
-        StartCoroutine("BattleWait");
+        base.AttackSuccess();        
     }
 
     public override void CheckTargetCurHP()
@@ -62,7 +62,7 @@ public class PlayerBattle : CharacterBattle{
 
         SendMessage("CharacterStateControll", "Move");
 
-        SendMessage("BattlingOff");
+        //SendMessage("BattlingOff");
         SendMessage("PositionDistanceReset");
 
         for (int i = 0; i <= coinCount; i++)
@@ -72,19 +72,21 @@ public class PlayerBattle : CharacterBattle{
     }
 
     public void AttackEnd()
-    {
+    {        
+        StartCoroutine("BattleWait");
         //SendMessage("AttackAniInit");
         SendMessage("CharacterStateControll", "Battle");
         attackProssible = false;
-        SendMessage("AttDistanceOn");
+        print("Attack End");
+        //SendMessage("AttDistanceOn");   //AI: AttDistance true
     }
 
     private  IEnumerator BattleWait()
-    {
-        float attackWaitTime = 1.0f;
-        //SendMessage("CharacterStateControll", "Battle");
-
+    {        
+        //SendMessage("CharacterStateControll", "Battle");        
+        //SendMessage("AttDistanceOn");
         yield return new WaitForSeconds(attackWaitTime);
+        SendMessage("AttDistanceOn");
 
         attackActionCount = 0;
         //currentTargetColl.SendMessage("AssultStateOn");

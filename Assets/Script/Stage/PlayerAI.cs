@@ -120,42 +120,49 @@ public class PlayerAI : MonoBehaviour
         distance = Vector3.Distance(target.position, transform.position);
         distance = distance - ((target.GetComponent<BoxCollider2D>().size.x - target.GetComponent<BoxCollider2D>().offset.x) * target.transform.localScale.x / 2);
 
+        print("Distance ::::: " + distance + "  Attack Distance ::::: " + attackDistance);
         if (distance > attackDistance)
         {
-            SendMessage("CharacterStateControll", "Move");
+            SendMessage("CharacterStateControll", "Move");            
         }
 
         if (distance < attackDistance)
         {
-            if (tmpPlayerState.currentState == CharacterState.State.Move)
-            {
-
-                if (distance < attackDistance)
+            print("distance<<<");
+            //print(actionNumber);
+            if (target.GetComponent<EnemyState>().currentState != CharacterState.State.Dead)
+            {                
+                if (actionNumber == 0)
                 {
-                    if (target.GetComponent<EnemyState>().currentState != CharacterState.State.Dead)
+                    if (tmpPlayerState.currentState == CharacterState.State.Move)
                     {
-                        i++;
-                        print(i);
+                        actionNumber++;
+
                         SendMessage("CharacterStateControll", "Battle");
                         SendMessage("CharacterStateBattleOn");    //사정거리 진입 시 해당 캐릭터만 전투 모드 변경으로 변경하려고 했으나 해당 함수에 포함된 기능으로인해 보류
 
                         SendMessage("StartBattle");
+
+                        attDistance = false;
+
                         tmpPositionDistance = positionDistance;
                         positionDistance = transform.position.x;
+                        
+                        //print("Battle Mode Attack Start ::: " + actionNumber);
                     }
                 }
-            }
-
-            if (tmpPlayerState.currentState == CharacterState.State.Battle)
-            {
-                if (distance < attackDistance)
+                    
+                if (attDistance == true)
                 {
-                    if (target.GetComponent<EnemyState>().currentState != CharacterState.State.Dead)
+                    if (tmpPlayerState.currentState == CharacterState.State.Battle)
                     {
+                        //i++;
+                        //print("Battle Mode Attack Distance ::: " + i);
                         SendMessage("StartBattle");
+                        attDistance = false;
                     }
                 }
-            }
+            }            
         }
         
     }
@@ -214,7 +221,7 @@ public class PlayerAI : MonoBehaviour
         backSetPosition = true;
         setPosition = false;
     }
-
+    
     public void CharacterBackPositionOff()
     {
         backSetPosition = false;
@@ -251,5 +258,10 @@ public class PlayerAI : MonoBehaviour
     public void HealthBarOff()
     {
         HealthBarOn = false;
+    }
+
+    public void ActionNumberReset()
+    {
+        actionNumber = 0;
     }
 }

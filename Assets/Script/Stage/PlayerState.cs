@@ -44,6 +44,7 @@ public class PlayerState : CharacterState
         {
             SendMessage("CharacterPositionInialize", 0.5f);
         }
+        //SendMessage("ActionNumberReset");
     }
 
     public override void RunAction()
@@ -57,11 +58,12 @@ public class PlayerState : CharacterState
     {
         base.BattleAction();
         SendMessage("ChangeAni", CharacterAni.BATTLE);
+        print("Battle Action :::::::::::::::::::::::::::");
 
-        if (battling == true)
-        {
-            //SendMessage("StartBattle");
-        }
+        //if (battling == true)
+        //{
+        //    SendMessage("StartBattle");
+        //}
 
         SendMessage("CharacterBackPositionOff");
         SendMessage("CharacterFowardPositionOff");

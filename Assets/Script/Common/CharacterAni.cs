@@ -60,13 +60,18 @@ public class CharacterAni : MonoBehaviour {
         //}
         if (attackAni == true)
         {
+            //if (tmpAnimation.isPlaying == true)
+            //    print(tmpAnimation.clip.length);    
             if (tmpAnimation.isPlaying == false)
             {
+                SendMessage("AttackSuccess");
                 SendMessage("AttackEnd");
+
                 attackAni = false;
+                print("Attack Success & End Call");    
             }
         }
-    }
+    }   //attack animation lenth, attack sucssece call
     
 
     //public void ChangeAni(int aniNum){
@@ -82,7 +87,12 @@ public class CharacterAni : MonoBehaviour {
     {
         if (aniClipNum == ATTACK)
         {
+            //AnimationClip aniClip = tmpAnimation.GetClip(aniClipNum);
+
+            //print(aniClip.length);
+
             attackAni = true;
+
             tmpAnimation.Play(aniClipNum);
         }
 

@@ -7,9 +7,7 @@ public class CharacterBattle : MonoBehaviour {
     protected GameObject tmpGameController;
     protected Vector3 HitTransform;
     protected float HitTransformX;
-    protected float HitTransformY;
-
-	protected float attackDelay = 3.0f;
+    protected float HitTransformY;	
 
 	protected PlayerParams playerParams;
 	protected EnemyParams enemyParams;
@@ -30,7 +28,7 @@ public class CharacterBattle : MonoBehaviour {
         if (tag == "Player")
         {
             myState = GetComponent<PlayerState>();
-            playerParams = GetComponent<PlayerAbility>().GetParams();
+            playerParams = GetComponent<PlayerAbility>().GetParams();            
         }
         else if (tag == "Enemy")
         {
@@ -38,11 +36,17 @@ public class CharacterBattle : MonoBehaviour {
             enemyParams = GetComponent<EnemyAbility>().GetParams();
         }
 
-        DoBattle();
-	}
+        DoBattle();      
+    }
 
 	public virtual void DoBattle(){
         attackActionCount++;
+
+        if(this.tag == "Player"){
+            //print("Start Battle -> Do Battle");
+            //print("Do Battle Attack Action Count ::: " + attackActionCount);
+        }
+            
         if (attackActionCount == 1)
         {
             SendMessage("CharacterStateControll", "Attack");
@@ -63,7 +67,7 @@ public class CharacterBattle : MonoBehaviour {
 
     public virtual void AttackSuccess()
     {
-        SendMessage("BattlingOff");
+        //SendMessage("BattlingOff");
 
         if (attackProssible == true)
         {
@@ -74,7 +78,7 @@ public class CharacterBattle : MonoBehaviour {
                 enemyParams = target.GetComponent<EnemyAbility>().GetParams();
                 enemyParams.curHP -= playerParams.attack;
 
-                //타격 연출 적용
+                //타격 연출 적용  PlayerHitEffectActive
                 SendMessage("PlayerHitEffectActive");
             }
             else if (tag == "Enemy")
@@ -84,7 +88,7 @@ public class CharacterBattle : MonoBehaviour {
                 playerParams = target.GetComponent<PlayerAbility>().GetParams();
                 playerParams.curHP -= enemyParams.attack;
 
-                //타격 연출 적용
+                //타격 연출 적용  EnemyHitEffectActive
                 SendMessage("EnemyHitEffectActive");
             }
 
@@ -101,6 +105,8 @@ public class CharacterBattle : MonoBehaviour {
                 tmpGameController.SendMessage("PlayerHitDamage", enemyParams.attack);
 
             CheckTargetCurHP();
+
+            attackActionCount = 0;
         }
     }
 
