@@ -66,4 +66,8 @@ public class CharacterWeaponHandler : MonoBehaviour {
         weaponLCollider.enabled = backupWeaponLCollider;
     }
 
+    public GameObject GetCurrentWeapon()
+    {
+        return weaponR;
+    }
 }

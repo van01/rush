@@ -152,13 +152,15 @@ public class PlayerAI : MonoBehaviour {
                     actionNumber = 2;
                 }
             }
+
             if (attDistance == true)
             {
                 if (actionNumber == 2)
                 {
                     if (target.GetComponent<EnemyState>().currentState != CharacterState.State.Dead)
                     {
-                        SendMessage("CharacterStateBattleOn");
+                        //SendMessage("CharacterStateControll", "Battle");
+                        SendMessage("CharacterStateBattleOn");    //사정거리 진입 시 해당 캐릭터만 전투 모드 변경으로 변경하려고 했으나 해당 함수에 포함된 기능으로인해 보류
                         tmpPositionDistance = positionDistance;
                         positionDistance = transform.position.x;
                         actionNumber = 0;

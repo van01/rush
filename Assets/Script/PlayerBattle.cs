@@ -10,8 +10,9 @@ public class PlayerBattle : CharacterBattle {
     private float HitTransformY;
 
     private int attackCount = 0;
+    private int attackActionCount = 0;
 
-    protected bool attackProssible = true;
+    protected bool attackProssible = false;
 
 	void Start(){
 		tmpGameController = GameObject.Find ("GameController");      
@@ -19,127 +20,73 @@ public class PlayerBattle : CharacterBattle {
 
 	public override void StartBattle(){
 		myState = GetComponent<PlayerState>();
-		target = GetComponent<PlayerAI>().GetCurrentTarget();
+		target = GetComponent<PlayerAI>().GetCurrentTarget();   //!!
 
         playerParams = GetComponent<PlayerAbility>().GetParams();
-		enemyParams = target.GetComponent<EnemyAbility>().GetParams();
+		enemyParams = target.GetComponent<EnemyAbility>().GetParams();  //!!
 
 		DoBattle();
 	}
 
 	public override void DoBattle(){
-        SendMessage("CharacterStateControll", "Attack");
+        attackActionCount++;
+        if (attackActionCount == 1)
+        {
+            SendMessage("CharacterStateControll", "Attack");
+            attackProssible = true;
+        }
 	}
 
 	public void BattleStop(){
         StopCoroutine("BattleWait");
 	}
 
-	protected void CheckEnemyCurHP(){
-        if (enemyParams.curHP > 0)
-        {
-            target.SendMessage("HealthBarValueUpdate", (float)enemyParams.curHP / (float)enemyParams.maxHP);    //!!
-            attackProssible = false;
-        }
-        else
-        {
-            TargetDead();
-        }
-	}
-    
     public void BattleEnd()
     {
         print("Battle End");
     }
 
-    protected void TargetDead()
-    {
-        target.SendMessage("HealthBarValueUpdate", 0f);
-        target.SendMessage("CharacterStateControll", "Dead");
-        //target.tag = "Untagged";
-        target.SendMessage("CharacterDieEffect");
-
-        SendMessage("CharacterStateControll", "Move");
-        SendMessage("BattlingOn");
-        SendMessage("PositionDistanceReset");
-
-        //SendMessage("SearchEnemy");
-        BattleStop();
-    }
-
     public void AttackSuccess()
     {
-        attackProssible = true;
-
-        //if (attackProssible == true)
-        //{
-        //attackCount = 0;
-        //attackProssible = false;
-
-        //SendMessage("BattlingOff");
-        //StartCoroutine("BattleWait");
-
-        //enemyParams.curHP -= playerParams.attack;
-
-        ////타격 연출 적용
-        //SendMessage("PlayerHitEffectActive");
-
-        ////타격 위치 알아내기
-        //HitTransformX = target.transform.position.x - ((target.GetComponent<BoxCollider2D>().size.x - target.GetComponent<BoxCollider2D>().offset.x) * target.transform.localScale.x / 2);
-        //HitTransformY = target.transform.position.y;
-        //HitTransform = new Vector3(HitTransformX, target.transform.position.y, target.transform.position.z);
-
-        ////타격 위치 및 공격력 전송
-        //tmpGameController.SendMessage("HitPositionSetting", Camera.main.WorldToScreenPoint(HitTransform));
-        //tmpGameController.SendMessage("MonsterHitDamage", playerParams.attack);
-
-        //CheckEnemyCurHP();
-        //}
+        //attackProssible = true;
+        SendMessage("BattlingOff");
     }
 
     void OnTriggerEnter2D(Collider2D c)
     {
-        
-        //if (c.tag == "Enemy")
-        //{
-        //    print(c.name + " " + Time.time);
-        //    attackCount++;
-
-        //    if (attackCount == 1)
-        //    {
-        //        attackProssible = true;
-        //    }
-        //}
         if (c.tag == "Enemy")
-        //if (attackProssible == true)
         {
             if (attackProssible == true)
-            //if (c.transform.root.name == "Enemy")
             {
-                //print(c.name + "  " + Time.time);
-                StartCoroutine("BattleWait");
+                //attackCount++;
+                //    if (attackCount == 1)
+                //    {
+                //각 개체 당 1회만 공격하는 루틴으로변경 필요
+                        StartCoroutine("BattleWait");
 
-                enemyParams = c.GetComponent<EnemyAbility>().GetParams();
-                enemyParams.curHP -= playerParams.attack;
+                        enemyParams = c.GetComponent<EnemyAbility>().GetParams();
+                        enemyParams.curHP -= playerParams.attack;
 
-                //타격 연출 적용
-                SendMessage("PlayerHitEffectActive");
+                        //타격 연출 적용
+                        SendMessage("PlayerHitEffectActive");
 
-                //타격 위치 알아내기
-                HitTransformX = c.transform.position.x - ((c.GetComponent<BoxCollider2D>().size.x - c.GetComponent<BoxCollider2D>().offset.x) * c.transform.localScale.x / 2);
-                HitTransformY = c.transform.position.y;
-                HitTransform = new Vector3(HitTransformX, c.transform.position.y, c.transform.position.z);
+                        //타격 위치 알아내기
+                        HitTransformX = c.transform.position.x - ((c.GetComponent<BoxCollider2D>().size.x - c.GetComponent<BoxCollider2D>().offset.x) * c.transform.localScale.x / 2);
+                        HitTransformY = c.transform.position.y;
+                        HitTransform = new Vector3(HitTransformX, c.transform.position.y, c.transform.position.z);
 
-                //타격 위치 및 공격력 전송
-                tmpGameController.SendMessage("HitPositionSetting", Camera.main.WorldToScreenPoint(HitTransform));
-                tmpGameController.SendMessage("MonsterHitDamage", playerParams.attack);
+                        //타격 위치 및 공격력 전송
+                        tmpGameController.SendMessage("HitPositionSetting", Camera.main.WorldToScreenPoint(HitTransform));
+                        tmpGameController.SendMessage("MonsterHitDamage", playerParams.attack);
 
-                CheckEnemyCurHP2(c);
+                        CheckEnemyCurHP(c);
+                        
+                    //}
             }
         }
     }
 
-    protected void CheckEnemyCurHP2(Collider2D cPass)
+    protected void CheckEnemyCurHP(Collider2D cPass)
     {
         if (enemyParams.curHP > 0)
         {
@@ -147,11 +94,11 @@ public class PlayerBattle : CharacterBattle {
         }
         else
         {
-            TargetDead2(cPass);
+            TargetDead(cPass);
         }
     }
 
-    protected void TargetDead2(Collider2D cPass)
+    protected void TargetDead(Collider2D cPass)
     {
         cPass.SendMessage("HealthBarValueUpdate", 0f);
         cPass.SendMessage("CharacterStateControll", "Dead");
@@ -168,20 +115,18 @@ public class PlayerBattle : CharacterBattle {
 
     public void AttackEnd()
     {
-        SendMessage("CharacterStateControll", "Battle");
+        //SendMessage("CharacterStateControll", "Battle");
     }
 
     private IEnumerator BattleWait()
     {
-
-        float attackWaitTime = 0.8f;
-
+        
+        float attackWaitTime = 1.0f;
         SendMessage("CharacterStateControll", "Battle");
 
         yield return new WaitForSeconds(attackWaitTime);
-
+        attackCount = 0;
+        attackActionCount = 0;
         SendMessage("BattlingOn");
-
-        
     }
 }

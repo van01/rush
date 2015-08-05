@@ -104,6 +104,7 @@ public class PlayerState : CharacterState {
     {
         battling = false;
         CheckCharacterState();
+
     }
 
     public void BattlingOn()
