@@ -25,7 +25,8 @@ public class EnemyAI : MonoBehaviour {
     void Start()
     {
         tmpGameController = GameObject.Find("GameController");
-        attackDistance = Random.RandomRange(attackDistance - 0.3f, attackDistance + 0.3f);
+        attackDistance = Random.RandomRange(attackDistance - 0.5f, attackDistance + 0.5f);
+        //print(attackDistance);
         AssultStateOn();
     }
 
@@ -37,7 +38,8 @@ public class EnemyAI : MonoBehaviour {
         if (HealthBarOn == true)
         {
             SendMessage("HealthBarPositionUpdate", transform.position);
-            //Debug.DrawLine(new Vector3(transform.position.x, -1.0f, 0), new Vector3(distance, -1.0f, 0), Color.red);
+            
+            Debug.DrawLine(new Vector3(((GetComponent<BoxCollider2D>().size.x - GetComponent<BoxCollider2D>().offset.x) * transform.localScale.x ) * -1 + transform.position.x, -1.0f, 0), new Vector3(distance, -1.0f, 0), Color.red);
         }
 
         if (chasePlayer == true)

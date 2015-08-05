@@ -54,8 +54,6 @@ public class PlayerBattle : CharacterBattle {
         //attackProssible = true;
         SendMessage("WeaponColliderReset");
         SendMessage("BattlingOff");
-        
-
     }
 
     void OnTriggerEnter2D(Collider2D c)
@@ -130,7 +128,7 @@ public class PlayerBattle : CharacterBattle {
     public void AttackEnd()
     {
         //SendMessage("CharacterStateControll", "Battle");
-        print("attack End");
+        //print("attack End");
         SendMessage("WeaponColliderOff");
     }
 
