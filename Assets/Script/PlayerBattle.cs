@@ -16,14 +16,6 @@ public class PlayerBattle : CharacterBattle
     protected bool attackProssible = false;
 
     protected Collider2D currentTargetColl;
-<<<<<<< HEAD
-=======
-
-	void Start(){
-		tmpGameController = GameObject.Find ("GameController");
-        SendMessage("WeaponColliderOff");   
-	}
->>>>>>> 4edffa00cfcbed77fa96d08b411bded54a818a88
 
     void Start()
     {
@@ -78,7 +70,6 @@ public class PlayerBattle : CharacterBattle
             {
                 //if (c.GetComponent<EnemyAI>().assultState == true)
                 //{
-<<<<<<< HEAD
 
                 StartCoroutine("BattleWait");
 
@@ -99,41 +90,14 @@ public class PlayerBattle : CharacterBattle
 
                 CheckEnemyCurHP(c);
 
-=======
-                
-                    StartCoroutine("BattleWait");
-
-                    enemyParams = c.GetComponent<EnemyAbility>().GetParams();
-                    enemyParams.curHP -= playerParams.attack;
-
-                    //타격 연출 적용
-                    SendMessage("PlayerHitEffectActive");
-
-                    //타격 위치 알아내기
-                    HitTransformX = c.transform.position.x - ((c.GetComponent<BoxCollider2D>().size.x - c.GetComponent<BoxCollider2D>().offset.x) * c.transform.localScale.x / 2);
-                    HitTransformY = c.transform.position.y;
-                    HitTransform = new Vector3(HitTransformX, c.transform.position.y, c.transform.position.z);
-
-                    //타격 위치 및 공격력 전송
-                    tmpGameController.SendMessage("HitPositionSetting", Camera.main.WorldToScreenPoint(HitTransform));
-                    tmpGameController.SendMessage("MonsterHitDamage", playerParams.attack);
-
-                    CheckEnemyCurHP(c);
-                
->>>>>>> 4edffa00cfcbed77fa96d08b411bded54a818a88
                 //c.SendMessage("AssultStateOff");
                 //}
                 //attackCount++;
                 //    if (attackCount == 1)
                 //    {
                 //각 개체 당 1회만 공격하는 루틴으로변경 필요
-<<<<<<< HEAD
 
 
-=======
-
-
->>>>>>> 4edffa00cfcbed77fa96d08b411bded54a818a88
                 //}
             }
         }
