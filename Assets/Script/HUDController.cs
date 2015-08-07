@@ -197,4 +197,10 @@ public class HUDController : MonoBehaviour {
     {
         monsterHitPoint = vHitPoint;
     }
+
+    public void SelectPauseButton()
+    {
+        Application.LoadLevel("FrontEnd");
+    }
+
 }

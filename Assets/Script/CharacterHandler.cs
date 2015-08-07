@@ -118,19 +118,6 @@ public class CharacterHandler : MonoBehaviour {
         for (int i = 0; i < myAllSpriteRenderer.Length; i++)
         {
             myAllSpriteRenderer[i].color = new Vector4(backupColorR, backupColorG, backupColorB, 1.0f);
-
-            /*
-            for (float r = hitColorR; r <= backupColorR; r += 0.05f)
-            {
-                for (float g = hitColorG; g <= backupColorG; g += 0.05f)
-                {
-                    for (float b = hitColorB; b <= backupColorB; b += 0.05f)
-                    {
-                        myAllSpriteRenderer[i].color = new Vector4(r, g, b, 1.0f);
-                    }
-                }
-            }
-                */
         }
     }
 
@@ -150,9 +137,9 @@ public class CharacterHandler : MonoBehaviour {
         healthBar.GetComponent<RectTransform>().SetParent(tmpHUD.transform);
         healthBar.GetComponent<RectTransform>().localScale = new Vector3 (1.0f, 1.0f, 1.0f);
         if(gameObject.tag == "Player")
-            healthBar.transform.FindChild("Mask").transform.FindChild("Image").GetComponent<Image>().color = new Vector4(0.5f, 1.0f, 0.5f, 1.0f);
+            healthBar.transform.FindChild("Mask").transform.FindChild("Image").GetComponent<Image>().color = new Vector4(0.0f, 1.0f, 0.4f, 1.0f);
         else
-            healthBar.transform.FindChild("Mask").transform.FindChild("Image").GetComponent<Image>().color = new Vector4(1.0f, 0.5f, 0.5f, 1.0f);
+            healthBar.transform.FindChild("Mask").transform.FindChild("Image").GetComponent<Image>().color = new Vector4(0.9f, 0.3f, 0.3f, 1.0f);
     }
 
     public void HealthBarPositionUpdate(Vector3 vUpdatePoint)

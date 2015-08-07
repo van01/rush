@@ -25,7 +25,7 @@ public class EnemyAI : MonoBehaviour {
     void Start()
     {
         tmpGameController = GameObject.Find("GameController");
-        attackDistance = Random.RandomRange(attackDistance - 0.5f, attackDistance + 0.5f);
+        attackDistance = Random.RandomRange(attackDistance - 0.2f, attackDistance + 0.2f);
         //print(attackDistance);
         AssultStateOn();
     }
@@ -117,10 +117,13 @@ public class EnemyAI : MonoBehaviour {
         {
             if (actionNumber == 2)
             {
-                SendMessage("CharacterStateControll", "Battle");
-                tmpGameController.SendMessage("EnemyStateBattleInfection", groupValue);
-                actionNumber = 0;
-                chasePlayer = false;
+                if(target.GetComponent<PlayerState>().currentState != CharacterState.State.Dead)
+                {
+                    //SendMessage("CharacterStateControll", "Battle");
+                    tmpGameController.SendMessage("EnemyStateBattleInfection", groupValue);
+                    actionNumber = 0;
+                    chasePlayer = false;
+                }
             }
         }
     }

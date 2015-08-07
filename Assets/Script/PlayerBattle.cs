@@ -26,11 +26,7 @@ public class PlayerBattle : CharacterBattle
     public override void StartBattle()
     {
         myState = GetComponent<PlayerState>();
-        target = GetComponent<PlayerAI>().GetCurrentTarget();   //!!
-
         playerParams = GetComponent<PlayerAbility>().GetParams();
-        enemyParams = target.GetComponent<EnemyAbility>().GetParams();  //!!
-
         DoBattle();
     }
 
@@ -68,9 +64,6 @@ public class PlayerBattle : CharacterBattle
             if (attackProssible == true)
                 currentTargetColl = c;
             {
-                //if (c.GetComponent<EnemyAI>().assultState == true)
-                //{
-
                 StartCoroutine("BattleWait");
 
                 enemyParams = c.GetComponent<EnemyAbility>().GetParams();
@@ -89,16 +82,6 @@ public class PlayerBattle : CharacterBattle
                 tmpGameController.SendMessage("MonsterHitDamage", playerParams.attack);
 
                 CheckEnemyCurHP(c);
-
-                //c.SendMessage("AssultStateOff");
-                //}
-                //attackCount++;
-                //    if (attackCount == 1)
-                //    {
-                //각 개체 당 1회만 공격하는 루틴으로변경 필요
-
-
-                //}
             }
         }
     }

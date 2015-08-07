@@ -16,7 +16,7 @@ public class EnemyState : CharacterState
     {
         base.BattleAction();
         SendMessage("ChangeAni", CharacterAni.BATTLE);
-
+        
         if (battling == true)
         {
             SendMessage("StartBattle");

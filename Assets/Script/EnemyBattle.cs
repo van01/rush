@@ -10,45 +10,40 @@ public class EnemyBattle : CharacterBattle{
     private float HitTransformY;
 
     private int attackCount = 0;
+    private int attackActionCount = 0;
 
     protected bool attackProssible = false;
 
-	void Start () {
-        tmpGameController = GameObject.Find("GameController");    
-	}
+    protected Collider2D currentTargetColl;
+    protected GameObject currentTargetGameObject;
+
+    void Start () {
+        tmpGameController = GameObject.Find("GameController");
+        SendMessage("WeaponColliderOff");
+    }
 
     public override void StartBattle()
     {
         myState = GetComponent<EnemyState>();
-        target = GetComponent<EnemyAI>().GetCurrentTarget();
-
         enemyParams = GetComponent<EnemyAbility>().GetParams();
-        playerParams = target.GetComponent<PlayerAbility>().GetParams();
-
         DoBattle();
     }
 
     public override void DoBattle()
     {
-        SendMessage("CharacterStateControll", "Attack");
+        attackActionCount++;
+        
+        if (attackActionCount == 1)
+        {
+            SendMessage("CharacterStateControll", "Attack");
+            attackProssible = true;
+        }
     }
 
     public void BattleStop()
     {
-        SendMessage("CharacterStateControll", "Move");
+        //SendMessage("CharacterStateControll", "Move");
         StopCoroutine("BattleWait");
-    }
-
-    protected void CheckEnemyCurHP()
-    {
-        if (playerParams.curHP > 0)
-        {
-            target.SendMessage("HealthBarValueUpdate", (float)playerParams.curHP / (float)playerParams.maxHP);
-        }
-        else
-        {
-            TargetDead();
-        }
     }
 
     public void BattleEnd()
@@ -56,71 +51,84 @@ public class EnemyBattle : CharacterBattle{
         print("Battle End");
     }
 
-    protected void TargetDead()
-    {
-        target.SendMessage("HealthBarValueUpdate", 0f);
-        target.SendMessage("CharacterStateControll", "Dead");
-        //target.tag = "Untagged";
-        target.SendMessage("CharacterDieEffect");
-        SendMessage("SearchPlayer");
-
-        SendMessage("CharacterStateControll", "Idle");
-    }
-
     public void AttackSuccess()
     {
-        if (attackProssible == true)
-        {
-            attackCount = 0;
-            attackProssible = false;
-
-            SendMessage("BattlingOff");
-            StartCoroutine("BattleWait");
-
-            playerParams.curHP -= enemyParams.attack;
-
-            //타격 연출 적용
-            SendMessage("EnemyHitEffectActive");
-
-            //타격 위치 알아내기
-            HitTransformX = target.transform.position.x + ((target.GetComponent<BoxCollider2D>().size.x - target.GetComponent<BoxCollider2D>().offset.x) * target.transform.localScale.x / 2);
-            HitTransformY = target.transform.position.y;
-            HitTransform = new Vector3(HitTransformX, target.transform.position.y, target.transform.position.z);
-
-            //타격 위치 및 공격력 전송
-            tmpGameController.SendMessage("HitPositionSetting", Camera.main.WorldToScreenPoint(HitTransform));
-            tmpGameController.SendMessage("PlayerHitDamage", enemyParams.attack);
-
-            CheckEnemyCurHP();
-        }
+        //attackProssible = true;
+        SendMessage("WeaponColliderReset");
+        SendMessage("BattlingOff");
     }
 
     void OnTriggerEnter2D(Collider2D c)
     {
         if (c.transform.root.tag == "Player")
         {
-            attackCount++;
-
-            if (attackCount == 1)
+            if (attackProssible == true)
+                currentTargetColl = c.transform.root.gameObject.GetComponent<BoxCollider2D>();
+                //currentTargetGameObject = c.transform.root.gameObject;
             {
-                attackProssible = true;
+                StartCoroutine("BattleWait");
+
+                playerParams = currentTargetColl.GetComponent<PlayerAbility>().GetParams();
+                playerParams.curHP -= enemyParams.attack;
+
+                //타격 연출 적용
+                SendMessage("EnemyHitEffectActive");
+
+                //타격 위치 알아내기
+                HitTransformX = currentTargetColl.transform.position.x - ((c.GetComponent<BoxCollider2D>().size.x - currentTargetColl.GetComponent<BoxCollider2D>().offset.x) * currentTargetColl.transform.localScale.x / 2);
+                HitTransformY = currentTargetColl.transform.position.y;
+                HitTransform = new Vector3(HitTransformX, currentTargetColl.transform.position.y, currentTargetColl.transform.position.z);
+
+                //타격 위치 및 공격력 전송
+                tmpGameController.SendMessage("HitPositionSetting", Camera.main.WorldToScreenPoint(HitTransform));
+                tmpGameController.SendMessage("PlayerHitDamage", enemyParams.attack);
+
+                CheckEnemyCurHP(currentTargetColl);
             }
         }
-        
+    }
+
+    protected void CheckEnemyCurHP(Collider2D cPass)
+    {
+        if (playerParams.curHP > 0)
+        {
+            cPass.SendMessage("HealthBarValueUpdate", (float)playerParams.curHP / (float)playerParams.maxHP);    //!!
+        }
+        else
+        {
+            TargetDead(cPass);
+        }
+    }
+
+    protected void TargetDead(Collider2D cPass)
+    {
+        cPass.SendMessage("HealthBarValueUpdate", 0f);
+        cPass.SendMessage("CharacterStateControll", "Dead");
+        //target.tag = "Untagged";
+        cPass.SendMessage("CharacterDieEffect");
+
+        SendMessage("CharacterStateControll", "Idle");
+
+        //BattleStop();
     }
 
     public void AttackEnd()
     {
-        SendMessage("CharacterStateControll", "Battle");
+        //SendMessage("CharacterStateControll", "Battle");
+        //print("attack End");
+        SendMessage("WeaponColliderOff");
     }
 
     private IEnumerator BattleWait()
     {
-        float attackWaitTime = 0.8f;
 
+        float attackWaitTime = 1.0f;
         SendMessage("CharacterStateControll", "Battle");
 
         yield return new WaitForSeconds(attackWaitTime);
+        attackCount = 0;
+        attackActionCount = 0;
+        //currentTargetColl.SendMessage("AssultStateOn");
         SendMessage("BattlingOn");
     }
 }
