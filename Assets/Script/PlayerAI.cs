@@ -1,23 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerAI : MonoBehaviour {
+public class PlayerAI : MonoBehaviour
+{
 
-	public float attackDistance = 1.5f;
-	public float positionDistance = 0f;
+    public float attackDistance = 1.5f;
+    public float positionDistance = 0f;
     public float backStepSpeed = 4.0f;
     public float fowardStepSpeed = 4.0f;
 
-	private float setPositionTime;
+    private float setPositionTime;
 
-	private Transform target;
-	public GameObject[] arrMonsters;
+    private Transform target;
+    public GameObject[] arrMonsters;
 
-	private GameObject tmpGameController;
-	private bool setPosition = false;
-	private bool backSetPosition = false;
-	private bool fowardSetPosition = false;
-	private float setPositionSpeed;
+    private GameObject tmpGameController;
+    private bool setPosition = false;
+    private bool backSetPosition = false;
+    private bool fowardSetPosition = false;
+    private float setPositionSpeed;
 
     private float tmpPositionDistance;
     private PlayerState tmpPlayerState;
@@ -33,11 +34,12 @@ public class PlayerAI : MonoBehaviour {
         tmpGameController = GameObject.Find("GameController");
     }
 
-	void Update(){					//틱 추가 후 교체 필요
-		CheckDistanceFromTarget();
+    void Update()
+    {					//틱 추가 후 교체 필요
+        CheckDistanceFromTarget();
 
         //캐릭터 기본 위치 잡기
-        
+
         //if (tmpPlayerState.currentState == CharacterState.State.Spawn || tmpPlayerState.currentState == CharacterState.State.Move)
         if (transform.position.x != positionDistance)
         {
@@ -58,7 +60,7 @@ public class PlayerAI : MonoBehaviour {
                         //SendMessage("CharacterStateControll", "Move");
                         tmpGameController.SendMessage("GameStateControll", "Playing");
                     }
-                    if( tmpPlayerState.currentState == CharacterState.State.Run)
+                    if (tmpPlayerState.currentState == CharacterState.State.Run)
                     {
                         tmpGameController.SendMessage("GameStateControll", "Playing");
                         tmpGameController.SendMessage("RunScrollOn");
@@ -75,46 +77,54 @@ public class PlayerAI : MonoBehaviour {
         }
 
         //캐릭터 백스탭 위치 잡기
-        if (backSetPosition == true){
-            if (transform.position.x >= -7.0f) { 
+        if (backSetPosition == true)
+        {
+            if (transform.position.x >= -7.0f)
+            {
                 transform.Translate(-Time.deltaTime * backStepSpeed, 0, 0);
             }
-		}
+        }
 
-		//캐릭터 태클 위치 잡기
-		if (fowardSetPosition == true){
+        //캐릭터 태클 위치 잡기
+        if (fowardSetPosition == true)
+        {
             if (transform.position.x <= 7.0f)
             {
                 transform.Translate(Time.deltaTime * fowardStepSpeed, 0, 0);
             }
-		}
+        }
 
         //체력 게이지 위치 잡기
         if (HealthBarOn == true)
         {
             SendMessage("HealthBarPositionUpdate", transform.position);
         }
-	}
+    }
 
-	public void SearchEnemy(){
-		arrMonsters = GameObject.FindGameObjectsWithTag("Enemy");
+    public void SearchEnemy()
+    {
+        arrMonsters = GameObject.FindGameObjectsWithTag("Enemy");
 
-		if(arrMonsters != null && arrMonsters.Length > 0){
-			float shortDist = Vector3.Distance(transform.position, arrMonsters[0].transform.position);
+        if (arrMonsters != null && arrMonsters.Length > 0)
+        {
+            float shortDist = Vector3.Distance(transform.position, arrMonsters[0].transform.position);
 
-			target = arrMonsters[0].transform;
+            target = arrMonsters[0].transform;
 
-			if (arrMonsters.Length > 1){
-				for (int i = 1; i < arrMonsters.Length; i++){
-					float distance = Vector3.Distance(transform.position, arrMonsters[i].transform.position);
+            if (arrMonsters.Length > 1)
+            {
+                for (int i = 1; i < arrMonsters.Length; i++)
+                {
+                    float distance = Vector3.Distance(transform.position, arrMonsters[i].transform.position);
 
-					if (distance < shortDist){
-						shortDist = distance;
-						target = arrMonsters[i].transform;
-					}
-				}
-			}
-		}
+                    if (distance < shortDist)
+                    {
+                        shortDist = distance;
+                        target = arrMonsters[i].transform;
+                    }
+                }
+            }
+        }
 
         if (arrMonsters.Length == 0)
         {
@@ -122,13 +132,15 @@ public class PlayerAI : MonoBehaviour {
             print("game end");
         }
 
-	}
+    }
 
-	void CheckDistanceFromTarget(){
-		if (target == null){
-			//SendMessage("CharacterStateMoveOn");      //업데이트 마다 무브를 걸어주니 오류생김
-			return;
-		}
+    void CheckDistanceFromTarget()
+    {
+        if (target == null)
+        {
+            //SendMessage("CharacterStateMoveOn");      //업데이트 마다 무브를 걸어주니 오류생김
+            return;
+        }
 
         if (tmpPlayerState.currentState == CharacterState.State.Move || tmpPlayerState.currentState == CharacterState.State.Run)
         {
@@ -169,50 +181,56 @@ public class PlayerAI : MonoBehaviour {
             }
         }
 
-        if(tmpPlayerState.currentState == CharacterState.State.Back)
+        if (tmpPlayerState.currentState == CharacterState.State.Back)
         {
             attDistance = false;
         }
-	}
+    }
 
-	public GameObject GetCurrentTarget(){
-		return target.gameObject;
-	}
+    public GameObject GetCurrentTarget()
+    {
+        return target.gameObject;
+    }
 
-	public void CharacterPositionInialize(float f){
-		setPosition = true;
-		setPositionTime = f;
-        
-		setPositionSpeed = (positionDistance - transform.position.x)/setPositionTime;
-		CharacterBackPositionOff();
-		CharacterFowardPositionOff();
-	}
-
-	public void CharacterBackPositionOn(){
-		backSetPosition = true;
-        setPosition = false;
-	}
-
-	public void CharacterBackPositionOff(){
-		backSetPosition = false;
+    public void CharacterPositionInialize(float f)
+    {
         setPosition = true;
-	}
+        setPositionTime = f;
 
-	public void CharacterFowardPositionOn(){
-		fowardSetPosition = true;
+        setPositionSpeed = (positionDistance - transform.position.x) / setPositionTime;
+        CharacterBackPositionOff();
+        CharacterFowardPositionOff();
+    }
+
+    public void CharacterBackPositionOn()
+    {
+        backSetPosition = true;
         setPosition = false;
-	}
-	
-	public void CharacterFowardPositionOff(){
-		fowardSetPosition = false;
+    }
+
+    public void CharacterBackPositionOff()
+    {
+        backSetPosition = false;
         setPosition = true;
-	}
+    }
+
+    public void CharacterFowardPositionOn()
+    {
+        fowardSetPosition = true;
+        setPosition = false;
+    }
+
+    public void CharacterFowardPositionOff()
+    {
+        fowardSetPosition = false;
+        setPosition = true;
+    }
 
     public void PositionDistanceReset()
     {
         positionDistance = tmpPositionDistance;
     }
-    
+
     public void AttDistanceOn()
     {
         attDistance = true;

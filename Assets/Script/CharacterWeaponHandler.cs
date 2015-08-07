@@ -23,7 +23,7 @@ public class CharacterWeaponHandler : MonoBehaviour {
     private bool backupWeaponRCollider;
     private bool backupWeaponLCollider;
 	
-	void Start(){
+	void Awake(){
 		useWeaponR = weaponR.GetComponentInChildren<SpriteRenderer>();
 		useWeaponL = weaponL.GetComponentInChildren<SpriteRenderer>();
 
@@ -64,10 +64,5 @@ public class CharacterWeaponHandler : MonoBehaviour {
     {
         weaponRCollider.enabled = backupWeaponRCollider;
         weaponLCollider.enabled = backupWeaponLCollider;
-    }
-
-    public GameObject GetCurrentWeapon()
-    {
-        return weaponR;
     }
 }
