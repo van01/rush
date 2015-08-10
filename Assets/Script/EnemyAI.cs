@@ -18,6 +18,7 @@ public class EnemyAI : MonoBehaviour {
     private float distance;
 
     private bool chasePlayer = false;
+    private bool chasePlayerOn = false;
     private bool HealthBarOn = true;
 
     public bool assultState = false;
@@ -100,7 +101,12 @@ public class EnemyAI : MonoBehaviour {
                 //SendMessage("BattleStop");
                 //SendMessage("BattlingOn");        //20150730  해당 부분 때문에 시작과 동시에 자동으로 Move State로 교체되고 있었음 
                 actionNumber = 1;
-                
+
+                if (chasePlayerOn == true)
+                {
+                    ChasePlayer();
+                    SendMessage("BattleStop");
+                }
             }
         }
         else if (distance < attackDistance)
@@ -119,10 +125,16 @@ public class EnemyAI : MonoBehaviour {
             {
                 if(target.GetComponent<PlayerState>().currentState != CharacterState.State.Dead)
                 {
-                    //SendMessage("CharacterStateControll", "Battle");
-                    tmpGameController.SendMessage("EnemyStateBattleInfection", groupValue);
+                    if (GetComponent<EnemyState>().currentState == CharacterState.State.Move)
+                    {
+                        SendMessage("CharacterStateControll", "Battle");
+                    }
+
+                    tmpGameController.SendMessage("EnemyStateBattleInfection", groupValue); //해당 함수에 판단자 추가 필요
                     actionNumber = 0;
+
                     chasePlayer = false;
+                    chasePlayerOn = true;
                 }
             }
         }
@@ -150,6 +162,7 @@ public class EnemyAI : MonoBehaviour {
     {
         HealthBarOn = false;
     }
+
 
     public void AssultStateOn()
     {

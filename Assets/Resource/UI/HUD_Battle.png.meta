@@ -1,11 +1,12 @@
 fileFormatVersion: 2
 guid: e87cd92266ff2ac4fa952d27f0c1e232
-timeCreated: 1438578538
+timeCreated: 1439207809
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: HealthBar_Bg
     21300002: HealthBar_In
+    21300004: HUD_Battle_In
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -54,18 +55,18 @@ TextureImporter:
     - name: HealthBar_Bg
       rect:
         serializedVersion: 2
-        x: 4
-        y: 487
-        width: 63
-        height: 22
+        x: 1
+        y: 499
+        width: 54
+        height: 12
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: HealthBar_In
+    - name: HUD_Battle_In
       rect:
         serializedVersion: 2
-        x: 75
-        y: 497
+        x: 62
+        y: 501
         width: 8
         height: 10
       alignment: 0

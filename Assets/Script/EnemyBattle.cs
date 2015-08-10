@@ -44,6 +44,7 @@ public class EnemyBattle : CharacterBattle{
     {
         //SendMessage("CharacterStateControll", "Move");
         StopCoroutine("BattleWait");
+        attackActionCount = 0;
     }
 
     public void BattleEnd()
@@ -60,15 +61,13 @@ public class EnemyBattle : CharacterBattle{
 
     void OnTriggerEnter2D(Collider2D c)
     {
-        if (c.transform.root.tag == "Player" || c.tag == "Player")
+        if (c.tag == "Player")
         {
             if (attackProssible == true)
-                if (c.transform.root.tag == "Player")
-                    currentTargetColl = c.transform.root.gameObject.GetComponent<BoxCollider2D>();
-                if (c.tag == "Player")
-                    currentTargetColl = c;
-            //currentTargetGameObject = c.transform.root.gameObject;
             {
+                //currentTargetGameObject = c.transform.root.gameObject;
+                currentTargetColl = c;
+
                 StartCoroutine("BattleWait");
 
                 playerParams = currentTargetColl.GetComponent<PlayerAbility>().GetParams();
@@ -124,7 +123,6 @@ public class EnemyBattle : CharacterBattle{
 
     private IEnumerator BattleWait()
     {
-
         float attackWaitTime = 1.0f;
         SendMessage("CharacterStateControll", "Battle");
 

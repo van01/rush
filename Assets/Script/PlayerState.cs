@@ -62,8 +62,9 @@ public class PlayerState : CharacterState
         if (battling == true)
         {
             SendMessage("StartBattle");
+            //SendMessage("WeaponColliderOff");
         }
-
+        
         SendMessage("CharacterBackPositionOff");
         SendMessage("CharacterFowardPositionOff");
     }

@@ -54,6 +54,9 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
     </Reference>
@@ -123,6 +126,7 @@
     <Compile Include="Assets\Script\EnemyParams.cs" />
     <Compile Include="Assets\Script\EnemyScroll.cs" />
     <Compile Include="Assets\Script\EnemyState.cs" />
+    <Compile Include="Assets\Script\FrontEndController.cs" />
     <Compile Include="Assets\Script\GameController.cs" />
     <Compile Include="Assets\Script\GameState.cs" />
     <Compile Include="Assets\Script\HUDController.cs" />

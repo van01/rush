@@ -43,6 +43,7 @@ public class PlayerBattle : CharacterBattle
     public void BattleStop()
     {
         StopCoroutine("BattleWait");
+        attackActionCount = 0;
     }
 
     public void BattleEnd()
@@ -62,11 +63,12 @@ public class PlayerBattle : CharacterBattle
         if (c.tag == "Enemy")
         {
             if (attackProssible == true)
-                currentTargetColl = c;
             {
+                currentTargetColl = c;
+            
                 StartCoroutine("BattleWait");
 
-                enemyParams = c.GetComponent<EnemyAbility>().GetParams();
+                enemyParams = currentTargetColl.GetComponent<EnemyAbility>().GetParams();
                 enemyParams.curHP -= playerParams.attack;
 
                 //타격 연출 적용
