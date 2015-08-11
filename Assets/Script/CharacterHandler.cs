@@ -32,6 +32,8 @@ public class CharacterHandler : MonoBehaviour {
 
     public float DeadDelay = 0.5f;
 
+    private int sortValue;
+
 	void Awake(){
         tmpHUD = GameObject.Find("Canvas");
 		tmpGameController = GameObject.Find("GameController");
@@ -66,8 +68,13 @@ public class CharacterHandler : MonoBehaviour {
 
         HelthBarInitPositionSetting(new Vector3(healthBarInitX, healthBarInitY, 0));
 
-        HelthBarInitialize();
+        
 	}
+
+    void Start()
+    {
+        HelthBarInitialize();
+    }
 
 	void OnCollisionEnter2D(Collision2D c){
 		if(c.gameObject.tag == "Enemy"){
@@ -136,6 +143,7 @@ public class CharacterHandler : MonoBehaviour {
         healthBar = Instantiate(healthBarPrefab, Camera.main.WorldToScreenPoint(healthBarPoint), tmpHUD.transform.rotation) as GameObject;
         healthBar.GetComponent<RectTransform>().SetParent(tmpHUD.transform);
         healthBar.GetComponent<RectTransform>().localScale = new Vector3 (1.0f, 1.0f, 1.0f);
+        healthBar.name = healthBar.name + sortValue;
         if(gameObject.tag == "Player")
             healthBar.transform.FindChild("Mask").transform.FindChild("Image").GetComponent<Image>().color = new Vector4(0.0f, 1.0f, 0.4f, 1.0f);
         else
@@ -195,6 +203,18 @@ public class CharacterHandler : MonoBehaviour {
         {
             GetComponent<BoxCollider2D>().enabled = false;
             tag = "Untagged";
+        }
+    }
+
+    public void CharacterSorting(int iSortValue)
+    {
+        sortValue = iSortValue;
+        for (int i = 0; i < myAllSpriteRenderer.Length; i++)
+        {
+            if (myAllSpriteRenderer[i].enabled == true)
+            {
+                myAllSpriteRenderer[i].sortingOrder = myAllSpriteRenderer[i].sortingOrder * iSortValue;
+            }
         }
     }
 }

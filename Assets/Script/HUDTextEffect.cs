@@ -19,6 +19,8 @@ public class HUDTextEffect : MonoBehaviour
     {
         Player,
         Enemy,
+        Coin,
+        Item,
     }
 
     private HitType currentHitType;
@@ -42,15 +44,29 @@ public class HUDTextEffect : MonoBehaviour
             colorG = 1.0f;
             colorB = 1.0f;
 
+            GetComponent<Text>().fontSize = 30;
             GetComponent<Text>().color = new Vector4(colorR, colorG, colorB, 1.0f);
-        }
-
-        if (currentHitType == HitType.Player)
-        {
+            
+        } else if (currentHitType == HitType.Player){
             colorR = 0.45f;
             colorG = 0f;
             colorB = 0f;
 
+            GetComponent<Text>().color = new Vector4(colorR, colorG, colorB, 1.0f);
+            GetComponent<Text>().fontSize = 30;
+        } else if (currentHitType == HitType.Coin){
+            colorR = 1.0f;
+            colorG = 0.9f;
+            colorB = 0f;
+
+            GetComponent<Text>().fontSize = 25;
+            GetComponent<Text>().color = new Vector4(colorR, colorG, colorB, 1.0f);
+        } else {
+            colorR = 1.0f;
+            colorG = 1.0f;
+            colorB = 1.0f;
+
+            GetComponent<Text>().fontSize = 30;
             GetComponent<Text>().color = new Vector4(colorR, colorG, colorB, 1.0f);
         }
     }
@@ -68,14 +84,19 @@ public class HUDTextEffect : MonoBehaviour
 
             rectTransform.localPosition = pos;
         }
-
-        if (currentHitType == HitType.Player)
+        else if (currentHitType == HitType.Player)
         {
             angleX += Mathf.Sign(baseX);
             angleY += Mathf.Sign(baseY);
 
             pos.x -= Time.deltaTime * angleX * baseX;
             pos.y = Mathf.Cos(angleY * 0.1f) * baseY;
+
+            rectTransform.localPosition = pos;
+        }
+        else
+        {
+            pos.y += 1.0f;
 
             rectTransform.localPosition = pos;
         }
@@ -100,5 +121,9 @@ public class HUDTextEffect : MonoBehaviour
             currentHitType = HitType.Player;
         if (type == "Enemy")
             currentHitType = HitType.Enemy;
+        if (type == "Coin")
+            currentHitType = HitType.Coin;
+        if (type == "Item")
+            currentHitType = HitType.Item;
     }
 }

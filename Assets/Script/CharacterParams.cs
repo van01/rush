@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class CharacterParams{
-
+    
 	public string name {get; set;}
 	public int id {get; set;}
     public enum unitTpye { Player, Enemy, Boss,}

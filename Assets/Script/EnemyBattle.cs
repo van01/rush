@@ -119,6 +119,7 @@ public class EnemyBattle : CharacterBattle{
         //SendMessage("CharacterStateControll", "Battle");
         //print("attack End");
         SendMessage("WeaponColliderOff");
+        SendMessage("AttackAniInit");
     }
 
     private IEnumerator BattleWait()

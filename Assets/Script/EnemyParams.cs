@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class EnemyParams : CharacterParams {
+    public int moneyBonus { get; set; }
 
 	public EnemyParams(){
 		this.name = "Enemy";
@@ -9,10 +10,10 @@ public class EnemyParams : CharacterParams {
         this.currentUnitType = unitTpye.Enemy;
         this.currentAttackType = attackType.Short;
 		this.level = 1;
-		this.maxHP = 50;
+		this.maxHP = 1000;
 		this.curHP = this.maxHP;
 		this.attack = 5;
 		this.skillId = 0;
-		
+        this.moneyBonus = 100;
 	}
 }

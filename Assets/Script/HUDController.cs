@@ -17,6 +17,12 @@ public class HUDController : MonoBehaviour {
     private GameObject monsterHitTxt;
     private Vector3 monsterHitPoint;
 
+
+    private GameObject coinHitTxt;
+    //public GameObject coinHitTxtPrefab;
+
+    private string nCoinValue;
+
 	public void LeftHitZoneDown(){
         bool dtest = DoubleClick();
         
@@ -191,6 +197,19 @@ public class HUDController : MonoBehaviour {
         monsterHitTxt.transform.localScale = new Vector3(1, 1, 1);
         monsterHitTxt.GetComponent<Text>().text = nDamage.ToString();
         monsterHitTxt.SendMessage("HitTypeSetting", "Player");
+    }
+
+    public void CoinHitValue(Vector3 nCoinPosition)
+    {
+        coinHitTxt = Instantiate(monsterHitTxtPrefab, nCoinPosition, gameObject.transform.rotation) as GameObject;
+        coinHitTxt.GetComponent<RectTransform>().SetParent(HUD.transform);
+        coinHitTxt.GetComponent<Text>().text = "+" + nCoinValue;
+        coinHitTxt.SendMessage("HitTypeSetting", "Coin");
+    }
+
+    public void CoinValueSetting(int nSettingCoinValue)
+    {
+        nCoinValue = nSettingCoinValue.ToString();
     }
 
     public void HitPositionSetting(Vector3 vHitPoint)

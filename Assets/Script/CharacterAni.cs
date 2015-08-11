@@ -8,11 +8,11 @@ public class CharacterAni : MonoBehaviour {
 	public const int RUN = 4;		//달리기
 	public const int BATTLE = 5;	//전투
 	public const int ATTACK = 6;	//공격
-    public const int RUNATTACK = 7;		//달리기 공격
+    public const int RUNATTACK = 7;	//달리기 공격
 	public const int SKILL = 8;		//스킬
 	public const int GUARD = 9;		//방어
 	public const int BACK = 10;		//뒤로 이동
-    public const int FOWARD = 11;		//앞으로 이동
+    public const int FOWARD = 11;	//앞으로 이동
 	public const int DEAD = 12;		//죽음
 	public const int JUMP = 13;		//점프 시작
 	public const int MIDAIR = 14;	//공중
@@ -27,19 +27,29 @@ public class CharacterAni : MonoBehaviour {
 		anim = GetComponent<Animator>();
         tmpPlayerState = GetComponent<PlayerState>();
 	}
-    /*
+    
     void Update()
     {
-        if (CompareTag("Player"))
-        {
-            AnimationStateCheck();
-        }
+        //if (CompareTag("Player"))
+        //{
+        //    AnimationStateCheck();
+        //}
     }
-     */
+    
 
 	public void ChangeAni(int aniNum){
 		anim.SetInteger("aniNumber", aniNum);
+        if (aniNum == ATTACK)
+        {
+            int i = (int)Random.RandomRange(1.0f, 3.0f);
+            anim.SetInteger("attNumber", i);
+        }
 	}
+
+    public void AttackAniInit()
+    {
+        anim.SetInteger("attNumber", 0);
+    }
 
     public void AnimationStateCheck()
     {

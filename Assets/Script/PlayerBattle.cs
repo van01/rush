@@ -17,10 +17,20 @@ public class PlayerBattle : CharacterBattle
 
     protected Collider2D currentTargetColl;
 
+    public GameObject coinPrefab;
+    protected int coinValue;
+    private GameObject presentCoin;
+    private GameObject coinParent;
+    private int coinCount = 0;
+
     void Start()
     {
         tmpGameController = GameObject.Find("GameController");
         SendMessage("WeaponColliderOff");
+
+        coinParent = GameObject.Find("_CoinParent");
+
+        coinCount = Random.Range(3, 6);
     }
 
     public override void StartBattle()
@@ -112,7 +122,13 @@ public class PlayerBattle : CharacterBattle
         SendMessage("PositionDistanceReset");
 
         //SendMessage("SearchEnemy");
+        
         BattleStop();
+
+        for (int i = 0; i <= coinCount; i++)
+        {
+            CoinSpawnHandler(cPass.transform);
+        }
     }
 
     public void AttackEnd()
@@ -120,6 +136,7 @@ public class PlayerBattle : CharacterBattle
         //SendMessage("CharacterStateControll", "Battle");
         //print("attack End");
         SendMessage("WeaponColliderOff");
+        SendMessage("AttackAniInit");
     }
 
     private IEnumerator BattleWait()
@@ -133,5 +150,22 @@ public class PlayerBattle : CharacterBattle
         attackActionCount = 0;
         //currentTargetColl.SendMessage("AssultStateOn");
         SendMessage("BattlingOn");
+    }
+
+    protected void CoinSpawnHandler(Transform tTrans)
+    {
+        float rForceX = Random.Range(-2f, 0f);
+        float rForceY = Random.Range(2f, 8f);
+        float rForceZ = Random.Range(0f, 0f);
+
+        presentCoin = Instantiate(coinPrefab, tTrans.position, Quaternion.Euler(90, 0, 0)) as GameObject;
+        presentCoin.GetComponent<Rigidbody>().AddForce(new Vector3(rForceX, rForceY, rForceZ), ForceMode.Impulse);
+        presentCoin.transform.SetParent(coinParent.transform);
+        presentCoin.SendMessage("CoinValueSetting", coinValue);
+
+        coinValue = enemyParams.moneyBonus / coinCount;
+
+        if (coinValue <= 1)
+            coinValue = 1;
     }
 }

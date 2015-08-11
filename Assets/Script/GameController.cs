@@ -39,11 +39,15 @@ public class GameController : MonoBehaviour {
         SendMessage("GameStateControll", "Ready"); //임시
 
         CharacterActionCheck();
+
+        PlayerCharacterSorting();
+        EnemyCharacterSorting();
 	}
 	
 	// Update is called once per frame
 	public void CharacterInialize(){
         tmpPlayer = GameObject.FindGameObjectsWithTag("Player");
+        tmpMonsters = GameObject.FindGameObjectsWithTag("Enemy");
 
 		for (int i = 0; i < tmpPlayer.Length; i++){
 			tmpPlayer[i].gameObject.SendMessage("CharacterPositionInialize", CharacterPositionInializeTime);
@@ -61,7 +65,6 @@ public class GameController : MonoBehaviour {
 			characterMovePredicate = false;
 			characterBattlePredicate = true;
 		}
-
 	}
 
 	public void CharacterEnterCheckTrue(){
@@ -154,7 +157,7 @@ public class GameController : MonoBehaviour {
 			SendMessage("GameStateControll", "Playing");
 		
         
-        //currentStates = previousStates; -- ㄱㅐㅅㅓㄴ ㅍㅣㄹㅇㅛ
+        //currentStates = previousStates; -- 개선필요
 		currentStates = States.Moves;
         CharacterActionCheck();
 	}
@@ -253,6 +256,22 @@ public class GameController : MonoBehaviour {
                     tmpMonsters[i].gameObject.SendMessage("ChasePlayer");
                 }
             }
+        }
+    }
+
+    void PlayerCharacterSorting()
+    {
+        for (int i = 1; i < tmpPlayer.Length; i++)
+        {
+            tmpPlayer[i].gameObject.SendMessage("CharacterSorting",i);
+        }
+    }
+
+    void EnemyCharacterSorting()
+    {
+        for (int i = 1; i < tmpMonsters.Length; i++)
+        {
+            tmpMonsters[i].gameObject.SendMessage("CharacterSorting", i);
         }
     }
 }
