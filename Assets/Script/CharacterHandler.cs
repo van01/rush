@@ -213,7 +213,7 @@ public class CharacterHandler : MonoBehaviour {
         {
             if (myAllSpriteRenderer[i].enabled == true)
             {
-                myAllSpriteRenderer[i].sortingOrder = myAllSpriteRenderer[i].sortingOrder * iSortValue;
+                myAllSpriteRenderer[i].sortingOrder = myAllSpriteRenderer[i].sortingOrder + iSortValue - 1 + 10;
             }
         }
     }

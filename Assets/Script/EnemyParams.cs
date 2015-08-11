@@ -10,7 +10,7 @@ public class EnemyParams : CharacterParams {
         this.currentUnitType = unitTpye.Enemy;
         this.currentAttackType = attackType.Short;
 		this.level = 1;
-		this.maxHP = 1000;
+		this.maxHP = 10;
 		this.curHP = this.maxHP;
 		this.attack = 5;
 		this.skillId = 0;

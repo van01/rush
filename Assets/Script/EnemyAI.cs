@@ -128,6 +128,7 @@ public class EnemyAI : MonoBehaviour {
                     if (GetComponent<EnemyState>().currentState == CharacterState.State.Move)
                     {
                         SendMessage("CharacterStateControll", "Battle");
+                        //해당 부분에서 멈추는 현상 발생
                     }
 
                     tmpGameController.SendMessage("EnemyStateBattleInfection", groupValue); //해당 함수에 판단자 추가 필요
