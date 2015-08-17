@@ -40,6 +40,8 @@ public class PlayerState : CharacterState
         SendMessage("ChangeAni", CharacterAni.MOVE);
         SendMessage("SearchEnemy");
 
+        
+
         if (transform.position.x != GetComponent<PlayerAI>().positionDistance)
         {
             SendMessage("CharacterPositionInialize", 0.5f);
@@ -58,6 +60,7 @@ public class PlayerState : CharacterState
     {
         base.BattleAction();
         SendMessage("ChangeAni", CharacterAni.BATTLE);
+
 
         if (battling == true)
         {

@@ -134,8 +134,8 @@ public class GameController : MonoBehaviour {
         SendMessage("GameStateControll", "Hold");
 		characterBattlePredicate = true;
         previousStates = currentStates;
-        currentStates = States.Battles;
-		CharacterActionCheck();
+        //currentStates = States.Battles;
+		//CharacterActionCheck();
 	}
 	
 	public void CharacterBattlePredicateOff(){
