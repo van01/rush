@@ -129,7 +129,7 @@ public class PlayerAI : MonoBehaviour
         if (arrMonsters.Length == 0)
         {
             target = null;
-            print("game end");
+            //print("game end");
         }
 
     }

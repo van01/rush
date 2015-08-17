@@ -8,6 +8,9 @@ public class StageController : MonoBehaviour {
 	private GameObject tmpStage;
 	private GameObject tmpEnemy;
 
+    public GameObject[] stagePrefab;
+    private GameObject currentStage;
+
 	void Start(){
 		tmpStage = GameObject.FindGameObjectWithTag("Stage");
 		tmpEnemy = GameObject.Find("Enemy");
