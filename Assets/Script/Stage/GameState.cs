@@ -51,6 +51,7 @@ public class GameState : MonoBehaviour {
 
 	public virtual void ReadyAction(){
         SendMessage("CharacterInialize");
+        SendMessage("StageInialize");
 		//Debug.Log("■■Game State■■ReadyAction");
 	}
 		

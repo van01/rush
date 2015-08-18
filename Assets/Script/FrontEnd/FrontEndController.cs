@@ -10,8 +10,9 @@ public class FrontEndController : MonoBehaviour {
     public GameObject CharacterPanel;
 
 	// Use this for initialization
-	public void SelectStageButton()
+	public void onClickBattleButton()
     {
+        PlayerPrefs.GetInt("currentStage");
         Application.LoadLevel("Stage");
     }
 
@@ -23,6 +24,7 @@ public class FrontEndController : MonoBehaviour {
             if (StageButton[i].name == selfName)
             {
                 BattlePanel[i].SetActive(true);
+                CurrentBattleSetting(StageButton[i]);
             }
         }
     }
@@ -45,5 +47,13 @@ public class FrontEndController : MonoBehaviour {
     public void OnClickCharacterButton()
     {
         CharacterPanel.SetActive(true);
+    }
+
+    protected void CurrentBattleSetting(GameObject currentStageButton)
+    {
+        if (currentStageButton.GetComponent<StageButtonHandler>().currentStage == StageButtonHandler.StageType.DiceForest)
+            PlayerPrefs.SetInt("currentStage", 0);
+        if (currentStageButton.GetComponent<StageButtonHandler>().currentStage == StageButtonHandler.StageType.Kingdom)
+            PlayerPrefs.SetInt("currentStage", 1);
     }
 }

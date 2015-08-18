@@ -9,37 +9,53 @@ public class StageController : MonoBehaviour {
 	private GameObject tmpEnemy;
 
     public GameObject[] stagePrefab;
-    private GameObject currentStage;
+    private GameObject presentStage;
+
+    void Awake()
+    {
+        tmpStage = GameObject.FindGameObjectWithTag("Stage");
+        tmpStage.SetActive(false);
+    }
 
 	void Start(){
-		tmpStage = GameObject.FindGameObjectWithTag("Stage");
 		tmpEnemy = GameObject.Find("Enemy");
 	}
 
+    public void StageInialize()
+    {
+        for (int i = 0; i < stagePrefab.Length; i++)
+        {
+            if (PlayerPrefs.GetInt("currentStage") == i)
+            {
+                presentStage = Instantiate(stagePrefab[i], transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+            }
+        }
+    }
+
 	public void StageScrollInialize(){
-		tmpStage.SendMessage("ScrollOnTrue");
-		tmpStage.SendMessage("DeliveryScrollSpeed", scrollSpeed);
-		tmpEnemy.SendMessage("ScrollOnTrue");
-		tmpEnemy.SendMessage("DeliveryScrollSpeed", scrollSpeed);
+        presentStage.SendMessage("ScrollOnTrue");
+        presentStage.SendMessage("DeliveryScrollSpeed", scrollSpeed);
+        presentStage.SendMessage("ScrollOnTrue");
+        presentStage.SendMessage("DeliveryScrollSpeed", scrollSpeed);
 	}
 
 	public void DeliveryScrollOnTrue(){
-		tmpStage.SendMessage("ScrollOnTrue");
+		presentStage.SendMessage("ScrollOnTrue");
 		tmpEnemy.SendMessage("ScrollOnTrue");
 	}
 
 	public void DeliveryScrollOnFalse(){
-		tmpStage.SendMessage("ScrollOnFalse");
+		presentStage.SendMessage("ScrollOnFalse");
 		tmpEnemy.SendMessage("ScrollOnFalse");
 	}
 
 	public void RunScrollOn(){
-		tmpStage.SendMessage("DeliveryScrollSpeed", scrollSpeed * 2);
+		presentStage.SendMessage("DeliveryScrollSpeed", scrollSpeed * 2);
 		tmpEnemy.SendMessage("DeliveryScrollSpeed", scrollSpeed * 2);
 	}
 
 	public void RunScrollOff(){
-		tmpStage.SendMessage("DeliveryScrollSpeed", scrollSpeed);
+		presentStage.SendMessage("DeliveryScrollSpeed", scrollSpeed);
 		tmpEnemy.SendMessage("DeliveryScrollSpeed", scrollSpeed);
 	}
 

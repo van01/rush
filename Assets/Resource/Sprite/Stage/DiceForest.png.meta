@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 350117010af7c2a40beb9b352d1d9185
-timeCreated: 1439803253
+timeCreated: 1439863069
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -10,12 +10,17 @@ TextureImporter:
     21300006: DiceWood_02
     21300008: Cloud_02_Type_01
     21300010: Distance_DiceWood_01
-    21300012: Distance_DiceWood_02
+    21300012: Distance_Hill_01
     21300014: Cloud_02_Type_02
     21300016: Floor_Object_01
     21300018: Floor_Object_02
     21300020: Floor_Object_03
     21300022: Floor_Object_04
+    21300024: Distance_DiceWood_02
+    21300026: DiceForest_1
+    21300028: DiceForest_2
+    21300030: DiceForest_3
+    21300032: Distance_Hill_02
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -65,19 +70,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 8
-        y: 736
-        width: 529
-        height: 268
+        y: 788
+        width: 426
+        height: 216
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Cloud_01_Type_02
       rect:
         serializedVersion: 2
-        x: 562
-        y: 716
-        width: 428
-        height: 288
+        x: 454
+        y: 772
+        width: 345
+        height: 232
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -104,48 +109,48 @@ TextureImporter:
     - name: Cloud_02_Type_01
       rect:
         serializedVersion: 2
-        x: 499
-        y: 449
-        width: 479
-        height: 251
+        x: 594
+        y: 557
+        width: 386
+        height: 202
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Distance_DiceWood_01
       rect:
         serializedVersion: 2
-        x: 9
-        y: 20
-        width: 332
-        height: 283
+        x: 5
+        y: 126
+        width: 206
+        height: 175
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Distance_DiceWood_02
+    - name: Distance_Hill_01
       rect:
         serializedVersion: 2
-        x: 347
-        y: 21
-        width: 139
-        height: 188
+        x: 361
+        y: 29
+        width: 280
+        height: 223
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Cloud_02_Type_02
       rect:
         serializedVersion: 2
-        x: 499
-        y: 133
-        width: 514
-        height: 273
+        x: 571
+        y: 310
+        width: 414
+        height: 220
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Floor_Object_01
       rect:
         serializedVersion: 2
-        x: 547
-        y: 63
+        x: 821
+        y: 785
         width: 24
         height: 10
       alignment: 0
@@ -154,8 +159,8 @@ TextureImporter:
     - name: Floor_Object_02
       rect:
         serializedVersion: 2
-        x: 594
-        y: 59
+        x: 868
+        y: 781
         width: 22
         height: 26
       alignment: 0
@@ -164,8 +169,8 @@ TextureImporter:
     - name: Floor_Object_03
       rect:
         serializedVersion: 2
-        x: 645
-        y: 63
+        x: 919
+        y: 785
         width: 19
         height: 19
       alignment: 0
@@ -174,10 +179,30 @@ TextureImporter:
     - name: Floor_Object_04
       rect:
         serializedVersion: 2
-        x: 696
-        y: 60
+        x: 970
+        y: 782
         width: 15
         height: 21
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Distance_DiceWood_02
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 126
+        width: 87
+        height: 117
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Distance_Hill_02
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 29
+        width: 279
+        height: 187
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

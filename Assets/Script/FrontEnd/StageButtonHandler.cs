@@ -2,7 +2,15 @@
 using System.Collections;
 
 public class StageButtonHandler : MonoBehaviour {
-    public GameObject tmpFrontEndController; 
+    public GameObject tmpFrontEndController;
+
+    public enum StageType
+    {
+        DiceForest,
+        Kingdom,
+    }
+
+    public StageType currentStage;
 
     public void OnClickStageButtonSelfSetting()
     {

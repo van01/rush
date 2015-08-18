@@ -114,6 +114,7 @@
     <Compile Include="Assets\Script\Common\CharacterHandler.cs" />
     <Compile Include="Assets\Script\Common\CharacterHelmetHandler.cs" />
     <Compile Include="Assets\Script\Common\CharacterParams.cs" />
+    <Compile Include="Assets\Script\Common\CharacterShoulderHandler.cs" />
     <Compile Include="Assets\Script\Common\CharacterState.cs" />
     <Compile Include="Assets\Script\Common\CharacterWeaponHandler.cs" />
     <Compile Include="Assets\Script\FrontEnd\BattleButtonHandler.cs" />
