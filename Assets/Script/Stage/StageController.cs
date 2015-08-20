@@ -14,7 +14,8 @@ public class StageController : MonoBehaviour {
     void Awake()
     {
         tmpStage = GameObject.FindGameObjectWithTag("Stage");
-        tmpStage.SetActive(false);
+        if (tmpStage != null)
+            tmpStage.SetActive(false);
     }
 
 	void Start(){
@@ -35,8 +36,8 @@ public class StageController : MonoBehaviour {
 	public void StageScrollInialize(){
         presentStage.SendMessage("ScrollOnTrue");
         presentStage.SendMessage("DeliveryScrollSpeed", scrollSpeed);
-        presentStage.SendMessage("ScrollOnTrue");
-        presentStage.SendMessage("DeliveryScrollSpeed", scrollSpeed);
+        tmpEnemy.SendMessage("ScrollOnTrue");
+        tmpEnemy.SendMessage("DeliveryScrollSpeed", scrollSpeed);
 	}
 
 	public void DeliveryScrollOnTrue(){

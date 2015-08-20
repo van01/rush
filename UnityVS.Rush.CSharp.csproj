@@ -110,11 +110,11 @@
     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\Point2DList.cs" />
     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\Rect2D.cs" />
     <Compile Include="Assets\Script\Common\CharacterAni.cs" />
+    <Compile Include="Assets\Script\Common\CharacterBackHandler.cs" />
     <Compile Include="Assets\Script\Common\CharacterBattle.cs" />
     <Compile Include="Assets\Script\Common\CharacterHandler.cs" />
     <Compile Include="Assets\Script\Common\CharacterHelmetHandler.cs" />
     <Compile Include="Assets\Script\Common\CharacterParams.cs" />
-    <Compile Include="Assets\Script\Common\CharacterShoulderHandler.cs" />
     <Compile Include="Assets\Script\Common\CharacterState.cs" />
     <Compile Include="Assets\Script\Common\CharacterWeaponHandler.cs" />
     <Compile Include="Assets\Script\FrontEnd\BattleButtonHandler.cs" />
@@ -124,6 +124,7 @@
     <Compile Include="Assets\Script\Stage\EnemyAI.cs" />
     <Compile Include="Assets\Script\Stage\EnemyAbility.cs" />
     <Compile Include="Assets\Script\Stage\EnemyBattle.cs" />
+    <Compile Include="Assets\Script\Stage\EnemyController.cs" />
     <Compile Include="Assets\Script\Stage\EnemyHitEffect.cs" />
     <Compile Include="Assets\Script\Stage\EnemyParams.cs" />
     <Compile Include="Assets\Script\Stage\EnemyScroll.cs" />
@@ -137,6 +138,7 @@
     <Compile Include="Assets\Script\Stage\PlayerAI.cs" />
     <Compile Include="Assets\Script\Stage\PlayerAbility.cs" />
     <Compile Include="Assets\Script\Stage\PlayerBattle.cs" />
+    <Compile Include="Assets\Script\Stage\PlayerController.cs" />
     <Compile Include="Assets\Script\Stage\PlayerHitEffect.cs" />
     <Compile Include="Assets\Script\Stage\PlayerParams.cs" />
     <Compile Include="Assets\Script\Stage\PlayerState.cs" />

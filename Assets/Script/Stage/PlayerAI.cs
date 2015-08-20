@@ -28,6 +28,10 @@ public class PlayerAI : MonoBehaviour
 
     private bool HealthBarOn = true;
 
+    private int i = 0;
+
+    protected float distance;
+
     void Start()
     {
         tmpPlayerState = GetComponent<PlayerState>();
@@ -35,40 +39,10 @@ public class PlayerAI : MonoBehaviour
     }
 
     void Update()
-    {					//틱 추가 후 교체 필요
+    {
         CheckDistanceFromTarget();
 
-        //캐릭터 기본 위치 잡기
-
-        //if (tmpPlayerState.currentState == CharacterState.State.Spawn || tmpPlayerState.currentState == CharacterState.State.Move)
-        if (transform.position.x != positionDistance)
-        {
-            if (setPosition == true)
-            {
-                if (transform.position.x <= positionDistance)
-                {
-                    transform.Translate(Time.deltaTime * setPositionSpeed, 0, 0);
-                }
-                else if (transform.position.x >= positionDistance - 0.1f)
-                {
-                    setPosition = false;
-                    transform.position = new Vector3(positionDistance, 0, 0);
-
-                    if (tmpPlayerState.currentState == CharacterState.State.Spawn || tmpPlayerState.currentState == CharacterState.State.Move)
-                    {
-                        SendMessage("CharacterStateMoveOn");
-                        //SendMessage("CharacterStateControll", "Move");
-                        tmpGameController.SendMessage("GameStateControll", "Playing");
-                    }
-                    if (tmpPlayerState.currentState == CharacterState.State.Run)
-                    {
-                        tmpGameController.SendMessage("GameStateControll", "Playing");
-                        tmpGameController.SendMessage("RunScrollOn");
-                    }
-                }
-            }
-        }
-
+        //캐릭터 상태에 따라 gameState 조정, 해당 부분은 gameController로 이동 필요
         if (tmpPlayerState.currentState == CharacterState.State.Spawn || tmpPlayerState.currentState == CharacterState.State.Move)
         {
             SendMessage("CharacterStateMoveOn");
@@ -136,54 +110,87 @@ public class PlayerAI : MonoBehaviour
 
     void CheckDistanceFromTarget()
     {
+
         if (target == null)
         {
             //SendMessage("CharacterStateMoveOn");      //업데이트 마다 무브를 걸어주니 오류생김
             return;
         }
 
-        if (tmpPlayerState.currentState == CharacterState.State.Move || tmpPlayerState.currentState == CharacterState.State.Run)
+        distance = Vector3.Distance(target.position, transform.position);
+        distance = distance - ((target.GetComponent<BoxCollider2D>().size.x - target.GetComponent<BoxCollider2D>().offset.x) * target.transform.localScale.x / 2);
+
+        if (distance > attackDistance)
         {
-            float distance = Vector3.Distance(target.position, transform.position);
+            SendMessage("CharacterStateControll", "Move");
+        }
 
-            distance = distance - ((target.GetComponent<BoxCollider2D>().size.x - target.GetComponent<BoxCollider2D>().offset.x) * target.transform.localScale.x / 2);
+        if (distance < attackDistance)
+        {
+            if (tmpPlayerState.currentState == CharacterState.State.Move)
+            {
 
-            if (distance > attackDistance)
-            {
-                if (actionNumber == 0)
-                {
-                    attDistance = false;
-                    actionNumber = 1;
-                }
-            }
-            else if (distance < attackDistance)
-            {
-                if (actionNumber == 1)
-                {
-                    attDistance = true;
-                    actionNumber = 2;
-                }
-            }
-
-            if (attDistance == true)
-            {
-                if (actionNumber == 2)
+                if (distance < attackDistance)
                 {
                     if (target.GetComponent<EnemyState>().currentState != CharacterState.State.Dead)
                     {
+                        i++;
+                        print(i);
                         SendMessage("CharacterStateControll", "Battle");
                         SendMessage("CharacterStateBattleOn");    //사정거리 진입 시 해당 캐릭터만 전투 모드 변경으로 변경하려고 했으나 해당 함수에 포함된 기능으로인해 보류
+
+                        SendMessage("StartBattle");
                         tmpPositionDistance = positionDistance;
                         positionDistance = transform.position.x;
-                        actionNumber = 0;
+                    }
+                }
+            }
+
+            if (tmpPlayerState.currentState == CharacterState.State.Battle)
+            {
+                if (distance < attackDistance)
+                {
+                    if (target.GetComponent<EnemyState>().currentState != CharacterState.State.Dead)
+                    {
+                        SendMessage("StartBattle");
                     }
                 }
             }
         }
+        
+    }
 
-        if (tmpPlayerState.currentState == CharacterState.State.Back)
+    private void PlayerPositionInit()
+    {
+        //캐릭터 기본 위치 잡기, 기존 Update 함수에서 백업
+
+        //if (tmpPlayerState.currentState == CharacterState.State.Spawn || tmpPlayerState.currentState == CharacterState.State.Move)
+        if (transform.position.x != positionDistance)
         {
-            attDistance = false;
+            if (setPosition == true)
+            {
+                if (transform.position.x <= positionDistance)
+                {
+                    transform.Translate(Time.deltaTime * setPositionSpeed, 0, 0);
+                }
+                else if (transform.position.x >= positionDistance - 0.1f)
+                {
+                    setPosition = false;
+                    transform.position = new Vector3(positionDistance, 0, 0);
+
+                    if (tmpPlayerState.currentState == CharacterState.State.Spawn || tmpPlayerState.currentState == CharacterState.State.Move)
+                    {
+                        SendMessage("CharacterStateMoveOn");
+                        //SendMessage("CharacterStateControll", "Move");
+                        tmpGameController.SendMessage("GameStateControll", "Playing");
+                    }
+                    if (tmpPlayerState.currentState == CharacterState.State.Run)
+                    {
+                        tmpGameController.SendMessage("GameStateControll", "Playing");
+                        tmpGameController.SendMessage("RunScrollOn");
+                    }
+                }
+            }
         }
     }
 

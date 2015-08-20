@@ -2,8 +2,6 @@
 using System.Collections;
 
 public class PlayerBattle : CharacterBattle{
-
-    private int attackCount = 0;
     
     protected Collider2D currentTargetColl;
 
@@ -41,6 +39,7 @@ public class PlayerBattle : CharacterBattle{
     public override void BattleEnd()
     {
         base.BattleEnd();
+        StopCoroutine("BattleWait");
     }
 
     public override void AttackSuccess()
@@ -59,8 +58,11 @@ public class PlayerBattle : CharacterBattle{
     {
         base.TargetDead();
 
+        BattleEnd();
+
         SendMessage("CharacterStateControll", "Move");
-        SendMessage("BattlingOn");
+
+        SendMessage("BattlingOff");
         SendMessage("PositionDistanceReset");
 
         for (int i = 0; i <= coinCount; i++)
@@ -71,20 +73,22 @@ public class PlayerBattle : CharacterBattle{
 
     public void AttackEnd()
     {
-        SendMessage("AttackAniInit");
+        //SendMessage("AttackAniInit");
+        SendMessage("CharacterStateControll", "Battle");
         attackProssible = false;
+        SendMessage("AttDistanceOn");
     }
 
     private  IEnumerator BattleWait()
     {
         float attackWaitTime = 1.0f;
-        SendMessage("CharacterStateControll", "Battle");
+        //SendMessage("CharacterStateControll", "Battle");
 
         yield return new WaitForSeconds(attackWaitTime);
 
         attackActionCount = 0;
         //currentTargetColl.SendMessage("AssultStateOn");
-        SendMessage("BattlingOn");
+        //SendMessage("BattlingOn");
     }
 
     protected void CoinSpawnHandler(Transform tTrans)

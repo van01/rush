@@ -40,13 +40,10 @@ public class PlayerState : CharacterState
         SendMessage("ChangeAni", CharacterAni.MOVE);
         SendMessage("SearchEnemy");
 
-        
-
         if (transform.position.x != GetComponent<PlayerAI>().positionDistance)
         {
             SendMessage("CharacterPositionInialize", 0.5f);
         }
-
     }
 
     public override void RunAction()
@@ -61,13 +58,11 @@ public class PlayerState : CharacterState
         base.BattleAction();
         SendMessage("ChangeAni", CharacterAni.BATTLE);
 
-
         if (battling == true)
         {
-            SendMessage("StartBattle");
-            //SendMessage("WeaponColliderOff");
+            //SendMessage("StartBattle");
         }
-        
+
         SendMessage("CharacterBackPositionOff");
         SendMessage("CharacterFowardPositionOff");
     }

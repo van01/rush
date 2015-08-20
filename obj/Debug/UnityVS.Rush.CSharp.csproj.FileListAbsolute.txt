@@ -11,5 +11,3 @@ C:\Users\bAdaso\Documents\NotSlaves\Rush\Temp\UnityVS_bin\Debug\UnityEditor.iOS.
 C:\Users\bAdaso\Documents\NotSlaves\Rush\obj\Debug\UnityVS.Rush.CSharp.csprojResolveAssemblyReference.cache
 C:\Users\bAdaso\Documents\NotSlaves\Rush\obj\Debug\Assembly-CSharp.dll
 C:\Users\bAdaso\Documents\NotSlaves\Rush\obj\Debug\Assembly-CSharp.pdb
-C:\Users\bAdaso\Documents\NotSlaves\Rush\Temp\UnityVS_bin\Debug\Assembly-CSharp.dll.CodeAnalysisLog.xml
-C:\Users\bAdaso\Documents\NotSlaves\Rush\Temp\UnityVS_bin\Debug\Assembly-CSharp.dll.lastcodeanalysissucceeded

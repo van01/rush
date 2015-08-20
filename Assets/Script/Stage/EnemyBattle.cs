@@ -57,7 +57,7 @@ public class EnemyBattle : CharacterBattle{
         //SendMessage("CharacterStateControll", "Battle");
         //print("attack End");
         SendMessage("WeaponColliderOff");
-        SendMessage("AttackAniInit");
+        //SendMessage("AttackAniInit");
     }
 
     private IEnumerator BattleWait()
@@ -69,6 +69,6 @@ public class EnemyBattle : CharacterBattle{
         attackCount = 0;
         attackActionCount = 0;
         //currentTargetColl.SendMessage("AssultStateOn");
-        SendMessage("BattlingOn");
+        //SendMessage("BattlingOn");
     }
 }
