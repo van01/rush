@@ -41,12 +41,12 @@ public class PlayerBattle : CharacterBattle{
     public override void BattleEnd()
     {
         base.BattleEnd();
-        StopCoroutine("BattleWait");
     }
 
     public override void AttackSuccess()
     {
-        base.AttackSuccess();        
+        base.AttackSuccess();
+        StartCoroutine("BattleWait");
     }
 
     public override void CheckTargetCurHP()
@@ -59,10 +59,7 @@ public class PlayerBattle : CharacterBattle{
         base.TargetDead();
 
         BattleEnd();
-
         SendMessage("CharacterStateControll", "Move");
-
-        //SendMessage("BattlingOff");
         SendMessage("PositionDistanceReset");
 
         for (int i = 0; i <= coinCount; i++)
@@ -71,26 +68,12 @@ public class PlayerBattle : CharacterBattle{
         }
     }
 
-    public void AttackEnd()
-    {        
-        StartCoroutine("BattleWait");
-        //SendMessage("AttackAniInit");
-        SendMessage("CharacterStateControll", "Battle");
-        attackProssible = false;
-        print("Attack End");
-        //SendMessage("AttDistanceOn");   //AI: AttDistance true
-    }
-
     private  IEnumerator BattleWait()
-    {        
-        //SendMessage("CharacterStateControll", "Battle");        
-        //SendMessage("AttDistanceOn");
+    {
         yield return new WaitForSeconds(attackWaitTime);
-        SendMessage("AttDistanceOn");
+        SendMessage("CharacterStateControll", "Battle");
 
         attackActionCount = 0;
-        //currentTargetColl.SendMessage("AssultStateOn");
-        //SendMessage("BattlingOn");
     }
 
     protected void CoinSpawnHandler(Transform tTrans)

@@ -3,10 +3,10 @@ using System.Collections;
 
 public class EnemyBattle : CharacterBattle{
 
-    private int attackCount = 0;
-
     protected Collider2D currentTargetColl;
     protected GameObject currentTargetGameObject;
+
+    public float attackWaitTime = 0.7f;
 
     public override void Start()
     {
@@ -36,7 +36,6 @@ public class EnemyBattle : CharacterBattle{
     public void AttackSuccess()
     {
         base.AttackSuccess();
-
         StartCoroutine("BattleWait");
     }
 
@@ -48,27 +47,15 @@ public class EnemyBattle : CharacterBattle{
     public override void TargetDead()
     {
         base.TargetDead();
-
+        BattleEnd();
         SendMessage("CharacterStateControll", "Idle");
-    }
-
-    public void AttackEnd()
-    {
-        //SendMessage("CharacterStateControll", "Battle");
-        //print("attack End");
-        SendMessage("WeaponColliderOff");
-        //SendMessage("AttackAniInit");
     }
 
     private IEnumerator BattleWait()
     {
-        float attackWaitTime = 1.0f;
+        yield return new WaitForSeconds(attackWaitTime);
         SendMessage("CharacterStateControll", "Battle");
 
-        yield return new WaitForSeconds(attackWaitTime);
-        attackCount = 0;
         attackActionCount = 0;
-        //currentTargetColl.SendMessage("AssultStateOn");
-        //SendMessage("BattlingOn");
     }
 }

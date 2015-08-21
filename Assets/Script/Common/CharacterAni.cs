@@ -33,16 +33,15 @@ public class CharacterAni : MonoBehaviour {
     public const string JUMP = "Jump_Baked";		//점프 시작
     public const string MIDAIR = "Midair_Baked";	//공중
     public const string LANDING = "Landing_Baked";	//착지
-	
-	private Animator anim;
+
     private PlayerState tmpPlayerState;
     private Animation tmpAnimation;
 
     private bool attackAni = false;
 
+    private string currentAniClip;
 	// Use this for initialization
 	void Awake () {
-		anim = GetComponent<Animator>();
         tmpPlayerState = GetComponent<PlayerState>();
 	}
 
@@ -54,80 +53,35 @@ public class CharacterAni : MonoBehaviour {
 
     void Update()
     {
-        //if (CompareTag("Player"))
-        //{
-        //    AnimationStateCheck();
-        //}
         if (attackAni == true)
-        {
-            //if (tmpAnimation.isPlaying == true)
-            //    print(tmpAnimation.clip.length);    
+        { 
             if (tmpAnimation.isPlaying == false)
             {
                 SendMessage("AttackSuccess");
-                SendMessage("AttackEnd");
 
                 attackAni = false;
-                print("Attack Success & End Call");    
             }
         }
-    }   //attack animation lenth, attack sucssece call
+    }
     
-
-    //public void ChangeAni(int aniNum){
-    //    anim.SetInteger("aniNumber", aniNum);
-    //    if (aniNum == ATTACK)
-    //    {
-    //        int i = (int)Random.RandomRange(1.0f, 3.0f);
-    //        anim.SetInteger("attNumber", i);
-    //    }
-    //}
-
-    public void ChangeAni(string aniClipNum)
+    public void ChangeAni(string aniClipName)
     {
-        if (aniClipNum == ATTACK)
+        if (aniClipName == ATTACK)
         {
-            //AnimationClip aniClip = tmpAnimation.GetClip(aniClipNum);
-
-            //print(aniClip.length);
-
             attackAni = true;
 
-            tmpAnimation.Play(aniClipNum);
+            tmpAnimation.Play(aniClipName);
+        }
+        else if (aniClipName == DEAD)
+        {
+            tmpAnimation.Play(aniClipName, PlayMode.StopAll);
         }
 
-        tmpAnimation.CrossFade(aniClipNum);
+        else
+        {
+            tmpAnimation.CrossFade(aniClipName);
+        }
 
-        //anim.SetInteger("aniNumber", aniClipNum);
-        //if (aniNum == ATTACK)
-        //{
-        //    int i = (int)Random.RandomRange(1.0f, 3.0f);
-        //    anim.SetInteger("attNumber", i);
-        //}
-    }
-
-    public void AttackAniInit()
-    {
-        anim.SetInteger("attNumber", 0);
-    }
-
-    public void AnimationStateCheck()
-    {
-        if (tmpPlayerState.currentState == CharacterState.State.Back && anim.GetCurrentAnimatorStateInfo(0).nameHash != Animator.StringToHash("Base Layer.Back"))
-            ChangeAni(BACK);
-        if (tmpPlayerState.currentState == CharacterState.State.Guard && anim.GetCurrentAnimatorStateInfo(0).nameHash != Animator.StringToHash("Base Layer.Guard"))
-            ChangeAni(GUARD);
-        if (tmpPlayerState.currentState == CharacterState.State.Attack && anim.GetCurrentAnimatorStateInfo(0).nameHash != Animator.StringToHash("Base Layer.Attack01"))
-            ChangeAni(ATTACK);
-    }
-
-    public void AnimationStop()
-    {
-        anim.speed = 0.1f;
-    }
-
-    public void AnimationPlay()
-    {
-        anim.speed = 1.0f;
+        currentAniClip = aniClipName;
     }
 }

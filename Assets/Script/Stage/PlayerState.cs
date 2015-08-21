@@ -5,7 +5,6 @@ public class PlayerState : CharacterState
 {
 
     private GameObject tmpGameController;
-    private bool battling = true;
 
     private Vector2 backupColliderOffset;
     private Vector2 backupColliderSize;
@@ -44,7 +43,6 @@ public class PlayerState : CharacterState
         {
             SendMessage("CharacterPositionInialize", 0.5f);
         }
-        //SendMessage("ActionNumberReset");
     }
 
     public override void RunAction()
@@ -58,12 +56,6 @@ public class PlayerState : CharacterState
     {
         base.BattleAction();
         SendMessage("ChangeAni", CharacterAni.BATTLE);
-        print("Battle Action :::::::::::::::::::::::::::");
-
-        //if (battling == true)
-        //{
-        //    SendMessage("StartBattle");
-        //}
 
         SendMessage("CharacterBackPositionOff");
         SendMessage("CharacterFowardPositionOff");
@@ -73,6 +65,12 @@ public class PlayerState : CharacterState
     {
         base.AttackAction();
         SendMessage("ChangeAni", CharacterAni.ATTACK);
+    }
+
+    public override void AttackDelayAction()
+    {
+        base.AttackDelayAction();
+        SendMessage("ChangeAni", CharacterAni.BATTLE);
     }
 
     public override void GuardAction()
@@ -104,26 +102,14 @@ public class PlayerState : CharacterState
     public override void DeadAction()
     {
         base.DeadAction();
-
+        print("Dead!!!!!!");
+        SendMessage("BattleEnd");
         SendMessage("ChangeAni", CharacterAni.DEAD);
     }
 
     public override void CharacterStateControll(string s)
     {
         base.CharacterStateControll(s);
-    }
-
-    public void BattlingOff()
-    {
-        battling = false;
-        CheckCharacterState();
-
-    }
-
-    public void BattlingOn()
-    {
-        battling = true;
-        CheckCharacterState();
     }
 
     void FowardColliderSetting()

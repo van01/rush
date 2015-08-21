@@ -30,7 +30,7 @@ public class CharacterHandler : MonoBehaviour {
 
     private GameObject tmpHUD;
 
-    public float DeadDelay = 0.5f;
+    public float DeadDelay = 0.7f;
 
     private int sortValue;
 
@@ -67,22 +67,12 @@ public class CharacterHandler : MonoBehaviour {
         float healthBarInitY = healthBarY + transform.position.y;
 
         HelthBarInitPositionSetting(new Vector3(healthBarInitX, healthBarInitY, 0));
-
-        
 	}
 
     void Start()
     {
         HelthBarInitialize();
     }
-
-	void OnCollisionEnter2D(Collision2D c){
-		if(c.gameObject.tag == "Enemy"){
-			tmpGameController.SendMessage("CharacterEnterCheckTrue");
-
-			GameStateHoldOn();
-		}
-	}
 
 	public void GameStateHoldOn(){
 		tmpGameController.SendMessage("GameStateControll", "Hold");
@@ -104,7 +94,7 @@ public class CharacterHandler : MonoBehaviour {
         transform.position = new Vector3(totalhittingPosition, transform.position.y, transform.position.z);
 
         //타격 시 멈추기
-        SendMessage("AnimationStop");
+        //SendMessage("AnimationStop");     //해당 기능의 경우 Animator -> Animation 전환 과정에서 무의미해짐 (타격 타이밍 조정), 다시 구축해야 함
 
         //타격 시 색깔 바꾸기
         for (int i = 0; i < myAllSpriteRenderer.Length; i++)
@@ -120,7 +110,7 @@ public class CharacterHandler : MonoBehaviour {
         yield return new WaitForSeconds(colorDisableDelay);
         transform.position = new Vector3(backupPosition, transform.position.y, transform.position.z);
 
-        SendMessage("AnimationPlay");
+        //SendMessage("AnimationPlay");     //해당 기능의 경우 Animator -> Animation 전환 과정에서 무의미해짐 (타격 타이밍 조정), 다시 구축해야 함
 
         for (int i = 0; i < myAllSpriteRenderer.Length; i++)
         {
@@ -199,11 +189,8 @@ public class CharacterHandler : MonoBehaviour {
     public void ColliderOff()
     {
         SendMessage("WeaponColliderOff");
-        if (CompareTag("Enemy"))
-        {
-            GetComponent<BoxCollider2D>().enabled = false;
-            tag = "Untagged";
-        }
+        GetComponent<BoxCollider2D>().enabled = false;
+        tag = "Untagged";
     }
 
     public void CharacterSorting(int iSortValue)

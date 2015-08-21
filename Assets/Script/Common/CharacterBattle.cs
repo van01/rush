@@ -25,6 +25,7 @@ public class CharacterBattle : MonoBehaviour {
     }
 
 	public virtual void StartBattle(){
+        attackActionCount++;
         if (tag == "Player")
         {
             myState = GetComponent<PlayerState>();
@@ -40,8 +41,6 @@ public class CharacterBattle : MonoBehaviour {
     }
 
 	public virtual void DoBattle(){
-        attackActionCount++;
-
         if(this.tag == "Player"){
             //print("Start Battle -> Do Battle");
             //print("Do Battle Attack Action Count ::: " + attackActionCount);
@@ -62,13 +61,12 @@ public class CharacterBattle : MonoBehaviour {
 
     public virtual void BattleEnd()
     {
+        StopCoroutine("BattleWait");
         print("Battle End");
     }
 
     public virtual void AttackSuccess()
     {
-        //SendMessage("BattlingOff");
-
         if (attackProssible == true)
         {
             if (tag == "Player")
@@ -105,9 +103,10 @@ public class CharacterBattle : MonoBehaviour {
                 tmpGameController.SendMessage("PlayerHitDamage", enemyParams.attack);
 
             CheckTargetCurHP();
-
-            attackActionCount = 0;
         }
+        SendMessage("CharacterStateControll", "AttackDelay");
+
+        attackProssible = false;
     }
 
     public virtual void CheckTargetCurHP()

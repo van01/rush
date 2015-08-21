@@ -4,7 +4,6 @@ using System.Collections;
 public class EnemyState : CharacterState
 {
     private GameObject tmpGameController;
-    private bool battling = false;
 
 	void Start () {
         CharacterStateControll("Battle");
@@ -16,17 +15,18 @@ public class EnemyState : CharacterState
     {
         base.BattleAction();
         SendMessage("ChangeAni", CharacterAni.BATTLE);
-        
-        if (battling == true)
-        {
-            SendMessage("StartBattle");
-        }
     }
 
     public override void AttackAction(){
 		base.AttackAction();
         SendMessage("ChangeAni", CharacterAni.ATTACK);
 	}
+
+    public override void AttackDelayAction()
+    {
+        base.AttackDelayAction();
+        SendMessage("ChangeAni", CharacterAni.BATTLE);
+    }
 
     public override void MoveAction()
     {
@@ -40,17 +40,5 @@ public class EnemyState : CharacterState
         base.DeadAction();
 
         SendMessage("ChangeAni", CharacterAni.DEAD);
-    }
-
-    public void BattlingOff()
-    {
-        battling = false;
-        CheckCharacterState();
-    }
-
-    public void BattlingOn()
-    {
-        battling = true;
-        CheckCharacterState();
     }
 }

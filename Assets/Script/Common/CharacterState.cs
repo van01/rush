@@ -4,20 +4,21 @@ using System.Collections;
 public class CharacterState : MonoBehaviour {
 
 	public enum State{
-		Spawn,		//자기자리 찾아가기
-		Idle,		//대기
-		Move,		//이동
-		Run,		//달리기
-		Battle,		//전투
-		Attack,		//공격
-		Skill,		//스킬
-		Guard,		//방어
-		Back,		//후퇴
-		Forward,	//전방으로
-		Dead,		//죽음
-		Jump,		//점프 시작
-		Midair,		//공중
-		Landing,	//착지
+		Spawn,		    //자기자리 찾아가기
+		Idle,		    //대기
+		Move,		    //이동
+		Run,		    //달리기
+		Battle,		    //전투
+		Attack,		    //공격
+        AttackDelay,	//공격 후 딜레이
+		Skill,		    //스킬
+		Guard,		    //방어
+		Back,		    //후퇴
+		Forward,	    //전방으로
+		Dead,		    //죽음
+		Jump,		    //점프 시작
+		Midair,		    //공중
+		Landing,	    //착지
 	}
 
 	public State currentState;
@@ -35,6 +36,8 @@ public class CharacterState : MonoBehaviour {
 			currentState = State.Battle;
 		if(s == "Attack")
 			currentState = State.Attack;
+        if (s == "AttackDelay")
+            currentState = State.AttackDelay;
 		if(s == "Skill")
 			currentState = State.Skill;
 		if(s == "Guard")
@@ -75,6 +78,9 @@ public class CharacterState : MonoBehaviour {
 		case State.Attack:
 			AttackAction();
 			break;
+        case State.AttackDelay:
+            AttackDelayAction();
+            break;
 		case State.Skill:
 			SkillAction();
 			break;
@@ -125,6 +131,11 @@ public class CharacterState : MonoBehaviour {
 	public virtual void AttackAction(){
 		//Debug.Log(":::Character State::: Character Attack");
 	}
+
+    public virtual void AttackDelayAction()
+    {
+        //Debug.Log(":::Character State::: Character Attack Delay");
+    }
 
 	public virtual void SkillAction(){
 		//Debug.Log(":::Character State::: Character Skill");

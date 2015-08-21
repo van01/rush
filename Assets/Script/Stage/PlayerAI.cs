@@ -21,10 +21,7 @@ public class PlayerAI : MonoBehaviour
     private float setPositionSpeed;
 
     private float tmpPositionDistance;
-    private PlayerState tmpPlayerState;
-
-    private bool attDistance = false;
-    private int actionNumber = 0;
+    private PlayerState tmpMyState;
 
     private bool HealthBarOn = true;
 
@@ -34,16 +31,17 @@ public class PlayerAI : MonoBehaviour
 
     void Start()
     {
-        tmpPlayerState = GetComponent<PlayerState>();
+        tmpMyState = GetComponent<PlayerState>();
         tmpGameController = GameObject.Find("GameController");
     }
 
     void Update()
     {
-        CheckDistanceFromTarget();
+        if (tmpMyState.currentState != CharacterState.State.Dead)
+            CheckDistanceFromTarget();
 
         //캐릭터 상태에 따라 gameState 조정, 해당 부분은 gameController로 이동 필요
-        if (tmpPlayerState.currentState == CharacterState.State.Spawn || tmpPlayerState.currentState == CharacterState.State.Move)
+        if (tmpMyState.currentState == CharacterState.State.Spawn || tmpMyState.currentState == CharacterState.State.Move)
         {
             SendMessage("CharacterStateMoveOn");
             //SendMessage("CharacterStateControll", "Move");
@@ -103,7 +101,6 @@ public class PlayerAI : MonoBehaviour
         if (arrMonsters.Length == 0)
         {
             target = null;
-            //print("game end");
         }
 
     }
@@ -120,58 +117,37 @@ public class PlayerAI : MonoBehaviour
         distance = Vector3.Distance(target.position, transform.position);
         distance = distance - ((target.GetComponent<BoxCollider2D>().size.x - target.GetComponent<BoxCollider2D>().offset.x) * target.transform.localScale.x / 2);
 
-        print("Distance ::::: " + distance + "  Attack Distance ::::: " + attackDistance);
+        //print("Distance ::::: " + distance + "  Attack Distance ::::: " + attackDistance);
         if (distance > attackDistance)
         {
-            SendMessage("CharacterStateControll", "Move");            
+            if (tmpMyState.currentState != CharacterState.State.Attack)
+            {
+                SendMessage("CharacterStateControll", "Move");
+            }
         }
-
-        if (distance < attackDistance)
+        else if (distance < attackDistance)
         {
-            print("distance<<<");
-            //print(actionNumber);
             if (target.GetComponent<EnemyState>().currentState != CharacterState.State.Dead)
-            {                
-                if (actionNumber == 0)
+            {
+                if (tmpMyState.currentState != CharacterState.State.Attack)
                 {
-                    if (tmpPlayerState.currentState == CharacterState.State.Move)
-                    {
-                        actionNumber++;
+                    SendMessage("CharacterStateControll", "Battle");
+                    SendMessage("CharacterStateBattleOn");    //사정거리 진입 시 해당 캐릭터만 전투 모드 변경으로 변경하려고 했으나 해당 함수에 포함된 기능으로인해 보류
 
-                        SendMessage("CharacterStateControll", "Battle");
-                        SendMessage("CharacterStateBattleOn");    //사정거리 진입 시 해당 캐릭터만 전투 모드 변경으로 변경하려고 했으나 해당 함수에 포함된 기능으로인해 보류
+                    SendMessage("StartBattle");
 
-                        SendMessage("StartBattle");
-
-                        attDistance = false;
-
-                        tmpPositionDistance = positionDistance;
-                        positionDistance = transform.position.x;
-                        
-                        //print("Battle Mode Attack Start ::: " + actionNumber);
-                    }
-                }
-                    
-                if (attDistance == true)
-                {
-                    if (tmpPlayerState.currentState == CharacterState.State.Battle)
-                    {
-                        //i++;
-                        //print("Battle Mode Attack Distance ::: " + i);
-                        SendMessage("StartBattle");
-                        attDistance = false;
-                    }
+                    tmpPositionDistance = positionDistance;
+                    positionDistance = transform.position.x;
                 }
             }            
         }
-        
     }
 
     private void PlayerPositionInit()
     {
         //캐릭터 기본 위치 잡기, 기존 Update 함수에서 백업
 
-        //if (tmpPlayerState.currentState == CharacterState.State.Spawn || tmpPlayerState.currentState == CharacterState.State.Move)
+        //if (tmpMyState.currentState == CharacterState.State.Spawn || tmpMyState.currentState == CharacterState.State.Move)
         if (transform.position.x != positionDistance)
         {
             if (setPosition == true)
@@ -185,13 +161,13 @@ public class PlayerAI : MonoBehaviour
                     setPosition = false;
                     transform.position = new Vector3(positionDistance, 0, 0);
 
-                    if (tmpPlayerState.currentState == CharacterState.State.Spawn || tmpPlayerState.currentState == CharacterState.State.Move)
+                    if (tmpMyState.currentState == CharacterState.State.Spawn || tmpMyState.currentState == CharacterState.State.Move)
                     {
                         SendMessage("CharacterStateMoveOn");
                         //SendMessage("CharacterStateControll", "Move");
                         tmpGameController.SendMessage("GameStateControll", "Playing");
                     }
-                    if (tmpPlayerState.currentState == CharacterState.State.Run)
+                    if (tmpMyState.currentState == CharacterState.State.Run)
                     {
                         tmpGameController.SendMessage("GameStateControll", "Playing");
                         tmpGameController.SendMessage("RunScrollOn");
@@ -245,23 +221,8 @@ public class PlayerAI : MonoBehaviour
         positionDistance = tmpPositionDistance;
     }
 
-    public void AttDistanceOn()
-    {
-        attDistance = true;
-    }
-
-    public void AttDistanceOff()
-    {
-        attDistance = false;
-    }
-
     public void HealthBarOff()
     {
         HealthBarOn = false;
-    }
-
-    public void ActionNumberReset()
-    {
-        actionNumber = 0;
     }
 }
