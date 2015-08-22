@@ -34,6 +34,12 @@ public class CharacterHandler : MonoBehaviour {
 
     private int sortValue;
 
+    public int assaultWeightValue;
+    public bool assaultAddforce;    // 스킬 및 가드 적용 시 사용
+
+    private bool characterAddPositionOn = false;
+
+
 	void Awake(){
         tmpHUD = GameObject.Find("Canvas");
 		tmpGameController = GameObject.Find("GameController");
@@ -88,11 +94,6 @@ public class CharacterHandler : MonoBehaviour {
 
     public void CharacterHitOn()
     {
-        //타격 시 위치 바꾸기
-        backupPosition = transform.position.x;
-        totalhittingPosition = hittingPosition + backupPosition;
-        transform.position = new Vector3(totalhittingPosition, transform.position.y, transform.position.z);
-
         //타격 시 멈추기
         //SendMessage("AnimationStop");     //해당 기능의 경우 Animator -> Animation 전환 과정에서 무의미해짐 (타격 타이밍 조정), 다시 구축해야 함
 
@@ -105,10 +106,45 @@ public class CharacterHandler : MonoBehaviour {
         StartCoroutine("CharacterHitOff");
     }
 
+    public void CharacterAddPosition()
+    {
+        //타격 시 위치 바꾸기
+        backupPosition = transform.position.x;
+        totalhittingPosition = hittingPosition + backupPosition;
+        transform.position = new Vector3(totalhittingPosition, transform.position.y, transform.position.z);
+    }
+
+    public void CharacterAddForce(int attackValue)
+    {
+        //타격 시 밀어내기
+        int i = 1;
+        
+        if (tag == "Player")
+            i = -1;
+        
+        float rForceX = (attackValue - assaultWeightValue) * 8;
+        float rForceY = (attackValue - assaultWeightValue) * 5;
+
+        rForceX = Random.RandomRange(rForceX - 2, rForceX + 2);
+        rForceY = Random.RandomRange(rForceY - 2, rForceY + 2);
+
+        if (rForceX >= 20.0f)
+            rForceX = 20.0f;
+        else if (rForceX <= 0f)
+            rForceX = 1.0f;
+        if (rForceY >= 20.0f)
+            rForceY = 20.0f;
+        else if (rForceY <= 0f)
+            rForceY = 1.0f;
+
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(rForceX * i, rForceY * i), ForceMode2D.Impulse);
+    }
+
     IEnumerator CharacterHitOff()
     {
         yield return new WaitForSeconds(colorDisableDelay);
-        transform.position = new Vector3(backupPosition, transform.position.y, transform.position.z);
+        if (characterAddPositionOn == true)
+            transform.position = new Vector3(backupPosition, transform.position.y, transform.position.z);
 
         //SendMessage("AnimationPlay");     //해당 기능의 경우 Animator -> Animation 전환 과정에서 무의미해짐 (타격 타이밍 조정), 다시 구축해야 함
 
