@@ -15,7 +15,10 @@ public class EnemyHitEffect : MonoBehaviour {
         target.SendMessage("CharacterHitOn");
 
         if (target.GetComponent<CharacterHandler>().assaultAddforce == true)
-            target.SendMessage("CharacterAddForce", attackLightValue);
+        {
+            if (target.GetComponent<CharacterHandler>().assaultName == name)
+                target.SendMessage("CharacterAddForce", attackLightValue);
+        }
         else
             target.SendMessage("CharacterAddPosition");
 

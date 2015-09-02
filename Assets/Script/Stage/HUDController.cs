@@ -23,6 +23,8 @@ public class HUDController : MonoBehaviour {
 
     private string nCoinValue;
 
+    protected bool skillOn = false;
+
 	public void LeftHitZoneDown(){
         bool dtest = DoubleClick();
         
@@ -184,6 +186,10 @@ public class HUDController : MonoBehaviour {
     public void MonsterHitDamage(int nDamage)
     {
         monsterHitTxt = Instantiate(monsterHitTxtPrefab, monsterHitPoint, HUD.transform.rotation) as GameObject;
+        if (skillOn == true)
+            monsterHitTxt.SendMessage("AttackTypeSetting", "Skill");
+        else
+            monsterHitTxt.SendMessage("AttackTypeSetting", "Normal");
         monsterHitTxt.GetComponent<RectTransform>().SetParent(HUD.transform);
         monsterHitTxt.transform.localScale = new Vector3(1, 1, 1);
         monsterHitTxt.GetComponent<Text>().text = nDamage.ToString();
@@ -222,4 +228,13 @@ public class HUDController : MonoBehaviour {
         Application.LoadLevel("FrontEnd");
     }
 
+    public void ActiveSkillOn()
+    {
+        skillOn = true;
+    }
+
+    public void ActiveSkillOff()
+    {
+        skillOn = false;
+    }
 }

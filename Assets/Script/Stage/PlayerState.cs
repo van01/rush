@@ -65,6 +65,8 @@ public class PlayerState : CharacterState
     {
         base.AttackAction();
         SendMessage("ChangeAni", CharacterAni.ATTACK);
+
+        SendMessage("NormalAttackEffectRearOn", name);
     }
 
     public override void AttackDelayAction()
@@ -73,11 +75,22 @@ public class PlayerState : CharacterState
         SendMessage("ChangeAni", CharacterAni.BATTLE);
     }
 
+    public override void SkillAction()
+    {
+        base.SkillAction();
+
+        SendMessage("BattleStop");
+
+        SendMessage("ChangeAni", CharacterAni.SKILL);
+
+        SendMessage("Skill01AttackEffectRearOn", name);
+    }
+
     public override void GuardAction()
     {
         base.GuardAction();
 
-        SendMessage("BattleStop");
+        
 
         SendMessage("ChangeAni", CharacterAni.GUARD);
     }

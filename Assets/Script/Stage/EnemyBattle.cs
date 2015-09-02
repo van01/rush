@@ -39,6 +39,11 @@ public class EnemyBattle : CharacterBattle{
         StartCoroutine("BattleWait");
     }
 
+    public override void AttackEnd()
+    {
+        base.AttackEnd();
+    }
+
     public override void CheckTargetCurHP()
     {
         base.CheckTargetCurHP();

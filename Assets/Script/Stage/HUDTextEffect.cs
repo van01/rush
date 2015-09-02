@@ -25,6 +25,15 @@ public class HUDTextEffect : MonoBehaviour
 
     private HitType currentHitType;
 
+    private enum AttackType
+    {
+        Normal,
+        Critical,
+        Skill,
+    }
+
+    private AttackType currentAttackType;
+
     private float colorR;
     private float colorG;
     private float colorB;
@@ -35,40 +44,10 @@ public class HUDTextEffect : MonoBehaviour
         rectTransform = GetComponent<RectTransform>();
         pos = rectTransform.localPosition;
         StartCoroutine("DisplayScore");
-        baseX = 3.0f;
-        baseY = pos.y;
 
-        if (currentHitType == HitType.Enemy)
-        {
-            colorR = 1.0f;
-            colorG = 1.0f;
-            colorB = 1.0f;
+        AttackTypeValueSetting();
 
-            GetComponent<Text>().fontSize = 30;
-            GetComponent<Text>().color = new Vector4(colorR, colorG, colorB, 1.0f);
-            
-        } else if (currentHitType == HitType.Player){
-            colorR = 0.45f;
-            colorG = 0f;
-            colorB = 0f;
-
-            GetComponent<Text>().color = new Vector4(colorR, colorG, colorB, 1.0f);
-            GetComponent<Text>().fontSize = 30;
-        } else if (currentHitType == HitType.Coin){
-            colorR = 1.0f;
-            colorG = 0.9f;
-            colorB = 0f;
-
-            GetComponent<Text>().fontSize = 25;
-            GetComponent<Text>().color = new Vector4(colorR, colorG, colorB, 1.0f);
-        } else {
-            colorR = 1.0f;
-            colorG = 1.0f;
-            colorB = 1.0f;
-
-            GetComponent<Text>().fontSize = 30;
-            GetComponent<Text>().color = new Vector4(colorR, colorG, colorB, 1.0f);
-        }
+        HitTypeValueSetting();
     }
 
     // Update is called once per frame
@@ -125,5 +104,88 @@ public class HUDTextEffect : MonoBehaviour
             currentHitType = HitType.Coin;
         if (type == "Item")
             currentHitType = HitType.Item;
+    }
+
+    public void AttackTypeSetting(string type)
+    {
+        if (type == "Normal")
+            currentAttackType = AttackType.Normal;
+        if (type == "Critical")
+            currentAttackType = AttackType.Critical;
+        if (type == "Skill")
+            currentAttackType = AttackType.Skill;
+    }
+
+    protected void HitTypeValueSetting()
+    {
+        if (currentHitType == HitType.Enemy)
+        {
+            colorR = 1.0f;
+            colorG = 1.0f;
+            colorB = 1.0f;
+            
+            GetComponent<Text>().color = new Vector4(colorR, colorG, colorB, 1.0f);
+            
+        } else if (currentHitType == HitType.Player){
+            colorR = 0.5f;
+            colorG = 0f;
+            colorB = 0f;
+
+            GetComponent<Text>().color = new Vector4(colorR, colorG, colorB, 1.0f);
+        } else if (currentHitType == HitType.Coin){
+            colorR = 1.0f;
+            colorG = 0.9f;
+            colorB = 0f;
+
+            GetComponent<Text>().color = new Vector4(colorR, colorG, colorB, 1.0f);
+        } else {
+            colorR = 1.0f;
+            colorG = 1.0f;
+            colorB = 1.0f;
+
+            GetComponent<Text>().color = new Vector4(colorR, colorG, colorB, 1.0f);
+        }
+    }
+
+    protected void AttackTypeValueSetting()
+    {
+        if (currentAttackType == AttackType.Normal)
+        {
+            baseX = 3.0f;
+            baseY = pos.y / 2;
+
+            GetComponent<Text>().fontSize = 30;
+        }
+        else if (currentAttackType == AttackType.Critical)
+        {
+            baseX = 3.0f;
+            baseY = pos.y / 2;
+
+            GetComponent<Text>().fontSize = 30;
+        }
+        else if (currentAttackType == AttackType.Skill)
+        {
+            baseX = 15.0f;
+            baseY = pos.y;
+
+            GetComponent<Text>().fontSize = 50;
+        }
+        else
+        {
+            baseX = 3.0f;
+            baseY = pos.y / 2;
+        }
+    }
+
+    public void BaseValueSetting()
+    {
+        baseX = 3.0f;
+        baseY = pos.y / 2;
+    }
+
+    public void SkillBaseValueSetting()
+    {
+        baseX = 5.0f;
+        baseY = pos.y;
     }
 }

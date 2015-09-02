@@ -25,7 +25,7 @@ public class CharacterAni : MonoBehaviour {
     public const string BATTLE = "Battle_Baked";	//전투
     public const string ATTACK = "Attack01_Baked";	//공격
     public const string RUNATTACK = "RunAttack_Baked";	//달리기 공격
-    public const string SKILL = "Skill_Baked";		//스킬
+    public const string SKILL = "Skill01_Baked";		//스킬
     public const string GUARD = "Guard_Baked";		//방어
     public const string BACK = "Back_Baked";		//뒤로 이동
     public const string FOWARD = "Foward_Baked";	//앞으로 이동
@@ -37,9 +37,13 @@ public class CharacterAni : MonoBehaviour {
     private PlayerState tmpPlayerState;
     private Animation tmpAnimation;
 
-    private bool attackAni = false;
-
     private string currentAniClip;
+
+    private bool attack = false;
+    private bool skill = false;
+
+    protected float attackSuccessDelay;
+
 	// Use this for initialization
 	void Awake () {
         tmpPlayerState = GetComponent<PlayerState>();
@@ -53,13 +57,22 @@ public class CharacterAni : MonoBehaviour {
 
     void Update()
     {
-        if (attackAni == true)
-        { 
-            if (tmpAnimation.isPlaying == false)
+        if (attack == true)
+        {
+            if (tmpAnimation.IsPlaying(ATTACK) == false)
             {
-                SendMessage("AttackSuccess");
+                SendMessage("AttackEnd");
 
-                attackAni = false;
+                attack = false;
+            }
+        }
+        else if (skill == true)
+        {
+            if (tmpAnimation.IsPlaying(SKILL) == false)
+            {
+                SendMessage("AttackEnd");
+
+                skill = false;
             }
         }
     }
@@ -68,9 +81,21 @@ public class CharacterAni : MonoBehaviour {
     {
         if (aniClipName == ATTACK)
         {
-            attackAni = true;
-
             tmpAnimation.Play(aniClipName);
+
+            attackSuccessDelay = 0.3f;
+            StartCoroutine("AttackSuccessWait");
+            
+            attack = true;
+        }
+        else if (aniClipName == SKILL)
+        {
+            tmpAnimation.Play(aniClipName, PlayMode.StopAll);
+
+            attackSuccessDelay = 0.5f;
+            StartCoroutine("AttackSuccessWait");
+
+            skill = true;
         }
         else if (aniClipName == DEAD)
         {
@@ -83,5 +108,12 @@ public class CharacterAni : MonoBehaviour {
         }
 
         currentAniClip = aniClipName;
+    }
+
+    IEnumerator AttackSuccessWait()
+    {
+        yield return new WaitForSeconds(attackSuccessDelay);
+
+        SendMessage("AttackSuccess");
     }
 }

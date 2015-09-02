@@ -29,6 +29,8 @@ public class PlayerAI : MonoBehaviour
 
     protected float distance;
 
+    protected bool checkDistanceFromTargetUnused = false;
+
     void Start()
     {
         tmpMyState = GetComponent<PlayerState>();
@@ -37,8 +39,9 @@ public class PlayerAI : MonoBehaviour
 
     void Update()
     {
-        if (tmpMyState.currentState != CharacterState.State.Dead)
-            CheckDistanceFromTarget();
+        if (checkDistanceFromTargetUnused != true)
+            if (tmpMyState.currentState != CharacterState.State.Dead)
+                CheckDistanceFromTarget();
 
         //캐릭터 상태에 따라 gameState 조정, 해당 부분은 gameController로 이동 필요
         if (tmpMyState.currentState == CharacterState.State.Spawn || tmpMyState.currentState == CharacterState.State.Move)
@@ -224,5 +227,30 @@ public class PlayerAI : MonoBehaviour
     public void HealthBarOff()
     {
         HealthBarOn = false;
+    }
+
+    public void ActivePlayerSkillOn(string activeSkillID)
+    {
+        SendMessage("BattleStop");
+        SendMessage("CharacterStateControll", "Skill");         //여기에서 어떤 스킬인지 판단해 거리 측정 등 수행 필요
+        SendMessage("attackProssibleOn");
+        SendMessage("ActiveSkillOn");
+        CheckDistanceFromTargetUnusedOn();                      //CheckDistanceFromTargetOff
+    }
+
+    public void ActivePlayerSkillOff(string activeSkillID)
+    {
+        SendMessage("ActiveSkillOff");
+        CheckDistanceFromTargetUnusedOff();                      //CheckDistanceFromTargetOn
+    }
+
+    public void CheckDistanceFromTargetUnusedOn()
+    {
+        checkDistanceFromTargetUnused = true;
+    }
+
+    public void CheckDistanceFromTargetUnusedOff()
+    {
+        checkDistanceFromTargetUnused = false;
     }
 }

@@ -18,6 +18,10 @@ public class CharacterBattle : MonoBehaviour {
 
     protected int attackActionCount = 0;
 
+    protected int totalAttack = 0;
+
+    protected bool skillOn = false;
+
     public virtual void Start()
     {
         tmpGameController = GameObject.Find("GameController");
@@ -69,12 +73,23 @@ public class CharacterBattle : MonoBehaviour {
     {
         if (attackProssible == true)
         {
+            attackActionCount++;
+            
             if (tag == "Player")
             {
                 target = GetComponent<PlayerAI>().GetCurrentTarget();
 
                 enemyParams = target.GetComponent<EnemyAbility>().GetParams();
-                enemyParams.curHP -= playerParams.attack;
+
+                if (skillOn == true)
+                {
+                    target.SendMessage("AssaultAddforceOn", name);
+                    totalAttack = (int)(playerParams.attack * 2f);
+                }                 
+                else if (skillOn == false)
+                    totalAttack = playerParams.attack;
+
+                enemyParams.curHP -= totalAttack;
 
                 //타격 연출 적용  PlayerHitEffectActive
                 SendMessage("PlayerHitEffectActive");
@@ -84,29 +99,66 @@ public class CharacterBattle : MonoBehaviour {
                 target = GetComponent<EnemyAI>().GetCurrentTarget();
 
                 playerParams = target.GetComponent<PlayerAbility>().GetParams();
-                playerParams.curHP -= enemyParams.attack;
+
+                totalAttack = enemyParams.attack;
+                playerParams.curHP -= totalAttack;
 
                 //타격 연출 적용  EnemyHitEffectActive
                 SendMessage("EnemyHitEffectActive");
             }
 
-            //타격 위치 알아내기
-            HitTransformX = target.transform.position.x - ((target.GetComponent<BoxCollider2D>().size.x - target.GetComponent<BoxCollider2D>().offset.x) * target.transform.localScale.x / 2);
-            HitTransformY = target.transform.position.y;
-            HitTransform = new Vector3(HitTransformX, target.transform.position.y, target.transform.position.z);
-
-            //타격 위치 및 공격력 전송
-            tmpGameController.SendMessage("HitPositionSetting", Camera.main.WorldToScreenPoint(HitTransform));
+            
             if (tag == "Player")
-                tmpGameController.SendMessage("MonsterHitDamage", playerParams.attack);
-            else if (tag == "Enemy")
-                tmpGameController.SendMessage("PlayerHitDamage", enemyParams.attack);
+            {
+                //타격 위치 알아내기
+                HitTransformX = target.transform.position.x - ((target.GetComponent<BoxCollider2D>().size.x - target.GetComponent<BoxCollider2D>().offset.x) * target.transform.localScale.x / 2);
+                HitTransformY = transform.position.y - ((GetComponent<BoxCollider2D>().size.y - GetComponent<BoxCollider2D>().offset.y) * transform.localScale.y / 2);
+                HitTransform = new Vector3(HitTransformX, HitTransformY, target.transform.position.z);
 
+                if (skillOn == true)
+                {
+                    tmpGameController.SendMessage("ActiveSkillOn");
+
+                    //스킬 타격 이펙트 On
+                    SendMessage("ActiveSkillOn");
+                }
+
+                //노멀 타격 이펙트
+                SendMessage("NormalAttackEffectOn", HitTransform);
+
+                //타격 위치 및 공격력 전송
+                tmpGameController.SendMessage("HitPositionSetting", Camera.main.WorldToScreenPoint(HitTransform));
+                tmpGameController.SendMessage("MonsterHitDamage", totalAttack);
+            }
+            else if (tag == "Enemy")
+            {
+                //타격 위치 알아내기
+                HitTransformX = target.transform.position.x + ((target.GetComponent<BoxCollider2D>().size.x - target.GetComponent<BoxCollider2D>().offset.x) * target.transform.localScale.x / 2);
+                HitTransformY = transform.position.y - ((GetComponent<BoxCollider2D>().size.y - GetComponent<BoxCollider2D>().offset.y) * transform.localScale.y / 2);
+                HitTransform = new Vector3(HitTransformX, HitTransformY, target.transform.position.z);
+
+                //타격 위치 및 공격력 전송
+                tmpGameController.SendMessage("HitPositionSetting", Camera.main.WorldToScreenPoint(HitTransform));
+
+                tmpGameController.SendMessage("PlayerHitDamage", totalAttack);
+            }
+                
             CheckTargetCurHP();
         }
-        SendMessage("CharacterStateControll", "AttackDelay");
+    }
 
+    public virtual void AttackEnd()
+    {
+        SendMessage("CharacterStateControll", "AttackDelay");
         attackProssible = false;
+
+        if (skillOn == true)
+        {
+            SendMessage("ActivePlayerSkillOff", name);  // 임시로 자기 이름 던짐
+            target.SendMessage("AssaultAddforceOff");
+            tmpGameController.SendMessage("ActiveSkillOff");
+            SendMessage("ActiveSkillOff");
+        }
     }
 
     public virtual void CheckTargetCurHP()
@@ -143,5 +195,18 @@ public class CharacterBattle : MonoBehaviour {
         target.SendMessage("CharacterDieEffect");
     }
 
-    
+    public void attackProssibleOn()
+    {
+        attackProssible = true;
+    }
+
+    public void ActiveSkillOn()
+    {
+        skillOn = true;
+    }
+
+    public void ActiveSkillOff()
+    {
+        skillOn = false;
+    }
 }

@@ -8,6 +8,8 @@ public class HUDHandler : MonoBehaviour {
 	public GameObject hitZone_L;
 	public GameObject hitZone_R;
 
+    public GameObject tmpPlayer;
+
 	void LeftHitZoneTriggerDown(){
 		tmpGameController.SendMessage("LeftHitZoneDown");
 	}
@@ -34,6 +36,13 @@ public class HUDHandler : MonoBehaviour {
 		hitZone_R.SetActive(true);
 	}
 
+    public void OnClickSkillButton(string activeSkillID)
+    {
+        tmpPlayer = GameObject.Find("Pawn");
+
+        tmpPlayer.SendMessage("ActivePlayerSkillOn", activeSkillID);
+        //print(activeSkillID);       //여기에서 어떤 녀석의 스킬인지 판단해 해당 녀석에게 쏨
+    }
 
     //new input System 20150723
 

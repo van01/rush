@@ -20,7 +20,7 @@ public class CharacterHandler : MonoBehaviour {
     private float backupColorG;
     private float backupColorB;
 
-    private float hittingPosition = 0.0f;
+    private float hittingPosition = 0.05f;   //아군 AI 문제로 0.0 적용
     private float totalhittingPosition;
     private float backupPosition;
 
@@ -36,6 +36,7 @@ public class CharacterHandler : MonoBehaviour {
 
     public int assaultWeightValue;
     public bool assaultAddforce;    // 스킬 및 가드 적용 시 사용
+    public string assaultName;
 
     private bool characterAddPositionOn = false;
 
@@ -109,9 +110,13 @@ public class CharacterHandler : MonoBehaviour {
     public void CharacterAddPosition()
     {
         //타격 시 위치 바꾸기
-        backupPosition = transform.position.x;
-        totalhittingPosition = hittingPosition + backupPosition;
-        transform.position = new Vector3(totalhittingPosition, transform.position.y, transform.position.z);
+        if (characterAddPositionOn != true)
+        {
+            backupPosition = transform.position.x;
+            totalhittingPosition = hittingPosition + backupPosition;
+            transform.position = new Vector3(totalhittingPosition, transform.position.y, transform.position.z);
+            characterAddPositionOn = true;
+        }
     }
 
     public void CharacterAddForce(int attackValue)
@@ -144,7 +149,10 @@ public class CharacterHandler : MonoBehaviour {
     {
         yield return new WaitForSeconds(colorDisableDelay);
         if (characterAddPositionOn == true)
+        {
             transform.position = new Vector3(backupPosition, transform.position.y, transform.position.z);
+            characterAddPositionOn = false;
+        }
 
         //SendMessage("AnimationPlay");     //해당 기능의 경우 Animator -> Animation 전환 과정에서 무의미해짐 (타격 타이밍 조정), 다시 구축해야 함
 
@@ -240,5 +248,16 @@ public class CharacterHandler : MonoBehaviour {
                 myAllSpriteRenderer[i].sortingOrder = myAllSpriteRenderer[i].sortingOrder + iSortValue * 10;
             }
         }
+    }
+
+    public void AssaultAddforceOn(string aName)
+    {
+        assaultAddforce = true;
+        assaultName = aName;
+    }
+
+    public void AssaultAddforceOff()
+    {
+        assaultAddforce = false;
     }
 }

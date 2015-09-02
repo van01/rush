@@ -13,7 +13,6 @@ public class PlayerBattle : CharacterBattle{
 
     public float attackWaitTime = 0.7f;
 
-
     public override void Start()
     {
         base.Start();
@@ -47,6 +46,11 @@ public class PlayerBattle : CharacterBattle{
     {
         base.AttackSuccess();
         StartCoroutine("BattleWait");
+    }
+
+    public override void AttackEnd()
+    {
+        base.AttackEnd();
     }
 
     public override void CheckTargetCurHP()
@@ -92,4 +96,6 @@ public class PlayerBattle : CharacterBattle{
         if (coinValue <= 1)
             coinValue = 1;
     }
+
+    
 }
