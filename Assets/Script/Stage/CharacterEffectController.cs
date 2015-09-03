@@ -4,37 +4,42 @@ using System.Collections;
 public class CharacterEffectController : MonoBehaviour {
     public GameObject s_1;
     public GameObject a_1;
-    private string rootName;
+    private string WeaponType;
 
     protected bool skillOn;
 
-    public void NormalAttackEffectRearOn(string sName)
+    public void NormalAttackEffectRearOn(string sWeaponType)
     {
-        rootName = sName;
+        WeaponType = sWeaponType;
 
         StartCoroutine("NormalAttackEffectWait");
     }
 
     IEnumerator NormalAttackEffectWait()
     {
-        if (rootName == "Pawn")
+        if (WeaponType == "Sword")
         {
             yield return new WaitForSeconds(0.25f);
             s_1.SendMessage("EffectPlay");
-            
+        }
+
+        if (WeaponType == "Spear")
+        {
+            yield return new WaitForSeconds(0.5f);
+            s_1.SendMessage("EffectPlay");
         }
     }
 
-    public void Skill01AttackEffectRearOn(string sName)
+    public void Skill01AttackEffectRearOn(string sWeaponType)
     {
-        rootName = sName;
+        WeaponType = sWeaponType;
 
         StartCoroutine("Skill01AttackEffectWait");
     }
 
     IEnumerator Skill01AttackEffectWait()
     {
-        if (rootName == "Pawn")
+        if (WeaponType == "Sword")
         {
             yield return new WaitForSeconds(0.4f);
             s_1.SendMessage("EffectPlay");
@@ -59,5 +64,10 @@ public class CharacterEffectController : MonoBehaviour {
     public void ActiveSkillOff()
     {
         skillOn = false;
+    }
+
+    public void BaseAttackEffectRotate()
+    {
+        a_1.SendMessage("BaseAttackEffectRandomRotate");
     }
 }

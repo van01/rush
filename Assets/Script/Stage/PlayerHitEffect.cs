@@ -6,7 +6,8 @@ public class PlayerHitEffect : MonoBehaviour {
     private GameObject target;
     private float myAttackAniStopValue = 0.06f;
 
-    private int attackLightValue = 5;
+    protected int attackLightValueX = 1;
+    protected int attackLightValueY = 1;
 
     public void PlayerHitEffectActive()
     {
@@ -17,7 +18,14 @@ public class PlayerHitEffect : MonoBehaviour {
         if (target.GetComponent<CharacterHandler>().assaultAddforce == true)
         {
             if (target.GetComponent<CharacterHandler>().assaultName == name)
-                target.SendMessage("CharacterAddForce", attackLightValue);
+            {
+                if (target.GetComponent<CharacterHandler>().assaultWeightValue <= attackLightValueX && target.GetComponent<CharacterHandler>().assaultWeightValue <= attackLightValueY)
+                {
+                    target.SendMessage("attackValueXSetting", attackLightValueX);
+                    target.SendMessage("attackValueYSetting", attackLightValueY);
+                    target.SendMessage("CharacterAddForce");
+                }
+            }
         }
         else
             target.SendMessage("CharacterAddPosition");
@@ -32,8 +40,13 @@ public class PlayerHitEffect : MonoBehaviour {
         SendMessage("AnimationPlay");
     }
 
-    public void AttackLightValueSetting(int Value)
+    public void AttackLightValueXSetting(int valueX)
     {
-        attackLightValue = Value;       // 스킬 효과 적용 시 세팅
+        attackLightValueX = valueX;       // 스킬 효과 적용 시 세팅
+    }
+
+    public void AttackLightValueYSetting(int valueY)
+    {
+        attackLightValueY = valueY;       // 스킬 효과 적용 시 세팅
     }
 }

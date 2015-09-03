@@ -20,6 +20,9 @@ public class EnemyState : CharacterState
     public override void AttackAction(){
 		base.AttackAction();
         SendMessage("ChangeAni", CharacterAni.ATTACK);
+
+        if (GetComponent<EnemyAbility>().currentAttackWeaponType == EnemyAbility.attackWeaponType.Sword)
+            SendMessage("NormalAttackEffectRearOn", "Sword");           
 	}
 
     public override void AttackDelayAction()

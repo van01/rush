@@ -15,6 +15,7 @@ public class CharacterHandler : MonoBehaviour {
     private float hitColorR = 1.0f;
     private float hitColorG = 0f;
     private float hitColorB = 0f;
+    private float hitColorA = 0f;
 
     private float backupColorR;
     private float backupColorG;
@@ -40,6 +41,9 @@ public class CharacterHandler : MonoBehaviour {
 
     private bool characterAddPositionOn = false;
 
+    protected int attackValueX;
+    protected int attackValueY;
+
 
 	void Awake(){
         tmpHUD = GameObject.Find("Canvas");
@@ -59,14 +63,16 @@ public class CharacterHandler : MonoBehaviour {
             hitColorR = 1.0f;
             hitColorG = 0.3f;
             hitColorB = 0.3f;
+            hitColorA = 1.0f;
             hittingPosition = hittingPosition * -1;
         }
 
         if (gameObject.CompareTag("Enemy"))
         {
-            hitColorR = 1.0f;
+            hitColorR = 0f;
             hitColorG = 0f;
             hitColorB = 0f;
+            hitColorA = 1.0f;
         }
 
 
@@ -101,7 +107,7 @@ public class CharacterHandler : MonoBehaviour {
         //타격 시 색깔 바꾸기
         for (int i = 0; i < myAllSpriteRenderer.Length; i++)
         {
-            myAllSpriteRenderer[i].color = new Vector4(hitColorR, hitColorG, hitColorB, 1.0f);
+            myAllSpriteRenderer[i].color = new Vector4(hitColorR, hitColorG, hitColorB, hitColorA);
         }
 
         StartCoroutine("CharacterHitOff");
@@ -119,16 +125,16 @@ public class CharacterHandler : MonoBehaviour {
         }
     }
 
-    public void CharacterAddForce(int attackValue)
+    public void CharacterAddForce()
     {
         //타격 시 밀어내기
         int i = 1;
         
         if (tag == "Player")
             i = -1;
-        
-        float rForceX = (attackValue - assaultWeightValue) * 8;
-        float rForceY = (attackValue - assaultWeightValue) * 5;
+
+        float rForceX = (attackValueX - assaultWeightValue) * 8;
+        float rForceY = (attackValueY - assaultWeightValue) * 5;
 
         rForceX = Random.RandomRange(rForceX - 2, rForceX + 2);
         rForceY = Random.RandomRange(rForceY - 2, rForceY + 2);
@@ -259,5 +265,15 @@ public class CharacterHandler : MonoBehaviour {
     public void AssaultAddforceOff()
     {
         assaultAddforce = false;
+    }
+
+    public void attackValueXSetting(int aValueX)
+    {
+        attackValueX = aValueX;
+    }
+
+    public void attackValueYSetting(int aValueY)
+    {
+        attackValueY = aValueY;
     }
 }

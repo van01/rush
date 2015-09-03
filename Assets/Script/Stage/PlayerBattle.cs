@@ -12,6 +12,7 @@ public class PlayerBattle : CharacterBattle{
     private int coinCount = 0;
 
     public float attackWaitTime = 0.7f;
+    public float attackSuccessDelay = 0.3f;
 
     public override void Start()
     {
@@ -20,6 +21,8 @@ public class PlayerBattle : CharacterBattle{
         coinParent = GameObject.Find("_CoinParent");
 
         coinCount = Random.Range(3, 6);
+
+        SendMessage("attackSuccessDelayValueSetting", attackSuccessDelay);
     }
 
     public override void StartBattle()

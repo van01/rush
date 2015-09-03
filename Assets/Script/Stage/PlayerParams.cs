@@ -8,6 +8,7 @@ public class PlayerParams : CharacterParams {
 		this.id = 0;
         this.currentUnitType = unitTpye.Player;
         this.currentAttackType = attackType.Short;
+        
 		this.level = 1;
 		this.maxHP = 500;
 		this.curHP = this.maxHP;

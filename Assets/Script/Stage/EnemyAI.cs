@@ -6,6 +6,8 @@ public class EnemyAI : MonoBehaviour {
     public float attackDistance;
     public int groupValue;
 
+    public float chaseDistance = 10.0f;
+
     public float chaseSpeed;        // 임시
 
     private Transform target;
@@ -21,9 +23,16 @@ public class EnemyAI : MonoBehaviour {
     private bool chasePlayerOn = false;
     private bool HealthBarOn = true;
 
-    public bool assultState = false;
-
     private EnemyState tmpMyState;
+
+    public enum assultType
+    {
+        offense,
+        defense,
+        immovable,
+    }
+
+    public assultType currentAssulttype;
 
     void Start()
     {
@@ -32,7 +41,6 @@ public class EnemyAI : MonoBehaviour {
 
         attackDistance = Random.RandomRange(attackDistance - 0.2f, attackDistance + 0.2f);
         //print(attackDistance);
-        AssultStateOn();
     }
 
     void Update()
@@ -98,6 +106,14 @@ public class EnemyAI : MonoBehaviour {
 
         if (distance > attackDistance)
         {
+            if (currentAssulttype == assultType.offense)
+            {
+                if (distance < chaseDistance)
+                {
+                    ChasePlayer();
+                }
+            }
+
             if (tmpMyState.currentState != CharacterState.State.Attack)
             {
                 if (chasePlayerOn == true)
@@ -160,14 +176,4 @@ public class EnemyAI : MonoBehaviour {
         HealthBarOn = false;
     }
 
-
-    public void AssultStateOn()
-    {
-        assultState = true;
-    }
-
-    public void AssultStateOff()
-    {
-        assultState = false;
-    }
 }

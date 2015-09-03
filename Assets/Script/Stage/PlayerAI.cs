@@ -31,6 +31,9 @@ public class PlayerAI : MonoBehaviour
 
     protected bool checkDistanceFromTargetUnused = false;
 
+    protected bool saveSkillOn = false;
+    protected string saveSkillID;
+
     void Start()
     {
         tmpMyState = GetComponent<PlayerState>();
@@ -73,6 +76,15 @@ public class PlayerAI : MonoBehaviour
         if (HealthBarOn == true)
         {
             SendMessage("HealthBarPositionUpdate", transform.position);
+        }
+
+        if (saveSkillOn == true)
+        {
+            if (GetComponent<PlayerState>().currentState != CharacterState.State.Attack)
+            {
+                ActivePlayerSkillOn(saveSkillID);
+                saveSkillOn = false;
+            }
         }
     }
 
@@ -231,11 +243,23 @@ public class PlayerAI : MonoBehaviour
 
     public void ActivePlayerSkillOn(string activeSkillID)
     {
-        SendMessage("BattleStop");
-        SendMessage("CharacterStateControll", "Skill");         //여기에서 어떤 스킬인지 판단해 거리 측정 등 수행 필요
-        SendMessage("attackProssibleOn");
-        SendMessage("ActiveSkillOn");
-        CheckDistanceFromTargetUnusedOn();                      //CheckDistanceFromTargetOff
+        if (GetComponent<PlayerState>().currentState == CharacterState.State.Attack)
+        {
+            saveSkillOn = true;
+            saveSkillID = activeSkillID;
+        }
+        else
+        {
+            SendMessage("AttackEnd");
+
+            SendMessage("BattleStop");
+            SendMessage("AttackSuccessWaitStop");
+
+            SendMessage("CharacterStateControll", "Skill");         //여기에서 어떤 스킬인지 판단해 거리 측정 등 수행 필요
+            SendMessage("attackProssibleOn");
+            SendMessage("ActiveSkillOn");
+            CheckDistanceFromTargetUnusedOn();                      //CheckDistanceFromTargetOff
+        }
     }
 
     public void ActivePlayerSkillOff(string activeSkillID)

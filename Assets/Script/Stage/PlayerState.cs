@@ -64,9 +64,13 @@ public class PlayerState : CharacterState
     public override void AttackAction()
     {
         base.AttackAction();
-        SendMessage("ChangeAni", CharacterAni.ATTACK);
 
-        SendMessage("NormalAttackEffectRearOn", name);
+        if (GetComponent<PlayerAbility>().currentAttackWeaponType == PlayerAbility.attackWeaponType.Sword)
+            SendMessage("NormalAttackEffectRearOn", "Sword");
+        if (GetComponent<PlayerAbility>().currentAttackWeaponType == PlayerAbility.attackWeaponType.Spear)
+            SendMessage("NormalAttackEffectRearOn", "Spear");
+
+        SendMessage("ChangeAni", CharacterAni.ATTACK);
     }
 
     public override void AttackDelayAction()
@@ -83,7 +87,8 @@ public class PlayerState : CharacterState
 
         SendMessage("ChangeAni", CharacterAni.SKILL);
 
-        SendMessage("Skill01AttackEffectRearOn", name);
+        if (GetComponent<PlayerAbility>().currentAttackWeaponType == PlayerAbility.attackWeaponType.Sword)
+            SendMessage("Skill01AttackEffectRearOn", "Sword");
     }
 
     public override void GuardAction()

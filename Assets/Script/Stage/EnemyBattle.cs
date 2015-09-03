@@ -7,10 +7,13 @@ public class EnemyBattle : CharacterBattle{
     protected GameObject currentTargetGameObject;
 
     public float attackWaitTime = 0.7f;
+    public float attackSuccessDelay = 0.3f;
 
     public override void Start()
     {
         base.Start();
+
+        SendMessage("attackSuccessDelayValueSetting", attackSuccessDelay);
     }
 
     public override void StartBattle()

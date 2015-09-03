@@ -83,7 +83,7 @@ public class CharacterAni : MonoBehaviour {
         {
             tmpAnimation.Play(aniClipName);
 
-            attackSuccessDelay = 0.3f;
+            //attackSuccessDelay = 0.6f;      //pawn:0.3, knight:0.6
             StartCoroutine("AttackSuccessWait");
             
             attack = true;
@@ -92,7 +92,7 @@ public class CharacterAni : MonoBehaviour {
         {
             tmpAnimation.Play(aniClipName, PlayMode.StopAll);
 
-            attackSuccessDelay = 0.5f;
+            attackSuccessDelay = 0.5f;      //임시
             StartCoroutine("AttackSuccessWait");
 
             skill = true;
@@ -115,5 +115,15 @@ public class CharacterAni : MonoBehaviour {
         yield return new WaitForSeconds(attackSuccessDelay);
 
         SendMessage("AttackSuccess");
+    }
+
+    public void AttackSuccessWaitStop()
+    {
+        StopCoroutine("AttackSuccessWait");
+    }
+
+    public void attackSuccessDelayValueSetting(float fAttackSuccessDelay)
+    {
+        attackSuccessDelay = fAttackSuccessDelay;
     }
 }
