@@ -22,6 +22,12 @@ public class CharacterBattle : MonoBehaviour {
 
     protected bool skillOn = false;
 
+
+    protected GameObject projectilePrefab;
+    protected GameObject presentProjectile;
+    protected GameObject lunchPosition;
+    protected GameObject parentProjectile;
+
     public virtual void Start()
     {
         tmpGameController = GameObject.Find("GameController");
@@ -63,6 +69,15 @@ public class CharacterBattle : MonoBehaviour {
     {
         StopCoroutine("BattleWait");
         print("Battle End");
+    }
+
+    public virtual void LongDistanceLunchHandler()
+    {
+        presentProjectile = Instantiate(projectilePrefab, lunchPosition.transform.position, Quaternion.Euler(0, 0, 45)) as GameObject;
+        presentProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(2.2f, 5.0f), ForceMode2D.Impulse);           //arrow base 2.2f, 5.0f
+        presentProjectile.SendMessage("FlyingOn");
+        presentProjectile.transform.SetParent(parentProjectile.transform);
+
     }
 
     public virtual void AttackSuccess()

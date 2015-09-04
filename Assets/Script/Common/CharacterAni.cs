@@ -83,20 +83,29 @@ public class CharacterAni : MonoBehaviour {
         {
             tmpAnimation.Play(aniClipName);
 
-            //attackSuccessDelay = 0.6f;      //pawn:0.3, knight:0.6
-            StartCoroutine("AttackSuccessWait");
-            
+            //해당 기능 다른 곳으로 분리 필요
+            if (tag == "Player" && GetComponent<PlayerAbility>().currentAttackDistanceType == PlayerAbility.attackDistanceType.melee || tag == "Enemy" && GetComponent<EnemyAbility>().currentAttackDistanceType == EnemyAbility.attackDistanceType.melee)
+                StartCoroutine("AttackSuccessWait");
+            if (tag == "Player" && GetComponent<PlayerAbility>().currentAttackDistanceType == PlayerAbility.attackDistanceType.longDistance || tag == "Enemy" && GetComponent<EnemyAbility>().currentAttackDistanceType == EnemyAbility.attackDistanceType.longDistance)
+            {
+                StartCoroutine("AttackSuccessWait");
+                SendMessage("LongDistanceLunchHandler");
+            }
+
             attack = true;
         }
         else if (aniClipName == SKILL)
         {
             tmpAnimation.Play(aniClipName, PlayMode.StopAll);
 
-            attackSuccessDelay = 0.5f;      //임시
-            StartCoroutine("AttackSuccessWait");
-
+            if (tag == "Player" && GetComponent<PlayerAbility>().currentAttackDistanceType == PlayerAbility.attackDistanceType.melee || tag == "Enemy" && GetComponent<EnemyAbility>().currentAttackDistanceType == EnemyAbility.attackDistanceType.melee)
+            {
+                attackSuccessDelay = 0.5f;      //임시
+                StartCoroutine("AttackSuccessWait");
+            }
             skill = true;
         }
+
         else if (aniClipName == DEAD)
         {
             tmpAnimation.Play(aniClipName, PlayMode.StopAll);

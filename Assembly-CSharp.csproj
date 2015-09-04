@@ -111,6 +111,7 @@
      <Compile Include="Assets\Script\FrontEnd\FrontEndController.cs" />
      <Compile Include="Assets\Script\FrontEnd\PanelCloseButtonHandler.cs" />
      <Compile Include="Assets\Script\FrontEnd\StageButtonHandler.cs" />
+     <Compile Include="Assets\Script\Stage\ArrowHandler.cs" />
      <Compile Include="Assets\Script\Stage\CameraHandler.cs" />
      <Compile Include="Assets\Script\Stage\CharacterEffectController.cs" />
      <Compile Include="Assets\Script\Stage\EnemyAI.cs" />
