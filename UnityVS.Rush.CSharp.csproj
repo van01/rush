@@ -54,9 +54,6 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
     </Reference>
@@ -121,6 +118,7 @@
     <Compile Include="Assets\Script\Common\CharacterState.cs" />
     <Compile Include="Assets\Script\Common\CharacterWeaponHandler.cs" />
     <Compile Include="Assets\Script\Effect\EffectHandler_a_1.cs" />
+    <Compile Include="Assets\Script\Effect\EffectHandler_p_2.cs" />
     <Compile Include="Assets\Script\Effect\EffectHandler_s_1.cs" />
     <Compile Include="Assets\Script\Effect\EffectMessenger_a_1.cs" />
     <Compile Include="Assets\Script\FrontEnd\BattleButtonHandler.cs" />
@@ -128,6 +126,7 @@
     <Compile Include="Assets\Script\FrontEnd\PanelCloseButtonHandler.cs" />
     <Compile Include="Assets\Script\FrontEnd\StageButtonHandler.cs" />
     <Compile Include="Assets\Script\Stage\ArrowHandler.cs" />
+    <Compile Include="Assets\Script\Stage\BulletHandler.cs" />
     <Compile Include="Assets\Script\Stage\CameraHandler.cs" />
     <Compile Include="Assets\Script\Stage\CharacterEffectController.cs" />
     <Compile Include="Assets\Script\Stage\EnemyAI.cs" />

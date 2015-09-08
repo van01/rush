@@ -44,7 +44,10 @@ public class PlayerAI : MonoBehaviour
     {
         if (checkDistanceFromTargetUnused != true)
             if (tmpMyState.currentState != CharacterState.State.Dead)
+            {
                 CheckDistanceFromTarget();
+            }
+                
 
         //캐릭터 상태에 따라 gameState 조정, 해당 부분은 gameController로 이동 필요
         if (tmpMyState.currentState == CharacterState.State.Spawn || tmpMyState.currentState == CharacterState.State.Move)
@@ -146,6 +149,8 @@ public class PlayerAI : MonoBehaviour
             {
                 if (tmpMyState.currentState != CharacterState.State.Attack)
                 {
+                    SendMessage("TargetDistance", distance);    //화살 거리 산출을 위해 CharacterBattle에 distance 전달
+
                     SendMessage("CharacterStateControll", "Battle");
                     SendMessage("CharacterStateBattleOn");    //사정거리 진입 시 해당 캐릭터만 전투 모드 변경으로 변경하려고 했으나 해당 함수에 포함된 기능으로인해 보류
 

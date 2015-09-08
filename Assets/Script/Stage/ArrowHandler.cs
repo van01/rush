@@ -6,6 +6,11 @@ public class ArrowHandler : MonoBehaviour {
     private bool isFlying = false;
     private bool attackProssible = false;
 
+    protected float angleRotateValue;
+    protected float flyingOnDylay;
+
+    Animator animator;
+
     public enum LunchForce
     {
         Player,
@@ -22,18 +27,38 @@ public class ArrowHandler : MonoBehaviour {
             tag = "Player";
         else if (currentLunchForce == LunchForce.Enemy)
             tag = "Enemy";
+
+        animator = GetComponent<Animator>();
     }
 
 	void Update () {
         if (isFlying == true)
         {
-            transform.Rotate(new Vector3(0, 0, -2.8f));
+            transform.Rotate(new Vector3(0, 0, angleRotateValue));
         }
 	}
+
+    public void RotateValue(float fRotateValue)
+    {
+        angleRotateValue = 6.0f - fRotateValue;
+        if (angleRotateValue <= 3.0f)
+            angleRotateValue = 3.0f;
+
+        angleRotateValue = angleRotateValue * -1f;
+        flyingOnDylay = fRotateValue * 0.1f;
+        if (flyingOnDylay >= 0.5f)
+            flyingOnDylay = 0.5f;
+    }
 
     IEnumerator AutoDestroy()
     {
         yield return new WaitForSeconds(3.0f);
+
+        animator.SetInteger("effectOn", 2);
+    }
+
+    public void ArrowDestroy()
+    {
         Destroy(gameObject);
     }
 
@@ -45,7 +70,7 @@ public class ArrowHandler : MonoBehaviour {
 
     IEnumerator FlyingOnWait()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(flyingOnDylay);
         isFlying = true;
     }
 
@@ -65,11 +90,38 @@ public class ArrowHandler : MonoBehaviour {
             {
                 isFlying = false;
 
-                GetComponent<Rigidbody2D>().gravityScale = 0.0f;
-                GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                //GetComponent<Rigidbody2D>().angularVelocity = Vector2.zero;
+                Rigidbody2D tmpRigidbody2D = GetComponent<Rigidbody2D>();
+                BoxCollider2D tmpBoxCollider2D = GetComponent<BoxCollider2D>();
+
+                Destroy(tmpRigidbody2D);
+                Destroy(tmpBoxCollider2D);
+
+                transform.position = new Vector3(transform.position.x, transform.position.y - Random.Range(0.1f, 0.3f), 0);
 
                 gameObject.transform.parent.transform.parent.GetComponent<PlayerBattle>().AttackSuccess();
+
+                transform.SetParent(c.transform);
+                attackProssible = false;
+            }
+        }
+
+        if (LayerMask.LayerToName(c.gameObject.layer) == "Floor")
+        {
+            if (attackProssible == true)
+            {
+                isFlying = false;
+
+                Rigidbody2D tmpRigidbody2D = GetComponent<Rigidbody2D>();
+                BoxCollider2D tmpBoxCollider2D = GetComponent<BoxCollider2D>();
+
+                Destroy(tmpRigidbody2D);
+                Destroy(tmpBoxCollider2D);
+
+                transform.position = new Vector3(transform.position.x, transform.position.y - Random.Range(0.1f, 0.1f), 0);
+
+                gameObject.transform.parent.transform.parent.GetComponent<PlayerBattle>().AttackFail();
+
+                transform.SetParent(GameObject.FindGameObjectWithTag("Stage").GetComponent<StageScroll>().distanteA[GameObject.FindGameObjectWithTag("Stage").GetComponent<StageScroll>().distanteA.Length - 1].transform);
                 attackProssible = false;
             }
         }

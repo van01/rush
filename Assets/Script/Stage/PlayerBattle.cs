@@ -59,6 +59,12 @@ public class PlayerBattle : CharacterBattle{
         StartCoroutine("BattleWait");
     }
 
+    public override void AttackFail()
+    {
+        base.AttackFail();
+        StartCoroutine("BattleWait");
+    }
+
     public override void AttackEnd()
     {
         base.AttackEnd();
@@ -77,10 +83,10 @@ public class PlayerBattle : CharacterBattle{
         SendMessage("CharacterStateControll", "Move");
         SendMessage("PositionDistanceReset");
 
-        for (int i = 0; i <= coinCount; i++)
-        {
-            CoinSpawnHandler(target.transform);
-        }
+        //for (int i = 0; i <= coinCount; i++)
+        //{
+        //    CoinSpawnHandler(target.transform);
+        //}
     }
 
     private  IEnumerator BattleWait()

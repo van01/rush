@@ -85,9 +85,9 @@ public class CharacterAni : MonoBehaviour {
 
             //해당 기능 다른 곳으로 분리 필요
             if (tag == "Player" && GetComponent<PlayerAbility>().currentAttackDistanceType == PlayerAbility.attackDistanceType.melee || tag == "Enemy" && GetComponent<EnemyAbility>().currentAttackDistanceType == EnemyAbility.attackDistanceType.melee)
-                StartCoroutine("AttackSuccessWait");
+                StartCoroutine("MeleeAttackSuccessWait");
             if (tag == "Player" && GetComponent<PlayerAbility>().currentAttackDistanceType == PlayerAbility.attackDistanceType.longDistance || tag == "Enemy" && GetComponent<EnemyAbility>().currentAttackDistanceType == EnemyAbility.attackDistanceType.longDistance)
-                SendMessage("LongDistanceLunchHandler");
+                StartCoroutine("LongDistanceAttackSuccessWait");
 
             attack = true;
         }
@@ -98,7 +98,7 @@ public class CharacterAni : MonoBehaviour {
             if (tag == "Player" && GetComponent<PlayerAbility>().currentAttackDistanceType == PlayerAbility.attackDistanceType.melee || tag == "Enemy" && GetComponent<EnemyAbility>().currentAttackDistanceType == EnemyAbility.attackDistanceType.melee)
             {
                 attackSuccessDelay = 0.5f;      //임시
-                StartCoroutine("AttackSuccessWait");
+                StartCoroutine("MeleeAttackSuccessWait");
             }
             skill = true;
         }
@@ -116,11 +116,18 @@ public class CharacterAni : MonoBehaviour {
         currentAniClip = aniClipName;
     }
 
-    IEnumerator AttackSuccessWait()
+    IEnumerator MeleeAttackSuccessWait()
     {
         yield return new WaitForSeconds(attackSuccessDelay);
 
         SendMessage("AttackSuccessCall");
+    }
+
+    IEnumerator LongDistanceAttackSuccessWait()
+    {
+        yield return new WaitForSeconds(attackSuccessDelay);
+
+        SendMessage("LongDistanceLunchHandler");
     }
 
     public void AttackSuccessWaitStop()

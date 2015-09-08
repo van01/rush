@@ -28,6 +28,10 @@ public class CharacterBattle : MonoBehaviour {
     protected GameObject lunchPosition;
     protected GameObject parentProjectile;
 
+    protected float distance;
+    protected float addArrowForceX = 3f;
+    protected float addArrowForceY = 6f;
+
     public virtual void Start()
     {
         tmpGameController = GameObject.Find("GameController");
@@ -78,13 +82,19 @@ public class CharacterBattle : MonoBehaviour {
         {
             if (tag == "Player" && GetComponent<PlayerAbility>().currentAttackWeaponType == PlayerAbility.attackWeaponType.Bow || tag == "Enemy" && GetComponent<EnemyAbility>().currentAttackWeaponType == EnemyAbility.attackWeaponType.Bow)
             {
+                float arrowForceX = (addArrowForceX - distance) * 0.1f + distance;
+                float arrowForceY = (addArrowForceY - distance) * 0.5f + distance;
+                if (arrowForceY >= 5f)
+                    arrowForceY = 5f;
+
                 presentProjectile = Instantiate(projectilePrefab, lunchPosition.transform.position, Quaternion.Euler(0, 0, 45)) as GameObject;
-                presentProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(2.2f, 5.0f), ForceMode2D.Impulse);           //arrow base 2.2f, 5.0f
+                presentProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(arrowForceX, arrowForceY), ForceMode2D.Impulse);           //arrow base 2.2f, 5.0f
+                presentProjectile.SendMessage("RotateValue", distance);
             }
             if (tag == "Player" && GetComponent<PlayerAbility>().currentAttackWeaponType == PlayerAbility.attackWeaponType.Gun || tag == "Enemy" && GetComponent<EnemyAbility>().currentAttackWeaponType == EnemyAbility.attackWeaponType.Gun)
             {
                 presentProjectile = Instantiate(projectilePrefab, lunchPosition.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
-                presentProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(10.0f, 0f), ForceMode2D.Impulse);           //arrow base 2.2f, 5.0f
+                presentProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(15.0f, 0f), ForceMode2D.Impulse);           //arrow base 2.2f, 5.0f
             }
             presentProjectile.SendMessage("LunchForceSetting", tag);
             presentProjectile.SendMessage("FlyingOn");
@@ -174,6 +184,12 @@ public class CharacterBattle : MonoBehaviour {
         CheckTargetCurHP();        
     }
 
+    public virtual void AttackFail()
+    {
+
+    }
+
+
     public virtual void AttackEnd()
     {
         SendMessage("CharacterStateControll", "AttackDelay");
@@ -240,5 +256,10 @@ public class CharacterBattle : MonoBehaviour {
     public void ActiveSkillOff()
     {
         skillOn = false;
+    }
+
+    public void TargetDistance(float tDistance)
+    {
+        distance = tDistance;
     }
 }
