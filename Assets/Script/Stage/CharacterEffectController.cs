@@ -2,8 +2,11 @@
 using System.Collections;
 
 public class CharacterEffectController : MonoBehaviour {
+
     public GameObject s_1;
     public GameObject a_1;
+    public GameObject f_1;
+
     private string WeaponType;
 
     protected bool skillOn;
@@ -27,6 +30,30 @@ public class CharacterEffectController : MonoBehaviour {
         {
             yield return new WaitForSeconds(0.5f);
             s_1.SendMessage("EffectPlay");
+        }
+
+        if (WeaponType == "Gun")
+        {
+            yield return new WaitForSeconds(0.2f);
+            f_1.SendMessage("EffectPlay");
+        }
+
+        if (WeaponType == "Bazooka")
+        {
+            yield return new WaitForSeconds(0.2f);
+            f_1.SendMessage("EffectPlay");
+        }
+
+        if (WeaponType == "Staff")
+        {
+            yield return new WaitForSeconds(0.2f);
+            f_1.SendMessage("EffectPlay");
+        }
+
+        if (WeaponType == "Wand")
+        {
+            yield return new WaitForSeconds(0.2f);
+            f_1.SendMessage("EffectPlay");
         }
     }
 

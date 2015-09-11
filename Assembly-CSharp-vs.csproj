@@ -105,8 +105,10 @@
      <Compile Include="Assets\Script\Common\CharacterState.cs" />
      <Compile Include="Assets\Script\Common\CharacterWeaponHandler.cs" />
      <Compile Include="Assets\Script\Effect\EffectHandler_a_1.cs" />
+     <Compile Include="Assets\Script\Effect\EffectHandler_f_1_f.cs" />
      <Compile Include="Assets\Script\Effect\EffectHandler_p_2.cs" />
      <Compile Include="Assets\Script\Effect\EffectHandler_s_1.cs" />
+     <Compile Include="Assets\Script\Effect\EffectMessenger.cs" />
      <Compile Include="Assets\Script\Effect\EffectMessenger_a_1.cs" />
      <Compile Include="Assets\Script\FrontEnd\BattleButtonHandler.cs" />
      <Compile Include="Assets\Script\FrontEnd\FrontEndController.cs" />
@@ -124,6 +126,7 @@
      <Compile Include="Assets\Script\Stage\EnemyParams.cs" />
      <Compile Include="Assets\Script\Stage\EnemyScroll.cs" />
      <Compile Include="Assets\Script\Stage\EnemyState.cs" />
+     <Compile Include="Assets\Script\Stage\FireballHandler.cs" />
      <Compile Include="Assets\Script\Stage\GameController.cs" />
      <Compile Include="Assets\Script\Stage\GameState.cs" />
      <Compile Include="Assets\Script\Stage\HUDController.cs" />

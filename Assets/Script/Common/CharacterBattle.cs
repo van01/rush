@@ -25,7 +25,7 @@ public class CharacterBattle : MonoBehaviour {
 
     protected GameObject projectilePrefab;
     protected GameObject presentProjectile;
-    protected GameObject lunchPosition;
+    protected GameObject launchPosition;
     protected GameObject parentProjectile;
 
     protected float distance;
@@ -75,7 +75,7 @@ public class CharacterBattle : MonoBehaviour {
         print("Battle End");
     }
 
-    public virtual void LongDistanceLunchHandler()
+    public virtual void LongDistancelaunchHandler()
     {
         attackProssible = true;     ////// ???
         if (attackProssible == true)
@@ -87,16 +87,32 @@ public class CharacterBattle : MonoBehaviour {
                 if (arrowForceY >= 5f)
                     arrowForceY = 5f;
 
-                presentProjectile = Instantiate(projectilePrefab, lunchPosition.transform.position, Quaternion.Euler(0, 0, 45)) as GameObject;
+                presentProjectile = Instantiate(projectilePrefab, launchPosition.transform.position, Quaternion.Euler(0, 0, 45)) as GameObject;
                 presentProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(arrowForceX, arrowForceY), ForceMode2D.Impulse);           //arrow base 2.2f, 5.0f
                 presentProjectile.SendMessage("RotateValue", distance);
             }
-            if (tag == "Player" && GetComponent<PlayerAbility>().currentAttackWeaponType == PlayerAbility.attackWeaponType.Gun || tag == "Enemy" && GetComponent<EnemyAbility>().currentAttackWeaponType == EnemyAbility.attackWeaponType.Gun)
+            else if (tag == "Player" && GetComponent<PlayerAbility>().currentAttackWeaponType == PlayerAbility.attackWeaponType.Gun || tag == "Enemy" && GetComponent<EnemyAbility>().currentAttackWeaponType == EnemyAbility.attackWeaponType.Gun)
             {
-                presentProjectile = Instantiate(projectilePrefab, lunchPosition.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+                presentProjectile = Instantiate(projectilePrefab, launchPosition.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
                 presentProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(15.0f, 0f), ForceMode2D.Impulse);           //arrow base 2.2f, 5.0f
             }
-            presentProjectile.SendMessage("LunchForceSetting", tag);
+            else if (tag == "Player" && GetComponent<PlayerAbility>().currentAttackWeaponType == PlayerAbility.attackWeaponType.Bazooka || tag == "Enemy" && GetComponent<EnemyAbility>().currentAttackWeaponType == EnemyAbility.attackWeaponType.Bazooka)
+            {
+                presentProjectile = Instantiate(projectilePrefab, launchPosition.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+                presentProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(10.0f, 0f), ForceMode2D.Impulse);           //arrow base 2.2f, 5.0f
+            }
+            else if (tag == "Player" && GetComponent<PlayerAbility>().currentAttackWeaponType == PlayerAbility.attackWeaponType.Staff || tag == "Enemy" && GetComponent<EnemyAbility>().currentAttackWeaponType == EnemyAbility.attackWeaponType.Staff)
+            {
+                presentProjectile = Instantiate(projectilePrefab, launchPosition.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+                presentProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(8.0f, 0f), ForceMode2D.Impulse);           //arrow base 2.2f, 5.0f
+            }
+            else if (tag == "Player" && GetComponent<PlayerAbility>().currentAttackWeaponType == PlayerAbility.attackWeaponType.Wand || tag == "Enemy" && GetComponent<EnemyAbility>().currentAttackWeaponType == EnemyAbility.attackWeaponType.Wand)
+            {
+                presentProjectile = Instantiate(projectilePrefab, launchPosition.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+                presentProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(5.0f, 0f), ForceMode2D.Impulse);           //arrow base 2.2f, 5.0f
+            }
+
+            presentProjectile.SendMessage("launchForceSetting", tag);
             presentProjectile.SendMessage("FlyingOn");
 
             presentProjectile.transform.SetParent(parentProjectile.transform);

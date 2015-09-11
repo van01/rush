@@ -11,24 +11,27 @@ public class ArrowHandler : MonoBehaviour {
 
     Animator animator;
 
-    public enum LunchForce
+    public enum launchForce
     {
         Player,
         Enemy,
     }
 
-    public LunchForce currentLunchForce;
+    public launchForce currentlaunchForce;
 
     void Start()
     {
         StartCoroutine("AutoDestroy");
 
-        if (currentLunchForce == LunchForce.Player)
+        if (currentlaunchForce == launchForce.Player)
             tag = "Player";
-        else if (currentLunchForce == LunchForce.Enemy)
+        else if (currentlaunchForce == launchForce.Enemy)
             tag = "Enemy";
 
         animator = GetComponent<Animator>();
+
+        GetComponent<MeshRenderer>().sortingLayerName = "Effect";
+        
     }
 
 	void Update () {
@@ -74,12 +77,12 @@ public class ArrowHandler : MonoBehaviour {
         isFlying = true;
     }
 
-    public void LunchForceSetting(string sLunchForce)
+    public void launchForceSetting(string slaunchForce)
     {
-        if (sLunchForce == "Player")
-            currentLunchForce = LunchForce.Player;
-        else if (sLunchForce == "Enemy")
-            currentLunchForce = LunchForce.Enemy;
+        if (slaunchForce == "Player")
+            currentlaunchForce = launchForce.Player;
+        else if (slaunchForce == "Enemy")
+            currentlaunchForce = launchForce.Enemy;
     }
 
     void OnTriggerEnter2D(Collider2D c)
@@ -89,6 +92,8 @@ public class ArrowHandler : MonoBehaviour {
             if (attackProssible == true)
             {
                 isFlying = false;
+
+                GetComponent<MeshRenderer>().sortingLayerName = "Default";
 
                 Rigidbody2D tmpRigidbody2D = GetComponent<Rigidbody2D>();
                 BoxCollider2D tmpBoxCollider2D = GetComponent<BoxCollider2D>();

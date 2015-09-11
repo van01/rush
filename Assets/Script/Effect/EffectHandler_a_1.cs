@@ -11,6 +11,7 @@ public class EffectHandler_a_1 : MonoBehaviour {
     void Start()
     {
         animator = GetComponent<Animator>();
+        GetComponent<MeshRenderer>().sortingLayerName = "Effect";
     }
 
     public void RealEffectPlay()

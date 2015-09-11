@@ -7,27 +7,30 @@ public class BulletHandler : MonoBehaviour {
     private bool attackProssible = false;
 
     public GameObject afterEffect;
+    public GameObject explosion;
+
     private Animator afterEffectAnimator;
 
-    public enum LunchForce
+    public enum launchForce
     {
         Player,
         Enemy,
     }
 
-    public LunchForce currentLunchForce;
+    public launchForce currentlaunchForce;
 
     void Start()
     {
         StartCoroutine("AutoDestroy");
 
-        if (currentLunchForce == LunchForce.Player)
+        if (currentlaunchForce == launchForce.Player)
             tag = "Player";
-        else if (currentLunchForce == LunchForce.Enemy)
+        else if (currentlaunchForce == launchForce.Enemy)
             tag = "Enemy";
 
         //afterEffectAnimator = afterEffect.GetComponent<Animator>();
 
+        GetComponent<MeshRenderer>().sortingLayerName = "Effect";
         afterEffect.GetComponent<Animator>().SetInteger("effectOn", 1);
     }
 
@@ -39,12 +42,14 @@ public class BulletHandler : MonoBehaviour {
 
     public void BulletAfterEffectDestroyPlay()
     {
+        GetComponent<Animator>().SetInteger("effectOn", 2);
         afterEffect.GetComponent<Animator>().SetInteger("effectOn", 2);
     }
 
     public void BulletDestroy()
     {
-        Destroy(gameObject);
+        if (explosion == null)
+            DestroyProjectile();
     }
 
     public void FlyingOn()
@@ -53,12 +58,12 @@ public class BulletHandler : MonoBehaviour {
         attackProssible = true;
     }
     
-    public void LunchForceSetting(string sLunchForce)
+    public void launchForceSetting(string slaunchForce)
     {
-        if (sLunchForce == "Player")
-            currentLunchForce = LunchForce.Player;
-        else if (sLunchForce == "Enemy")
-            currentLunchForce = LunchForce.Enemy;
+        if (slaunchForce == "Player")
+            currentlaunchForce = launchForce.Player;
+        else if (slaunchForce == "Enemy")
+            currentlaunchForce = launchForce.Enemy;
     }
 
     void OnTriggerEnter2D(Collider2D c)
@@ -75,13 +80,21 @@ public class BulletHandler : MonoBehaviour {
                 Destroy(tmpRigidbody2D);
                 Destroy(tmpBoxCollider2D);
 
-                transform.position = new Vector3(transform.position.x + 0.5f, transform.position.y, 0);
+                transform.position = new Vector3(transform.position.x + 0.3f, transform.position.y, 0);
 
                 gameObject.transform.parent.transform.parent.GetComponent<PlayerBattle>().AttackSuccess();
                 attackProssible = false;
 
+                if (explosion != null)
+                    explosion.SendMessage("RealEffectPlay");
+
                 BulletAfterEffectDestroyPlay();
             }
         }
+    }
+
+    public void DestroyProjectile()
+    {
+        Destroy(gameObject);
     }
 }

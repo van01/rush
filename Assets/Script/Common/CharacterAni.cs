@@ -127,7 +127,7 @@ public class CharacterAni : MonoBehaviour {
     {
         yield return new WaitForSeconds(attackSuccessDelay);
 
-        SendMessage("LongDistanceLunchHandler");
+        SendMessage("LongDistancelaunchHandler");
     }
 
     public void AttackSuccessWaitStop()

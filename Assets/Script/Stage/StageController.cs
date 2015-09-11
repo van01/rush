@@ -5,6 +5,9 @@ public class StageController : MonoBehaviour {
 
 	public float scrollSpeed;
 
+    public bool isStageTest = false;
+    public int StageTestNumber = 0;
+
 	private GameObject tmpStage;
 	private GameObject tmpEnemy;
 
@@ -23,6 +26,21 @@ public class StageController : MonoBehaviour {
 	}
 
     public void StageInialize()
+    {
+        if (stagePrefab.Length < StageTestNumber)
+            StageInialize();
+
+        if (isStageTest == true)
+        {
+            presentStage = Instantiate(stagePrefab[StageTestNumber], transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+        }
+        else
+        {
+            StageInstatiate();
+        }
+    }
+
+    void StageInstatiate()
     {
         for (int i = 0; i < stagePrefab.Length; i++)
         {

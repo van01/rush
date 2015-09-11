@@ -67,8 +67,16 @@ public class PlayerState : CharacterState
 
         if (GetComponent<PlayerAbility>().currentAttackWeaponType == PlayerAbility.attackWeaponType.Sword)
             SendMessage("NormalAttackEffectRearOn", "Sword");
-        if (GetComponent<PlayerAbility>().currentAttackWeaponType == PlayerAbility.attackWeaponType.Spear)
+        else if (GetComponent<PlayerAbility>().currentAttackWeaponType == PlayerAbility.attackWeaponType.Spear)
             SendMessage("NormalAttackEffectRearOn", "Spear");
+        else if (GetComponent<PlayerAbility>().currentAttackWeaponType == PlayerAbility.attackWeaponType.Gun)
+            SendMessage("NormalAttackEffectRearOn", "Gun");
+        else if (GetComponent<PlayerAbility>().currentAttackWeaponType == PlayerAbility.attackWeaponType.Bazooka)
+            SendMessage("NormalAttackEffectRearOn", "Bazooka");
+        else if (GetComponent<PlayerAbility>().currentAttackWeaponType == PlayerAbility.attackWeaponType.Staff)
+            SendMessage("NormalAttackEffectRearOn", "Staff");
+        else if (GetComponent<PlayerAbility>().currentAttackWeaponType == PlayerAbility.attackWeaponType.Wand)
+            SendMessage("NormalAttackEffectRearOn", "Wand");
 
         SendMessage("ChangeAni", CharacterAni.ATTACK);
     }

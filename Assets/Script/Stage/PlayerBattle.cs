@@ -15,7 +15,7 @@ public class PlayerBattle : CharacterBattle{
     public float attackSuccessDelay = 0.3f;
 
     public GameObject projectilePrefabLink;
-    public GameObject mlunchPositionLink;
+    public GameObject mlaunchPositionLink;
     public GameObject parentProjectileLink;
 
     public override void Start()
@@ -23,7 +23,7 @@ public class PlayerBattle : CharacterBattle{
         base.Start();
 
         projectilePrefab = projectilePrefabLink;
-        lunchPosition = mlunchPositionLink;
+        launchPosition = mlaunchPositionLink;
         parentProjectile = parentProjectileLink;
 
         coinParent = GameObject.Find("_CoinParent");
