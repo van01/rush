@@ -1,13 +1,14 @@
 fileFormatVersion: 2
 guid: d4ba7cd89a520914885d71052f95845b
-timeCreated: 1441870880
+timeCreated: 1442024335
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: ArchColumn
-    21300002: Candlestick
+    21300002: Candlestick_1
     21300004: Window
     21300006: Obstacle
+    21300008: Candlestick_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -56,14 +57,14 @@ TextureImporter:
     - name: ArchColumn
       rect:
         serializedVersion: 2
-        x: 18
+        x: 16
         y: 379
-        width: 200
+        width: 205
         height: 631
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Candlestick
+    - name: Candlestick_1
       rect:
         serializedVersion: 2
         x: 261
@@ -90,6 +91,16 @@ TextureImporter:
         y: 15
         width: 542
         height: 341
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Candlestick_2
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 408
+        width: 85
+        height: 177
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
