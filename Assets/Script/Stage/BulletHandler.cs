@@ -23,10 +23,10 @@ public class BulletHandler : MonoBehaviour {
     {
         StartCoroutine("AutoDestroy");
 
-        if (currentlaunchForce == launchForce.Player)
-            tag = "Player";
-        else if (currentlaunchForce == launchForce.Enemy)
-            tag = "Enemy";
+        //if (currentlaunchForce == launchForce.Player)
+        //    tag = "Player";
+        //else if (currentlaunchForce == launchForce.Enemy)
+        //    tag = "Enemy";
 
         //afterEffectAnimator = afterEffect.GetComponent<Animator>();
 
@@ -83,6 +83,30 @@ public class BulletHandler : MonoBehaviour {
                 transform.position = new Vector3(transform.position.x + 0.3f, transform.position.y, 0);
 
                 gameObject.transform.parent.transform.parent.GetComponent<PlayerBattle>().AttackSuccess();
+                attackProssible = false;
+
+                if (explosion != null)
+                    explosion.SendMessage("RealEffectPlay");
+
+                BulletAfterEffectDestroyPlay();
+            }
+        }
+
+        if (c.tag == "Player")
+        {
+            if (attackProssible == true)
+            {
+                isFlying = false;
+
+                Rigidbody2D tmpRigidbody2D = GetComponent<Rigidbody2D>();
+                BoxCollider2D tmpBoxCollider2D = GetComponent<BoxCollider2D>();
+
+                Destroy(tmpRigidbody2D);
+                Destroy(tmpBoxCollider2D);
+
+                transform.position = new Vector3(transform.position.x + 0.3f, transform.position.y, 0);
+
+                gameObject.transform.parent.transform.parent.GetComponent<EnemyBattle>().AttackSuccess();
                 attackProssible = false;
 
                 if (explosion != null)

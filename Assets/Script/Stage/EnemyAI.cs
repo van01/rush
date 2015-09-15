@@ -103,18 +103,13 @@ public class EnemyAI : MonoBehaviour {
 
         distance = Vector3.Distance(target.position, transform.position);
         distance = distance - ((target.GetComponent<BoxCollider2D>().size.x - target.GetComponent<BoxCollider2D>().offset.x) * target.transform.localScale.x / 2);
-
+        
         if (distance > attackDistance)
         {
             if (currentAssulttype == assultType.offense)
-            {
                 if (distance < chaseDistance)
-                {
                     ChasePlayer();
-                }
-            }
-
-            if (tmpMyState.currentState != CharacterState.State.Attack)
+            else if (tmpMyState.currentState != CharacterState.State.Attack)
             {
                 if (chasePlayerOn == true)
                 {
@@ -125,29 +120,25 @@ public class EnemyAI : MonoBehaviour {
                 {
                     SendMessage("CharacterStateControll", "Battle");
                 }
-            }
-                
-            
+            }             
         }
+
         else if (distance < attackDistance)
+        {
+            if (target.GetComponent<PlayerState>().currentState != CharacterState.State.Dead)
             {
-                if (target.GetComponent<PlayerState>().currentState != CharacterState.State.Dead)
+                if (tmpMyState.currentState != CharacterState.State.Attack)
                 {
-                    if (tmpMyState.currentState != CharacterState.State.Attack)
-                    {
-                        if (tmpMyState.currentState == CharacterState.State.Move)
-                        {
-                            SendMessage("CharacterStateControll", "Battle");
-                            //해당 부분에서 멈추는 현상 발생
-                        }
+                    if (tmpMyState.currentState == CharacterState.State.Move)
+                        SendMessage("CharacterStateControll", "Battle"); //해당 부분에서 멈추는 현상 발생
+                    SendMessage("TargetDistance", distance);
 
-                        SendMessage("StartBattle");
+                    SendMessage("StartBattle");
 
-                        tmpGameController.SendMessage("EnemyStateBattleInfection", groupValue); //해당 함수에 판단자 추가 필요
+                    tmpGameController.SendMessage("EnemyStateBattleInfection", groupValue); //해당 함수에 판단자 추가 필요
                     
-
-                        chasePlayer = false;
-                        chasePlayerOn = true;
+                    chasePlayer = false;
+                    chasePlayerOn = true;
                 }
             }
         }

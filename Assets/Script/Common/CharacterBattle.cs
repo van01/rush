@@ -32,6 +32,9 @@ public class CharacterBattle : MonoBehaviour {
     protected float addArrowForceX = 3f;
     protected float addArrowForceY = 6f;
 
+    protected int forceA = 1;
+    protected float forceB = 0;
+
     public virtual void Start()
     {
         tmpGameController = GameObject.Find("GameController");
@@ -80,6 +83,12 @@ public class CharacterBattle : MonoBehaviour {
         attackProssible = true;     ////// ???
         if (attackProssible == true)
         {
+            if (tag == "Enemy")
+            {
+                forceA = -1;
+                forceB = 180.0f;
+            }
+
             if (tag == "Player" && GetComponent<PlayerAbility>().currentAttackWeaponType == PlayerAbility.attackWeaponType.Bow || tag == "Enemy" && GetComponent<EnemyAbility>().currentAttackWeaponType == EnemyAbility.attackWeaponType.Bow)
             {
                 float arrowForceX = (addArrowForceX - distance) * 0.1f + distance;
@@ -87,14 +96,15 @@ public class CharacterBattle : MonoBehaviour {
                 if (arrowForceY >= 5f)
                     arrowForceY = 5f;
 
-                presentProjectile = Instantiate(projectilePrefab, launchPosition.transform.position, Quaternion.Euler(0, 0, 45)) as GameObject;
-                presentProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(arrowForceX, arrowForceY), ForceMode2D.Impulse);           //arrow base 2.2f, 5.0f
+                presentProjectile = Instantiate(projectilePrefab, launchPosition.transform.position, Quaternion.Euler(0, forceB, 45)) as GameObject;
+                presentProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(arrowForceX * forceA, arrowForceY), ForceMode2D.Impulse);           //arrow base 2.2f, 5.0f
                 presentProjectile.SendMessage("RotateValue", distance);
             }
             else if (tag == "Player" && GetComponent<PlayerAbility>().currentAttackWeaponType == PlayerAbility.attackWeaponType.Gun || tag == "Enemy" && GetComponent<EnemyAbility>().currentAttackWeaponType == EnemyAbility.attackWeaponType.Gun)
             {
                 presentProjectile = Instantiate(projectilePrefab, launchPosition.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
-                presentProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(15.0f, 0f), ForceMode2D.Impulse);           //arrow base 2.2f, 5.0f
+                presentProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(15.0f * forceA, 0f), ForceMode2D.Impulse);           //arrow base 2.2f, 5.0f
+                presentProjectile.transform.localScale = new Vector3(forceA, 1, 1);
             }
             else if (tag == "Player" && GetComponent<PlayerAbility>().currentAttackWeaponType == PlayerAbility.attackWeaponType.Bazooka || tag == "Enemy" && GetComponent<EnemyAbility>().currentAttackWeaponType == EnemyAbility.attackWeaponType.Bazooka)
             {

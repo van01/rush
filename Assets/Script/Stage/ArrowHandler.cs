@@ -23,10 +23,10 @@ public class ArrowHandler : MonoBehaviour {
     {
         StartCoroutine("AutoDestroy");
 
-        if (currentlaunchForce == launchForce.Player)
-            tag = "Player";
-        else if (currentlaunchForce == launchForce.Enemy)
-            tag = "Enemy";
+        //if (currentlaunchForce == launchForce.Player)
+        //    tag = "Player";
+        //else if (currentlaunchForce == launchForce.Enemy)
+        //    tag = "Enemy";
 
         animator = GetComponent<Animator>();
 
@@ -110,7 +110,30 @@ public class ArrowHandler : MonoBehaviour {
             }
         }
 
-        if (LayerMask.LayerToName(c.gameObject.layer) == "Floor")
+        else if (c.tag == "Player")
+        {
+            if (attackProssible == true)
+            {
+                isFlying = false;
+
+                GetComponent<MeshRenderer>().sortingLayerName = "Default";
+
+                Rigidbody2D tmpRigidbody2D = GetComponent<Rigidbody2D>();
+                BoxCollider2D tmpBoxCollider2D = GetComponent<BoxCollider2D>();
+
+                Destroy(tmpRigidbody2D);
+                Destroy(tmpBoxCollider2D);
+
+                transform.position = new Vector3(transform.position.x, transform.position.y - Random.Range(0.1f, 0.3f), 0);
+
+                gameObject.transform.parent.transform.parent.GetComponent<EnemyBattle>().AttackSuccess();
+
+                transform.SetParent(c.transform);
+                attackProssible = false;
+            }
+        }
+
+        else if (LayerMask.LayerToName(c.gameObject.layer) == "Floor")
         {
             if (attackProssible == true)
             {
@@ -124,7 +147,10 @@ public class ArrowHandler : MonoBehaviour {
 
                 transform.position = new Vector3(transform.position.x, transform.position.y - Random.Range(0.1f, 0.1f), 0);
 
-                gameObject.transform.parent.transform.parent.GetComponent<PlayerBattle>().AttackFail();
+                if (tag == "Player")
+                    gameObject.transform.parent.transform.parent.GetComponent<PlayerBattle>().AttackFail();
+                else
+                    gameObject.transform.parent.transform.parent.GetComponent<EnemyBattle>().AttackFail();
 
                 transform.SetParent(GameObject.FindGameObjectWithTag("Stage").GetComponent<StageScroll>().distanteA[GameObject.FindGameObjectWithTag("Stage").GetComponent<StageScroll>().distanteA.Length - 1].transform);
                 attackProssible = false;

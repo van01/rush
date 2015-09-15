@@ -149,6 +149,11 @@ public class PlayerAI : MonoBehaviour
             {
                 if (tmpMyState.currentState != CharacterState.State.Attack)
                 {
+                    if (tag == "Enemy")
+                    {
+                        print("distance < attackDistance");
+                    }
+
                     SendMessage("TargetDistance", distance);    //화살 거리 산출을 위해 CharacterBattle에 distance 전달
 
                     SendMessage("CharacterStateControll", "Battle");

@@ -19,14 +19,22 @@ public class EnemyController : MonoBehaviour {
     {
         tmpMonsters = GameObject.FindGameObjectsWithTag("Enemy");
 
-        for (int i = 0; i < tmpMonsters.Length; i++)
+        if (tmpMonsters.Length > 1)
         {
-            if (nBaseGroupValue == tmpMonsters[i].GetComponent<EnemyAI>().groupValue)
+            for (int i = 0; i < tmpMonsters.Length; i++)
             {
-                if (tmpMonsters[i].GetComponent<EnemyState>().currentState == CharacterState.State.Battle)
+                if (tmpMonsters[i].GetComponent<EnemyAI>() == true)
                 {
-                    tmpMonsters[i].gameObject.SendMessage("ChasePlayer");
+                    if (nBaseGroupValue == tmpMonsters[i].GetComponent<EnemyAI>().groupValue)
+                    {
+                        if (tmpMonsters[i].GetComponent<EnemyState>().currentState == CharacterState.State.Battle)
+                        {
+
+                            tmpMonsters[i].gameObject.SendMessage("ChasePlayer");
+                        }
+                    }
                 }
+                
             }
         }
     }

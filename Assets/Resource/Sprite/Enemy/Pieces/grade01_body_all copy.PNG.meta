@@ -1,14 +1,14 @@
 fileFormatVersion: 2
 guid: 65a8e306d302abf4b9e6286f8847ae05
-timeCreated: 1435771653
+timeCreated: 1442306261
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: grade01_body
-    21300002: grade01_arm_L
-    21300004: grade01_arm_R
-    21300006: grade01_leg_L
-    21300008: grade01_leg_R
+    21300002: grade01_arm_R
+    21300004: grade01_arm_L
+    21300006: grade01_leg_R
+    21300008: grade01_leg_L
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -64,7 +64,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: grade01_arm_L
+    - name: grade01_arm_R
       rect:
         serializedVersion: 2
         x: 10
@@ -74,7 +74,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: grade01_arm_R
+    - name: grade01_arm_L
       rect:
         serializedVersion: 2
         x: 37
@@ -84,7 +84,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: grade01_leg_L
+    - name: grade01_leg_R
       rect:
         serializedVersion: 2
         x: 22
@@ -94,7 +94,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: grade01_leg_R
+    - name: grade01_leg_L
       rect:
         serializedVersion: 2
         x: 35
