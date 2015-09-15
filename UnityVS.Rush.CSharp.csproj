@@ -128,8 +128,6 @@
     <Compile Include="Assets\Script\FrontEnd\FrontEndController.cs" />
     <Compile Include="Assets\Script\FrontEnd\PanelCloseButtonHandler.cs" />
     <Compile Include="Assets\Script\FrontEnd\StageButtonHandler.cs" />
-    <Compile Include="Assets\Script\Stage\ArrowHandler.cs" />
-    <Compile Include="Assets\Script\Stage\BulletHandler.cs" />
     <Compile Include="Assets\Script\Stage\CameraHandler.cs" />
     <Compile Include="Assets\Script\Stage\CharacterEffectController.cs" />
     <Compile Include="Assets\Script\Stage\EnemyAI.cs" />
@@ -140,14 +138,12 @@
     <Compile Include="Assets\Script\Stage\EnemyParams.cs" />
     <Compile Include="Assets\Script\Stage\EnemyScroll.cs" />
     <Compile Include="Assets\Script\Stage\EnemyState.cs" />
-    <Compile Include="Assets\Script\Stage\FireballHandler.cs" />
     <Compile Include="Assets\Script\Stage\GameController.cs" />
     <Compile Include="Assets\Script\Stage\GameState.cs" />
     <Compile Include="Assets\Script\Stage\HUDController.cs" />
     <Compile Include="Assets\Script\Stage\HUDHandler.cs" />
     <Compile Include="Assets\Script\Stage\HUDTextEffect.cs" />
     <Compile Include="Assets\Script\Stage\ItemHandler.cs" />
-    <Compile Include="Assets\Script\Stage\LightballHandler.cs" />
     <Compile Include="Assets\Script\Stage\PlayerAI.cs" />
     <Compile Include="Assets\Script\Stage\PlayerAbility.cs" />
     <Compile Include="Assets\Script\Stage\PlayerBattle.cs" />

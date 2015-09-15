@@ -20,11 +20,21 @@ public class ProjectileHandler : MonoBehaviour {
 
     public enum projectileType
     {
-        Rotate,
+        Arrow,
+        LightBall,
         None,
     }
 
     public projectileType currentProjectileType;
+
+    public GameObject afterEffect;
+    public GameObject explosion;
+
+    public bool spriteRenderer;
+
+    public GameObject[] light;
+    public GameObject ball;
+    public GameObject ring;
 
     void Start()
     {
@@ -37,22 +47,35 @@ public class ProjectileHandler : MonoBehaviour {
 
         animator = GetComponent<Animator>();
 
-        GetComponent<MeshRenderer>().sortingLayerName = "Effect";
+        if (currentProjectileType != projectileType.LightBall)
+        {
+            if (spriteRenderer == true)
+                animator.SetInteger("effectOn", 1);
+            else
+                GetComponent<MeshRenderer>().sortingLayerName = "Effect";
+        }
+        
+        if (afterEffect != null)
+            afterEffect.GetComponent<Animator>().SetInteger("effectOn", 1);
 
+        if (currentProjectileType == projectileType.LightBall)
+        {
+            for (int i = 0; i < light.Length; i++)
+            {
+                light[i].SendMessage("RealEffectSetting", 1);
+            }
+            ball.SendMessage("RealEffectSetting", 2);
+            ring.SendMessage("RealEffectSetting", 3);
+        }
     }
 
     void Update()
     {
-        //if (currentProjectileType == projectileType.Rotate)
-        //{
-        //    if (isFlying == true)
-        //    {
-        //        transform.Rotate(new Vector3(0, 0, angleRotateValue));
-        //    }
-        //}
+        if (currentProjectileType == projectileType.LightBall)
+        {
+            transform.Rotate(new Vector3(0, 0, 2.0f));
+        }
     }
-
-    
 
     public void RotateValue(float fRotateValue)
     {
@@ -69,11 +92,46 @@ public class ProjectileHandler : MonoBehaviour {
     IEnumerator AutoDestroy()
     {
         yield return new WaitForSeconds(3.0f);
+    
+        if (afterEffect != null)
+            afterEffect.GetComponent<Animator>().SetInteger("effectOn", 2);
 
-        animator.SetInteger("effectOn", 2);
+        if (currentProjectileType == projectileType.LightBall)
+            LightballDestroy();
+
+        if (spriteRenderer == true)
+            StartCoroutine("SpriteDestroy");
+        else
+            animator.SetInteger("effectOn", 2);      
     }
 
     public void ArrowDestroy()
+    {
+        DestroyProjectile();
+    }
+
+    public void CompletDestroy()
+    {
+        DestroyProjectile();
+    }
+
+    public void BulletDestroy()
+    {
+        if (explosion == null)
+            DestroyProjectile();
+    }
+
+    void LightballDestroy()
+    {
+        for (int i = 0; i < light.Length; i++)
+        {
+            light[i].SendMessage("EffectStop");
+        }
+        ball.SendMessage("EffectStop");
+        ring.SendMessage("EffectStop");
+    }
+
+    public void DestroyProjectile()
     {
         Destroy(gameObject);
     }
@@ -109,13 +167,14 @@ public class ProjectileHandler : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D c)
     {
-        if (c.tag == "Enemy")
+        if (c.tag == "Enemy" && currentlaunchForce == launchForce.Player)
         {
             if (attackProssible == true)
             {
                 isFlying = false;
 
-                GetComponent<MeshRenderer>().sortingLayerName = "Default";
+                if (spriteRenderer != true && currentProjectileType != projectileType.LightBall)
+                    GetComponent<MeshRenderer>().sortingLayerName = "Default";
 
                 Rigidbody2D tmpRigidbody2D = GetComponent<Rigidbody2D>();
                 BoxCollider2D tmpBoxCollider2D = GetComponent<BoxCollider2D>();
@@ -123,22 +182,40 @@ public class ProjectileHandler : MonoBehaviour {
                 Destroy(tmpRigidbody2D);
                 Destroy(tmpBoxCollider2D);
 
-                transform.position = new Vector3(transform.position.x, transform.position.y - Random.Range(0.1f, 0.3f), 0);
+                if (currentProjectileType == projectileType.Arrow)
+                    transform.position = new Vector3(transform.position.x, transform.position.y - Random.Range(0.1f, 0.3f), 0);
+                if (currentProjectileType == projectileType.None)
+                    transform.position = new Vector3(transform.position.x + 0.5f, transform.position.y, 0);
 
                 gameObject.transform.parent.transform.parent.GetComponent<PlayerBattle>().AttackSuccess();
 
                 transform.SetParent(c.transform);
                 attackProssible = false;
+
+                if (afterEffect == true)
+                    afterEffect.GetComponent<Animator>().SetInteger("effectOn", 2);
+
+                if (explosion != null)
+                    explosion.SendMessage("RealEffectPlay");
+
+                if (spriteRenderer == true)
+                    StartCoroutine("SpriteDestroy");
+
+                if (currentProjectileType == projectileType.LightBall)
+                    LightballDestroy();
+                else 
+                    animator.SetInteger("effectOn", 2);
             }
         }
 
-        else if (c.tag == "Player")
+        else if (c.tag == "Player" && currentlaunchForce == launchForce.Enemy)
         {
             if (attackProssible == true)
             {
                 isFlying = false;
 
-                GetComponent<MeshRenderer>().sortingLayerName = "Default";
+                if (spriteRenderer != true && currentProjectileType != projectileType.LightBall)
+                    GetComponent<MeshRenderer>().sortingLayerName = "Default";
 
                 Rigidbody2D tmpRigidbody2D = GetComponent<Rigidbody2D>();
                 BoxCollider2D tmpBoxCollider2D = GetComponent<BoxCollider2D>();
@@ -146,16 +223,33 @@ public class ProjectileHandler : MonoBehaviour {
                 Destroy(tmpRigidbody2D);
                 Destroy(tmpBoxCollider2D);
 
-                transform.position = new Vector3(transform.position.x, transform.position.y - Random.Range(0.1f, 0.3f), 0);
+                if (currentProjectileType == projectileType.Arrow)
+                    transform.position = new Vector3(transform.position.x, transform.position.y - Random.Range(0.1f, 0.3f), 0);
+                if (currentProjectileType == projectileType.None)
+                    transform.position = new Vector3(transform.position.x - 0.5f, transform.position.y, 0);
 
                 gameObject.transform.parent.transform.parent.GetComponent<EnemyBattle>().AttackSuccess();
 
                 transform.SetParent(c.transform);
                 attackProssible = false;
+
+                if (afterEffect == true)
+                    afterEffect.GetComponent<Animator>().SetInteger("effectOn", 2);
+
+                if (explosion != null)
+                    explosion.SendMessage("RealEffectPlay");
+
+                if (spriteRenderer == true)
+                    StartCoroutine("SpriteDestroy");
+
+                if (currentProjectileType == projectileType.LightBall)
+                    LightballDestroy();
+                else 
+                    animator.SetInteger("effectOn", 2);
             }
         }
 
-        else if (LayerMask.LayerToName(c.gameObject.layer) == "Floor")
+        else if (LayerMask.LayerToName(c.gameObject.layer) == "Floor" && currentProjectileType != projectileType.LightBall)
         {
             if (attackProssible == true)
             {
@@ -177,6 +271,16 @@ public class ProjectileHandler : MonoBehaviour {
                 transform.SetParent(GameObject.FindGameObjectWithTag("Stage").GetComponent<StageScroll>().distanteA[GameObject.FindGameObjectWithTag("Stage").GetComponent<StageScroll>().distanteA.Length - 1].transform);
                 attackProssible = false;
             }
+        }
+    }
+
+
+    IEnumerator SpriteDestroy()
+    {
+        for (float i = 1; i >= 0; i -= 0.1f)
+        {
+            GetComponent<SpriteRenderer>().color = new Vector4(1.0f, 1.0f, 1.0f, i);
+            yield return new WaitForFixedUpdate();
         }
     }
 }

@@ -34,6 +34,7 @@ public class CharacterBattle : MonoBehaviour {
 
     protected int forceA = 1;
     protected float forceB = 0;
+    protected float forceC = 90.0f;
 
     public virtual void Start()
     {
@@ -87,6 +88,7 @@ public class CharacterBattle : MonoBehaviour {
             {
                 forceA = -1;
                 forceB = 180.0f;
+                forceC = -90.0f;
             }
 
             if (tag == "Player" && GetComponent<PlayerAbility>().currentAttackWeaponType == PlayerAbility.attackWeaponType.Bow || tag == "Enemy" && GetComponent<EnemyAbility>().currentAttackWeaponType == EnemyAbility.attackWeaponType.Bow)
@@ -109,17 +111,18 @@ public class CharacterBattle : MonoBehaviour {
             else if (tag == "Player" && GetComponent<PlayerAbility>().currentAttackWeaponType == PlayerAbility.attackWeaponType.Bazooka || tag == "Enemy" && GetComponent<EnemyAbility>().currentAttackWeaponType == EnemyAbility.attackWeaponType.Bazooka)
             {
                 presentProjectile = Instantiate(projectilePrefab, launchPosition.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
-                presentProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(10.0f, 0f), ForceMode2D.Impulse);           //arrow base 2.2f, 5.0f
+                presentProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(10.0f * forceA, 0f), ForceMode2D.Impulse);           //arrow base 2.2f, 5.0f
+                presentProjectile.transform.localScale = new Vector3(forceA, 1, 1);
             }
             else if (tag == "Player" && GetComponent<PlayerAbility>().currentAttackWeaponType == PlayerAbility.attackWeaponType.Staff || tag == "Enemy" && GetComponent<EnemyAbility>().currentAttackWeaponType == EnemyAbility.attackWeaponType.Staff)
             {
-                presentProjectile = Instantiate(projectilePrefab, launchPosition.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
-                presentProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(8.0f, 0f), ForceMode2D.Impulse);           //arrow base 2.2f, 5.0f
+                presentProjectile = Instantiate(projectilePrefab, launchPosition.transform.position, Quaternion.Euler(0, 0, forceC)) as GameObject;
+                presentProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(8.0f * forceA, 0f), ForceMode2D.Impulse);           //arrow base 2.2f, 5.0f
             }
             else if (tag == "Player" && GetComponent<PlayerAbility>().currentAttackWeaponType == PlayerAbility.attackWeaponType.Wand || tag == "Enemy" && GetComponent<EnemyAbility>().currentAttackWeaponType == EnemyAbility.attackWeaponType.Wand)
             {
                 presentProjectile = Instantiate(projectilePrefab, launchPosition.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
-                presentProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(5.0f, 0f), ForceMode2D.Impulse);           //arrow base 2.2f, 5.0f
+                presentProjectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(5.0f * forceA, 0f), ForceMode2D.Impulse);           //arrow base 2.2f, 5.0f
             }
 
             presentProjectile.SendMessage("launchForceSetting", tag);
