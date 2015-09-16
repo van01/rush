@@ -1,10 +1,10 @@
 fileFormatVersion: 2
 guid: 9caf24b62bf90964eb6b309eb9089e07
-timeCreated: 1440676175
+timeCreated: 1442387667
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: King_Weapon_R_0
+    21300000: WoodenWand
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -50,15 +50,15 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: King_Weapon_R_0
+    - name: WoodenWand
       rect:
         serializedVersion: 2
-        x: 44
-        y: 406
-        width: 43
-        height: 78
+        x: 13
+        y: 155
+        width: 18
+        height: 79
       alignment: 9
-      pivot: {x: .569999993, y: .200000003}
+      pivot: {x: .5, y: .300000012}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

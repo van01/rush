@@ -1,11 +1,11 @@
 fileFormatVersion: 2
 guid: 09bcde98a7514aa4fb1d1a37c6e47d10
-timeCreated: 1435119706
+timeCreated: 1442382518
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Pawn_sword_0
-    21300002: Pawn_sword_1
+    21300000: LongSword
+    21300002: AxeBlade
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -51,25 +51,25 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Pawn_sword_0
+    - name: LongSword
       rect:
         serializedVersion: 2
-        x: 27
-        y: 196
-        width: 10
-        height: 37
+        x: 24
+        y: 192
+        width: 16
+        height: 56
       alignment: 9
-      pivot: {x: .5, y: .150000006}
+      pivot: {x: .5, y: .100000001}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Pawn_sword_1
+    - name: AxeBlade
       rect:
         serializedVersion: 2
-        x: 91
-        y: 196
-        width: 10
-        height: 37
+        x: 82
+        y: 192
+        width: 28
+        height: 56
       alignment: 9
-      pivot: {x: .5, y: .150000006}
+      pivot: {x: .5, y: .100000001}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

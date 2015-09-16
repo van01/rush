@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: d4ba7cd89a520914885d71052f95845b
-timeCreated: 1442024335
+timeCreated: 1442379341
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -9,6 +9,7 @@ TextureImporter:
     21300004: Window
     21300006: Obstacle
     21300008: Candlestick_2
+    21300010: InfinityTower_0
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -51,7 +52,11 @@ TextureImporter:
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
-  buildTargetSettings: []
+  buildTargetSettings:
+  - buildTarget: Android
+    maxTextureSize: 1024
+    textureFormat: -3
+    compressionQuality: 50
   spriteSheet:
     sprites:
     - name: ArchColumn
@@ -77,19 +82,19 @@ TextureImporter:
     - name: Window
       rect:
         serializedVersion: 2
-        x: 273
-        y: 393
-        width: 126
-        height: 205
+        x: 265
+        y: 385
+        width: 141
+        height: 222
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Obstacle
       rect:
         serializedVersion: 2
-        x: 16
+        x: 15
         y: 15
-        width: 542
+        width: 544
         height: 341
       alignment: 0
       pivot: {x: .5, y: .5}

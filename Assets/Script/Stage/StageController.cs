@@ -33,6 +33,8 @@ public class StageController : MonoBehaviour {
         if (isStageTest == true)
         {
             presentStage = Instantiate(stagePrefab[StageTestNumber], transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+            if (presentStage.GetComponent<StageColorController>().randomSpriteColorApply == true)
+                StageColorActiveOn();
         }
         else
         {
@@ -47,6 +49,8 @@ public class StageController : MonoBehaviour {
             if (PlayerPrefs.GetInt("currentStage") == i)
             {
                 presentStage = Instantiate(stagePrefab[i], transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+                if (presentStage.GetComponent<StageColorController>().randomSpriteColorApply == true)
+                    StageColorActiveOn();
             }
         }
     }
@@ -77,6 +81,11 @@ public class StageController : MonoBehaviour {
 		presentStage.SendMessage("DeliveryScrollSpeed", scrollSpeed);
 		tmpEnemy.SendMessage("DeliveryScrollSpeed", scrollSpeed);
 	}
+
+    public void StageColorActiveOn()
+    {
+        presentStage.SendMessage("StageColorActive");
+    }
 
 	//gameStateController 완성 후 그쪽으로 모아야 함
 }

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
 guid: 5363c2cf0f044ef48899bc860b98a921
-timeCreated: 1440675991
+timeCreated: 1442387674
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: King_Weapon_L_0
+    21300000: OldenMagicBook
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -50,15 +50,15 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: King_Weapon_L_0
+    - name: OldenMagicBook
       rect:
         serializedVersion: 2
-        x: 37
-        y: 432
+        x: 12
+        y: 217
         width: 46
         height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .427818209, y: .42453742}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
 guid: e300dc5ae0b676041bd9b3717151bd23
-timeCreated: 1440676145
+timeCreated: 1442389123
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Kight_Weapon_R_0
+    21300000: WoodenSpear
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -50,15 +50,15 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Kight_Weapon_R_0
+    - name: WoodenSpear
       rect:
         serializedVersion: 2
-        x: 10
-        y: 298
-        width: 30
-        height: 166
+        x: 9
+        y: 131
+        width: 27
+        height: 120
       alignment: 9
-      pivot: {x: .5, y: .150000006}
+      pivot: {x: .5, y: .100000001}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

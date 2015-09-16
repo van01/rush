@@ -1,10 +1,10 @@
 fileFormatVersion: 2
 guid: 7454fc0b4bec88d4cb49de800c1a24eb
-timeCreated: 1440676227
+timeCreated: 1442385471
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Rook_Weapon_0
+    21300000: R-30
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -50,15 +50,15 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Rook_Weapon_0
+    - name: R-30
       rect:
         serializedVersion: 2
-        x: 47
-        y: 396
-        width: 45
+        x: 3
+        y: 139
+        width: 38
         height: 106
       alignment: 9
-      pivot: {x: .800000012, y: .449999988}
+      pivot: {x: .834949076, y: .4634552}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

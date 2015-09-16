@@ -1,10 +1,10 @@
 fileFormatVersion: 2
 guid: a17af808a62d383449520787621a16c3
-timeCreated: 1440676087
+timeCreated: 1442383969
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Bishop_R_Weapon_0
+    21300000: LongBow
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -50,15 +50,15 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Bishop_R_Weapon_0
+    - name: LongBow
       rect:
         serializedVersion: 2
-        x: 55
-        y: 405
-        width: 22
+        x: 21
+        y: 171
+        width: 23
         height: 84
       alignment: 9
-      pivot: {x: .751542151, y: .434119821}
+      pivot: {x: .699999988, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

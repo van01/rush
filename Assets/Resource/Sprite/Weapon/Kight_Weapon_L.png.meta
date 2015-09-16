@@ -1,10 +1,10 @@
 fileFormatVersion: 2
 guid: fa7fd1c8dad27d444b2d9838499192ff
-timeCreated: 1440676133
+timeCreated: 1442389101
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Kight_Weapon_L_0
+    21300000: BrownHorseStaff
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -50,15 +50,15 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Kight_Weapon_L_0
+    - name: BrownHorseStaff
       rect:
         serializedVersion: 2
-        x: 6
-        y: 309
-        width: 68
-        height: 155
+        x: 9
+        y: 130
+        width: 70
+        height: 123
       alignment: 9
-      pivot: {x: .400000006, y: .449999988}
+      pivot: {x: .484188735, y: .538242757}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

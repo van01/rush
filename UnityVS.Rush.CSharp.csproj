@@ -153,6 +153,7 @@
     <Compile Include="Assets\Script\Stage\PlayerState.cs" />
     <Compile Include="Assets\Script\Stage\ProjectileHandler.cs" />
     <Compile Include="Assets\Script\Stage\SkillButtonHandler.cs" />
+    <Compile Include="Assets\Script\Stage\StageColorController.cs" />
     <Compile Include="Assets\Script\Stage\StageController.cs" />
     <Compile Include="Assets\Script\Stage\StageScroll.cs" />
     <Compile Include="Assets\Script\TestStageController.cs" />

@@ -15,7 +15,7 @@ public class StageScroll : MonoBehaviour {
 	private float[] distanteEachScrollSpeed;
 	private bool scrollOn = false;
 	private float initX;
-	
+
 	void Update(){
 		if (scrollOn == true){
 			for (int i = 0; i < distanteA.Length ; i++){

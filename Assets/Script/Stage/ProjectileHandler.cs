@@ -117,7 +117,7 @@ public class ProjectileHandler : MonoBehaviour {
 
     public void BulletDestroy()
     {
-        if (explosion == null)
+        //if (explosion == null)
             DestroyProjectile();
     }
 

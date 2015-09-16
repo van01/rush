@@ -85,4 +85,10 @@ public class HUDHandler : MonoBehaviour {
     {
         tmpGameController.SendMessage("Right02Up");
     }
+
+
+    public void StageColorTest()
+    {
+        tmpGameController.SendMessage("StageColorActiveOn");
+    }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EffectHandler_p_2 : MonoBehaviour {
 
-    public GameObject bullet;
+    public GameObject tmpParent;
 
     void Start()
     {
@@ -12,6 +12,6 @@ public class EffectHandler_p_2 : MonoBehaviour {
 
     public void BulletDestroyPass()
     {
-        bullet.SendMessage("BulletDestroy");
+        tmpParent.SendMessage("BulletDestroy");
     }
 }
