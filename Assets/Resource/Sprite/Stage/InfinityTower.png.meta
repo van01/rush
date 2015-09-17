@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: d4ba7cd89a520914885d71052f95845b
-timeCreated: 1442379341
+timeCreated: 1442481404
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -9,7 +9,7 @@ TextureImporter:
     21300004: Window
     21300006: Obstacle
     21300008: Candlestick_2
-    21300010: InfinityTower_0
+    21300010: Candlestick_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -43,6 +43,7 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
+  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
@@ -57,6 +58,7 @@ TextureImporter:
     maxTextureSize: 1024
     textureFormat: -3
     compressionQuality: 50
+    allowsAlphaSplitting: 0
   spriteSheet:
     sprites:
     - name: ArchColumn
@@ -67,7 +69,7 @@ TextureImporter:
         width: 205
         height: 631
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Candlestick_1
       rect:
@@ -77,7 +79,7 @@ TextureImporter:
         width: 155
         height: 323
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Window
       rect:
@@ -87,7 +89,7 @@ TextureImporter:
         width: 141
         height: 222
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Obstacle
       rect:
@@ -97,7 +99,7 @@ TextureImporter:
         width: 544
         height: 341
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Candlestick_2
       rect:
@@ -106,6 +108,16 @@ TextureImporter:
         y: 408
         width: 85
         height: 177
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Candlestick_3
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 627
+        width: 65
+        height: 135
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

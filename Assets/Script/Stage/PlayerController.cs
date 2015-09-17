@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour {
         Skills,		//스킬
         Guards,		//방어
         Backs,		//후퇴
-        Forwards,	//전방으로
+        Downs,	//앉기
         Deads,		//죽음
         Jumps,		//점프 시작
         Midairs,		//공중
@@ -105,8 +105,8 @@ public class PlayerController : MonoBehaviour {
             case States.Backs:
                 CharacterStateChange("Back");
                 break;
-            case States.Forwards:
-                CharacterStateChange("Forward");
+            case States.Downs:
+                CharacterStateChange("Down");
                 break;
         }
     }
@@ -203,15 +203,15 @@ public class PlayerController : MonoBehaviour {
         CharacterActionCheck();
     }
 
-    public void CharacterFowardPredicateOn()
+    public void CharacterDownPredicateOn()
     {
         previousStates = currentStates;
-        currentStates = States.Forwards;
+        currentStates = States.Downs;
         CharacterActionCheck();
         CharacterFowardColliderOn();
     }
 
-    public void CharacterFowardPredicateOff()
+    public void CharacterDownPredicateOff()
     {
         //currentStates = previousStates;	-- ㄱㅐㅅㅓㄴ ㅍㅣㄹㅇㅛ
         currentStates = States.Moves;

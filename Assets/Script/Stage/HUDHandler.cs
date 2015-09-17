@@ -87,6 +87,9 @@ public class HUDHandler : MonoBehaviour {
     }
 
 
+
+
+    // 20150906 test목적으로 심음 추후 스테이지 진행 시 보스 클러어 후 자동 호출
     public void StageColorTest()
     {
         tmpGameController.SendMessage("StageColorActiveOn");

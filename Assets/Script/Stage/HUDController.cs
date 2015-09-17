@@ -51,7 +51,7 @@ public class HUDController : MonoBehaviour {
         if (DobleClickLeft == true)
         {
             //SendMessage("CharacterBattlingOn");
-            SendMessage("CharacterBackPredicateOff");
+            SendMessage("CharacterDownPredicateOn");
             SendMessage("CharacterAttactDistanceOn");
         }
         else
@@ -68,7 +68,7 @@ public class HUDController : MonoBehaviour {
         if (Time.time - lastClickRightDownTime < catchTime)
         {
             SendMessage("RunScrollOn");
-			SendMessage("CharacterFowardPredicateOn");
+			SendMessage("CharacterDownPredicateOn");
 		}else{
 			SendMessage("RunScrollOn");
 			SendMessage("CharacterRunPredicateOn");
@@ -89,14 +89,15 @@ public class HUDController : MonoBehaviour {
     public void Left01Down()
     {
         //SendMessage("CharacterBattlingOff");
-        SendMessage("CharacterBackPredicateOn");
+        SendMessage("CharacterDownPredicateOn");
         SendMessage("CharacterAttactDistanceOff");
+        SendMessage("DeliveryScrollOnFalse");
     }
 
     public void Lef01Up()
     {
         //SendMessage("CharacterBattlingOn");
-        SendMessage("CharacterBackPredicateOff");
+        SendMessage("CharacterDownPredicateOff");
         SendMessage("CharacterAttactDistanceOn");
     }
 
@@ -112,7 +113,7 @@ public class HUDController : MonoBehaviour {
     {
 		//Run Off
 		SendMessage("CharacterRunPredicateOff");
-		SendMessage("CharacterFowardPredicateOff");
+		//SendMessage("CharacterFowardPredicateOff");   //20150917 newInputsystem Test
 
     }
 

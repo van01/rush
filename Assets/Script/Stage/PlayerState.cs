@@ -117,12 +117,12 @@ public class PlayerState : CharacterState
         SendMessage("CharacterBackPositionOn");
     }
 
-    public override void ForwardAction()
+    public override void DownAction()
     {
-        base.ForwardAction();
+        base.DownAction();
 
-        SendMessage("ChangeAni", CharacterAni.FOWARD);
-        FowardColliderSetting();
+        SendMessage("ChangeAni", CharacterAni.DOWN);
+        DownColliderSetting();
     }
 
     public override void DeadAction()
@@ -138,7 +138,7 @@ public class PlayerState : CharacterState
         base.CharacterStateControll(s);
     }
 
-    void FowardColliderSetting()
+    void DownColliderSetting()
     {
         gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(-0.12f, -0.74f);
         gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.75f, 0.4f);

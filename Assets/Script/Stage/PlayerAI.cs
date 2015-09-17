@@ -52,7 +52,7 @@ public class PlayerAI : MonoBehaviour
         //캐릭터 상태에 따라 gameState 조정, 해당 부분은 gameController로 이동 필요
         if (tmpMyState.currentState == CharacterState.State.Spawn || tmpMyState.currentState == CharacterState.State.Move)
         {
-            SendMessage("CharacterStateMoveOn");
+            //SendMessage("CharacterStateMoveOn");                // 해당 부분 때문에 버벅임
             //SendMessage("CharacterStateControll", "Move");
             tmpGameController.SendMessage("GameStateControll", "Playing");
         }

@@ -28,7 +28,7 @@ public class CharacterAni : MonoBehaviour {
     public const string SKILL = "Skill01_Baked";		//스킬
     public const string GUARD = "Guard_Baked";		//방어
     public const string BACK = "Back_Baked";		//뒤로 이동
-    public const string FOWARD = "Foward_Baked";	//앞으로 이동
+    public const string DOWN = "Down_Back_Baked";	//앞으로 이동
     public const string DEAD = "Die_Baked";		//죽음
     public const string JUMP = "Jump_Baked";		//점프 시작
     public const string MIDAIR = "Midair_Baked";	//공중
@@ -47,11 +47,12 @@ public class CharacterAni : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         tmpPlayerState = GetComponent<PlayerState>();
-	}
+        tmpAnimation = GetComponent<Animation>();
+    }
 
     void Start()
     {
-        tmpAnimation = GetComponent<Animation>();
+        
         
     }
 
