@@ -15,7 +15,9 @@ public class CharacterState : MonoBehaviour {
 		Guard,		    //방어
 		Back,		    //후퇴
 		Down,	        //앉기
-		Dead,		    //죽음
+        DownMove,       //누워서 앞으로
+        DownBack,	    //누워서 뒤로
+        Dead,		    //죽음
 		Jump,		    //점프 시작
 		Midair,		    //공중
 		Landing,	    //착지
@@ -46,7 +48,11 @@ public class CharacterState : MonoBehaviour {
 			currentState = State.Back;
 		if(s == "Down")
 			currentState = State.Down;
-		if(s == "Dead")
+        if (s == "DownMove")
+            currentState = State.DownMove;
+        if (s == "DownBack")
+            currentState = State.DownBack;
+        if (s == "Dead")
 			currentState = State.Dead;
 		if(s == "Jump")
 			currentState = State.Jump;
@@ -93,7 +99,13 @@ public class CharacterState : MonoBehaviour {
 		case State.Down:
             DownAction();
 			break;
-		case State.Dead:
+        case State.DownMove:
+            DownMoveAction();
+            break;
+        case State.DownBack:
+            DownBackAction();
+            break;
+            case State.Dead:
 			DeadAction();
 			break;
 		case State.Jump:
@@ -153,7 +165,17 @@ public class CharacterState : MonoBehaviour {
 		//Debug.Log(":::Character State::: Character Forward");
 	}
 
-	public virtual void DeadAction(){
+    public virtual void DownMoveAction()
+    {
+        //Debug.Log(":::Character State::: Character Forward");
+    }
+
+    public virtual void DownBackAction()
+    {
+        //Debug.Log(":::Character State::: Character Forward");
+    }
+
+    public virtual void DeadAction(){
 		//Debug.Log(":::Character State::: Character Dead");
 	}
 

@@ -238,4 +238,42 @@ public class HUDController : MonoBehaviour {
     {
         skillOn = false;
     }
+
+
+    //20150924 new input system joystick
+    public void JoyStickNeutral()
+    {
+        SendMessage("PlyaerCharacterControllStateOff");
+        SendMessage("CharacterRunPredicateOff");
+    }
+
+    public void JoyStickRight()
+    {
+        SendMessage("PlyaerCharacterControllStateOn");
+        SendMessage("CharacterRunPredicateOn");
+    }
+
+    public void JoyStickRightDown()
+    {
+        SendMessage("PlyaerCharacterControllStateOn");
+        SendMessage("CharacterDownMovePredicateOn");
+    }
+
+    public void JoyStickLeftDown()
+    {
+        SendMessage("PlyaerCharacterControllStateOn");
+        SendMessage("CharacterDownBackPredicateOn");
+    }
+
+    public void JoyStickDown()
+    {
+        SendMessage("PlyaerCharacterControllStateOn");
+        SendMessage("CharacterDownPredicateOn");
+    }
+
+    public void JoyStickLeft()
+    {
+        SendMessage("PlyaerCharacterControllStateOn");
+        SendMessage("CharacterBackPredicateOn");
+    }
 }

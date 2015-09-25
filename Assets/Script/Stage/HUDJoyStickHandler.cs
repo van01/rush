@@ -8,9 +8,17 @@ public class HUDJoyStickHandler : MonoBehaviour {
     public void InputDelivery(HUDStickHandler.StickWay _stickWay)
     {
         if (_stickWay == HUDStickHandler.StickWay.Neutral)
-            tmpGameController.SendMessage("Left02Up");                  //초기화
+            tmpGameController.SendMessage("JoyStickNeutral");                  //초기화
         else if (_stickWay == HUDStickHandler.StickWay.Right)
-            tmpGameController.SendMessage("Left02Down");                //달리기, 현재는 임시로 기존 코드 그대로 사용, HUDController에 신규 코드 추가 필요
+            tmpGameController.SendMessage("JoyStickRight");
+        else if (_stickWay == HUDStickHandler.StickWay.RightDown)
+            tmpGameController.SendMessage("JoyStickRightDown");
+        else if (_stickWay == HUDStickHandler.StickWay.LeftDown)
+            tmpGameController.SendMessage("JoyStickLeftDown");
+        else if (_stickWay == HUDStickHandler.StickWay.Down)
+            tmpGameController.SendMessage("JoyStickDown");
+        else if (_stickWay == HUDStickHandler.StickWay.Left)
+            tmpGameController.SendMessage("JoyStickLeft");
 
         print(_stickWay);
     }

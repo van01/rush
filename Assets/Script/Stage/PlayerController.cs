@@ -11,8 +11,6 @@ public class PlayerController : MonoBehaviour {
     private bool characterMovePredicate = false;
     private bool characterBattlePredicate = false;
 
-    
-
     public enum States
     {
         Spawns,		//자기자리 찾아가기
@@ -25,6 +23,8 @@ public class PlayerController : MonoBehaviour {
         Guards,		//방어
         Backs,		//후퇴
         Downs,	//앉기
+        DownMoves,	//앉기
+        DownBacks,	//앉기
         Deads,		//죽음
         Jumps,		//점프 시작
         Midairs,		//공중
@@ -108,6 +108,12 @@ public class PlayerController : MonoBehaviour {
             case States.Downs:
                 CharacterStateChange("Down");
                 break;
+            case States.DownMoves:
+                CharacterStateChange("DownMove");
+                break;
+            case States.DownBacks:
+                CharacterStateChange("DownBack");
+                break;
         }
     }
 
@@ -163,8 +169,38 @@ public class PlayerController : MonoBehaviour {
 
     public void CharacterRunPredicateOn()
     {
+        if (characterBattlePredicate == false)
+        {
+            SendMessage("GameStateControll", "Playing");
+            SendMessage("RunScrollOn");
+        }
+
         previousStates = currentStates;
         currentStates = States.Runs;
+        CharacterActionCheck();
+    }
+
+    public void CharacterDownPredicateOn()
+    {
+        SendMessage("GameStateControll", "Hold");
+        previousStates = currentStates;
+        currentStates = States.Downs;
+        CharacterActionCheck();
+    }
+
+    public void CharacterDownMovePredicateOn()
+    {
+        SendMessage("GameStateControll", "Hold");
+        previousStates = currentStates;
+        currentStates = States.DownMoves;
+        CharacterActionCheck();
+    }
+
+    public void CharacterDownBackPredicateOn()
+    {
+        SendMessage("GameStateControll", "Hold");
+        previousStates = currentStates;
+        currentStates = States.DownBacks;
         CharacterActionCheck();
     }
 
@@ -201,14 +237,6 @@ public class PlayerController : MonoBehaviour {
     {
         currentStates = States.Moves;
         CharacterActionCheck();
-    }
-
-    public void CharacterDownPredicateOn()
-    {
-        previousStates = currentStates;
-        currentStates = States.Downs;
-        CharacterActionCheck();
-        CharacterFowardColliderOn();
     }
 
     public void CharacterDownPredicateOff()
@@ -277,4 +305,19 @@ public class PlayerController : MonoBehaviour {
     }
 
 
+    void PlyaerCharacterControllStateOn()
+    {
+        for (int i = 0; i < tmpPlayer.Length; i++)
+        {
+            tmpPlayer[i].gameObject.SendMessage("CharacterControllStateOn");
+        }
+    }
+
+    void PlyaerCharacterControllStateOff()
+    {
+        for (int i = 0; i < tmpPlayer.Length; i++)
+        {
+            tmpPlayer[i].gameObject.SendMessage("CharacterControllStateOff");
+        }
+    }
 }

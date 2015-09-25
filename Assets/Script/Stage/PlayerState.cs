@@ -30,6 +30,8 @@ public class PlayerState : CharacterState
         base.IdleAction();
 
         SendMessage("ChangeAni", CharacterAni.IDLE);
+
+        CharacterColliderReset();
     }
 
     public override void MoveAction()
@@ -43,6 +45,8 @@ public class PlayerState : CharacterState
         {
             SendMessage("CharacterPositionInialize", 0.5f);
         }
+
+        CharacterColliderReset();
     }
 
     public override void RunAction()
@@ -50,6 +54,8 @@ public class PlayerState : CharacterState
         base.RunAction();
 
         SendMessage("ChangeAni", CharacterAni.RUN);
+
+        CharacterColliderReset();
     }
 
     public override void BattleAction()
@@ -59,6 +65,8 @@ public class PlayerState : CharacterState
 
         SendMessage("CharacterBackPositionOff");
         SendMessage("CharacterFowardPositionOff");
+
+        CharacterColliderReset();
     }
 
     public override void AttackAction()
@@ -79,12 +87,16 @@ public class PlayerState : CharacterState
             SendMessage("NormalAttackEffectRearOn", "Wand");
 
         SendMessage("ChangeAni", CharacterAni.ATTACK);
+
+        CharacterColliderReset();
     }
 
     public override void AttackDelayAction()
     {
         base.AttackDelayAction();
         SendMessage("ChangeAni", CharacterAni.BATTLE);
+
+        CharacterColliderReset();
     }
 
     public override void SkillAction()
@@ -97,6 +109,8 @@ public class PlayerState : CharacterState
 
         if (GetComponent<PlayerAbility>().currentAttackWeaponType == PlayerAbility.attackWeaponType.Sword)
             SendMessage("Skill01AttackEffectRearOn", "Sword");
+
+        CharacterColliderReset();
     }
 
     public override void GuardAction()
@@ -106,6 +120,8 @@ public class PlayerState : CharacterState
         
 
         SendMessage("ChangeAni", CharacterAni.GUARD);
+
+        CharacterColliderReset();
     }
 
     public override void BackAction()
@@ -115,6 +131,8 @@ public class PlayerState : CharacterState
 
         SendMessage("ChangeAni", CharacterAni.BACK);
         SendMessage("CharacterBackPositionOn");
+
+        CharacterColliderReset();
     }
 
     public override void DownAction()
@@ -122,7 +140,32 @@ public class PlayerState : CharacterState
         base.DownAction();
 
         SendMessage("ChangeAni", CharacterAni.DOWN);
-        DownColliderSetting();
+
+        CharacterColliderDownSetting();
+
+        SendMessage("CharacterPositionHold");
+    }
+
+    public override void DownMoveAction()
+    {
+        base.DownMoveAction();
+
+        SendMessage("ChangeAni", CharacterAni.DOWNMOVE);
+
+        CharacterColliderDownSetting();
+
+        SendMessage("CharacterPositionHold");
+    }
+
+    public override void DownBackAction()
+    {
+        base.DownBackAction();
+
+        SendMessage("ChangeAni", CharacterAni.DOWNBACK);
+
+        CharacterColliderDownSetting();
+
+        SendMessage("CharacterPositionHold");
     }
 
     public override void DeadAction()
@@ -138,13 +181,13 @@ public class PlayerState : CharacterState
         base.CharacterStateControll(s);
     }
 
-    void DownColliderSetting()
+    void CharacterColliderDownSetting()
     {
         gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(-0.12f, -0.74f);
         gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.75f, 0.4f);
     }
 
-    void FowardColliderOff()
+    void CharacterColliderReset()
     {
         gameObject.GetComponent<BoxCollider2D>().offset = backupColliderOffset;
         gameObject.GetComponent<BoxCollider2D>().size = backupColliderSize;

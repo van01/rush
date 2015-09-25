@@ -34,6 +34,8 @@ public class PlayerAI : MonoBehaviour
     protected bool saveSkillOn = false;
     protected string saveSkillID;
 
+    protected bool characterControll = false;
+
     void Start()
     {
         tmpMyState = GetComponent<PlayerState>();
@@ -50,17 +52,17 @@ public class PlayerAI : MonoBehaviour
                 
 
         //캐릭터 상태에 따라 gameState 조정, 해당 부분은 gameController로 이동 필요
-        if (tmpMyState.currentState == CharacterState.State.Spawn || tmpMyState.currentState == CharacterState.State.Move)
-        {
-            //SendMessage("CharacterStateMoveOn");                // 해당 부분 때문에 버벅임
-            //SendMessage("CharacterStateControll", "Move");
-            tmpGameController.SendMessage("GameStateControll", "Playing");
-        }
+        //if (tmpMyState.currentState == CharacterState.State.Spawn || tmpMyState.currentState == CharacterState.State.Move)
+        //{
+        //    //SendMessage("CharacterStateMoveOn");                // 해당 부분 때문에 버벅임
+        //    //SendMessage("CharacterStateControll", "Move");
+        //    tmpGameController.SendMessage("GameStateControll", "Playing");
+        //}
 
         //캐릭터 백스탭 위치 잡기
         if (backSetPosition == true)
         {
-            if (transform.position.x >= -7.0f)
+            if (transform.position.x >= -6.0f)
             {
                 transform.Translate(-Time.deltaTime * backStepSpeed, 0, 0);
             }
@@ -89,6 +91,8 @@ public class PlayerAI : MonoBehaviour
                 saveSkillOn = false;
             }
         }
+
+        PlayerPositionInit();
     }
 
     public void SearchEnemy()
@@ -136,35 +140,38 @@ public class PlayerAI : MonoBehaviour
         distance = distance - ((target.GetComponent<BoxCollider2D>().size.x - target.GetComponent<BoxCollider2D>().offset.x) * target.transform.localScale.x / 2);
 
         //print("Distance ::::: " + distance + "  Attack Distance ::::: " + attackDistance);
-        if (distance > attackDistance)
+        if (characterControll == false)
         {
-            if (tmpMyState.currentState != CharacterState.State.Attack)
-            {
-                SendMessage("CharacterStateControll", "Move");
-            }
-        }
-        else if (distance < attackDistance)
-        {
-            if (target.GetComponent<EnemyState>().currentState != CharacterState.State.Dead)
+            if (distance > attackDistance)
             {
                 if (tmpMyState.currentState != CharacterState.State.Attack)
                 {
-                    if (tag == "Enemy")
-                    {
-                        print("distance < attackDistance");
-                    }
-
-                    SendMessage("TargetDistance", distance);    //화살 거리 산출을 위해 CharacterBattle에 distance 전달
-
-                    SendMessage("CharacterStateControll", "Battle");
-                    SendMessage("CharacterStateBattleOn");    //사정거리 진입 시 해당 캐릭터만 전투 모드 변경으로 변경하려고 했으나 해당 함수에 포함된 기능으로인해 보류
-
-                    SendMessage("StartBattle");
-
-                    tmpPositionDistance = positionDistance;
-                    positionDistance = transform.position.x;
+                    SendMessage("CharacterStateControll", "Move");
                 }
-            }            
+            }
+            else if (distance < attackDistance)
+            {
+                if (target.GetComponent<EnemyState>().currentState != CharacterState.State.Dead)
+                {
+                    if (tmpMyState.currentState != CharacterState.State.Attack)
+                    {
+                        if (tag == "Enemy")
+                        {
+                            print("distance < attackDistance");
+                        }
+
+                        SendMessage("TargetDistance", distance);    //화살 거리 산출을 위해 CharacterBattle에 distance 전달
+
+                        SendMessage("CharacterStateControll", "Battle");
+                        SendMessage("CharacterStateBattleOn");    //사정거리 진입 시 해당 캐릭터만 전투 모드 변경으로 변경하려고 했으나 해당 함수에 포함된 기능으로인해 보류
+
+                        SendMessage("StartBattle");
+
+                        tmpPositionDistance = positionDistance;
+                        positionDistance = transform.position.x;
+                    }
+                }
+            }
         }
     }
 
@@ -173,9 +180,9 @@ public class PlayerAI : MonoBehaviour
         //캐릭터 기본 위치 잡기, 기존 Update 함수에서 백업
 
         //if (tmpMyState.currentState == CharacterState.State.Spawn || tmpMyState.currentState == CharacterState.State.Move)
-        if (transform.position.x != positionDistance)
+        if (setPosition == true)
         {
-            if (setPosition == true)
+            if (transform.position.x != positionDistance)
             {
                 if (transform.position.x <= positionDistance)
                 {
@@ -185,18 +192,6 @@ public class PlayerAI : MonoBehaviour
                 {
                     setPosition = false;
                     transform.position = new Vector3(positionDistance, 0, 0);
-
-                    if (tmpMyState.currentState == CharacterState.State.Spawn || tmpMyState.currentState == CharacterState.State.Move)
-                    {
-                        SendMessage("CharacterStateMoveOn");
-                        //SendMessage("CharacterStateControll", "Move");
-                        tmpGameController.SendMessage("GameStateControll", "Playing");
-                    }
-                    if (tmpMyState.currentState == CharacterState.State.Run)
-                    {
-                        tmpGameController.SendMessage("GameStateControll", "Playing");
-                        tmpGameController.SendMessage("RunScrollOn");
-                    }
                 }
             }
         }
@@ -227,6 +222,12 @@ public class PlayerAI : MonoBehaviour
     {
         backSetPosition = false;
         setPosition = true;
+    }
+
+    public void CharacterPositionHold()
+    {
+        backSetPosition = false;
+        setPosition = false;
     }
 
     public void CharacterFowardPositionOn()
@@ -286,5 +287,17 @@ public class PlayerAI : MonoBehaviour
     public void CheckDistanceFromTargetUnusedOff()
     {
         checkDistanceFromTargetUnused = false;
+    }
+
+
+
+    public void CharacterControllStateOn()
+    {
+        characterControll = true;
+    }
+
+    public void CharacterControllStateOff()
+    {
+        characterControll = false;
     }
 }
