@@ -5,37 +5,11 @@ public class HUDHandler : MonoBehaviour {
 
 	public GameObject tmpGameController;
 
-	public GameObject hitZone_L;
-	public GameObject hitZone_R;
+	public GameObject hitZone;
 
     public GameObject tmpPlayer;
 
-	void LeftHitZoneTriggerDown(){
-		tmpGameController.SendMessage("LeftHitZoneDown");
-	}
-
-	void LeftHitZoneTriggerUp(){
-		tmpGameController.SendMessage("LeftHitZoneUp");
-	}
-
-	void RightHitZoneTriggerDown(){
-		tmpGameController.SendMessage("RightHitZoneDown");
-	}
-
-	void RightHitZoneTriggerUp(){
-		tmpGameController.SendMessage("RightHitZoneUp");
-	}
-
-	public void HitZoneDisable(){
-		hitZone_L.SetActive(false);
-		hitZone_R.SetActive(false);
-	}
-
-	public void HitZoneAble(){
-		hitZone_L.SetActive(true);
-		hitZone_R.SetActive(true);
-	}
-
+	
     public void OnClickSkillButton(string activeSkillID)
     {
         tmpPlayer = GameObject.Find("Pawn");
@@ -93,5 +67,15 @@ public class HUDHandler : MonoBehaviour {
     public void StageColorTest()
     {
         tmpGameController.SendMessage("StageColorActiveOn");
+    }
+
+
+
+    /// <summary>
+    /// Lapick ~ Rushing to Witch ~
+    /// </summary>
+    void RWHitZoneInput()
+    {
+        tmpGameController.SendMessage("RWCharacterJumpAddforce");
     }
 }

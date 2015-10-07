@@ -19,7 +19,5 @@ public class HUDJoyStickHandler : MonoBehaviour {
             tmpGameController.SendMessage("JoyStickDown");
         else if (_stickWay == HUDStickHandler.StickWay.Left)
             tmpGameController.SendMessage("JoyStickLeft");
-
-        print(_stickWay);
     }
 }

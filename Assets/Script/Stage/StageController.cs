@@ -8,6 +8,12 @@ public class StageController : MonoBehaviour {
     public bool isStageTest = false;
     public int StageTestNumber = 0;
 
+    public GameObject floorCollider2D;
+    public GameObject ScrollFloorCollider2D;
+
+    public bool isRWStage = false;
+    public bool isEnemyAppear = false;
+
 	private GameObject tmpStage;
 	private GameObject tmpEnemy;
 
@@ -23,7 +29,18 @@ public class StageController : MonoBehaviour {
 
 	void Start(){
 		tmpEnemy = GameObject.Find("Enemy");
-	}
+
+        if (isRWStage == true)
+        {
+            floorCollider2D.SetActive(false);
+            ScrollFloorCollider2D.SetActive(true);
+        }
+        else
+        {
+            floorCollider2D.SetActive(true);
+            ScrollFloorCollider2D.SetActive(false);
+        }
+    }
 
     public void StageInialize()
     {
@@ -33,6 +50,7 @@ public class StageController : MonoBehaviour {
         if (isStageTest == true)
         {
             presentStage = Instantiate(stagePrefab[StageTestNumber], transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+            presentStage.SendMessage("FloorSetting", isRWStage);
             if (presentStage.GetComponent<StageColorController>().randomSpriteColorApply == true)
                 StageColorActiveOn();
         }
@@ -49,6 +67,7 @@ public class StageController : MonoBehaviour {
             if (PlayerPrefs.GetInt("currentStage") == i)
             {
                 presentStage = Instantiate(stagePrefab[i], transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+                presentStage.SendMessage("FloorSetting", isRWStage);
                 if (presentStage.GetComponent<StageColorController>().randomSpriteColorApply == true)
                     StageColorActiveOn();
             }
@@ -58,8 +77,15 @@ public class StageController : MonoBehaviour {
 	public void StageScrollInialize(){
         presentStage.SendMessage("ScrollOnTrue");
         presentStage.SendMessage("DeliveryScrollSpeed", scrollSpeed);
-        tmpEnemy.SendMessage("ScrollOnTrue");
-        tmpEnemy.SendMessage("DeliveryScrollSpeed", scrollSpeed);
+
+        if (isRWStage == true)
+            ScrollFloorCollider2D.SendMessage("DeliveryFloorScrollSpeedValue", scrollSpeed);
+
+        if (isEnemyAppear == true)
+        {
+            tmpEnemy.SendMessage("ScrollOnTrue");
+            tmpEnemy.SendMessage("DeliveryScrollSpeed", scrollSpeed);
+        }
 	}
 
 	public void DeliveryScrollOnTrue(){
@@ -68,8 +94,16 @@ public class StageController : MonoBehaviour {
 	}
 
 	public void DeliveryScrollOnFalse(){
-		presentStage.SendMessage("ScrollOnFalse");
-		tmpEnemy.SendMessage("ScrollOnFalse");
+        if (isRWStage == true)
+        {
+            presentStage.SendMessage("ScrollOnFalse");
+            ScrollFloorCollider2D.SendMessage("BlockScrollOnFalse");
+        }
+        else
+        {
+            presentStage.SendMessage("ScrollOnFalse");
+            tmpEnemy.SendMessage("ScrollOnFalse");
+        }
 	}
 
 	public void RunScrollOn(){

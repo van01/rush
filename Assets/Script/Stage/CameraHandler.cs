@@ -9,8 +9,6 @@ public class CameraHandler : MonoBehaviour {
         {
             c.GetComponent<BoxCollider2D>().isTrigger = false;
             c.GetComponent<Rigidbody2D>().gravityScale = 3f;
-
-
         }
     }
 

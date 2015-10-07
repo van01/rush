@@ -16,7 +16,9 @@ public class StageScroll : MonoBehaviour {
 	private bool scrollOn = false;
 	private float initX;
 
-	void Update(){
+    private float tmpSpeed;
+
+    void Update(){
 		if (scrollOn == true){
 			for (int i = 0; i < distanteA.Length ; i++){
 				Vector3 scrollValue = Vector3.left * distanteEachScrollSpeed[i] * Time.deltaTime;
@@ -43,8 +45,13 @@ public class StageScroll : MonoBehaviour {
 		distanteEachScrollSpeed = new float[distanteA.Length];
 		
 		for (int i = 0 ; i < distanteA.Length ; i++){
-			distanteEachScrollSpeed[i] = (i + 1) * scrollSpeed * scrollSpeedDropValue;
-		}
+            if (i == 0)
+                distanteEachScrollSpeed[i] = scrollSpeed * scrollSpeedDropValue;
+            else
+                distanteEachScrollSpeed[i] = tmpSpeed * scrollSpeedDropValue;
+
+            tmpSpeed = distanteEachScrollSpeed[i];
+        }
 	}
 
 	public void ScrollOnTrue(){

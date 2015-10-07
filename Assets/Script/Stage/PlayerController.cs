@@ -320,4 +320,26 @@ public class PlayerController : MonoBehaviour {
             tmpPlayer[i].gameObject.SendMessage("CharacterControllStateOff");
         }
     }
+
+    public void PlayerHealthBarOff()
+    {
+        for (int i = 0; i < tmpPlayer.Length; i++)
+        {
+            tmpPlayer[i].gameObject.SendMessage("HealthBarInitOff");
+            tmpPlayer[i].gameObject.SendMessage("HealthBarUpdateOff");
+        }
+    }
+
+
+
+    /// <summary>
+    /// Lapick ~ Rushing to Witch ~
+    /// </summary>
+    public void RWCharacterJumpAddforce()
+    {
+        for (int i = 0; i<tmpPlayer.Length; i++)
+        {
+            tmpPlayer[i].gameObject.SendMessage("RWJumpAddforce");
+        }
+    }
 }

@@ -247,7 +247,7 @@ public class PlayerAI : MonoBehaviour
         positionDistance = tmpPositionDistance;
     }
 
-    public void HealthBarOff()
+    public void HealthBarUpdateOff()
     {
         HealthBarOn = false;
     }

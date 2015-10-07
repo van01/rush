@@ -124,6 +124,7 @@
      <Compile Include="Assets\Script\Stage\EnemyParams.cs" />
      <Compile Include="Assets\Script\Stage\EnemyScroll.cs" />
      <Compile Include="Assets\Script\Stage\EnemyState.cs" />
+     <Compile Include="Assets\Script\Stage\FloorScroll.cs" />
      <Compile Include="Assets\Script\Stage\GameController.cs" />
      <Compile Include="Assets\Script\Stage\GameState.cs" />
      <Compile Include="Assets\Script\Stage\HUDController.cs" />
@@ -141,9 +142,12 @@
      <Compile Include="Assets\Script\Stage\PlayerParams.cs" />
      <Compile Include="Assets\Script\Stage\PlayerState.cs" />
      <Compile Include="Assets\Script\Stage\ProjectileHandler.cs" />
+     <Compile Include="Assets\Script\Stage\RWDeadZoneHandler.cs" />
+     <Compile Include="Assets\Script\Stage\RWStageScrollBlockController.cs" />
      <Compile Include="Assets\Script\Stage\SkillButtonHandler.cs" />
      <Compile Include="Assets\Script\Stage\StageColorController.cs" />
      <Compile Include="Assets\Script\Stage\StageController.cs" />
+     <Compile Include="Assets\Script\Stage\StageFloorHandler.cs" />
      <Compile Include="Assets\Script\Stage\StageScroll.cs" />
      <Compile Include="Assets\Script\TestStageController.cs" />
      <None Include="Assets\Puppet2D\Shaders\BlackAndWhite.shader" />

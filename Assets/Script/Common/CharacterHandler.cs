@@ -44,8 +44,9 @@ public class CharacterHandler : MonoBehaviour {
     protected int attackValueX;
     protected int attackValueY;
 
+    private bool HealthBarInitOn = true;
 
-	void Awake(){
+    void Awake(){
         tmpHUD = GameObject.Find("Canvas");
 		tmpGameController = GameObject.Find("GameController");
         myAllSpriteRenderer = gameObject.GetComponentsInChildren<SpriteRenderer>();
@@ -84,7 +85,8 @@ public class CharacterHandler : MonoBehaviour {
 
     void Start()
     {
-        HelthBarInitialize();
+        if (HealthBarInitOn == true)
+            HelthBarInitialize();
     }
 
 	public void GameStateHoldOn(){
@@ -275,5 +277,23 @@ public class CharacterHandler : MonoBehaviour {
     public void attackValueYSetting(int aValueY)
     {
         attackValueY = aValueY;
+    }
+
+    public void HealthBarInitOff()
+    {
+        HealthBarInitOn = false;
+
+        Destroy(healthBar);
+    }
+
+    /// <summary>
+    /// Lapick ~ Rushing to Witch ~
+    /// </summary>
+    public void RWJumpAddforce()
+    {
+        //점프
+        float rForceY = 20.0f;
+
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(0, rForceY), ForceMode2D.Impulse);
     }
 }
