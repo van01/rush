@@ -39,7 +39,7 @@ public class PlayerState : CharacterState
         base.MoveAction();
 
         SendMessage("ChangeAni", CharacterAni.MOVE);
-        SendMessage("SearchEnemy");
+        //SendMessage("SearchEnemy");       //if insert
 
         if (transform.position.x != GetComponent<PlayerAI>().positionDistance)
         {

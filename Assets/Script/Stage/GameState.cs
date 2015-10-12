@@ -5,6 +5,7 @@ public class GameState : MonoBehaviour {
 
     private GameObject[] tmpPlayer;
 	public enum State{
+        Lobby,      //RW menu Mode
 		Ready,		//게임 준비
 		Playing,	//게임 진행
         Hold,		//전투
@@ -16,7 +17,9 @@ public class GameState : MonoBehaviour {
 	public State currentState;
 
 	public virtual void GameStateControll(string s){
-		if(s == "Ready")
+        if (s == "Lobby")
+            currentState = State.Lobby;
+        if (s == "Ready")
 			currentState = State.Ready;
 		if(s == "Playing")
 			currentState = State.Playing;
@@ -34,7 +37,10 @@ public class GameState : MonoBehaviour {
 
 	public void CheckGameState(){
 		switch(currentState){
-		case State.Ready:
+        case State.Lobby:
+            LobbyAction();
+            break;
+        case State.Ready:
 			ReadyAction();
 			break;
 		case State.Playing:
@@ -55,8 +61,13 @@ public class GameState : MonoBehaviour {
 		}
 	}
 
-	public virtual void ReadyAction(){
+    public virtual void LobbyAction()
+    {
         SendMessage("CharacterInialize");
+    }
+
+    public virtual void ReadyAction(){
+        
         SendMessage("StageInialize");
 		//Debug.Log("■■Game State■■ReadyAction");
 	}
