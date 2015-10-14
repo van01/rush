@@ -16,6 +16,7 @@ public class HUDHandler : MonoBehaviour {
     public GameObject HUDRWGameOverUI;
 
     public GameObject HUDRWCharacterUI;
+    public GameObject HUDRWHelmetUI;
 
     public void OnClickSkillButton(string activeSkillID)
     {
@@ -153,6 +154,16 @@ public class HUDHandler : MonoBehaviour {
         HUDRWCharacterUI.SetActive(false);
     }
 
+    public void HUDRWHelmetUIon()
+    {
+        HUDRWHelmetUI.SetActive(true);
+    }
+
+    public void HUDRWHelmetUIoff()
+    {
+        HUDRWHelmetUI.SetActive(false);
+    }
+    
     public void StartButtonActive()
     {
         tmpGameController.SendMessage("GameStateControll", "Ready");
@@ -187,6 +198,16 @@ public class HUDHandler : MonoBehaviour {
     public void CharacterCloseButtonActive()
     {
         HUDRWCharacterUIoff();
+    }
+
+    public void HelmetButtonActive()
+    {
+        HUDRWHelmetUIon();
+    }
+
+    public void HelmetCloseButtonActive()
+    {
+        HUDRWHelmetUIoff();
     }
 
     //HUDcontroller와 HUDHandler 기능 정리 필요

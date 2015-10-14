@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour {
 
     private float[] RWbeginCharacterTransform;
 
+    private int PlayerEquipHelmetNumber;
+
     public enum States
     {
         Spawns,		//자기자리 찾아가기
@@ -51,14 +53,16 @@ public class PlayerController : MonoBehaviour {
             RWBeginCharacterTransform();
     }
 
-    // Update is called once per frame
+    // 캐릭터 초기화
     public void CharacterInialize()
     {
+        GetPlayerEquipHelmetNumber();
         //캐릭터 자리잡기
-        
+
         for (int i = 0; i < tmpPlayer.Length; i++)
         {
             tmpPlayer[i].gameObject.SendMessage("CharacterPositionInialize", CharacterPositionInializeTime);
+            tmpPlayer[i].gameObject.SendMessage("EquipHelmet", PlayerEquipHelmetNumber);
         }
     }
 
@@ -379,6 +383,29 @@ public class PlayerController : MonoBehaviour {
         {
             tmpPlayer[i].GetComponent<Rigidbody2D>().drag = 0f;
             tmpPlayer[i].GetComponent<Rigidbody2D>().gravityScale = 9.0f;
+        }
+    }
+
+    void GetPlayerEquipHelmetNumber()
+    {
+        PlayerEquipHelmetNumber = PlayerPrefs.GetInt("PlayerEquipHelmet");
+    }
+
+    public void SetPlayerEquipHelmetNumber(int nPlayerEquipHelmetNumber)
+    {
+        PlayerEquipHelmetNumber = nPlayerEquipHelmetNumber;
+
+        PlayerPrefs.SetInt("PlayerEquipHelmet", PlayerEquipHelmetNumber);
+
+        SetPlayerEquipHelmet();
+    }
+
+    void SetPlayerEquipHelmet()
+    {
+        tmpPlayer = GameObject.FindGameObjectsWithTag("Player");
+        for (int i = 0; i < tmpPlayer.Length; i++)
+        {
+            tmpPlayer[i].gameObject.SendMessage("EquipHelmet", PlayerEquipHelmetNumber);
         }
     }
 }

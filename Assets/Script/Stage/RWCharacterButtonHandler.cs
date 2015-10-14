@@ -13,7 +13,7 @@ public class RWCharacterButtonHandler : MonoBehaviour {
     public GameObject tmpCharacterSelectPanal;
     public GameObject selectImage;
     public GameObject LockImage;
-    public int characterNomber;
+    private int characterNumber;
     
     void Start()
     {
@@ -29,7 +29,7 @@ public class RWCharacterButtonHandler : MonoBehaviour {
         if (currentCharacterButtonState == CharacterButtonState.Active)
         {
             tmpCharacterSelectPanal.SendMessage("CharacterButtonSelect", name);
-            tmpCharacterSelectPanal.SendMessage("CharacterNumberDelivery", characterNomber);
+            tmpCharacterSelectPanal.SendMessage("CharacterNumberDelivery", characterNumber);
         }
         else
         {
@@ -51,5 +51,10 @@ public class RWCharacterButtonHandler : MonoBehaviour {
     {
         currentCharacterButtonState = CharacterButtonState.Active;
         LockImage.SetActive(false);
+    }
+
+    public void CharacterNumberSetting(int nCharacterNumber)
+    {
+        characterNumber = nCharacterNumber;
     }
 }

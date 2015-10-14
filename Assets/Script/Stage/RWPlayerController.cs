@@ -29,6 +29,7 @@ public class RWPlayerController : MonoBehaviour {
     public void RWPlayerCHaracterSetting(int nCharacterNumber)
     {
         PlayerPrefs.SetInt("PlayerCharacterNumber", nCharacterNumber);
+        print(nCharacterNumber);
         RWPlayerCharacterInitialize();
     }
 }

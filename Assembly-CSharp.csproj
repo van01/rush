@@ -99,7 +99,9 @@
      <Compile Include="Assets\Script\Common\CharacterBackHandler.cs" />
      <Compile Include="Assets\Script\Common\CharacterBattle.cs" />
      <Compile Include="Assets\Script\Common\CharacterHandler.cs" />
+     <Compile Include="Assets\Script\Common\CharacterHelmetBasket.cs" />
      <Compile Include="Assets\Script\Common\CharacterHelmetHandler.cs" />
+     <Compile Include="Assets\Script\Common\CharacterItemHandler.cs" />
      <Compile Include="Assets\Script\Common\CharacterParams.cs" />
      <Compile Include="Assets\Script\Common\CharacterState.cs" />
      <Compile Include="Assets\Script\Common\CharacterWeaponHandler.cs" />
@@ -149,8 +151,11 @@
      <Compile Include="Assets\Script\Stage\RWCharacterButtonHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWCharacterPanelHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWDeadZoneHandler.cs" />
+     <Compile Include="Assets\Script\Stage\RWHelmetButtonHandler.cs" />
+     <Compile Include="Assets\Script\Stage\RWHelmetPanelHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWPlayerController.cs" />
      <Compile Include="Assets\Script\Stage\RWStageScrollBlockController.cs" />
+     <Compile Include="Assets\Script\Stage\RWUICharacterSizeHandler.cs" />
      <Compile Include="Assets\Script\Stage\SkillButtonHandler.cs" />
      <Compile Include="Assets\Script\Stage\StageColorController.cs" />
      <Compile Include="Assets\Script\Stage\StageController.cs" />

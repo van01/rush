@@ -4,16 +4,28 @@ using System.Collections;
 public class CharacterHelmetHandler : MonoBehaviour {
 
     public GameObject helmet;
-    public Sprite[] helmetSprite;
     public int helmetNumber;
+
+    private Sprite[] helmetSprite;
     private Transform helmetPosition;
     private SpriteRenderer useHelmet;
 
-    void Start()
+    private GameObject tmpItemHandler;
+    void Awake()
     {
-        useHelmet = helmet.GetComponentInChildren<SpriteRenderer>();
+        tmpItemHandler = GetComponent<CharacterItemHandler>().tmpItemHandler;
+        helmetSprite = new Sprite[tmpItemHandler.GetComponent<CharacterHelmetBasket>().CharacterHelmetSprite.Length];
+        HelmetSpriteInialize();
 
-        UseHelmetInialize();
+        useHelmet = helmet.GetComponentInChildren<SpriteRenderer>();
+    }
+
+    void HelmetSpriteInialize()
+    {
+        for (int i = 0; i < helmetSprite.Length; i++)
+        {
+            helmetSprite[i] = tmpItemHandler.GetComponent<CharacterHelmetBasket>().CharacterHelmetSprite[i];
+        }
     }
 
     void UseHelmetInialize()
@@ -30,5 +42,11 @@ public class CharacterHelmetHandler : MonoBehaviour {
         {
             useHelmet.sprite = helmetSprite[helmetNumber];
         }
+    }
+
+    public void EquipHelmet(int nHelmetNumber)
+    {
+        helmetNumber = nHelmetNumber;
+        UseHelmetInialize();
     }
 }

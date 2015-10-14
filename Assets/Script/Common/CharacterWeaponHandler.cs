@@ -33,8 +33,9 @@ public class CharacterWeaponHandler : MonoBehaviour {
 		UseWeaponInialize();
 	}
 	
-	void UseWeaponInialize(){
-		if (weaponRSprite.Length == 0){
+	public void UseWeaponInialize(){
+		if (weaponRSprite.Length == 0 || weponRNumber == -1)
+        {
 			weaponR.SetActive(false);
             weaponRCollider.enabled = false;
             backupWeaponRCollider = false;
@@ -43,7 +44,8 @@ public class CharacterWeaponHandler : MonoBehaviour {
 			useWeaponR.sprite = weaponRSprite[weponRNumber];
             backupWeaponRCollider = true;
 		}
-		if (weaponLSprite.Length == 0){
+		if (weaponLSprite.Length == 0 || weponLNumber == -1)
+        {
 			weaponL.SetActive(false);
             weaponLCollider.enabled = false;
             backupWeaponLCollider = false;

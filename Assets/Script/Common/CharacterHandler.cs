@@ -296,4 +296,21 @@ public class CharacterHandler : MonoBehaviour {
 
         GetComponent<Rigidbody2D>().AddForce(new Vector2(0, rForceY), ForceMode2D.Impulse);
     }
+
+    public void AllSpriteRendererSortingLayerUI()
+    {
+        for (int i = 0; i < myAllSpriteRenderer.Length; i++)
+        {
+            myAllSpriteRenderer[i].sortingLayerName = "UI";
+            myAllSpriteRenderer[i].sortingOrder = myAllSpriteRenderer[i].sortingOrder + 1;
+        }
+    }
+
+    public void CharacterDisable()
+    {
+        for (int i = 0; i < myAllSpriteRenderer.Length; i++)
+        {
+            myAllSpriteRenderer[i].color = new Vector4(0.5f, 0.5f, 0.5f, 1.0f);
+        }
+    }
 }

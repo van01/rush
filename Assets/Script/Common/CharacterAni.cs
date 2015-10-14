@@ -142,4 +142,9 @@ public class CharacterAni : MonoBehaviour {
     {
         attackSuccessDelay = fAttackSuccessDelay;
     }
+
+    public void AniStop()
+    {
+        tmpAnimation.Stop();
+    }
 }

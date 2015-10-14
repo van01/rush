@@ -13,6 +13,7 @@ public class RWCharacterPanelHandler : MonoBehaviour {
         ButtonInit(PlayerPrefs.GetInt("PlayerCharacterNumber"));
 
         CharacterActiveStringArrayInit();
+        CharacterNumberSettingDelivery();
         testLockButton();
     }
 
@@ -56,13 +57,19 @@ public class RWCharacterPanelHandler : MonoBehaviour {
         }
     }
 
-    void testLockButton()
+    void CharacterNumberSettingDelivery()
+    {
+        for (int i = 0; i < CharacterSelectButton.Length; i++)
+        {
+            CharacterSelectButton[i].SendMessage("CharacterNumberSetting", i);
+        }
+    }
+
+        void testLockButton()
     {
         for (int i = 2; i < 7; i++)
         {
             PlayerPrefs.SetInt(ActivePlayerCharacter[i], 0);
-
-            print(PlayerPrefs.GetInt(ActivePlayerCharacter[i]));
         }
     }
 }
