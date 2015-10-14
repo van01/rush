@@ -7,7 +7,11 @@ public class GameController : MonoBehaviour {
 
     void Start()
     {
-        SendMessage("GameStateControll", "Ready"); //임시
+        if (GetComponent<StageController>().isRWStage == true)
+            SendMessage("GameStateControll", "Lobby");
+        else
+            SendMessage("GameStateControll", "Ready");
+
         CharacterHealthBarOff();
     }
 
@@ -25,7 +29,16 @@ public class GameController : MonoBehaviour {
     /// 
     public void RWGameOver()
     {
-        print("game over!!!!");
         SendMessage("GameStateControll", "Hold");
+
+        SendMessage("RWGameOverModeUISetting");
+
+        SendMessage("PlayerGravityScaleOff");
+    }
+
+    public void RetryCharacterPosition()
+    {
+        SendMessage("RWCharacterPositionInit");     //playercontroller로 이관
+        SendMessage("PlayerGravityScaleOn");
     }
 }

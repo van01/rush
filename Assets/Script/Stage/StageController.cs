@@ -20,11 +20,13 @@ public class StageController : MonoBehaviour {
     public GameObject[] stagePrefab;
     private GameObject presentStage;
 
+    private Transform baseBlockTransform;
+
     void Awake()
     {
-        tmpStage = GameObject.FindGameObjectWithTag("Stage");
-        if (tmpStage != null)
-            tmpStage.SetActive(false);
+        
+        baseBlockTransform = ScrollFloorCollider2D.transform.FindChild("FloorScrollBlock").transform.FindChild("BaseBlock");
+
     }
 
 	void Start(){
@@ -34,16 +36,24 @@ public class StageController : MonoBehaviour {
         {
             floorCollider2D.SetActive(false);
             ScrollFloorCollider2D.SetActive(true);
+            
         }
         else
         {
             floorCollider2D.SetActive(true);
             ScrollFloorCollider2D.SetActive(false);
+            
         }
+        baseBlockTransform.SendMessage("DeliveryBaseBlockScrollSpeed", scrollSpeed);    // baseBlock에 속도 전달
     }
 
     public void StageInialize()
     {
+        tmpStage = GameObject.FindGameObjectWithTag("Stage");
+
+        if (tmpStage != null)
+            Destroy(tmpStage);
+
         if (stagePrefab.Length < StageTestNumber)
             StageInialize();
 
@@ -53,6 +63,9 @@ public class StageController : MonoBehaviour {
             presentStage.SendMessage("FloorSetting", isRWStage);
             if (presentStage.GetComponent<StageColorController>().randomSpriteColorApply == true)
                 StageColorActiveOn();
+
+            baseBlockTransform.SendMessage("ScrollOnBaseBlock");    // 오프닝 종료 후 시작
+            StageScrollInialize();
         }
         else
         {
@@ -76,10 +89,7 @@ public class StageController : MonoBehaviour {
 
 	public void StageScrollInialize(){
         presentStage.SendMessage("ScrollOnTrue");
-        presentStage.SendMessage("DeliveryScrollSpeed", scrollSpeed);
-
-        if (isRWStage == true)
-            ScrollFloorCollider2D.SendMessage("DeliveryFloorScrollSpeedValue", scrollSpeed);
+        presentStage.SendMessage("DeliveryScrollSpeed", scrollSpeed);     
 
         if (isEnemyAppear == true)
         {
@@ -88,7 +98,16 @@ public class StageController : MonoBehaviour {
         }
 	}
 
-	public void DeliveryScrollOnTrue(){
+    public void RWBlockScrollon()
+    {
+        if (isRWStage == true)
+        {
+            ScrollFloorCollider2D.SendMessage("DeliveryFloorScrollSpeedValue", scrollSpeed);        //블럭 스크롤
+            ScrollFloorCollider2D.SendMessage("BlockScrollOn");
+        }
+    }
+
+    public void DeliveryScrollOnTrue(){
 		presentStage.SendMessage("ScrollOnTrue");
 		tmpEnemy.SendMessage("ScrollOnTrue");
 	}
@@ -97,7 +116,7 @@ public class StageController : MonoBehaviour {
         if (isRWStage == true)
         {
             presentStage.SendMessage("ScrollOnFalse");
-            ScrollFloorCollider2D.SendMessage("BlockScrollOnFalse");
+            ScrollFloorCollider2D.SendMessage("BlockScrollOff");
         }
         else
         {
@@ -121,5 +140,15 @@ public class StageController : MonoBehaviour {
         presentStage.SendMessage("StageColorActive");
     }
 
-	//gameStateController 완성 후 그쪽으로 모아야 함
+    //gameStateController 완성 후 그쪽으로 모아야 함
+
+    public void BlockInitDelivery()
+    {
+        baseBlockTransform.gameObject.SetActive(true);
+        ScrollFloorCollider2D.transform.FindChild("FloorScrollBlock").SendMessage("ResetBlockScroll");
+        ScrollFloorCollider2D.transform.FindChild("FloorScrollBlock").GetComponent<RWBlockController>().AllBlockDelete();
+        baseBlockTransform.SendMessage("BaseBlockInit");
+        //ResetBlockScroll
+        //AllBlockDelete
+    }
 }

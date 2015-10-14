@@ -11,7 +11,10 @@ public class RWBlockGeneratorZoneHandler : MonoBehaviour {
         {
             tmpBlockController.SendMessage("BlockGenerater");
 
-            Destroy(c.gameObject);
+            if (c.name == "BaseBlock")
+                c.SendMessage("BaseBlockDrop");
+            else
+                Destroy(c.gameObject);
         }
     }
 }

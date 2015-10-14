@@ -6,10 +6,17 @@ public class HUDHandler : MonoBehaviour {
 	public GameObject tmpGameController;
 
 	public GameObject hitZone;
-
     public GameObject tmpPlayer;
 
-	
+    public GameObject HUDPlayingUI;
+    public GameObject HUDBattleUI;
+    public GameObject HUDRWLobbyUI;
+    public GameObject HUDRWReadyUI;
+    public GameObject HUDRWPlayingUI;
+    public GameObject HUDRWGameOverUI;
+
+    public GameObject HUDRWCharacterUI;
+
     public void OnClickSkillButton(string activeSkillID)
     {
         tmpPlayer = GameObject.Find("Pawn");
@@ -78,4 +85,109 @@ public class HUDHandler : MonoBehaviour {
     {
         tmpGameController.SendMessage("RWCharacterJumpAddforce");
     }
+
+    public void HUDBattleUIOn()
+    {
+        HUDBattleUI.SetActive(true);
+        HUDRWLobbyUI.SetActive(false);
+    }
+
+    public void HUDBattleUIOff()
+    {
+        HUDBattleUI.SetActive(false);
+        HUDRWLobbyUI.SetActive(true);
+    }
+
+    public void HUDRWLobbyUIOff()
+    {
+        HUDRWLobbyUI.SetActive(false);
+    }
+
+    public void HUDRWReadyUIOn()
+    {
+        HUDRWReadyUI.SetActive(true);
+    }
+
+    public void HUDRWReadyUIOff()
+    {
+        HUDRWReadyUI.SetActive(false);
+    }
+
+    public void HUDPlayingUIon()
+    {
+        HUDPlayingUI.SetActive(true);
+    }
+
+    public void HUDPlayingUIoff()
+    {
+        HUDPlayingUI.SetActive(false);
+    }
+
+    public void HUDRWPlayingUIon()
+    {
+        HUDRWPlayingUI.SetActive(true);
+    }
+
+    public void HUDRWPlayingUIoff()
+    {
+        HUDRWPlayingUI.SetActive(false);
+    }
+
+    public void HUDRWGameOverUIon()
+    {
+        HUDRWGameOverUI.SetActive(true);
+    }
+
+    public void HUDRWGameOverUIoff()
+    {
+        HUDRWGameOverUI.SetActive(false);
+    }
+
+    public void HUDRWCharacterUIon()
+    {
+        HUDRWCharacterUI.SetActive(true);
+    }
+
+    public void HUDRWCharacterUIoff()
+    {
+        HUDRWCharacterUI.SetActive(false);
+    }
+
+    public void StartButtonActive()
+    {
+        tmpGameController.SendMessage("GameStateControll", "Ready");
+    }
+
+    public void ReadyPanelActive()
+    {
+        tmpGameController.SendMessage("GameStateControll", "Playing");
+    }
+
+    public void RetryActive()
+    {
+        tmpGameController.SendMessage("BlockInitDelivery");
+        tmpGameController.SendMessage("GameStateControll", "Playing");
+        tmpGameController.SendMessage("RetryCharacterPosition");
+
+        HUDRWGameOverUIoff();
+    }
+
+    public void HomeActive()
+    {
+        tmpGameController.SendMessage("BlockInitDelivery");
+        tmpGameController.SendMessage("RetryCharacterPosition");
+        tmpGameController.SendMessage("GameStateControll", "Lobby");
+    }
+
+    public void CharacterButtonActive()
+    {
+        HUDRWCharacterUIon();
+    }
+
+    public void CharacterCloseButtonActive()
+    {
+        HUDRWCharacterUIoff();
+    }
+
+    //HUDcontroller와 HUDHandler 기능 정리 필요
 }

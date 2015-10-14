@@ -25,6 +25,7 @@ public class HUDController : MonoBehaviour {
 
     protected bool skillOn = false;
 
+
 	public void LeftHitZoneDown(){
         bool dtest = DoubleClick();
         
@@ -275,5 +276,38 @@ public class HUDController : MonoBehaviour {
     {
         SendMessage("PlyaerCharacterControllStateOn");
         SendMessage("CharacterBackPredicateOn");
+    }
+
+
+    public void RWModeUISetting()
+    {
+        HUD.SendMessage("HUDBattleUIOff");
+
+        HUD.SendMessage("HUDPlayingUIoff");
+        HUD.SendMessage("HUDRWPlayingUIoff");
+        HUD.SendMessage("HUDRWGameOverUIoff");
+    }
+
+    public void BattleModeUISetting()
+    {
+        HUD.SendMessage("HUDBattleUIOn");
+    }
+
+    public void RWReadyModeUISetting()
+    {
+        HUD.SendMessage("HUDRWLobbyUIOff");
+        HUD.SendMessage("HUDRWReadyUIOn");
+    }
+
+    public void RWPlayingModeUISetting()
+    {
+        HUD.SendMessage("HUDRWReadyUIOff");
+        HUD.SendMessage("HUDPlayingUIon");
+        HUD.SendMessage("HUDRWPlayingUIon");
+    }
+
+    public void RWGameOverModeUISetting()
+    {
+        HUD.SendMessage("HUDRWGameOverUIon");
     }
 }

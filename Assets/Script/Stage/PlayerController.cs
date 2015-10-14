@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour {
     private bool characterMovePredicate = false;
     private bool characterBattlePredicate = false;
 
+    private float[] RWbeginCharacterTransform;
+
     public enum States
     {
         Spawns,		//자기자리 찾아가기
@@ -37,12 +39,16 @@ public class PlayerController : MonoBehaviour {
     void Awake()
     {
         tmpPlayer = GameObject.FindGameObjectsWithTag("Player");
+        RWbeginCharacterTransform = new float[tmpPlayer.Length];
+
         characterMovePredicate = true;
     }
 
     void Start()
     {
         PlayerCharacterSorting();
+        if (GetComponent<StageController>().isRWStage == true)
+            RWBeginCharacterTransform();
     }
 
     // Update is called once per frame
@@ -210,8 +216,6 @@ public class PlayerController : MonoBehaviour {
             SendMessage("GameStateControll", "Hold");
         else
             SendMessage("GameStateControll", "Playing");
-
-
         //currentStates = previousStates; -- 개선필요
         currentStates = States.Moves;
         CharacterActionCheck();
@@ -323,6 +327,7 @@ public class PlayerController : MonoBehaviour {
 
     public void PlayerHealthBarOff()
     {
+        tmpPlayer = GameObject.FindGameObjectsWithTag("Player");
         for (int i = 0; i < tmpPlayer.Length; i++)
         {
             tmpPlayer[i].gameObject.SendMessage("HealthBarInitOff");
@@ -340,6 +345,40 @@ public class PlayerController : MonoBehaviour {
         for (int i = 0; i<tmpPlayer.Length; i++)
         {
             tmpPlayer[i].gameObject.SendMessage("RWJumpAddforce");
+        }
+    }
+
+    void RWBeginCharacterTransform()
+    {
+        for (int i = 0; i < tmpPlayer.Length; i++)
+        {
+            RWbeginCharacterTransform[i] = tmpPlayer[i].transform.position.y;
+        }
+    }
+
+    public void RWCharacterPositionInit()
+    {
+        for (int i = 0; i < tmpPlayer.Length; i++)
+        {
+            tmpPlayer[i].transform.position = new Vector3(-1.5f, RWbeginCharacterTransform[i], 0);
+        }
+    }
+
+    public void PlayerGravityScaleOff()
+    {
+        for (int i = 0; i < tmpPlayer.Length; i++)
+        {
+            tmpPlayer[i].GetComponent<Rigidbody2D>().drag = 3.0f;
+            tmpPlayer[i].GetComponent<Rigidbody2D>().gravityScale = 0f;
+        }
+    }
+
+    public void PlayerGravityScaleOn()
+    {
+        for (int i = 0; i < tmpPlayer.Length; i++)
+        {
+            tmpPlayer[i].GetComponent<Rigidbody2D>().drag = 0f;
+            tmpPlayer[i].GetComponent<Rigidbody2D>().gravityScale = 9.0f;
         }
     }
 }

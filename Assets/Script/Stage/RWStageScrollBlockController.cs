@@ -3,16 +3,27 @@ using System.Collections;
 
 public class RWStageScrollBlockController : MonoBehaviour {
 
-    private GameObject tmpScrollBlock;
+    private Transform tmpScrollBlockTransfrom;
+
+    void Start()
+    {
+        tmpScrollBlockTransfrom = transform.FindChild("FloorScrollBlock");
+    }
 
 	public void DeliveryFloorScrollSpeedValue(float fSC)
     {
-        transform.FindChild("FloorScrollBlock").SendMessage("DeliveryFloorScrollSpeed", fSC);
+        tmpScrollBlockTransfrom.SendMessage("DeliveryFloorScrollSpeed", fSC);
     }
 
-    public void BlockScrollOnFalse()
+    public void BlockScrollOn()
     {
-        transform.FindChild("FloorScrollBlock").SendMessage("ScrollOnFalse");
-        print("Scroll Block Stop Delivery");
+        tmpScrollBlockTransfrom.SendMessage("StageBlockScrollOn");
+        tmpScrollBlockTransfrom.SendMessage("BlockGeneraterInit");
+
+    }
+
+    public void BlockScrollOff()
+    {
+        tmpScrollBlockTransfrom.SendMessage("BlockScrollOff");
     }
 }

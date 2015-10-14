@@ -9,19 +9,32 @@ public class RWBlockController : MonoBehaviour {
     private GameObject oldBlockPrefab;
     private GameObject[] arrBlock;
 
+    private Transform tmpBaseBlock;
+
     private int presentBlockPrefabColSizeX;
     private float oldBlockPrefabColSizeX;
     private float presentBlockPrefabPositionX;
-    private float oldBlockPrefabPositionX = 5.6f;
+    private float oldBlockPrefabPositionX;
 
     private float blockSpaceSizeX;
     private float blockSpaceSizeY;
 
+    private GameObject[] tmpArrBlock;
+
     void Start()
     {
         presentBlockPrefabColSizeX = 6;                 // 이번에 생성할 블럭의 collision 크기
-
+        
         arrBlock = GameObject.FindGameObjectsWithTag("Block");
+
+        tmpBaseBlock = transform.FindChild("BaseBlock");
+    }
+
+    public void BlockGeneraterInit()
+    {
+        oldBlockPrefabPositionX = tmpBaseBlock.GetComponent<BoxCollider2D>().offset.x + tmpBaseBlock.GetComponent<BoxCollider2D>().size.x / 2 - 0.1f;
+        presentBlockPrefabPositionX = 6;
+        oldBlockPrefab = null;
 
         if (arrBlock.Length < blockPrefabCount)
         {
@@ -38,7 +51,7 @@ public class RWBlockController : MonoBehaviour {
         RandomPresentBlockcolSizeX();
 
         presentBlockPrefabPositionX = oldBlockPrefabPositionX + ((float)presentBlockPrefabColSizeX / 2f);
-
+        
         presentBlockPrefab = Instantiate(blockPrefab, new Vector3(presentBlockPrefabPositionX, blockSpaceSizeY, transform.position.z), Quaternion.Euler(0, 0, 0)) as GameObject;
         presentBlockPrefab.GetComponent<BoxCollider2D>().size = new Vector2(presentBlockPrefabColSizeX, 4.0f) ;
         presentBlockPrefab.transform.SetParent(transform);
@@ -83,4 +96,21 @@ public class RWBlockController : MonoBehaviour {
         blockSpaceSizeY = transform.position.y + Random.RandomRange(0f, 0.4f);   //테스트용 블럭 높이, 난이도 조정 후 난이도에 따라 범위 변하도록 수정 필요
     }
 
+    public void AllBlockDelete()
+    {
+        tmpArrBlock = new GameObject[blockPrefabCount];
+        tmpArrBlock = GameObject.FindGameObjectsWithTag("Block");
+
+        for (int i = 0; i < tmpArrBlock.Length; i++)
+        {
+            if (tmpArrBlock[i].name == "BaseBlock")
+            {
+
+            }
+            else
+            {
+                Destroy(tmpArrBlock[i]);
+            }
+        }
+    }
 }

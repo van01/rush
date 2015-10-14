@@ -63,19 +63,41 @@ public class GameState : MonoBehaviour {
 
     public virtual void LobbyAction()
     {
-        SendMessage("CharacterInialize");
+        if (GetComponent<StageController>().isRWStage == true)
+        {
+            SendMessage("RWModeUISetting");
+
+            SendMessage("CharacterInialize");
+            SendMessage("StageInialize");
+        }
     }
 
     public virtual void ReadyAction(){
-        
-        SendMessage("StageInialize");
-		//Debug.Log("■■Game State■■ReadyAction");
-	}
+        if (GetComponent<StageController>().isRWStage == true)
+        {
+            SendMessage("RWReadyModeUISetting");
+        }
+        else
+        {
+            SendMessage("CharacterInialize");
+            SendMessage("StageInialize");
+
+            SendMessage("BattleModeUISetting");
+        }
+
+        //Debug.Log("■■Game State■■ReadyAction");
+    }
 		
 	public virtual void PlayingAction(){
-		SendMessage("StageScrollInialize");
-		SendMessage("CharacterActionCheck");
-		//Debug.Log("■■Game State■■PlayingAction");
+        if (GetComponent<StageController>().isRWStage == true)
+        {
+            SendMessage("RWPlayingModeUISetting");
+            SendMessage("RWBlockScrollon");
+            SendMessage("StageScrollInialize");
+        }
+        
+        SendMessage("CharacterActionCheck");
+        //Debug.Log("■■Game State■■PlayingAction");
 	}
 
     public virtual void HoldAction()
