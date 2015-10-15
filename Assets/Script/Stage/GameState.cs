@@ -94,6 +94,9 @@ public class GameState : MonoBehaviour {
             SendMessage("RWPlayingModeUISetting");
             SendMessage("RWBlockScrollon");
             SendMessage("StageScrollInialize");
+            SendMessage("BlockCountInitialize");
+
+            SendMessage("StageLevelInitialize");
         }
         
         SendMessage("CharacterActionCheck");

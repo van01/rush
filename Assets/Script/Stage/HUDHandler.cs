@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class HUDHandler : MonoBehaviour {
@@ -13,10 +14,13 @@ public class HUDHandler : MonoBehaviour {
     public GameObject HUDRWLobbyUI;
     public GameObject HUDRWReadyUI;
     public GameObject HUDRWPlayingUI;
+    public GameObject HUDRWPaueseUI;
     public GameObject HUDRWGameOverUI;
 
     public GameObject HUDRWCharacterUI;
     public GameObject HUDRWHelmetUI;
+
+    public GameObject blockCounter;
 
     public void OnClickSkillButton(string activeSkillID)
     {
@@ -134,6 +138,16 @@ public class HUDHandler : MonoBehaviour {
         HUDRWPlayingUI.SetActive(false);
     }
 
+    public void HUDRWPaueseUIon()
+    {
+        HUDRWPaueseUI.SetActive(true);
+    }
+
+    public void HUDRWPaueseUIoff()
+    {
+        HUDRWPaueseUI.SetActive(false);
+    }
+
     public void HUDRWGameOverUIon()
     {
         HUDRWGameOverUI.SetActive(true);
@@ -174,6 +188,30 @@ public class HUDHandler : MonoBehaviour {
         tmpGameController.SendMessage("GameStateControll", "Playing");
     }
 
+    public void PauseButtonActive()
+    {
+        //Pause On
+
+        tmpGameController.SendMessage("RWGamePauseOnUISetting");
+    }
+
+    public void ReStartButtonActive()
+    {
+        //Pause Off
+
+        tmpGameController.SendMessage("RWGamePauseOffUISetting");
+    }
+
+    public void GiveUpButtonActive()
+    {
+        tmpGameController.SendMessage("RWGameGiveUpUISetting");
+
+        tmpGameController.SendMessage("BlockInitDelivery");
+        tmpGameController.SendMessage("RetryCharacterPosition");
+        tmpGameController.SendMessage("GameStateControll", "Lobby");
+
+    }
+
     public void RetryActive()
     {
         tmpGameController.SendMessage("BlockInitDelivery");
@@ -210,5 +248,9 @@ public class HUDHandler : MonoBehaviour {
         HUDRWHelmetUIoff();
     }
 
+    public void BlockCounterRefresh(string nCount)
+    {
+        blockCounter.GetComponent<Text>().text = nCount;
+    }
     //HUDcontroller와 HUDHandler 기능 정리 필요
 }

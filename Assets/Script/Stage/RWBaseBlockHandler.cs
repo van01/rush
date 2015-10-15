@@ -81,4 +81,12 @@ public class RWBaseBlockHandler : MonoBehaviour {
         baseBlock02.transform.position = new Vector3(0, -2.5f, 0);
         baseBlock03.transform.position = new Vector3(4, -2.5f, 0);      // 왜 2.5?
     }
+
+    void OnCollisionEnter2D(Collision2D c)
+    {
+        if (c.gameObject.tag == "Player")
+        {
+            c.gameObject.SendMessage("AddforceInitialize");
+        }
+    }
 }

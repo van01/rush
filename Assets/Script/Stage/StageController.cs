@@ -2,8 +2,7 @@
 using System.Collections;
 
 public class StageController : MonoBehaviour {
-
-	public float scrollSpeed;
+	protected float scrollSpeed;
 
     public bool isStageTest = false;
     public int StageTestNumber = 0;
@@ -44,7 +43,6 @@ public class StageController : MonoBehaviour {
             ScrollFloorCollider2D.SetActive(false);
             
         }
-        baseBlockTransform.SendMessage("DeliveryBaseBlockScrollSpeed", scrollSpeed);    // baseBlock에 속도 전달
     }
 
     public void StageInialize()
@@ -64,7 +62,9 @@ public class StageController : MonoBehaviour {
             if (presentStage.GetComponent<StageColorController>().randomSpriteColorApply == true)
                 StageColorActiveOn();
 
-            baseBlockTransform.SendMessage("ScrollOnBaseBlock");    // 오프닝 종료 후 시작
+            SendMessage("StageLevelInitialize");
+            baseBlockTransform.SendMessage("DeliveryBaseBlockScrollSpeed", scrollSpeed);    // baseBlock에 속도 전달
+            BaseBlockScrollOnDelivery();    // 오프닝 종료 후 시작
             StageScrollInialize();
         }
         else
@@ -150,5 +150,50 @@ public class StageController : MonoBehaviour {
         baseBlockTransform.SendMessage("BaseBlockInit");
         //ResetBlockScroll
         //AllBlockDelete
+    }
+
+    public void BaseBlockScrollOnDelivery()
+    {
+        baseBlockTransform.SendMessage("ScrollOnBaseBlock");
+    }
+
+    public void ScrollSpeedRefresh(float nScrollSpeed)
+    {
+        scrollSpeed = nScrollSpeed;
+
+        presentStage.SendMessage("DeliveryScrollSpeed", scrollSpeed);
+        ScrollFloorCollider2D.SendMessage("DeliveryFloorScrollSpeedValue", scrollSpeed);
+    }
+
+    //level
+    //ScrollFloorCollider2D 
+    public void PresentBlockColMinSizeXMessenger(string nMinSize)
+    {
+        ScrollFloorCollider2D.SendMessage("PresentBlockColMinSizeXDelivery", nMinSize);
+    }
+
+    public void PresentBlockColMaxSizeXMessenger(string nMaxSize)
+    {
+        ScrollFloorCollider2D.SendMessage("PresentBlockColMaxSizeXDelivery", nMaxSize);
+    }
+
+    public void PresentBlockSpaceMinSizeXMessenger(string nMinSize)
+    {
+        ScrollFloorCollider2D.SendMessage("PresentBlockSpaceMinSizeXDelivery", nMinSize);
+    }
+
+    public void PresentBlockSpaceMaxSizeXMessenger(string nMaxSize)
+    {
+        ScrollFloorCollider2D.SendMessage("PresentBlockSpaceMaxSizeXDelivery", nMaxSize);
+    }
+
+    public void PresentBlockSpaceMinSizeYMessenger(string nMinSize)
+    {
+        ScrollFloorCollider2D.SendMessage("PresentBlockSpaceMinSizeYDelivery", nMinSize);
+    }
+
+    public void PresentBlockSpaceMaxSizeYMessenger(string nMaxSize)
+    {
+        ScrollFloorCollider2D.SendMessage("PresentBlockSpaceMaxSizeYDelivery", nMaxSize);
     }
 }

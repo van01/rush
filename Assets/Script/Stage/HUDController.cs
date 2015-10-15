@@ -25,6 +25,7 @@ public class HUDController : MonoBehaviour {
 
     protected bool skillOn = false;
 
+    protected string blockCount;
 
 	public void LeftHitZoneDown(){
         bool dtest = DoubleClick();
@@ -308,6 +309,44 @@ public class HUDController : MonoBehaviour {
 
     public void RWGameOverModeUISetting()
     {
+        HUD.SendMessage("HUDPlayingUIoff");
+        HUD.SendMessage("HUDRWPlayingUIoff");
+
         HUD.SendMessage("HUDRWGameOverUIon");
+        SendMessage("StageLevelInitialize");
+    }
+
+    public void BlockCounterRefreshDelivery(string nCoinCount)
+    {
+        blockCount = nCoinCount;
+        HUD.SendMessage("BlockCounterRefresh", blockCount);
+    }
+
+    public void RWGamePauseOnUISetting()
+    {
+        HUD.SendMessage("HUDRWPaueseUIon");
+
+        HUD.SendMessage("HUDPlayingUIoff");
+        HUD.SendMessage("HUDRWPlayingUIoff");
+
+        SendMessage("PauseOn");
+    }
+
+    public void RWGamePauseOffUISetting()
+    {
+        HUD.SendMessage("HUDRWPaueseUIoff");
+
+        HUD.SendMessage("HUDPlayingUIon");
+        HUD.SendMessage("HUDRWPlayingUIon");
+
+        SendMessage("PauseOff");
+    }
+
+    public void RWGameGiveUpUISetting()
+    {
+        HUD.SendMessage("HUDRWPaueseUIoff");
+
+        SendMessage("DeliveryScrollOnFalse");
+        SendMessage("PauseOff");
     }
 }

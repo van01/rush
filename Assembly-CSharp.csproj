@@ -146,11 +146,13 @@
      <Compile Include="Assets\Script\Stage\ProjectileHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWBaseBlockHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWBlockController.cs" />
+     <Compile Include="Assets\Script\Stage\RWBlockDestroyZoneHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWBlockGeneratorZoneHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWBlockHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWCharacterButtonHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWCharacterPanelHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWDeadZoneHandler.cs" />
+     <Compile Include="Assets\Script\Stage\RWGameManager.cs" />
      <Compile Include="Assets\Script\Stage\RWHelmetButtonHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWHelmetPanelHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWPlayerController.cs" />
@@ -165,11 +167,17 @@
      <None Include="Assets\Puppet2D\Shaders\BlackAndWhite.shader" />
      <None Include="Assets\Puppet2D\Shaders\VertColor.shader" />
      <None Include="Assets\Puppet2D\Shaders\unlitTransparentDouble.shader" />
+ <Reference Include="UnityEngine.Advertisements">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>

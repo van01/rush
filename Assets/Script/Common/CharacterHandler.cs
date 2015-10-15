@@ -46,6 +46,8 @@ public class CharacterHandler : MonoBehaviour {
 
     private bool HealthBarInitOn = true;
 
+    protected bool isAddforce;
+
     void Awake(){
         tmpHUD = GameObject.Find("Canvas");
 		tmpGameController = GameObject.Find("GameController");
@@ -294,7 +296,11 @@ public class CharacterHandler : MonoBehaviour {
         //점프
         float rForceY = 20.0f;
 
-        GetComponent<Rigidbody2D>().AddForce(new Vector2(0, rForceY), ForceMode2D.Impulse);
+        if (isAddforce == true)
+        {
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, rForceY), ForceMode2D.Impulse);
+            isAddforce = false;
+        }
     }
 
     public void AllSpriteRendererSortingLayerUI()
@@ -312,5 +318,10 @@ public class CharacterHandler : MonoBehaviour {
         {
             myAllSpriteRenderer[i].color = new Vector4(0.5f, 0.5f, 0.5f, 1.0f);
         }
+    }
+
+    public void AddforceInitialize()
+    {
+        isAddforce = true;
     }
 }

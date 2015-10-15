@@ -23,12 +23,12 @@ public class RWHelmetButtonHandler : MonoBehaviour
     {
         tmpHelmetSelectPanal = transform.parent.gameObject.transform.parent.gameObject.transform.parent.gameObject;
 
-        //if (currentHelmetButtonState == HelmetButtonState.Lock)
-            //LockImage.SetActive(true);
-        //else
-            //LockImage.SetActive(false);
-
         CharacterDraw();
+
+        if (currentHelmetButtonState == HelmetButtonState.Lock)
+            CharacterDisable();
+
+
     }
 
     public void HelmetSelectButtonActive()
@@ -86,9 +86,7 @@ public class RWHelmetButtonHandler : MonoBehaviour
 
         Destroy(presentPlayerCharacter.GetComponent<PlayerAI>());
         Destroy(presentPlayerCharacter.GetComponent<PlayerAbility>());
-        Destroy(presentPlayerCharacter.GetComponent<PlayerBattle>());
-
-        CharacterDisable();
+        Destroy(presentPlayerCharacter.GetComponent<PlayerBattle>());        
     }
 
     public static void ChangeLayersRecursively(Transform trans, string name)

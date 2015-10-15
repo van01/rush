@@ -1,0 +1,13 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class RWBlockDestroyZoneHandler : MonoBehaviour {
+
+    void OnTriggerEnter2D(Collider2D c)
+    {
+        if (c.tag == "Block")
+            Destroy(c.gameObject);
+        else if (c.tag == "BaseBlock")
+            c.SendMessage("BaseBlockDrop");
+    }
+}
