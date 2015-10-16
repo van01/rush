@@ -349,4 +349,33 @@ public class HUDController : MonoBehaviour {
         SendMessage("DeliveryScrollOnFalse");
         SendMessage("PauseOff");
     }
+
+    public void RWGameExitUISetting()
+    {
+        HUD.SendMessage("HUDHUDRWExitPopupon");
+
+        SendMessage("PauseOn");
+    }
+
+    public void RWGameExitUICancel()
+    {
+        HUD.SendMessage("HUDHUDRWExitPopupoff");
+
+        SendMessage("PauseOff");
+    }
+
+    public void RWHelmetUISetting()
+    {
+        HUD.SendMessage("HUDRWHelmetUIon");
+
+        //SendMessage("PauseOn");
+    }
+    public void RWHelmetUICancel()
+    {
+        HUD.SendMessage("HUDRWHelmetUIoff");
+
+        //SendMessage("PauseOff");
+    }
+
+
 }

@@ -65,11 +65,16 @@ public class RWCharacterPanelHandler : MonoBehaviour {
         }
     }
 
-        void testLockButton()
+    void testLockButton()
     {
         for (int i = 2; i < 7; i++)
         {
             PlayerPrefs.SetInt(ActivePlayerCharacter[i], 0);
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            PlayerPrefs.SetInt(ActivePlayerCharacter[i], 1);
         }
     }
 }

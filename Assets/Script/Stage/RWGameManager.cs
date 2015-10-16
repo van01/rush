@@ -12,7 +12,7 @@ public class RWGameManager : MonoBehaviour {
     protected int blockColMinSize = 2;
     protected int blockColMaxSize = 5;
     protected float blockSpaceMinSizeX = 2f;
-    protected float blockSpaceMaxSizeX = 2.5f;
+    protected float blockSpaceMaxSizeX = 3f;
     protected float blockSpaceMinSizeY = 0f;
     protected float blockSpaceMaxSizeY = 0.4f;
     protected float currentScrollSpeed;
@@ -58,7 +58,7 @@ public class RWGameManager : MonoBehaviour {
     protected void LevelUp()
     {
         if (currentScrollSpeed < maxScrollSpeed)
-            currentScrollSpeed *= 1.05f;
+            currentScrollSpeed *= 1.04f;
         if (currentblockColMinSize > blockColMinSize)
             currentblockColMinSize -= 1;
         if (currentblockSpaceMinSizeX < blockSpaceMinSizeX)

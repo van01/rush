@@ -69,6 +69,7 @@ public class RWHelmetButtonHandler : MonoBehaviour
     {
         PlayerCharacter = tmpHelmetSelectPanal.GetComponent<RWHelmetPanelHandler>().tmpGameController.GetComponent<RWPlayerController>().playerCharacter[0];
         presentPlayerCharacter = Instantiate(PlayerCharacter, transform.position, transform.rotation) as GameObject;
+        presentPlayerCharacter.SendMessage("HealthBarInitOff");
         presentPlayerCharacter.transform.SetParent(transform);
         presentPlayerCharacter.transform.localScale = new Vector3(250f, 250f, 250f);
         presentPlayerCharacter.transform.localPosition = new Vector3(0, 100f, 0);

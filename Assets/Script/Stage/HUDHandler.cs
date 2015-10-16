@@ -16,11 +16,13 @@ public class HUDHandler : MonoBehaviour {
     public GameObject HUDRWPlayingUI;
     public GameObject HUDRWPaueseUI;
     public GameObject HUDRWGameOverUI;
+    public GameObject HUDRWExitPopup;
 
     public GameObject HUDRWCharacterUI;
     public GameObject HUDRWHelmetUI;
 
     public GameObject blockCounter;
+        
 
     public void OnClickSkillButton(string activeSkillID)
     {
@@ -177,7 +179,17 @@ public class HUDHandler : MonoBehaviour {
     {
         HUDRWHelmetUI.SetActive(false);
     }
-    
+
+    public void HUDHUDRWExitPopupon()
+    {
+        HUDRWExitPopup.SetActive(true);
+    }
+
+    public void HUDHUDRWExitPopupoff()
+    {
+        HUDRWExitPopup.SetActive(false);
+    }
+
     public void StartButtonActive()
     {
         tmpGameController.SendMessage("GameStateControll", "Ready");
@@ -240,17 +252,27 @@ public class HUDHandler : MonoBehaviour {
 
     public void HelmetButtonActive()
     {
-        HUDRWHelmetUIon();
+        tmpGameController.SendMessage("RWHelmetUISetting");
     }
 
     public void HelmetCloseButtonActive()
     {
-        HUDRWHelmetUIoff();
+        tmpGameController.SendMessage("RWHelmetUICancel");
     }
 
     public void BlockCounterRefresh(string nCount)
     {
         blockCounter.GetComponent<Text>().text = nCount;
+    }
+
+    public void CancelButtonActive()
+    {
+        tmpGameController.SendMessage("RWGameExitUICancel");
+    }
+
+    public void ExitButtonActive()
+    {
+        Application.Quit();
     }
     //HUDcontroller와 HUDHandler 기능 정리 필요
 }

@@ -69,6 +69,7 @@ public class PlayerController : MonoBehaviour {
     private void CharacterStateChange(string s)
     {
         //모든 캐릭터 상태 전환
+        tmpPlayer = GameObject.FindGameObjectsWithTag("Player");
         for (int i = 0; i < tmpPlayer.Length; i++)
         {
             tmpPlayer[i].gameObject.SendMessage("CharacterStateControll", s);
@@ -362,6 +363,7 @@ public class PlayerController : MonoBehaviour {
 
     public void RWCharacterPositionInit()
     {
+        tmpPlayer = GameObject.FindGameObjectsWithTag("Player");
         for (int i = 0; i < tmpPlayer.Length; i++)
         {
             tmpPlayer[i].transform.position = new Vector3(-1.5f, RWbeginCharacterTransform[i], 0);
