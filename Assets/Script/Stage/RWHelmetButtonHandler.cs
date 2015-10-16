@@ -24,11 +24,8 @@ public class RWHelmetButtonHandler : MonoBehaviour
         tmpHelmetSelectPanal = transform.parent.gameObject.transform.parent.gameObject.transform.parent.gameObject;
 
         CharacterDraw();
-
-        if (currentHelmetButtonState == HelmetButtonState.Lock)
-            CharacterDisable();
-
-
+        if (helmetNumber > 4)
+            CharacterOff();
     }
 
     public void HelmetSelectButtonActive()
@@ -82,12 +79,20 @@ public class RWHelmetButtonHandler : MonoBehaviour
 
         presentPlayerCharacter.SendMessage("EquipHelmet", appearHelmetNumber);
 
+        presentPlayerCharacter.GetComponent<BoxCollider2D>().isTrigger = true;
+
         Destroy(presentPlayerCharacter.GetComponent<Rigidbody2D>());
-        Destroy(presentPlayerCharacter.GetComponent<BoxCollider2D>());
+        //Destroy(presentPlayerCharacter.GetComponent<BoxCollider2D>());
+
 
         Destroy(presentPlayerCharacter.GetComponent<PlayerAI>());
         Destroy(presentPlayerCharacter.GetComponent<PlayerAbility>());
-        Destroy(presentPlayerCharacter.GetComponent<PlayerBattle>());        
+        Destroy(presentPlayerCharacter.GetComponent<PlayerBattle>());
+
+        if (currentHelmetButtonState == HelmetButtonState.Lock)
+            CharacterDisable();
+        
+        
     }
 
     public static void ChangeLayersRecursively(Transform trans, string name)
@@ -108,5 +113,16 @@ public class RWHelmetButtonHandler : MonoBehaviour
     {
         presentPlayerCharacter.SendMessage("CharacterDisable");
         presentPlayerCharacter.SendMessage("AniStop");
+    }
+
+    public void CharacterOff()
+    {
+        presentPlayerCharacter.SetActive(false);
+    }
+
+    public void CharacterOn()
+    {
+        presentPlayerCharacter.SetActive(true);
+        
     }
 }
