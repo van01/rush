@@ -320,6 +320,14 @@ public class CharacterHandler : MonoBehaviour {
         }
     }
 
+    public void CharacterAble()
+    {
+        for (int i = 0; i < myAllSpriteRenderer.Length; i++)
+        {
+            myAllSpriteRenderer[i].color = new Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+        }
+    }
+
     public void AddforceInitialize()
     {
         isAddforce = true;

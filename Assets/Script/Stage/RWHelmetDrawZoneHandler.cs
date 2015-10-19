@@ -5,7 +5,7 @@ public class RWHelmetDrawZoneHandler : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D c)
     {
-        if (c.tag == "UI_Character")
+        if (c.tag == "UI_CharacterButton")
         {
             c.SendMessage("CharacterOn");
         }
@@ -13,7 +13,7 @@ public class RWHelmetDrawZoneHandler : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D c)
     {
-        if (c.tag == "UI_Character")
+        if (c.tag == "UI_CharacterButton")
         {
             c.SendMessage("CharacterOff");
         }

@@ -9,6 +9,7 @@ public class RWHelmetPanelHandler : MonoBehaviour {
 
     public GameObject helmetEntityPrefab;
     private GameObject[] presentHelmetEntity;
+    private string[] ActiveHelmet;
 
     private float helmetBasketWidthSize;
     private float helmetBasketHeightSize;
@@ -22,6 +23,7 @@ public class RWHelmetPanelHandler : MonoBehaviour {
     void Awake()
     {
         helmetSpriteCount = tmpItemHandler.GetComponent<CharacterHelmetBasket>().CharacterHelmetSprite.Length;
+        ActiveHelmet = new string[helmetSpriteCount];
         presentHelmetEntity = new GameObject[helmetSpriteCount];
     }
 
@@ -31,6 +33,8 @@ public class RWHelmetPanelHandler : MonoBehaviour {
         helmetBasketHeightSize = helmetBasket.GetComponent<RectTransform>().sizeDelta.y;
 
         helmetBasketInitialize();
+        PlayerPrefs.SetInt("ActiveHelmet0", 1);
+        PlayerPrefs.SetInt("ActiveHelmet1", 1);
     }
 
     void helmetBasketInitialize()
@@ -50,11 +54,26 @@ public class RWHelmetPanelHandler : MonoBehaviour {
 
             presentHelmetEntity[i].SendMessage("AppearHelmetNumberDelivery", i);
 
-            presentHelmetEntity[i].tag = "UI_Character";
+            presentHelmetEntity[i].tag = "UI_CharacterButton";
 
             helmetEntityPosition = helmetEntityPosition + new Vector3(helmetEntityWidthSize, 0, 0);
+
+            ActiveHelmet[i] = "ActiveHelmet" + i;
+            if (PlayerPrefs.GetInt(ActiveHelmet[i]) == 1)
+                presentHelmetEntity[i].GetComponent<RWHelmetButtonHandler>().currentHelmetButtonState = RWHelmetButtonHandler.HelmetButtonState.Active;
         }
 
         helmetBasket.GetComponent<RectTransform>().localPosition = new Vector3(baseHelmetBasketPositionX, 0, 0);
     }
+
+    public void HelmetButtonSelect()
+    {
+        //장착된 아이콘 처리
+    }
+
+    public void HelmetNumberDelivery(int nHelmetNumber)
+    {
+        tmpGameController.SendMessage("RWHelmetSetting", nHelmetNumber);
+    }
+
 }

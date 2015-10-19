@@ -99,7 +99,7 @@ public class GameState : MonoBehaviour {
             SendMessage("StageLevelInitialize");
         }
         
-        SendMessage("CharacterActionCheck");
+        //SendMessage("CharacterActionCheck");
         //Debug.Log("■■Game State■■PlayingAction");
 	}
 

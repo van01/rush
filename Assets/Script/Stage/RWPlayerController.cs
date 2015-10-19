@@ -5,8 +5,9 @@ public class RWPlayerController : MonoBehaviour {
 
     public GameObject[] playerCharacter;
     private int playerNumber;
+    private int helmetNumber;
 
-	void Start () {
+    void Start () {
         RWPlayerCharacterInitialize();
     }
 	
@@ -19,10 +20,25 @@ public class RWPlayerController : MonoBehaviour {
             if (i == playerNumber)
             {
                 playerCharacter[i].SetActive(true);
+                playerCharacter[i].SendMessage("CharacterStateControll", "RWPlay");
+                
+                RWHelmetInitialize();
                 SendMessage("PlayerHealthBarOff");
             }
             else
                 playerCharacter[i].SetActive(false);
+        }
+    }
+
+    void RWHelmetInitialize()
+    {
+        helmetNumber = PlayerPrefs.GetInt("CurrentHelmetNumber");
+
+        for (int i = 0; i < playerCharacter.Length; i++)
+        {
+            if (i == playerNumber)
+                playerCharacter[i].SendMessage("EquipHelmet", helmetNumber);
+
         }
     }
 
@@ -32,4 +48,13 @@ public class RWPlayerController : MonoBehaviour {
         print(nCharacterNumber);
         RWPlayerCharacterInitialize();
     }
+
+    public void RWHelmetSetting(int nHelmetNumber)
+    {
+        PlayerPrefs.SetInt("CurrentHelmetNumber", nHelmetNumber);
+        print(nHelmetNumber);
+        RWHelmetInitialize();
+    }
+
+
 }

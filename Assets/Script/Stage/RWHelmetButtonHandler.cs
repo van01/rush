@@ -38,6 +38,7 @@ public class RWHelmetButtonHandler : MonoBehaviour
         else
         {
             print("Character Select Error Popup");
+            PresentPlayerActive();
         }
     }
 
@@ -91,7 +92,8 @@ public class RWHelmetButtonHandler : MonoBehaviour
 
         if (currentHelmetButtonState == HelmetButtonState.Lock)
             CharacterDisable();
-        
+
+        presentPlayerCharacter.tag = "UI_Character";
         
     }
 
@@ -123,6 +125,17 @@ public class RWHelmetButtonHandler : MonoBehaviour
     public void CharacterOn()
     {
         presentPlayerCharacter.SetActive(true);
-        
+    }
+
+    public void PresentPlayerCharacterStateChange(string nState)
+    {
+        presentPlayerCharacter.SendMessage("CharacterStateControll", nState);
+    }
+
+    void PresentPlayerActive()
+    {
+        presentPlayerCharacter.SendMessage("CharacterAble");
+        currentHelmetButtonState = HelmetButtonState.Active;
+        //상위로 전달
     }
 }

@@ -155,6 +155,7 @@
      <Compile Include="Assets\Script\Stage\RWEscapeHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWGameManager.cs" />
      <Compile Include="Assets\Script\Stage\RWHelmetButtonHandler.cs" />
+     <Compile Include="Assets\Script\Stage\RWHelmetDrawZoneHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWHelmetPanelHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWPlayerController.cs" />
      <Compile Include="Assets\Script\Stage\RWStageScrollBlockController.cs" />

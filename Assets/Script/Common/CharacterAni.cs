@@ -36,6 +36,9 @@ public class CharacterAni : MonoBehaviour {
     public const string MIDAIR = "Midair_Baked";	//공중
     public const string LANDING = "Landing_Baked";	//착지
 
+    public const string RWPlay = "EmptyHanded_Move_Baked";	//착지
+    public const string RWHold = "Hold_Baked";	//착지
+
     private PlayerState tmpPlayerState;
     private Animation tmpAnimation;
 

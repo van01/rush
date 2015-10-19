@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour {
         {
             tmpPlayer[i].gameObject.SendMessage("CharacterPositionInialize", CharacterPositionInializeTime);
             tmpPlayer[i].gameObject.SendMessage("EquipHelmet", PlayerEquipHelmetNumber);
+            tmpPlayer[i].SendMessage("CharacterStateControll", "RWPlay");   ////
         }
     }
 
@@ -390,14 +391,14 @@ public class PlayerController : MonoBehaviour {
 
     void GetPlayerEquipHelmetNumber()
     {
-        PlayerEquipHelmetNumber = PlayerPrefs.GetInt("PlayerEquipHelmet");
+        PlayerEquipHelmetNumber = PlayerPrefs.GetInt("CurrentHelmetNumber");
     }
 
     public void SetPlayerEquipHelmetNumber(int nPlayerEquipHelmetNumber)
     {
         PlayerEquipHelmetNumber = nPlayerEquipHelmetNumber;
 
-        PlayerPrefs.SetInt("PlayerEquipHelmet", PlayerEquipHelmetNumber);
+        PlayerPrefs.SetInt("CurrentHelmetNumber", PlayerEquipHelmetNumber);
 
         SetPlayerEquipHelmet();
     }

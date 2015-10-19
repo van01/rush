@@ -11,7 +11,12 @@ public class PlayerState : CharacterState
 
     void Start()
     {
-        CharacterStateControll("Spawn");
+        //CharacterStateControll("Spawn");
+        if (tag == "Player")
+            CharacterStateControll("RWPlay");   ////////
+        else
+            CharacterStateControll("RWHold");   ////////
+
         tmpGameController = GameObject.Find("GameController");
 
         backupColliderOffset = gameObject.GetComponent<BoxCollider2D>().offset;
@@ -174,6 +179,18 @@ public class PlayerState : CharacterState
         print("Dead!!!!!!");
         SendMessage("BattleEnd");
         SendMessage("ChangeAni", CharacterAni.DEAD);
+    }
+
+    public override void RWPlayAction()
+    {
+        base.RWPlayAction();
+        SendMessage("ChangeAni", CharacterAni.RWPlay);
+    }
+
+    public override void RWHoldAction()
+    {
+        base.RWHoldAction();
+        SendMessage("ChangeAni", CharacterAni.RWHold);
     }
 
     public override void CharacterStateControll(string s)
