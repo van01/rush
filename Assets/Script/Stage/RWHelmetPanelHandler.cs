@@ -31,8 +31,11 @@ public class RWHelmetPanelHandler : MonoBehaviour {
     {
         helmetBasketWidthSize = helmetEntityWidthSize * helmetSpriteCount;
         helmetBasketHeightSize = helmetBasket.GetComponent<RectTransform>().sizeDelta.y;
-
+        
         helmetBasketInitialize();
+        
+        HelmetButtonSelect(PlayerPrefs.GetInt("CurrentHelmetNumber"));
+
         PlayerPrefs.SetInt("ActiveHelmet0", 1);
         PlayerPrefs.SetInt("ActiveHelmet1", 1);
     }
@@ -66,9 +69,15 @@ public class RWHelmetPanelHandler : MonoBehaviour {
         helmetBasket.GetComponent<RectTransform>().localPosition = new Vector3(baseHelmetBasketPositionX, 0, 0);
     }
 
-    public void HelmetButtonSelect()
+    public void HelmetButtonSelect(int nHelmetNumber)
     {
-        //장착된 아이콘 처리
+        for (int i = 0; i < helmetSpriteCount; i++)
+        {
+            if (presentHelmetEntity[i].GetComponent<RWHelmetButtonHandler>().helmetNumber == nHelmetNumber)
+                presentHelmetEntity[i].SendMessage("SelectImageOn");
+            else
+                presentHelmetEntity[i].SendMessage("SelectImageOff");
+        }
     }
 
     public void HelmetNumberDelivery(int nHelmetNumber)

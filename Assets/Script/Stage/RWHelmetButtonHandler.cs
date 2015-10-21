@@ -13,6 +13,8 @@ public class RWHelmetButtonHandler : MonoBehaviour
 
     public int helmetNumber;
 
+    public GameObject selectImage;  
+
     private GameObject tmpHelmetSelectPanal;
     private GameObject presentPlayerCharacter;
     private GameObject PlayerCharacter;
@@ -32,7 +34,7 @@ public class RWHelmetButtonHandler : MonoBehaviour
     {
         if (currentHelmetButtonState == HelmetButtonState.Active)
         {
-            tmpHelmetSelectPanal.SendMessage("HelmetButtonSelect", name);
+            tmpHelmetSelectPanal.SendMessage("HelmetButtonSelect", helmetNumber);
             tmpHelmetSelectPanal.SendMessage("HelmetNumberDelivery", helmetNumber);
         }
         else
@@ -44,12 +46,12 @@ public class RWHelmetButtonHandler : MonoBehaviour
 
     public void SelectImageOn()
     {
-        //selectImage.SetActive(true);
+        selectImage.SetActive(true);
     }
 
     public void SelectImageOff()
     {
-        //selectImage.SetActive(false);
+        selectImage.SetActive(false);
     }
 
     public void HelmetSelectButtonUnLock()
