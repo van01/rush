@@ -40,6 +40,7 @@ public class CharacterHelmetHandler : MonoBehaviour {
         }
         else
         {
+            useHelmet.enabled = true;
             useHelmet.sprite = helmetSprite[helmetNumber];
         }
     }

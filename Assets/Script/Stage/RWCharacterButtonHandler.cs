@@ -57,4 +57,5 @@ public class RWCharacterButtonHandler : MonoBehaviour {
     {
         characterNumber = nCharacterNumber;
     }
+
 }

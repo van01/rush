@@ -4,9 +4,11 @@ using System.Collections;
 
 public class HUDHandler : MonoBehaviour {
 
-	public GameObject tmpGameController;
+    public GameObject tmpGameController;
 
-	public GameObject hitZone;
+    public GameObject AlertPanel;
+
+    public GameObject hitZone;
     public GameObject tmpPlayer;
 
     public GameObject HUDPlayingUI;
@@ -20,9 +22,17 @@ public class HUDHandler : MonoBehaviour {
 
     public GameObject HUDRWCharacterUI;
     public GameObject HUDRWHelmetUI;
+    public GameObject HUDRWRaffleUI;
 
     public GameObject blockCounter;
-        
+    public GameObject totalCoinUI;
+    public GameObject HelmetRafflePaneltotalCoinUI;
+
+    public GameObject currentCoinUI;
+
+    public GameObject currentGameCoinUI;
+    public GameObject currentGameBlockCounterUI;
+
 
     public void OnClickSkillButton(string activeSkillID)
     {
@@ -103,6 +113,8 @@ public class HUDHandler : MonoBehaviour {
     {
         HUDBattleUI.SetActive(false);
         HUDRWLobbyUI.SetActive(true);
+
+        TotalCoinRefresh();
     }
 
     public void HUDRWLobbyUIOff()
@@ -152,7 +164,11 @@ public class HUDHandler : MonoBehaviour {
 
     public void HUDRWGameOverUIon()
     {
+        int i = 1;
         HUDRWGameOverUI.SetActive(true);
+
+        tmpGameController.SendMessage("CurrentGameCoinCountTotal");
+        tmpGameController.SendMessage("CurrentGameBlockCountTotal");
     }
 
     public void HUDRWGameOverUIoff()
@@ -173,11 +189,25 @@ public class HUDHandler : MonoBehaviour {
     public void HUDRWHelmetUIon()
     {
         HUDRWHelmetUI.SetActive(true);
+        HUDRWHelmetUI.SendMessage("ChangeCharacterCheck");
+
+        HUDRWHelmetUI.SendMessage("PossessHelmetRefresh");
     }
 
     public void HUDRWHelmetUIoff()
     {
         HUDRWHelmetUI.SetActive(false);
+    }
+
+    public void HUDRWHelmetRaffleUIon()
+    {
+        HUDRWRaffleUI.SetActive(true);
+        TotalCoinRefresh();
+    }
+
+    public void HUDRWHelmetRaffleUIoff()
+    {
+        HUDRWRaffleUI.SetActive(false);
     }
 
     public void HUDHUDRWExitPopupon()
@@ -190,9 +220,25 @@ public class HUDHandler : MonoBehaviour {
         HUDRWExitPopup.SetActive(false);
     }
 
+    public void AlertPanelon()
+    {
+        AlertPanel.SetActive(true);
+    }
+
+    public void AlertPaneloff()
+    {
+        AlertPanel.SetActive(false);
+    }
+
+    public void AlertPanelTextSetting(string nAlertMessage)
+    {
+        AlertPanel.SendMessage("AlertMessageSetting", nAlertMessage);
+    }
+
     public void StartButtonActive()
     {
         tmpGameController.SendMessage("GameStateControll", "Ready");
+        tmpGameController.SendMessage("CurrentGameCoininitialize");
     }
 
     public void ReadyPanelActive()
@@ -222,13 +268,19 @@ public class HUDHandler : MonoBehaviour {
         tmpGameController.SendMessage("RetryCharacterPosition");
         tmpGameController.SendMessage("GameStateControll", "Lobby");
 
+        tmpGameController.SendMessage("StageLevelInitialize");
+
     }
 
     public void RetryActive()
     {
+        tmpGameController.SendMessage("StageLevelInitialize");
+
         tmpGameController.SendMessage("BlockInitDelivery");
         tmpGameController.SendMessage("GameStateControll", "Playing");
         tmpGameController.SendMessage("RetryCharacterPosition");
+
+        tmpGameController.SendMessage("CurrentGameCoininitialize");
 
         HUDRWGameOverUIoff();
     }
@@ -238,6 +290,8 @@ public class HUDHandler : MonoBehaviour {
         tmpGameController.SendMessage("BlockInitDelivery");
         tmpGameController.SendMessage("RetryCharacterPosition");
         tmpGameController.SendMessage("GameStateControll", "Lobby");
+
+        tmpGameController.SendMessage("StageLevelInitialize");
     }
 
     public void CharacterButtonActive()
@@ -260,6 +314,16 @@ public class HUDHandler : MonoBehaviour {
         tmpGameController.SendMessage("RWHelmetUICancel");
     }
 
+    public void HelmetRaffleButtonActive()    //HUDRWRaffleUIon
+    {
+        tmpGameController.SendMessage("RWRaffleUISetting");
+    }
+
+    public void HelmetRaffleCloseButtonActive()
+    {
+        tmpGameController.SendMessage("RWRaffleUICancel");
+    }
+
     public void BlockCounterRefresh(string nCount)
     {
         blockCounter.GetComponent<Text>().text = nCount;
@@ -273,6 +337,36 @@ public class HUDHandler : MonoBehaviour {
     public void ExitButtonActive()
     {
         Application.Quit();
+    }
+
+    public void CoinCounterRefresh(int nCurrentCoin)
+    {
+        currentCoinUI.GetComponent<Text>().text = nCurrentCoin.ToString();      //playing
+    }
+
+    public void CurrentGameCoinTotalViewer(int nCurrentCoin)
+    {
+        currentGameCoinUI.GetComponent<Text>().text = nCurrentCoin.ToString();  //gameOver
+    }
+    public void CurrentGameBlockCountTotalViewer(int nCurrentBlockCount)
+    {
+        currentGameBlockCounterUI.GetComponent<Text>().text = nCurrentBlockCount.ToString();  //gameOver
+    }
+
+    public void TotalCoinRefresh()
+    {
+        totalCoinUI.GetComponent<Text>().text = PlayerPrefs.GetString("TotalCoin");
+        HelmetRafflePaneltotalCoinUI.GetComponent<Text>().text = PlayerPrefs.GetString("TotalCoin");
+    }
+
+    public void AlertPanelActive(int nAlertType)
+    {
+        tmpGameController.SendMessage("AlertPanelSetting", nAlertType);
+    }
+
+    public void AlertPanelCloseActive()
+    {
+        AlertPaneloff();
     }
     //HUDcontroller와 HUDHandler 기능 정리 필요
 }

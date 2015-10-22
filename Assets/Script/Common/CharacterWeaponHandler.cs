@@ -41,7 +41,10 @@ public class CharacterWeaponHandler : MonoBehaviour {
             backupWeaponRCollider = false;
 		}
 		else{
-			useWeaponR.sprite = weaponRSprite[weponRNumber];
+            weaponR.SetActive(true);
+            useWeaponR = weaponR.GetComponentInChildren<SpriteRenderer>();
+
+            useWeaponR.sprite = weaponRSprite[weponRNumber];
             backupWeaponRCollider = true;
 		}
 		if (weaponLSprite.Length == 0 || weponLNumber == -1)

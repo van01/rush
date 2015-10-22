@@ -36,63 +36,81 @@ public class PlayerAI : MonoBehaviour
 
     protected bool characterControll = false;
 
+    private bool tmpRWStage = false;
+
     void Start()
     {
         tmpMyState = GetComponent<PlayerState>();
         tmpGameController = GameObject.Find("GameController");
+        tmpRWStage = tmpGameController.GetComponent<StageController>().isRWStage;
     }
 
     void Update()
     {
-        if (checkDistanceFromTargetUnused != true)
-            if (tmpMyState.currentState != CharacterState.State.Dead)
+        if (tmpRWStage == true)
+        {
+            if (tmpMyState.currentState == CharacterState.State.Move)
             {
+                transform.Translate(Time.deltaTime * 3.0f, 0, 0);
                 CheckDistanceFromTarget();
             }
-                
-
-        //캐릭터 상태에 따라 gameState 조정, 해당 부분은 gameController로 이동 필요
-        //if (tmpMyState.currentState == CharacterState.State.Spawn || tmpMyState.currentState == CharacterState.State.Move)
-        //{
-        //    //SendMessage("CharacterStateMoveOn");                // 해당 부분 때문에 버벅임
-        //    //SendMessage("CharacterStateControll", "Move");
-        //    tmpGameController.SendMessage("GameStateControll", "Playing");
-        //}
-
-        //캐릭터 백스탭 위치 잡기
-        if (backSetPosition == true)
-        {
-            if (transform.position.x >= -6.0f)
+            else
             {
-                transform.Translate(-Time.deltaTime * backStepSpeed, 0, 0);
+
             }
         }
-
-        //캐릭터 태클 위치 잡기
-        if (fowardSetPosition == true)
+        else
         {
-            if (transform.position.x <= 7.0f)
+            if (checkDistanceFromTargetUnused != true)
+                if (tmpMyState.currentState != CharacterState.State.Dead)
+                {
+                    CheckDistanceFromTarget();
+                }
+
+
+            //캐릭터 상태에 따라 gameState 조정, 해당 부분은 gameController로 이동 필요
+            //if (tmpMyState.currentState == CharacterState.State.Spawn || tmpMyState.currentState == CharacterState.State.Move)
+            //{
+            //    //SendMessage("CharacterStateMoveOn");                // 해당 부분 때문에 버벅임
+            //    //SendMessage("CharacterStateControll", "Move");
+            //    tmpGameController.SendMessage("GameStateControll", "Playing");
+            //}
+
+            //캐릭터 백스탭 위치 잡기
+            if (backSetPosition == true)
             {
-                transform.Translate(Time.deltaTime * fowardStepSpeed, 0, 0);
+                if (transform.position.x >= -6.0f)
+                {
+                    transform.Translate(-Time.deltaTime * backStepSpeed, 0, 0);
+                }
             }
-        }
 
-        //체력 게이지 위치 잡기
-        if (HealthBarOn == true)
-        {
-            SendMessage("HealthBarPositionUpdate", transform.position);
-        }
-
-        if (saveSkillOn == true)
-        {
-            if (GetComponent<PlayerState>().currentState != CharacterState.State.Attack)
+            //캐릭터 태클 위치 잡기
+            if (fowardSetPosition == true)
             {
-                ActivePlayerSkillOn(saveSkillID);
-                saveSkillOn = false;
+                if (transform.position.x <= 7.0f)
+                {
+                    transform.Translate(Time.deltaTime * fowardStepSpeed, 0, 0);
+                }
             }
-        }
 
-        PlayerPositionInit();
+            //체력 게이지 위치 잡기
+            if (HealthBarOn == true)
+            {
+                SendMessage("HealthBarPositionUpdate", transform.position);
+            }
+
+            if (saveSkillOn == true)
+            {
+                if (GetComponent<PlayerState>().currentState != CharacterState.State.Attack)
+                {
+                    ActivePlayerSkillOn(saveSkillID);
+                    saveSkillOn = false;
+                }
+            }
+
+            PlayerPositionInit();
+        }
     }
 
     public void SearchEnemy()
@@ -138,7 +156,6 @@ public class PlayerAI : MonoBehaviour
 
         distance = Vector3.Distance(target.position, transform.position);
         distance = distance - ((target.GetComponent<BoxCollider2D>().size.x - target.GetComponent<BoxCollider2D>().offset.x) * target.transform.localScale.x / 2);
-
         //print("Distance ::::: " + distance + "  Attack Distance ::::: " + attackDistance);
         if (characterControll == false)
         {
@@ -151,24 +168,48 @@ public class PlayerAI : MonoBehaviour
             }
             else if (distance < attackDistance)
             {
-                if (target.GetComponent<EnemyState>().currentState != CharacterState.State.Dead)
+                if (tmpRWStage == true)
                 {
-                    if (tmpMyState.currentState != CharacterState.State.Attack)
+                    SendMessage("CharacterStateControll", "Attack");
+                    SendMessage("AttackSuccessButton");
+                    int randomAttackCount = (int)Random.RandomRange(0, 3);
+                    SendMessage("AttackButtonCountSetting", randomAttackCount);
+
+                    if (randomAttackCount == 0)
                     {
-                        if (tag == "Enemy")
+
+                    }
+                    else if (randomAttackCount == 1)
+                    {
+                        StartCoroutine("RWButtonAttack");
+                    }
+                    else
+                    {
+                        StartCoroutine("RWButtonAttack");
+                        StartCoroutine("RWButtonAttack2");
+                    }
+                }
+                else
+                {
+                    if (target.GetComponent<EnemyState>().currentState != CharacterState.State.Dead)
+                    {
+                        if (tmpMyState.currentState != CharacterState.State.Attack)
                         {
-                            print("distance < attackDistance");
+                            if (tag == "Enemy")
+                            {
+                                print("distance < attackDistance");
+                            }
+
+                            SendMessage("TargetDistance", distance);    //화살 거리 산출을 위해 CharacterBattle에 distance 전달
+
+                            SendMessage("CharacterStateControll", "Battle");
+                            SendMessage("CharacterStateBattleOn");    //사정거리 진입 시 해당 캐릭터만 전투 모드 변경으로 변경하려고 했으나 해당 함수에 포함된 기능으로인해 보류
+
+                            SendMessage("StartBattle");
+
+                            tmpPositionDistance = positionDistance;
+                            positionDistance = transform.position.x;
                         }
-
-                        SendMessage("TargetDistance", distance);    //화살 거리 산출을 위해 CharacterBattle에 distance 전달
-
-                        SendMessage("CharacterStateControll", "Battle");
-                        SendMessage("CharacterStateBattleOn");    //사정거리 진입 시 해당 캐릭터만 전투 모드 변경으로 변경하려고 했으나 해당 함수에 포함된 기능으로인해 보류
-
-                        SendMessage("StartBattle");
-
-                        tmpPositionDistance = positionDistance;
-                        positionDistance = transform.position.x;
                     }
                 }
             }
@@ -299,5 +340,24 @@ public class PlayerAI : MonoBehaviour
     public void CharacterControllStateOff()
     {
         characterControll = false;
+    }
+
+    public void CompulsionTarget(Transform nTarget)
+    {
+        target = nTarget;
+        SendMessage("CharacterStateControll", "Move");
+    }
+
+    IEnumerator RWButtonAttack()
+    {
+        yield return new WaitForSeconds(0.7f);
+        SendMessage("CharacterStateControll", "Attack");
+        SendMessage("AttackSuccessButton");
+    }
+    IEnumerator RWButtonAttack2()
+    {
+        yield return new WaitForSeconds(1.4f);
+        SendMessage("CharacterStateControll", "Attack");
+        SendMessage("AttackSuccessButton");
     }
 }

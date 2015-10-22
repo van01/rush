@@ -11,9 +11,9 @@ public class ItemHandler : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         tmpGameController = GameObject.Find("GameController");
-
         StartCoroutine("AutoItemGet");
-	}
+        CoinValueSetting(1);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -40,6 +40,14 @@ public class ItemHandler : MonoBehaviour {
         }
     }
 
+    void OnTriggerEnter2D(Collider2D c)
+    {
+        if (c.tag == "Player")
+        {
+            ItemGet();
+        }
+    }
+
     protected void CoinValueSetting(int nValue)
     {
         nCoinValue = nValue;
@@ -48,15 +56,19 @@ public class ItemHandler : MonoBehaviour {
     protected void ItemGet()
     {
         tmpGameController.SendMessage("CoinValueSetting", nCoinValue);
-        tmpGameController.SendMessage("CoinHitValue", Camera.main.WorldToScreenPoint(transform.position));
+        tmpGameController.SendMessage("CoinHitValue", transform.position);
 
+        tmpGameController.SendMessage("CurrentGameCoinCount", "1");
         Destroy(gameObject);
     }
 
     IEnumerator AutoItemGet()
     {
-        yield return new WaitForSeconds(AutoCoinGetDelay);
+        if (AutoCoinGetDelay != -1)
+        {
+            yield return new WaitForSeconds(AutoCoinGetDelay);
 
-        ItemGet();
+            ItemGet();
+        }
     }
 }

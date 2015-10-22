@@ -20,14 +20,17 @@ public class RWHelmetButtonHandler : MonoBehaviour
     private GameObject PlayerCharacter;
 
     private int appearHelmetNumber;
+    private int cPlayerCharacterNumber;
+    private int pPlayerCharacterNumber;
 
     void Start()
     {
         tmpHelmetSelectPanal = transform.parent.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+        cPlayerCharacterNumber = tmpHelmetSelectPanal.GetComponent<RWHelmetPanelHandler>().currentPlayerCharacterNumber;
 
         CharacterDraw();
-        if (helmetNumber > 4)
-            CharacterOff();
+        //if (helmetNumber > 4)             //시작 시 캐릭터 숨기기
+        //    CharacterOff();
     }
 
     public void HelmetSelectButtonActive()
@@ -65,9 +68,17 @@ public class RWHelmetButtonHandler : MonoBehaviour
         helmetNumber = nHelmetNumber;
     }
 
-    void CharacterDraw()
+    public void CharacterDraw()
     {
-        PlayerCharacter = tmpHelmetSelectPanal.GetComponent<RWHelmetPanelHandler>().tmpGameController.GetComponent<RWPlayerController>().playerCharacter[0];
+        for (int i = 0; i < tmpHelmetSelectPanal.GetComponent<RWHelmetPanelHandler>().tmpGameController.GetComponent<RWPlayerController>().playerCharacter.Length; i++)
+        {
+            if (cPlayerCharacterNumber == i)
+            {
+                PlayerCharacter = tmpHelmetSelectPanal.GetComponent<RWHelmetPanelHandler>().tmpGameController.GetComponent<RWPlayerController>().playerCharacter[i];
+            }
+                
+        }
+
         presentPlayerCharacter = Instantiate(PlayerCharacter, transform.position, transform.rotation) as GameObject;
         presentPlayerCharacter.SendMessage("HealthBarInitOff");
         presentPlayerCharacter.transform.SetParent(transform);
@@ -76,9 +87,9 @@ public class RWHelmetButtonHandler : MonoBehaviour
         ChangeLayersRecursively(presentPlayerCharacter.transform, "UI");
         presentPlayerCharacter.SendMessage("AllSpriteRendererSortingLayerUI");
 
-        presentPlayerCharacter.GetComponent<CharacterWeaponHandler>().weponRNumber = -1;
-        presentPlayerCharacter.GetComponent<CharacterWeaponHandler>().UseWeaponInialize();
-        presentPlayerCharacter.GetComponent<CharacterBackHandler>().backNumber = -1;
+        //presentPlayerCharacter.GetComponent<CharacterWeaponHandler>().weponRNumber = -1;
+        //presentPlayerCharacter.GetComponent<CharacterWeaponHandler>().UseWeaponInialize();
+        //presentPlayerCharacter.GetComponent<CharacterBackHandler>().backNumber = -1;
 
         presentPlayerCharacter.SendMessage("EquipHelmet", appearHelmetNumber);
 
@@ -92,11 +103,11 @@ public class RWHelmetButtonHandler : MonoBehaviour
         Destroy(presentPlayerCharacter.GetComponent<PlayerAbility>());
         Destroy(presentPlayerCharacter.GetComponent<PlayerBattle>());
 
-        if (currentHelmetButtonState == HelmetButtonState.Lock)
-            CharacterDisable();
+        CharacterStateCheck();
 
         presentPlayerCharacter.tag = "UI_Character";
-        
+
+        CharacterOff();
     }
 
     public static void ChangeLayersRecursively(Transform trans, string name)
@@ -113,10 +124,12 @@ public class RWHelmetButtonHandler : MonoBehaviour
         appearHelmetNumber = nHelmetNumber;
     }
 
-    void CharacterDisable()
+    public void CharacterStateCheck()
     {
-        presentPlayerCharacter.SendMessage("CharacterDisable");
-        presentPlayerCharacter.SendMessage("AniStop");
+        if (currentHelmetButtonState == HelmetButtonState.Lock)
+            presentPlayerCharacter.SendMessage("CharacterDisable");
+        else
+            presentPlayerCharacter.SendMessage("CharacterAble");
     }
 
     public void CharacterOff()

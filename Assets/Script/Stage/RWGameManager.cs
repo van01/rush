@@ -12,7 +12,7 @@ public class RWGameManager : MonoBehaviour {
     protected int blockColMinSize = 2;
     protected int blockColMaxSize = 5;
     protected float blockSpaceMinSizeX = 2f;
-    protected float blockSpaceMaxSizeX = 3f;
+    protected float blockSpaceMaxSizeX = 2.7f;
     protected float blockSpaceMinSizeY = 0f;
     protected float blockSpaceMaxSizeY = 0.4f;
     protected float currentScrollSpeed;
@@ -53,6 +53,8 @@ public class RWGameManager : MonoBehaviour {
         BlockSpaceMaxSizeX(currentblockSpaceMaxSizeX);
         BlockSpaceMinSizeY(currentblockSpaceMinSizeY);
         BlockSpaceMaxSizeY(currentblockSpaceMaxSizeY);
+
+        SendMessage("BlockNumberinitializeMessanger");
     }
 
     protected void LevelUp()
@@ -93,6 +95,11 @@ public class RWGameManager : MonoBehaviour {
     {
         blockCount = 0;
         SendMessage("BlockCounterRefreshDelivery", blockCount.ToString());
+    }
+
+    public void CurrentGameBlockCountTotal()
+    {
+        SendMessage("CurrentGameBlockCountTotalDelivery", blockCount);
     }
 
     public void PauseOn()

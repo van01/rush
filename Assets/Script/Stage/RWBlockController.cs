@@ -30,6 +30,8 @@ public class RWBlockController : MonoBehaviour {
     protected float blockSpaceYMinSize = 0;
     protected float blockSpaceYMaxSize = 0.4f;
 
+    protected int blockNumber;
+
     void Start()
     {
         tmpGameController = GameObject.Find("GameController");
@@ -58,6 +60,8 @@ public class RWBlockController : MonoBehaviour {
 
     void BlockGenerater()
     {
+        blockNumber++;
+
         GetOldBlockPrefabPositionX();
         RandomPresentBlockcolSizeX();
 
@@ -68,6 +72,7 @@ public class RWBlockController : MonoBehaviour {
         presentBlockPrefab.transform.SetParent(transform);
 
         oldBlockPrefab = presentBlockPrefab;
+        print(blockNumber % 5);
     }
 
     void RandomPresentBlockcolSizeX()
@@ -99,12 +104,12 @@ public class RWBlockController : MonoBehaviour {
 
     void RandomBlockSpaceSizeX()
     {
-        blockSpaceSizeX = Random.Range(blockSpaceXMinSize, blockSpaceXMaxSize);   //테스트용 블럭 간격, 난이도 조정 후 난이도에 따라 범위 변하도록 수정 필요
+        blockSpaceSizeX = Random.Range(blockSpaceXMinSize, blockSpaceXMaxSize);
     }
 
     void RandomBlockSpaceSizeY()
     {
-        blockSpaceSizeY = transform.position.y + Random.Range(blockSpaceYMinSize, blockSpaceYMaxSize);   //테스트용 블럭 높이, 난이도 조정 후 난이도에 따라 범위 변하도록 수정 필요
+        blockSpaceSizeY = transform.position.y + Random.Range(blockSpaceYMinSize, blockSpaceYMaxSize);
     }
 
     public void AllBlockDelete()
@@ -166,5 +171,10 @@ public class RWBlockController : MonoBehaviour {
     public void PresentBlockSpaceMaxSizeY(float nMaxSize)
     {
         blockSpaceYMaxSize = nMaxSize;
+    }
+
+    public void BlockNumberinitialize()
+    {
+        blockNumber = 0;
     }
 }

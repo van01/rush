@@ -196,4 +196,9 @@ public class StageController : MonoBehaviour {
     {
         ScrollFloorCollider2D.SendMessage("PresentBlockSpaceMaxSizeYDelivery", nMaxSize);
     }
+
+    public void BlockNumberinitializeMessanger()
+    {
+        ScrollFloorCollider2D.SendMessage("BlockNumberinitializeDelivery");
+    }
 }

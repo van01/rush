@@ -36,6 +36,9 @@ public class CharacterBattle : MonoBehaviour {
     protected float forceB = 0;
     protected float forceC = 90.0f;
 
+    private int attackButtonCount;
+    private int currentAttackButtonCount;
+
     public virtual void Start()
     {
         tmpGameController = GameObject.Find("GameController");
@@ -290,5 +293,30 @@ public class CharacterBattle : MonoBehaviour {
     public void TargetDistance(float tDistance)
     {
         distance = tDistance;
+    }
+
+    public void AttackSuccessButton()
+    {
+        target = GetComponent<PlayerAI>().GetCurrentTarget();
+
+        StartCoroutine("AttackButtonEffect");
+    }
+
+    IEnumerator AttackButtonEffect()
+    {
+        yield return new WaitForSeconds(0.25f);
+        SendMessage("NormalAttackEffectOn", new Vector3(0.5f, -0.5f, 0));
+        currentAttackButtonCount++;
+        yield return new WaitForSeconds(2f);
+        if (attackButtonCount <= currentAttackButtonCount)
+        {
+            target.SendMessage("AttackButtonEnd");
+        }
+    }
+
+    public void AttackButtonCountSetting(int nAttackCount)
+    {
+        currentAttackButtonCount = 0;
+        attackButtonCount = nAttackCount + 1;
     }
 }

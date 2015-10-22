@@ -27,7 +27,9 @@ public class HUDController : MonoBehaviour {
 
     protected string blockCount;
 
-	public void LeftHitZoneDown(){
+    private string alertMessage;
+
+    public void LeftHitZoneDown(){
         bool dtest = DoubleClick();
         
         clicked++;
@@ -212,6 +214,7 @@ public class HUDController : MonoBehaviour {
     {
         coinHitTxt = Instantiate(monsterHitTxtPrefab, nCoinPosition, gameObject.transform.rotation) as GameObject;
         coinHitTxt.GetComponent<RectTransform>().SetParent(HUD.transform);
+        coinHitTxt.GetComponent<RectTransform>().localScale = new Vector3(1.5f, 1.5f, 1.5f);
         coinHitTxt.GetComponent<Text>().text = "+" + nCoinValue;
         coinHitTxt.SendMessage("HitTypeSetting", "Coin");
     }
@@ -313,7 +316,6 @@ public class HUDController : MonoBehaviour {
         HUD.SendMessage("HUDRWPlayingUIoff");
 
         HUD.SendMessage("HUDRWGameOverUIon");
-        SendMessage("StageLevelInitialize");
     }
 
     public void BlockCounterRefreshDelivery(string nCoinCount)
@@ -377,5 +379,39 @@ public class HUDController : MonoBehaviour {
         //SendMessage("PauseOff");
     }
 
+    public void RWRaffleUISetting()
+    {
+        HUD.SendMessage("HUDRWHelmetRaffleUIon");
+    }
+
+    public void RWRaffleUICancel()
+    {
+        HUD.SendMessage("HUDRWHelmetRaffleUIoff");
+    }
+
+
+    public void CounCounterRefreshDelivery(int nCoinCount)
+    {
+        HUD.SendMessage("CoinCounterRefresh", nCoinCount);
+    }
+
+    public void CurrentGameCoinTotalDelivery(int nCoinCount)
+    {
+        HUD.SendMessage("CurrentGameCoinTotalViewer", nCoinCount);
+    }
+
+    public void CurrentGameBlockCountTotalDelivery(int nBlockCount)
+    {
+        HUD.SendMessage("CurrentGameBlockCountTotalViewer", nBlockCount);
+    }
+
+    public void AlertPanelSetting(int nAlertType)
+    {      
+        if (nAlertType == 1)
+            alertMessage = "돈없음";
+
+        HUD.SendMessage("AlertPanelon");
+        HUD.SendMessage("AlertPanelTextSetting", alertMessage);
+    }
 
 }

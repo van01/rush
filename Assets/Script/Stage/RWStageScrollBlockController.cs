@@ -60,4 +60,9 @@ public class RWStageScrollBlockController : MonoBehaviour {
     {
         tmpScrollBlockTransfrom.SendMessage("PresentBlockSpaceMaxSizeY", float.Parse(nMaxSize));
     }
+
+    public void BlockNumberinitializeDelivery()
+    {
+        tmpScrollBlockTransfrom.SendMessage("BlockNumberinitialize");
+    }
 }

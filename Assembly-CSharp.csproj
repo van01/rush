@@ -144,6 +144,7 @@
      <Compile Include="Assets\Script\Stage\PlayerParams.cs" />
      <Compile Include="Assets\Script\Stage\PlayerState.cs" />
      <Compile Include="Assets\Script\Stage\ProjectileHandler.cs" />
+     <Compile Include="Assets\Script\Stage\RWAlertPanelHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWBaseBlockHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWBlockController.cs" />
      <Compile Include="Assets\Script\Stage\RWBlockDestroyZoneHandler.cs" />
@@ -151,13 +152,18 @@
      <Compile Include="Assets\Script\Stage\RWBlockHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWCharacterButtonHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWCharacterPanelHandler.cs" />
+     <Compile Include="Assets\Script\Stage\RWCoinHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWDeadZoneHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWEscapeHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWGameManager.cs" />
      <Compile Include="Assets\Script\Stage\RWHelmetButtonHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWHelmetDrawZoneHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWHelmetPanelHandler.cs" />
+     <Compile Include="Assets\Script\Stage\RWHelmetRaffleButtonHandler.cs" />
+     <Compile Include="Assets\Script\Stage\RWHelmetRafflePanelHandler.cs" />
+     <Compile Include="Assets\Script\Stage\RWItemResultPanelHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWPlayerController.cs" />
+     <Compile Include="Assets\Script\Stage\RWRaffleHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWStageScrollBlockController.cs" />
      <Compile Include="Assets\Script\Stage\RWUICharacterSizeHandler.cs" />
      <Compile Include="Assets\Script\Stage\SkillButtonHandler.cs" />

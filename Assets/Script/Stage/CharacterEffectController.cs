@@ -75,7 +75,8 @@ public class CharacterEffectController : MonoBehaviour {
 
     public void NormalAttackEffectOn(Vector3 vHitPoint)
     {
-        a_1.transform.position = vHitPoint;
+        //a_1.transform.position = vHitPoint;               //normal
+        a_1.transform.localPosition = vHitPoint;
         if (skillOn == true)
             a_1.transform.localScale = new Vector3(2.0f, 2.0f, 1.0f);
         else

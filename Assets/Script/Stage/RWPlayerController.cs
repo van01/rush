@@ -21,7 +21,9 @@ public class RWPlayerController : MonoBehaviour {
             {
                 playerCharacter[i].SetActive(true);
                 playerCharacter[i].SendMessage("CharacterStateControll", "RWPlay");
-                
+                playerCharacter[i].GetComponent<BoxCollider2D>().offset = new Vector2(0, -0.5f);
+                playerCharacter[i].GetComponent<BoxCollider2D>().size = new Vector2(0.3f, 0.75f);
+
                 RWHelmetInitialize();
                 SendMessage("PlayerHealthBarOff");
             }
@@ -45,7 +47,6 @@ public class RWPlayerController : MonoBehaviour {
     public void RWPlayerCHaracterSetting(int nCharacterNumber)
     {
         PlayerPrefs.SetInt("PlayerCharacterNumber", nCharacterNumber);
-        print(nCharacterNumber);
         RWPlayerCharacterInitialize();
     }
 
