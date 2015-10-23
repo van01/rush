@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class RWItemResultPanelHandler : MonoBehaviour {
 
     public GameObject presentCharacterPoseedor;
+
+    public GameObject ItemHandler;
+    public GameObject HelmetNameText;
 
     private GameObject PlayerCharacter;
     private GameObject presentPlayerCharacter;
@@ -20,6 +24,8 @@ public class RWItemResultPanelHandler : MonoBehaviour {
         presentPlayerCharacter.transform.SetParent(transform);
         presentPlayerCharacter.transform.localScale = new Vector3(250f, 250f, 250f);
         presentPlayerCharacter.SendMessage("EquipHelmet", presentGetHelmetNumber);
+        HelmetNameText.GetComponent<Text>().text = ItemHandler.GetComponent<CharacterHelmetBasket>().CharacterHelmetName[presentGetHelmetNumber];
+
         print(presentGetHelmetNumber);
 
         ChangeLayersRecursively(presentPlayerCharacter.transform, "UI");

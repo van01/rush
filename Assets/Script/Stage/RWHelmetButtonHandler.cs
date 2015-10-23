@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class RWHelmetButtonHandler : MonoBehaviour
@@ -13,7 +14,8 @@ public class RWHelmetButtonHandler : MonoBehaviour
 
     public int helmetNumber;
 
-    public GameObject selectImage;  
+    public GameObject selectImage;
+    public GameObject HelmetNameText;
 
     private GameObject tmpHelmetSelectPanal;
     private GameObject presentPlayerCharacter;
@@ -92,6 +94,8 @@ public class RWHelmetButtonHandler : MonoBehaviour
         //presentPlayerCharacter.GetComponent<CharacterBackHandler>().backNumber = -1;
 
         presentPlayerCharacter.SendMessage("EquipHelmet", appearHelmetNumber);
+        
+        // 이름 추가
 
         presentPlayerCharacter.GetComponent<BoxCollider2D>().isTrigger = true;
 
@@ -153,4 +157,10 @@ public class RWHelmetButtonHandler : MonoBehaviour
         currentHelmetButtonState = HelmetButtonState.Active;
         //상위로 전달
     }
+
+    public void HelmetNameSetting(string nHelmetName)
+    {
+        HelmetNameText.GetComponent<Text>().text = nHelmetName;
+    }
+        
 }

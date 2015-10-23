@@ -6,7 +6,7 @@ public class RWHelmetRaffleButtonHandler : MonoBehaviour
 {
     public GameObject tmpHelmetRafflePanal;
 
-    protected int helmetRafflePrice = 1;
+    protected int helmetRafflePrice = 50;
 
     protected int presentTotalCoin;
 

@@ -4,6 +4,7 @@ using System.Collections;
 public class CharacterHelmetBasket : MonoBehaviour {
 
     public Sprite[] CharacterHelmetSprite;
+    public string[] CharacterHelmetName;
     private int possessHelmetCount;
     private string nActiveHelmet;
     public string[] nonItemSpriteName;
@@ -14,6 +15,8 @@ public class CharacterHelmetBasket : MonoBehaviour {
     {
         HelmetCheck();
         //TestHelmetInitalize();  //테스트 코드, 초기화 기능
+        CharacterHelmetName = new string[CharacterHelmetSprite.Length];
+        CharacterHelmetNameInitalize();
     }
 
     void PossessHelmetCheck()
@@ -50,6 +53,14 @@ public class CharacterHelmetBasket : MonoBehaviour {
 
         nonItemCount = 0;
         NonItemCheck();
+    }
+
+    void CharacterHelmetNameInitalize()
+    {
+        for (int i = 0; i < CharacterHelmetName.Length; i++)
+        {
+            CharacterHelmetName[i] = CharacterHelmetSprite[i].name;
+        }
     }
 
     void TestHelmetInitalize()

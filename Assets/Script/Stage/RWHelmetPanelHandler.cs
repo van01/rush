@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class RWHelmetPanelHandler : MonoBehaviour {
@@ -22,6 +23,8 @@ public class RWHelmetPanelHandler : MonoBehaviour {
 
     public int currentPlayerCharacterNumber;
     public int prevPlayerCharacterNumber;
+
+    public GameObject helmetCounter;
 
     private int possessHelmetRefreshCount;
 
@@ -50,7 +53,7 @@ public class RWHelmetPanelHandler : MonoBehaviour {
     {
         helmetBasket.GetComponent<RectTransform>().sizeDelta = new Vector2(helmetBasketWidthSize, helmetBasketHeightSize);
         helmetEntityPosition = new Vector3(0 - ((helmetBasketWidthSize / 2) - helmetEntityWidthSize / 2), 0,0);
-
+        
         baseHelmetBasketPositionX = helmetEntityPosition.x * -1;
         for (int i = 0; i < helmetSpriteCount; i++)
         {
@@ -58,6 +61,7 @@ public class RWHelmetPanelHandler : MonoBehaviour {
 
             presentHelmetEntity[i].GetComponent<RWHelmetButtonHandler>().helmetNumber = i;
             presentHelmetEntity[i].SendMessage("AppearHelmetNumberDelivery", i);
+            presentHelmetEntity[i].SendMessage("HelmetNameSetting", tmpItemHandler.GetComponent<CharacterHelmetBasket>().CharacterHelmetName[i]);
 
             presentHelmetEntity[i].GetComponent<RectTransform>().SetParent(helmetBasket.transform);
             presentHelmetEntity[i].GetComponent<RectTransform>().localPosition = helmetEntityPosition;
@@ -80,6 +84,8 @@ public class RWHelmetPanelHandler : MonoBehaviour {
             }
 
         }
+        HelmetCounterInitialize();
+
         helmetBasket.GetComponent<RectTransform>().localPosition = new Vector3(baseHelmetBasketPositionX, 0, 0);
     }
 
@@ -126,5 +132,10 @@ public class RWHelmetPanelHandler : MonoBehaviour {
             HelmetButtonSelect(PlayerPrefs.GetInt("CurrentHelmetNumber"));
         }
         possessHelmetRefreshCount++;
+    }
+
+    void HelmetCounterInitialize()
+    {
+        helmetCounter.GetComponent<Text>().text = helmetSpriteCount - tmpItemHandler.GetComponent<CharacterHelmetBasket>().nonItemCount +" / " + helmetSpriteCount.ToString();
     }
 }
