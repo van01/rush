@@ -23,6 +23,7 @@ public class RWUICharacterSizeHandler : MonoBehaviour {
             if (stateDeliveryJeged == false)
             {
                 SendMessage("PresentPlayerCharacterStateChange", "RWPlay");
+                SendMessage("PresentPlayerCharacterAniSpeed", 1);
                 stateDeliveryJeged = true;
             }
         }

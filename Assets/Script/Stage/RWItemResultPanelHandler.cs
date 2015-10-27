@@ -25,6 +25,7 @@ public class RWItemResultPanelHandler : MonoBehaviour {
         presentPlayerCharacter.transform.localScale = new Vector3(250f, 250f, 250f);
         presentPlayerCharacter.SendMessage("EquipHelmet", presentGetHelmetNumber);
         HelmetNameText.GetComponent<Text>().text = ItemHandler.GetComponent<CharacterHelmetBasket>().CharacterHelmetName[presentGetHelmetNumber];
+        presentPlayerCharacter.SendMessage("RWPlayerCharacterAniSpeed", 1);
 
         print(presentGetHelmetNumber);
 

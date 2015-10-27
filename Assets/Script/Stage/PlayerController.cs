@@ -348,6 +348,7 @@ public class PlayerController : MonoBehaviour {
     /// </summary>
     public void RWCharacterJumpAddforce()
     {
+        tmpPlayer = GameObject.FindGameObjectsWithTag("Player");
         for (int i = 0; i<tmpPlayer.Length; i++)
         {
             tmpPlayer[i].gameObject.SendMessage("RWJumpAddforce");

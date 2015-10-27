@@ -19,13 +19,15 @@ public class RWHelmetRafflePanelHandler : MonoBehaviour {
 
     void Start()
     {
-        currentPlayerCharacterNumber = PlayerPrefs.GetInt("PlayerCharacterNumber");
-        RaffleCharacterDraw();
+        //RaffleCharacterDraw();
         DisAblePanelOff();
     }
 
     public void RaffleCharacterDraw()
     {
+        print("RaffleCharacterDraw");
+        Destroy(presentPlayerCharacter);
+        currentPlayerCharacterNumber = PlayerPrefs.GetInt("PlayerCharacterNumber");
         int randomPosition = (int)Random.RandomRange(0, StartPosition.Length);
         
         for (int i = 0; i < tmpGameController.GetComponent<RWPlayerController>().playerCharacter.Length; i++)

@@ -174,6 +174,8 @@ public class StageController : MonoBehaviour {
         scrollSpeed = nScrollSpeed;
         presentStage.SendMessage("DeliveryScrollSpeed", scrollSpeed);
         ScrollFloorCollider2D.SendMessage("DeliveryFloorScrollSpeedValue", scrollSpeed);
+
+        SendMessage("RWPlayerCharacterAniSpeedDelivery", scrollSpeed / 3f); //현재 스피드 / 기본 스피드
     }
 
     //level

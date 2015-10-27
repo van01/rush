@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: dbb7d9f8412ec9c459613a47967a88ed
-timeCreated: 1445929063
+timeCreated: 1445954997
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -13,7 +13,7 @@ TextureImporter:
     21300012: LeaderBord_Button
     21300014: Share_Button
     21300016: Store_Button
-    21300018: Common_9
+    21300018: Window_02
     21300020: Common_10
     21300022: Common_11
     21300024: Common_12
@@ -31,6 +31,7 @@ TextureImporter:
     21300048: Common_16
     21300050: Common_1
     21300052: Common_8
+    21300054: Common_0
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -85,7 +86,7 @@ TextureImporter:
         width: 128
         height: 126
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Character_Button
       rect:
@@ -95,7 +96,7 @@ TextureImporter:
         width: 128
         height: 126
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Helmet_Button
       rect:
@@ -105,7 +106,7 @@ TextureImporter:
         width: 128
         height: 126
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: HelmetRaffle_Button
       rect:
@@ -115,7 +116,7 @@ TextureImporter:
         width: 128
         height: 126
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Home_Button
       rect:
@@ -125,7 +126,7 @@ TextureImporter:
         width: 128
         height: 126
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Achieve_Button
       rect:
@@ -135,7 +136,7 @@ TextureImporter:
         width: 128
         height: 126
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: LeaderBord_Button
       rect:
@@ -145,7 +146,7 @@ TextureImporter:
         width: 128
         height: 126
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Share_Button
       rect:
@@ -155,7 +156,7 @@ TextureImporter:
         width: 128
         height: 126
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Common_12
       rect:
@@ -175,7 +176,7 @@ TextureImporter:
         width: 128
         height: 126
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Common_3
       rect:
@@ -195,7 +196,7 @@ TextureImporter:
         width: 75
         height: 120
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Common_5
       rect:
@@ -245,7 +246,7 @@ TextureImporter:
         width: 128
         height: 126
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Store_Button
       rect:
@@ -255,68 +256,28 @@ TextureImporter:
         width: 128
         height: 126
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Window_01
       rect:
         serializedVersion: 2
         x: 1
-        y: 95
-        width: 30
-        height: 30
+        y: 65
+        width: 81
+        height: 60
       alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 11, y: 11, z: 11, w: 11}
-    - name: Common_1
+      pivot: {x: 0, y: 0}
+      border: {x: 30, y: 30, z: 30, w: 30}
+    - name: Window_02
       rect:
         serializedVersion: 2
-        x: 33
-        y: 95
-        width: 30
-        height: 30
+        x: 84
+        y: 65
+        width: 79
+        height: 60
       alignment: 0
       pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Common_8
-      rect:
-        serializedVersion: 2
-        x: 65
-        y: 63
-        width: 62
-        height: 62
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Common_9
-      rect:
-        serializedVersion: 2
-        x: 130
-        y: 63
-        width: 21
-        height: 28
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Common_10
-      rect:
-        serializedVersion: 2
-        x: 169
-        y: 63
-        width: 21
-        height: 28
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Common_11
-      rect:
-        serializedVersion: 2
-        x: 134
-        y: 3
-        width: 116
-        height: 53
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 30, y: 30, z: 30, w: 30}
   spritePackingTag: 
   userData: 
   assetBundleName: 

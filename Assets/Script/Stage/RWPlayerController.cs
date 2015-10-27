@@ -8,7 +8,7 @@ public class RWPlayerController : MonoBehaviour {
     private int playerNumber;
     private int helmetNumber;
 
-    void Start () {
+    void Awake () {
         RWPlayerCharacterInitialize();
     }
 	
@@ -28,6 +28,7 @@ public class RWPlayerController : MonoBehaviour {
                 RWHelmetInitialize();
                 SendMessage("PlayerHealthBarOff");
                 currentPlayerCharacter = playerCharacter[i];
+                RWPlayerCharacterAniSpeedDelivery(1);
             }
             else
                 playerCharacter[i].SetActive(false);
@@ -57,5 +58,10 @@ public class RWPlayerController : MonoBehaviour {
         PlayerPrefs.SetInt("CurrentHelmetNumber", nHelmetNumber);
         print(nHelmetNumber);
         RWHelmetInitialize();
+    }
+
+    public void RWPlayerCharacterAniSpeedDelivery(float nSpeed)
+    {
+        currentPlayerCharacter.SendMessage("RWPlayerCharacterAniSpeed", nSpeed);
     }
 }

@@ -162,5 +162,10 @@ public class RWHelmetButtonHandler : MonoBehaviour
     {
         HelmetNameText.GetComponent<Text>().text = nHelmetName;
     }
+
+    public void PresentPlayerCharacterAniSpeed(float nSpeed)
+    {
+        presentPlayerCharacter.SendMessage("RWPlayerCharacterAniSpeed", nSpeed);
+    }
         
 }

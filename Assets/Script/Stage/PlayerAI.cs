@@ -346,6 +346,7 @@ public class PlayerAI : MonoBehaviour
     {
         target = nTarget;
         SendMessage("CharacterStateControll", "Move");
+        SendMessage("RWPlayerCharacterAniSpeed", 1);
     }
 
     IEnumerator RWButtonAttack()

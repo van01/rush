@@ -294,7 +294,7 @@ public class CharacterHandler : MonoBehaviour {
     public void RWJumpAddforce()
     {
         //점프
-        float rForceY = 20.0f;
+        float rForceY = 25.0f;
 
         if (isAddforce == true)
         {

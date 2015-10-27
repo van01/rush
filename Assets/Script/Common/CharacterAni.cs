@@ -111,6 +111,7 @@ public class CharacterAni : MonoBehaviour {
 
         else
         {
+            tmpAnimation[aniClipName].speed = aniSpeed;
             tmpAnimation.CrossFade(aniClipName);
         }
 
@@ -144,5 +145,11 @@ public class CharacterAni : MonoBehaviour {
     public void AniStop()
     {
         tmpAnimation.Stop();
+    }
+
+    public void RWPlayerCharacterAniSpeed(float nSpeed)
+    {
+        aniSpeed = nSpeed;
+        ChangeAni(RWPlay);
     }
 }

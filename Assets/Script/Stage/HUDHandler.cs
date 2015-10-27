@@ -202,6 +202,7 @@ public class HUDHandler : MonoBehaviour {
     public void HUDRWHelmetRaffleUIon()
     {
         HUDRWRaffleUI.SetActive(true);
+        HUDRWRaffleUI.SendMessage("RaffleCharacterDraw");
         TotalCoinRefresh();
     }
 
