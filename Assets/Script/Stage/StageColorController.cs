@@ -43,4 +43,6 @@ public class StageColorController : MonoBehaviour {
     {
         randColorNum = (int)Random.RandomRange(0f, colorValue.Length);
     }
+
+
 }

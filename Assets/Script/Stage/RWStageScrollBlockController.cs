@@ -6,9 +6,12 @@ public class RWStageScrollBlockController : MonoBehaviour {
 
     private Transform tmpScrollBlockTransfrom;
 
+    private SpriteRenderer[] myAllSpriteRenderer;
+
     void Start()
     {
         tmpScrollBlockTransfrom = transform.FindChild("FloorScrollBlock");
+        myAllSpriteRenderer = gameObject.GetComponentsInChildren<SpriteRenderer>();
     }
 
 	public void DeliveryFloorScrollSpeedValue(float fSC)
@@ -64,5 +67,23 @@ public class RWStageScrollBlockController : MonoBehaviour {
     public void BlockNumberinitializeDelivery()
     {
         tmpScrollBlockTransfrom.SendMessage("BlockNumberinitialize");
+    }
+
+    public void CurrentCoinCountMinusDelivery()
+    {
+        tmpScrollBlockTransfrom.SendMessage("CurrentCoinCountMinus");
+    }
+
+    void RWStageFloorColorApply(Vector4 nColor)
+    {
+        for (int i = 0; i < myAllSpriteRenderer.Length; i++)
+        {
+            if (myAllSpriteRenderer[i].GetComponent<StageBGColorApply>().BGColorApply == true)
+            {
+                myAllSpriteRenderer[i].color = nColor;
+            }
+        }
+
+        tmpScrollBlockTransfrom.SendMessage("BGFloorColorDelivery", nColor);
     }
 }

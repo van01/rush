@@ -4,6 +4,7 @@ using System.Collections;
 public class RWPlayerController : MonoBehaviour {
 
     public GameObject[] playerCharacter;
+    private GameObject currentPlayerCharacter;
     private int playerNumber;
     private int helmetNumber;
 
@@ -26,6 +27,7 @@ public class RWPlayerController : MonoBehaviour {
 
                 RWHelmetInitialize();
                 SendMessage("PlayerHealthBarOff");
+                currentPlayerCharacter = playerCharacter[i];
             }
             else
                 playerCharacter[i].SetActive(false);
@@ -56,6 +58,4 @@ public class RWPlayerController : MonoBehaviour {
         print(nHelmetNumber);
         RWHelmetInitialize();
     }
-
-
 }

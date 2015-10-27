@@ -1,11 +1,12 @@
 fileFormatVersion: 2
 guid: b8e30e63e29ded94b83029eefc47d5c8
-timeCreated: 1444489237
+timeCreated: 1445851916
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: Floor_Block
     21300002: RW_Floor
+    21300004: Floor_Block_Object
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -55,9 +56,9 @@ TextureImporter:
     - name: Floor_Block
       rect:
         serializedVersion: 2
-        x: 5
+        x: 4
         y: 109
-        width: 102
+        width: 104
         height: 400
       alignment: 0
       pivot: {x: .5, y: .5}
@@ -69,8 +70,18 @@ TextureImporter:
         y: 253
         width: 128
         height: 256
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Floor_Block_Object
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 473
+        width: 106
+        height: 36
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

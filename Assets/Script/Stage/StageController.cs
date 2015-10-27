@@ -21,6 +21,8 @@ public class StageController : MonoBehaviour {
 
     private Transform baseBlockTransform;
 
+    private Vector4 nBGColor;
+
     void Awake()
     {
         
@@ -66,6 +68,7 @@ public class StageController : MonoBehaviour {
             baseBlockTransform.SendMessage("DeliveryBaseBlockScrollSpeed", scrollSpeed);    // baseBlock에 속도 전달
             BaseBlockScrollOnDelivery();    // 오프닝 종료 후 시작
             StageScrollInialize();
+            RWStageFloorColorApplyDelivery();
         }
         else
         {
@@ -83,6 +86,12 @@ public class StageController : MonoBehaviour {
                 presentStage.SendMessage("FloorSetting", isRWStage);
                 if (presentStage.GetComponent<StageColorController>().randomSpriteColorApply == true)
                     StageColorActiveOn();
+
+                SendMessage("StageLevelInitialize");
+                baseBlockTransform.SendMessage("DeliveryBaseBlockScrollSpeed", scrollSpeed);    // baseBlock에 속도 전달
+                BaseBlockScrollOnDelivery();    // 오프닝 종료 후 시작
+                StageScrollInialize();
+                RWStageFloorColorApplyDelivery();
             }
         }
     }
@@ -146,8 +155,11 @@ public class StageController : MonoBehaviour {
     {
         baseBlockTransform.gameObject.SetActive(true);
         ScrollFloorCollider2D.transform.FindChild("FloorScrollBlock").SendMessage("ResetBlockScroll");
-        ScrollFloorCollider2D.transform.FindChild("FloorScrollBlock").GetComponent<RWBlockController>().AllBlockDelete();
+        ScrollFloorCollider2D.transform.FindChild("FloorScrollBlock").GetComponent<RWBlockController>().AllCoinDelete();
+        ScrollFloorCollider2D.transform.FindChild("FloorScrollBlock").GetComponent<RWBlockController>().AllBlockDelete();   //생성된 모든 블럭 삭제
         baseBlockTransform.SendMessage("BaseBlockInit");
+
+        
         //ResetBlockScroll
         //AllBlockDelete
     }
@@ -157,10 +169,9 @@ public class StageController : MonoBehaviour {
         baseBlockTransform.SendMessage("ScrollOnBaseBlock");
     }
 
-    public void ScrollSpeedRefresh(float nScrollSpeed)
+    public void ScrollSpeedRefresh(float nScrollSpeed)      //스크롤 속도 전달
     {
         scrollSpeed = nScrollSpeed;
-
         presentStage.SendMessage("DeliveryScrollSpeed", scrollSpeed);
         ScrollFloorCollider2D.SendMessage("DeliveryFloorScrollSpeedValue", scrollSpeed);
     }
@@ -201,4 +212,17 @@ public class StageController : MonoBehaviour {
     {
         ScrollFloorCollider2D.SendMessage("BlockNumberinitializeDelivery");
     }
+
+    public void CurrentCoinCountMinusMessenger()
+    {
+        ScrollFloorCollider2D.SendMessage("CurrentCoinCountMinusDelivery");
+    }
+
+    void RWStageFloorColorApplyDelivery()
+    {
+        nBGColor = presentStage.GetComponent<SpriteRenderer>().color;
+        ScrollFloorCollider2D.SendMessage("RWStageFloorColorApply", nBGColor);
+    }
+
+
 }

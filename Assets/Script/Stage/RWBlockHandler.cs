@@ -16,8 +16,17 @@ public class RWBlockHandler : MonoBehaviour {
     private GameObject presentCoin;
     private float coinPositionY;
 
+    private SpriteRenderer[] myAllSpriteRenderer;
+
+    private Vector4 ApplyColor;
+
+    void Awake()
+    {
+        
+    }
     void Start()
     {
+        
         tmpBlockController = transform.parent;
 
         blockSpriteLength = (int)GetComponent<BoxCollider2D>().size.x;
@@ -28,11 +37,16 @@ public class RWBlockHandler : MonoBehaviour {
         {
             presentBlockSprite = Instantiate(blockSpritePrefab, new Vector3(blockSpritePositionX, transform.position.y, transform.position.z), Quaternion.Euler(0, 0, 0)) as GameObject;
             presentBlockSprite.transform.SetParent(transform);
+            myAllSpriteRenderer = presentBlockSprite.GetComponentsInChildren<SpriteRenderer>();
+            RWStageBlockFloorColorApply();
 
             presentCoin = Instantiate(coinPrefab, new Vector3(blockSpritePositionX, transform.position.y, transform.position.z), Quaternion.Euler(0, 0, 0)) as GameObject;
             presentCoin.SendMessage("CoinTypeSetting", "Coin");
+            presentCoin.tag = "RWCoin";
             presentCoin.transform.position = new Vector3(blockSpritePositionX, transform.position.y + GetComponent<BoxCollider2D>().size.y / 2 + coinPrefab.GetComponent<BoxCollider2D>().size.y, transform.position.z);
             presentCoin.transform.SetParent(transform);
+
+            tmpBlockController.SendMessage("CurrentCoinCountPlus");
 
             blockSpritePositionX = blockSpritePositionX - 1.0f;
         }
@@ -54,6 +68,28 @@ public class RWBlockHandler : MonoBehaviour {
             if (c.transform.position.y > transform.position.y + GetComponent<BoxCollider2D>().size.y / 2)
                 BlockCount();
             c.gameObject.SendMessage("AddforceInitialize");
+        }
+    }
+
+    public void CurrentBlockPrefabCountMinusDelivery()
+    {
+        tmpBlockController.SendMessage("CurrentBlockPrefabCountMinus");
+    }
+
+    public void RWStageBlockFloorColorApplyDelivery(Vector4 nColor)
+    {
+        ApplyColor = nColor;
+        
+    }
+
+    void RWStageBlockFloorColorApply()
+    {
+        for (int i = 0; i < myAllSpriteRenderer.Length; i++)
+        {
+            if (myAllSpriteRenderer[i].GetComponent<StageBGColorApply>().BGColorApply == true)
+            {
+                myAllSpriteRenderer[i].color = ApplyColor;
+            }
         }
     }
 }

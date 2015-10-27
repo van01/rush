@@ -26,7 +26,6 @@ public class FloorScroll : MonoBehaviour {
             transform.Translate(scrollValue, Space.World);
             if (blockGeneraterOn == false)
             {
-                //SendMessage("BlockGeneraterInit");
                 blockGeneraterOn = true;
             }
         }

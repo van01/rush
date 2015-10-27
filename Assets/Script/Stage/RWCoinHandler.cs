@@ -101,10 +101,14 @@ public class RWCoinHandler : MonoBehaviour {
     {
         tmpGameController.SendMessage("CoinValueSetting", nCoinValue);
         tmpGameController.SendMessage("CurrentGameCoinCount", "1");
+        
         if (currentCoin == CoinType.Null)
             tmpGameController.SendMessage("CoinHitValue", new Vector3(-3.0f,-3.0f,0));
         else
+        {
             tmpGameController.SendMessage("CoinHitValue", transform.position);
+            tmpGameController.SendMessage("CurrentCoinCountMinusMessenger");
+        }
 
         Destroy(gameObject);
     }

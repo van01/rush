@@ -48,17 +48,12 @@ public class CharacterAni : MonoBehaviour {
     private bool skill = false;
 
     protected float attackSuccessDelay;
+    private float aniSpeed;
 
 	// Use this for initialization
 	void Awake () {
         tmpPlayerState = GetComponent<PlayerState>();
         tmpAnimation = GetComponent<Animation>();
-    }
-
-    void Start()
-    {
-        
-        
     }
 
     void Update()
