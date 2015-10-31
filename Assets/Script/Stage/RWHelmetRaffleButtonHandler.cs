@@ -14,18 +14,21 @@ public class RWHelmetRaffleButtonHandler : MonoBehaviour
     {
         presentTotalCoin = Convert.ToInt32(PlayerPrefs.GetString("TotalCoin"));
 
-        if (presentTotalCoin >= helmetRafflePrice)
-        {
-            tmpHelmetRafflePanal.SendMessage("CompulsionTargetDelivery", transform);
-            tmpHelmetRafflePanal.SendMessage("HelmetRaffleActive");
-            tmpHelmetRafflePanal.SendMessage("DisAblePanelOn");
-
-            TotalCoinSubtraction();
-            tmpHelmetRafflePanal.SendMessage("TotalCoinRefreshDelivery");
-        }
+        if (tmpHelmetRafflePanal.GetComponent<RWRaffleHandler>().ItemFull == true)
+            tmpHelmetRafflePanal.SendMessage("AlertPanelActiveDelivery", 2);
         else
         {
-            tmpHelmetRafflePanal.SendMessage("AlertPanelActiveDelivery", 1);
+            if (presentTotalCoin >= helmetRafflePrice)
+            {
+                tmpHelmetRafflePanal.SendMessage("CompulsionTargetDelivery", transform);
+                tmpHelmetRafflePanal.SendMessage("HelmetRaffleActive");
+                tmpHelmetRafflePanal.SendMessage("DisAblePanelOn");
+
+                TotalCoinSubtraction();
+                tmpHelmetRafflePanal.SendMessage("TotalCoinRefreshDelivery");
+            }
+            else
+                tmpHelmetRafflePanal.SendMessage("AlertPanelActiveDelivery", 1);
         }
     }
 

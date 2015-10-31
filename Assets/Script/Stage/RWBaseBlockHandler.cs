@@ -15,8 +15,12 @@ public class RWBaseBlockHandler : MonoBehaviour {
     private float beginBaseBlock02PositionX;
     private float beginBaseBlock03PositionX;
 
+    private GameObject tmpGameController;
+
     void Start()
     {
+        tmpGameController = GameObject.Find("GameController");
+
         beginBaseBlock01PositionX = baseBlock01.transform.position.x;
         beginBaseBlock02PositionX = baseBlock02.transform.position.x;
         beginBaseBlock03PositionX = baseBlock03.transform.position.x;
@@ -84,9 +88,13 @@ public class RWBaseBlockHandler : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D c)
     {
-        if (c.gameObject.tag == "Player")
+        if (tmpGameController.GetComponent<RWOpeningDirector>().openingDirection != true)
         {
-            c.gameObject.SendMessage("AddforceInitialize");
+            if (c.gameObject.tag == "Player")
+            {
+                c.gameObject.SendMessage("CharacterStateControll", "RWPlay");
+                c.gameObject.SendMessage("AddforceInitialize");
+            }
         }
     }
 }

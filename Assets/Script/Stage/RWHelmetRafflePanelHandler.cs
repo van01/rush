@@ -11,7 +11,7 @@ public class RWHelmetRafflePanelHandler : MonoBehaviour {
     public GameObject[] StartPosition;
 
     public GameObject disAblePanel;
-    public GameObject helmetFullPanel;
+    //public GameObject helmetFullPanel;
     public GameObject resultPanel;
 
     private int currentPlayerCharacterNumber;
@@ -95,15 +95,15 @@ public class RWHelmetRafflePanelHandler : MonoBehaviour {
         disAblePanel.SetActive(false);
     }
 
-    public void ItemfullPanelOn()
-    {
-        helmetFullPanel.SetActive(true);
-    }
+    //public void ItemfullPanelOn()
+    //{
+    //    helmetFullPanel.SetActive(true);
+    //}
 
-    public void ItemfullPanelOff()
-    {
-        helmetFullPanel.SetActive(false);
-    }
+    //public void ItemfullPanelOff()
+    //{
+    //    helmetFullPanel.SetActive(false);
+    //}
 
     public void TotalCoinRefreshDelivery()
     {
@@ -113,5 +113,10 @@ public class RWHelmetRafflePanelHandler : MonoBehaviour {
     public void AlertPanelActiveDelivery(int nAlertType)
     {
         HUD.SendMessage("AlertPanelActive", nAlertType);
+    }
+
+    public void RWHelmetRaffleResultActive(int nHelmetNumber)
+    {
+        tmpGameController.SendMessage("RWHelmetSetting", nHelmetNumber);
     }
 }

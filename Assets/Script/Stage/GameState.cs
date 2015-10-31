@@ -69,6 +69,8 @@ public class GameState : MonoBehaviour {
 
             SendMessage("CharacterInialize");
             SendMessage("StageInialize");
+
+            SendMessage("FlyingTheWitchOffDelivery");
         }
     }
 
@@ -76,6 +78,8 @@ public class GameState : MonoBehaviour {
         if (GetComponent<StageController>().isRWStage == true)
         {
             SendMessage("RWReadyModeUISetting");
+
+            SendMessage("OpeningTake4Acting");
         }
         else
         {
@@ -95,6 +99,8 @@ public class GameState : MonoBehaviour {
             SendMessage("RWBlockScrollon");
             SendMessage("StageScrollInialize");
             SendMessage("BlockCountInitialize");
+
+            SendMessage("FlyingTheWitchDelivery");
         }
         
         //SendMessage("CharacterActionCheck");
@@ -104,6 +110,8 @@ public class GameState : MonoBehaviour {
     public virtual void HoldAction()
     {
         SendMessage("DeliveryScrollOnFalse");
+
+        SendMessage("FlyingInitializeDelivery");
     }
 
     public virtual void BattleAction()

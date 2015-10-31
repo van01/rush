@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour {
         {
             tmpPlayer[i].gameObject.SendMessage("CharacterPositionInialize", CharacterPositionInializeTime);
             tmpPlayer[i].gameObject.SendMessage("EquipHelmet", PlayerEquipHelmetNumber);
-            tmpPlayer[i].SendMessage("CharacterStateControll", "RWPlay");   ////
+            //tmpPlayer[i].SendMessage("CharacterStateControll", "RWPlay");   //// test
         }
     }
 
@@ -352,6 +352,7 @@ public class PlayerController : MonoBehaviour {
         for (int i = 0; i<tmpPlayer.Length; i++)
         {
             tmpPlayer[i].gameObject.SendMessage("RWJumpAddforce");
+            tmpPlayer[i].SendMessage("CharacterStateControll", "Jump");
         }
     }
 
@@ -376,7 +377,7 @@ public class PlayerController : MonoBehaviour {
     {
         for (int i = 0; i < tmpPlayer.Length; i++)
         {
-            tmpPlayer[i].GetComponent<Rigidbody2D>().drag = 3.0f;
+            tmpPlayer[i].GetComponent<Rigidbody2D>().drag = 2.0f;
             tmpPlayer[i].GetComponent<Rigidbody2D>().gravityScale = 0f;
         }
     }
@@ -385,7 +386,7 @@ public class PlayerController : MonoBehaviour {
     {
         for (int i = 0; i < tmpPlayer.Length; i++)
         {
-            tmpPlayer[i].GetComponent<Rigidbody2D>().drag = 0f;
+            tmpPlayer[i].GetComponent<Rigidbody2D>().drag = 5.0f;
             tmpPlayer[i].GetComponent<Rigidbody2D>().gravityScale = 9.0f;
         }
     }

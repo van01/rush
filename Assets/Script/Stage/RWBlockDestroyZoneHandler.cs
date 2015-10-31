@@ -12,7 +12,5 @@ public class RWBlockDestroyZoneHandler : MonoBehaviour {
         }
         else if (c.tag == "RWCoin")
             Destroy(c.gameObject);
-        else if (c.tag == "BaseBlock")
-            c.SendMessage("BaseBlockDrop");
     }
 }

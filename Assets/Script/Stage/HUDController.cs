@@ -6,7 +6,9 @@ public class HUDController : MonoBehaviour {
 
 	public GameObject HUD;
 
-	private float lastClickLeftDownTime = 0;
+    public string[] alertMessage;
+
+    private float lastClickLeftDownTime = 0;
     private bool DobleClickLeft = false;
     private float lastClickRightDownTime = 0;
 	private float catchTime = 0.25f;
@@ -27,7 +29,7 @@ public class HUDController : MonoBehaviour {
 
     protected string blockCount;
 
-    private string alertMessage;
+    //private string alertMessage;
 
     public void LeftHitZoneDown(){
         bool dtest = DoubleClick();
@@ -407,11 +409,8 @@ public class HUDController : MonoBehaviour {
 
     public void AlertPanelSetting(int nAlertType)
     {      
-        if (nAlertType == 1)
-            alertMessage = "돈없음";
-
         HUD.SendMessage("AlertPanelon");
-        HUD.SendMessage("AlertPanelTextSetting", alertMessage);
+        HUD.SendMessage("AlertPanelTextSetting", alertMessage[nAlertType]);
     }
 
 }

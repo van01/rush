@@ -35,9 +35,10 @@ public class CharacterAni : MonoBehaviour {
     public const string JUMP = "Jump_Baked";		//점프 시작
     public const string MIDAIR = "Midair_Baked";	//공중
     public const string LANDING = "Landing_Baked";	//착지
+    public const string Drop = "Drop_Baked";
 
-    public const string RWPlay = "EmptyHanded_Move_Baked";	//착지
-    public const string RWHold = "Hold_Baked";	//착지
+    public const string RWPlay = "EmptyHanded_Move_Baked";
+    public const string RWHold = "Hold_Baked";
 
     private PlayerState tmpPlayerState;
     private Animation tmpAnimation;
@@ -80,7 +81,12 @@ public class CharacterAni : MonoBehaviour {
     
     public void ChangeAni(string aniClipName)
     {
-        if (aniClipName == ATTACK)
+        if (aniClipName == RWPlay)
+        {
+            tmpAnimation[aniClipName].speed = aniSpeed;
+            tmpAnimation.Play(aniClipName);
+        }
+        else if (aniClipName == ATTACK)
         {
             tmpAnimation.Play(aniClipName);
 
@@ -111,7 +117,6 @@ public class CharacterAni : MonoBehaviour {
 
         else
         {
-            tmpAnimation[aniClipName].speed = aniSpeed;
             tmpAnimation.CrossFade(aniClipName);
         }
 
@@ -150,6 +155,7 @@ public class CharacterAni : MonoBehaviour {
     public void RWPlayerCharacterAniSpeed(float nSpeed)
     {
         aniSpeed = nSpeed;
-        ChangeAni(RWPlay);
+        if (currentAniClip != null)
+            ChangeAni(currentAniClip);
     }
 }

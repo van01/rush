@@ -86,7 +86,7 @@ public class RWBlockController : MonoBehaviour {
         presentBlockPrefab.SendMessage("RWStageBlockFloorColorApplyDelivery", BGFloorColor);
 
         presentCoinPositionX = oldBlockPrefabPositionX - blockSpaceSizeX / 2f;
-        presentCoinPositionY = blockSpaceSizeY + 4.0f;
+        presentCoinPositionY = blockSpaceSizeY + 3.5f;
         presentCoin = Instantiate(coinPrefab, new Vector3(presentCoinPositionX, presentCoinPositionY, transform.position.z), Quaternion.Euler(0, 0, 0)) as GameObject;
         presentCoin.transform.SetParent(transform);
         presentCoin.SendMessage("CoinTypeSetting", "Coin");

@@ -98,6 +98,7 @@
      <Compile Include="Assets\Script\Common\CharacterAni.cs" />
      <Compile Include="Assets\Script\Common\CharacterBackHandler.cs" />
      <Compile Include="Assets\Script\Common\CharacterBattle.cs" />
+     <Compile Include="Assets\Script\Common\CharacterEyeHandler.cs" />
      <Compile Include="Assets\Script\Common\CharacterHandler.cs" />
      <Compile Include="Assets\Script\Common\CharacterHelmetBasket.cs" />
      <Compile Include="Assets\Script\Common\CharacterHelmetHandler.cs" />
@@ -118,6 +119,10 @@
      <Compile Include="Assets\Script\FrontEnd\StageButtonHandler.cs" />
      <Compile Include="Assets\Script\Stage\CameraHandler.cs" />
      <Compile Include="Assets\Script\Stage\CharacterEffectController.cs" />
+     <Compile Include="Assets\Script\Stage\EmotionBubbleChildHandler.cs" />
+     <Compile Include="Assets\Script\Stage\EmotionBubbleHandler.cs" />
+     <Compile Include="Assets\Script\Stage\EmotionHandler.cs" />
+     <Compile Include="Assets\Script\Stage\EmotionSimpleType.cs" />
      <Compile Include="Assets\Script\Stage\EnemyAI.cs" />
      <Compile Include="Assets\Script\Stage\EnemyAbility.cs" />
      <Compile Include="Assets\Script\Stage\EnemyBattle.cs" />
@@ -146,6 +151,7 @@
      <Compile Include="Assets\Script\Stage\PlayerState.cs" />
      <Compile Include="Assets\Script\Stage\ProjectileHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWAlertPanelHandler.cs" />
+     <Compile Include="Assets\Script\Stage\RWBaseBlockDropZoneHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWBaseBlockHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWBlockController.cs" />
      <Compile Include="Assets\Script\Stage\RWBlockDestroyZoneHandler.cs" />
@@ -157,16 +163,21 @@
      <Compile Include="Assets\Script\Stage\RWDeadZoneHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWEscapeHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWGameManager.cs" />
+     <Compile Include="Assets\Script\Stage\RWGameOverPanelHandler.cs" />
+     <Compile Include="Assets\Script\Stage\RWHelmetActiveButtonHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWHelmetButtonHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWHelmetDrawZoneHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWHelmetPanelHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWHelmetRaffleButtonHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWHelmetRafflePanelHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWItemResultPanelHandler.cs" />
+     <Compile Include="Assets\Script\Stage\RWOpeningDirector.cs" />
      <Compile Include="Assets\Script\Stage\RWPlayerController.cs" />
      <Compile Include="Assets\Script\Stage\RWRaffleHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWStageScrollBlockController.cs" />
      <Compile Include="Assets\Script\Stage\RWUICharacterSizeHandler.cs" />
+     <Compile Include="Assets\Script\Stage\RWWitchAni.cs" />
+     <Compile Include="Assets\Script\Stage\RWWitchHandler.cs" />
      <Compile Include="Assets\Script\Stage\SkillButtonHandler.cs" />
      <Compile Include="Assets\Script\Stage\StageBGColorApply.cs" />
      <Compile Include="Assets\Script\Stage\StageColorController.cs" />
@@ -177,11 +188,17 @@
      <None Include="Assets\Puppet2D\Shaders\BlackAndWhite.shader" />
      <None Include="Assets\Puppet2D\Shaders\VertColor.shader" />
      <None Include="Assets\Puppet2D\Shaders\unlitTransparentDouble.shader" />
+ <Reference Include="UnityEngine.Advertisements">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>

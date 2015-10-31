@@ -14,6 +14,8 @@ public class RWRaffleHandler : MonoBehaviour {
     protected int presentHelmetNum;
     protected int globalHelmetNum;
 
+    public bool ItemFull = false;
+
     void Start()
     {
         HelmetDataInitialize();
@@ -30,12 +32,13 @@ public class RWRaffleHandler : MonoBehaviour {
 
         if (nonHelmetCount == 0)
         {
-            SendMessage("ItemfullPanelOn");
+            ItemFull = true;
         }
 
         else
         {
-            SendMessage("ItemfullPanelOff");
+            ItemFull = false;
+
             for (int i = 0; i < nonHelmetSpriteName.Length; i++)
             {
                 nonHelmetSpriteName[i] = CharacterItemHandler.GetComponent<CharacterHelmetBasket>().nonItemSpriteName[i];

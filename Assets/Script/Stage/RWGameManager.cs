@@ -12,7 +12,7 @@ public class RWGameManager : MonoBehaviour {
     protected int blockColMinSize = 2;
     protected int blockColMaxSize = 5;
     protected float blockSpaceMinSizeX = 2f;
-    protected float blockSpaceMaxSizeX = 2.7f;
+    protected float blockSpaceMaxSizeX = 2.4f;
     protected float blockSpaceMinSizeY = 0f;
     protected float blockSpaceMaxSizeY = 0.4f;
     protected float currentScrollSpeed;

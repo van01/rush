@@ -12,10 +12,10 @@ public class PlayerState : CharacterState
     void Start()
     {
         //CharacterStateControll("Spawn");
-        if (tag == "Player")
-            CharacterStateControll("RWPlay");   ////////
-        else
-            CharacterStateControll("RWHold");   ////////
+        //if (tag == "Player")
+        //    CharacterStateControll("RWPlay");   ////////
+        //else
+        //    CharacterStateControll("RWHold");   ////////
 
         tmpGameController = GameObject.Find("GameController");
 
@@ -181,8 +181,16 @@ public class PlayerState : CharacterState
         SendMessage("ChangeAni", CharacterAni.DEAD);
     }
 
+    public override void DisorderAction()
+    {
+        base.DisorderAction();
+
+        SendMessage("ChangeAni", CharacterAni.Drop);
+    }
+
     public override void RWPlayAction()
     {
+        //print("RW Play");
         base.RWPlayAction();
         SendMessage("ChangeAni", CharacterAni.RWPlay);
     }
@@ -191,6 +199,12 @@ public class PlayerState : CharacterState
     {
         base.RWHoldAction();
         SendMessage("ChangeAni", CharacterAni.RWHold);
+    }
+
+    public override void JumpAction()
+    {
+        base.JumpAction();
+        SendMessage("ChangeAni", CharacterAni.JUMP);
     }
 
     public override void CharacterStateControll(string s)

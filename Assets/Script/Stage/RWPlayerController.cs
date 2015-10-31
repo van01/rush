@@ -4,7 +4,7 @@ using System.Collections;
 public class RWPlayerController : MonoBehaviour {
 
     public GameObject[] playerCharacter;
-    private GameObject currentPlayerCharacter;
+    public GameObject currentPlayerCharacter;
     private int playerNumber;
     private int helmetNumber;
 
@@ -21,7 +21,7 @@ public class RWPlayerController : MonoBehaviour {
             if (i == playerNumber)
             {
                 playerCharacter[i].SetActive(true);
-                playerCharacter[i].SendMessage("CharacterStateControll", "RWPlay");
+                //playerCharacter[i].SendMessage("CharacterStateControll", "RWPlay");
                 playerCharacter[i].GetComponent<BoxCollider2D>().offset = new Vector2(0, -0.5f);
                 playerCharacter[i].GetComponent<BoxCollider2D>().size = new Vector2(0.3f, 0.75f);
 

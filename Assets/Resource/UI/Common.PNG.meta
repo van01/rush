@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: dbb7d9f8412ec9c459613a47967a88ed
-timeCreated: 1445954997
+timeCreated: 1446018241
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -19,12 +19,12 @@ TextureImporter:
     21300024: Common_12
     21300026: Common_13
     21300028: Common_14
-    21300030: Pause_Button
+    21300030: Back_Button
     21300032: Retry_Button
     21300034: Window_01
     21300036: Common_2
-    21300038: Common_3
-    21300040: Common_4
+    21300038: Window_03
+    21300040: Unlock_Icon
     21300042: Common_5
     21300044: Common_6
     21300046: Common_7
@@ -168,7 +168,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Pause_Button
+    - name: Back_Button
       rect:
         serializedVersion: 2
         x: 256
@@ -178,55 +178,35 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Common_3
+    - name: Window_03
       rect:
         serializedVersion: 2
-        x: 193
-        y: 63
-        width: 62
-        height: 62
+        x: 165
+        y: 65
+        width: 81
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 30, y: 30, z: 30, w: 30}
+    - name: Unlock_Icon
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 60
+        width: 47
+        height: 65
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Common_4
+    - name: Common_5
       rect:
         serializedVersion: 2
-        x: 286
+        x: 421
         y: 1
         width: 75
         height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Common_5
-      rect:
-        serializedVersion: 2
-        x: 414
-        y: 1
-        width: 75
-        height: 120
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Common_6
-      rect:
-        serializedVersion: 2
-        x: 258
-        y: 63
-        width: 21
-        height: 28
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Common_7
-      rect:
-        serializedVersion: 2
-        x: 297
-        y: 63
-        width: 21
-        height: 28
-      alignment: 0
-      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Common_16
       rect:
@@ -276,7 +256,7 @@ TextureImporter:
         width: 79
         height: 60
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 30, y: 30, z: 30, w: 30}
   spritePackingTag: 
   userData: 

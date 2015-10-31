@@ -49,6 +49,8 @@ public class GameController : MonoBehaviour {
     {
         SendMessage("RWCharacterPositionInit");     //playercontroller로 이관
         SendMessage("PlayerGravityScaleOn");
+
+        SendMessage("FlyingInitializeDelivery");
     }
 
     public void CurrentGameCoinCount(string nCoinCount)

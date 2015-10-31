@@ -137,8 +137,8 @@ public class CharacterHandler : MonoBehaviour {
         if (tag == "Player")
             i = -1;
 
-        float rForceX = (attackValueX - assaultWeightValue) * 8;
-        float rForceY = (attackValueY - assaultWeightValue) * 5;
+        float rForceX = (attackValueX - assaultWeightValue);
+        float rForceY = (attackValueY - assaultWeightValue);
 
         rForceX = Random.RandomRange(rForceX - 2, rForceX + 2);
         rForceY = Random.RandomRange(rForceY - 2, rForceY + 2);
@@ -152,7 +152,7 @@ public class CharacterHandler : MonoBehaviour {
         else if (rForceY <= 0f)
             rForceY = 1.0f;
 
-        GetComponent<Rigidbody2D>().AddForce(new Vector2(rForceX * i, rForceY * i), ForceMode2D.Impulse);
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(rForceX * i, rForceY), ForceMode2D.Impulse);
     }
 
     IEnumerator CharacterHitOff()
@@ -294,7 +294,7 @@ public class CharacterHandler : MonoBehaviour {
     public void RWJumpAddforce()
     {
         //점프
-        float rForceY = 25.0f;
+        float rForceY = 21.0f;
 
         if (isAddforce == true)
         {
@@ -305,6 +305,7 @@ public class CharacterHandler : MonoBehaviour {
 
     public void AllSpriteRendererSortingLayerUI()
     {
+        myAllSpriteRenderer = gameObject.GetComponentsInChildren<SpriteRenderer>();
         for (int i = 0; i < myAllSpriteRenderer.Length; i++)
         {
             myAllSpriteRenderer[i].sortingLayerName = "UI";

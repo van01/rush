@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class RWCharacterPanelHandler : MonoBehaviour {
     public GameObject[] CharacterSelectButton;
     public GameObject tmpGameController;
 
+    public GameObject characterCounter;
+
     private string[] ActivePlayerCharacter;
+    private int playerCharacterActiveCount;
 
     void Start()
     {
@@ -15,6 +19,7 @@ public class RWCharacterPanelHandler : MonoBehaviour {
         CharacterActiveStringArrayInit();
         CharacterNumberSettingDelivery();
         testLockButton();
+        CharacterCounterInitialize();
     }
 
     public void CharacterButtonSelect(string sButtonName)
@@ -53,8 +58,10 @@ public class RWCharacterPanelHandler : MonoBehaviour {
             if (PlayerPrefs.GetInt(ActivePlayerCharacter[i]) == 1)
             {
                 CharacterSelectButton[i].SendMessage("CharacterSelectButtonUnLock");
+                playerCharacterActiveCount++;
             }
         }
+        CharacterCounterInitialize();
     }
 
     void CharacterNumberSettingDelivery()
@@ -76,5 +83,10 @@ public class RWCharacterPanelHandler : MonoBehaviour {
         {
             PlayerPrefs.SetInt(ActivePlayerCharacter[i], 1);
         }
+    }
+
+    void CharacterCounterInitialize()
+    {
+        characterCounter.GetComponent<Text>().text = playerCharacterActiveCount + " / " + CharacterSelectButton.Length.ToString();
     }
 }

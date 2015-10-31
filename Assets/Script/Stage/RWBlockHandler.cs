@@ -67,6 +67,7 @@ public class RWBlockHandler : MonoBehaviour {
         {
             if (c.transform.position.y > transform.position.y + GetComponent<BoxCollider2D>().size.y / 2)
                 BlockCount();
+            c.gameObject.SendMessage("CharacterStateControll", "RWPlay");
             c.gameObject.SendMessage("AddforceInitialize");
         }
     }

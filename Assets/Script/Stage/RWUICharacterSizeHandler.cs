@@ -22,8 +22,17 @@ public class RWUICharacterSizeHandler : MonoBehaviour {
 
             if (stateDeliveryJeged == false)
             {
-                SendMessage("PresentPlayerCharacterStateChange", "RWPlay");
-                SendMessage("PresentPlayerCharacterAniSpeed", 1);
+                if (GetComponent<RWHelmetButtonHandler>().characterAble == true)
+                {
+                    SendMessage("PresentPlayerCharacterStateChange", "RWPlay");
+                    SendMessage("PresentPlayerCharacterAniSpeed", 1);
+                }
+                    
+
+                transform.parent.gameObject.transform.parent.gameObject.transform.parent.gameObject.SendMessage("CurrentHelmetButtonInitailize", gameObject);
+
+                transform.parent.gameObject.transform.parent.gameObject.transform.parent.gameObject.SendMessage("HelmetNameTextInitailize", GetComponent<RWHelmetButtonHandler>().helmetNumber);
+                transform.parent.gameObject.transform.parent.gameObject.transform.parent.gameObject.SendMessage("HelmetActiveButtonInitailize", GetComponent<RWHelmetButtonHandler>().currentHelmetButtonState);
                 stateDeliveryJeged = true;
             }
         }
@@ -33,7 +42,9 @@ public class RWUICharacterSizeHandler : MonoBehaviour {
 
             if (stateDeliveryJeged == true)
             {
-                SendMessage("PresentPlayerCharacterStateChange", "RWHold");
+                if (GetComponent<RWHelmetButtonHandler>().characterAble == true)
+                    SendMessage("PresentPlayerCharacterStateChange", "RWHold");
+
                 stateDeliveryJeged = false;
             }
         }

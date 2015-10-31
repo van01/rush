@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 
 public class RWHelmetButtonHandler : MonoBehaviour
@@ -15,7 +14,6 @@ public class RWHelmetButtonHandler : MonoBehaviour
     public int helmetNumber;
 
     public GameObject selectImage;
-    public GameObject HelmetNameText;
 
     private GameObject tmpHelmetSelectPanal;
     private GameObject presentPlayerCharacter;
@@ -24,6 +22,8 @@ public class RWHelmetButtonHandler : MonoBehaviour
     private int appearHelmetNumber;
     private int cPlayerCharacterNumber;
     private int pPlayerCharacterNumber;
+
+    public bool characterAble;
 
     void Start()
     {
@@ -41,11 +41,12 @@ public class RWHelmetButtonHandler : MonoBehaviour
         {
             tmpHelmetSelectPanal.SendMessage("HelmetButtonSelect", helmetNumber);
             tmpHelmetSelectPanal.SendMessage("HelmetNumberDelivery", helmetNumber);
+            transform.parent.transform.parent.transform.parent.transform.parent.SendMessage("HelmetCloseButtonActive");
         }
         else
         {
             print("Character Select Error Popup");
-            PresentPlayerActive();
+            //PresentPlayerActive();
         }
     }
 
@@ -139,11 +140,13 @@ public class RWHelmetButtonHandler : MonoBehaviour
     public void CharacterOff()
     {
         presentPlayerCharacter.SetActive(false);
+        characterAble = false;
     }
 
     public void CharacterOn()
     {
         presentPlayerCharacter.SetActive(true);
+        characterAble = true;
     }
 
     public void PresentPlayerCharacterStateChange(string nState)
@@ -156,11 +159,6 @@ public class RWHelmetButtonHandler : MonoBehaviour
         presentPlayerCharacter.SendMessage("CharacterAble");
         currentHelmetButtonState = HelmetButtonState.Active;
         //상위로 전달
-    }
-
-    public void HelmetNameSetting(string nHelmetName)
-    {
-        HelmetNameText.GetComponent<Text>().text = nHelmetName;
     }
 
     public void PresentPlayerCharacterAniSpeed(float nSpeed)

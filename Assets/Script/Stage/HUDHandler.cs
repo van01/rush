@@ -169,11 +169,18 @@ public class HUDHandler : MonoBehaviour {
 
         tmpGameController.SendMessage("CurrentGameCoinCountTotal");
         tmpGameController.SendMessage("CurrentGameBlockCountTotal");
+
+        HUDRWGameOverUI.SendMessage("CurrentCharacterInitialize");
     }
 
     public void HUDRWGameOverUIoff()
     {
+        if (HUDRWGameOverUI.active == true)
+            HUDRWGameOverUI.SendMessage("CurrentCharacterDestroy");
+        //게임오버 창 캐릭터 삭제
+
         HUDRWGameOverUI.SetActive(false);
+
     }
 
     public void HUDRWCharacterUIon()
@@ -271,6 +278,9 @@ public class HUDHandler : MonoBehaviour {
 
         tmpGameController.SendMessage("StageLevelInitialize");
 
+
+        tmpGameController.SendMessage("StageScrollInialize");
+        tmpGameController.SendMessage("BaseBlockScrollOnDelivery");
     }
 
     public void RetryActive()
@@ -293,11 +303,16 @@ public class HUDHandler : MonoBehaviour {
         tmpGameController.SendMessage("GameStateControll", "Lobby");
 
         tmpGameController.SendMessage("StageLevelInitialize");
+
+        tmpGameController.SendMessage("StageScrollInialize");
+        tmpGameController.SendMessage("BaseBlockScrollOnDelivery");
     }
 
     public void CharacterButtonActive()
     {
         HUDRWCharacterUIon();
+
+        tmpGameController.SendMessage("OpeningTake4Acting");
     }
 
     public void CharacterCloseButtonActive()
@@ -308,6 +323,8 @@ public class HUDHandler : MonoBehaviour {
     public void HelmetButtonActive()
     {
         tmpGameController.SendMessage("RWHelmetUISetting");
+
+        tmpGameController.SendMessage("OpeningTake4Acting");
     }
 
     public void HelmetCloseButtonActive()
@@ -318,6 +335,8 @@ public class HUDHandler : MonoBehaviour {
     public void HelmetRaffleButtonActive()    //HUDRWRaffleUIon
     {
         tmpGameController.SendMessage("RWRaffleUISetting");
+
+        tmpGameController.SendMessage("OpeningTake4Acting");
     }
 
     public void HelmetRaffleCloseButtonActive()

@@ -10,7 +10,7 @@ public class EffectHandler_f_1_f : MonoBehaviour {
 
     int i = 0;
 
-    void Start()
+    void Awake()
     {
         animator = GetComponent<Animator>();
 
@@ -30,7 +30,10 @@ public class EffectHandler_f_1_f : MonoBehaviour {
 
     public void DestroyProjectileActive()
     {
-        tmpParent.SendMessage("DestroyProjectile");
+        if (tmpParent == null)
+            Destroy(gameObject);
+        else
+            tmpParent.SendMessage("DestroyProjectile");
     }
         
 }

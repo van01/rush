@@ -15,8 +15,8 @@ public class CharacterHelmetBasket : MonoBehaviour {
     {
         HelmetCheck();
         //TestHelmetInitalize();  //테스트 코드, 초기화 기능
-        CharacterHelmetName = new string[CharacterHelmetSprite.Length];
-        CharacterHelmetNameInitalize();
+        //CharacterHelmetName = new string[CharacterHelmetSprite.Length];   //초기화 
+        //CharacterHelmetNameInitalize();                                   //초기화 후 스프라이트 이름 박기
     }
 
     void PossessHelmetCheck()
@@ -63,7 +63,7 @@ public class CharacterHelmetBasket : MonoBehaviour {
         }
     }
 
-    void TestHelmetInitalize()
+    public void TestHelmetInitalize()
     {
         for (int i = 0; i < CharacterHelmetSprite.Length; i++)
         {

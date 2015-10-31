@@ -21,6 +21,7 @@ public class CharacterState : MonoBehaviour {
 		Jump,		    //점프 시작
 		Midair,		    //공중
 		Landing,	    //착지
+        Disorder,
         RWPlay,
         RWHold,
     }
@@ -62,6 +63,8 @@ public class CharacterState : MonoBehaviour {
 			currentState = State.Midair;
 		if(s == "Landing")
 			currentState = State.Landing;
+        if (s == "Disorder")
+            currentState = State.Disorder;
         if (s == "RWPlay")
             currentState = State.RWPlay;
         if (s == "RWHold")
@@ -123,6 +126,9 @@ public class CharacterState : MonoBehaviour {
 		case State.Landing:
 			LandingAction();
 			break;
+        case State.Disorder:
+            DisorderAction();
+            break;
         case State.RWPlay:
             RWPlayAction();
             break;
@@ -202,6 +208,11 @@ public class CharacterState : MonoBehaviour {
 	public virtual void LandingAction(){
 		//Debug.Log(":::Character State::: Character Landing");
 	}
+
+    public virtual void DisorderAction()
+    {
+        //Debug.Log(":::Character State::: Character Disorder");
+    }
 
     public virtual void RWPlayAction()
     {

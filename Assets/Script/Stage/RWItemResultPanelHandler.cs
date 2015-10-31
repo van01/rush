@@ -22,15 +22,18 @@ public class RWItemResultPanelHandler : MonoBehaviour {
         Destroy(presentPlayerCharacter.GetComponent<Rigidbody2D>());
         presentPlayerCharacter.GetComponent<BoxCollider2D>().isTrigger = true;
         presentPlayerCharacter.transform.SetParent(transform);
-        presentPlayerCharacter.transform.localScale = new Vector3(250f, 250f, 250f);
+        presentPlayerCharacter.transform.localPosition = new Vector3(0, 125f, 0);
+        presentPlayerCharacter.transform.localScale = new Vector3(350, 350f, 350f);
         presentPlayerCharacter.SendMessage("EquipHelmet", presentGetHelmetNumber);
         HelmetNameText.GetComponent<Text>().text = ItemHandler.GetComponent<CharacterHelmetBasket>().CharacterHelmetName[presentGetHelmetNumber];
-        presentPlayerCharacter.SendMessage("RWPlayerCharacterAniSpeed", 1);
 
         print(presentGetHelmetNumber);
 
         ChangeLayersRecursively(presentPlayerCharacter.transform, "UI");
         presentPlayerCharacter.SendMessage("AllSpriteRendererSortingLayerUI");
+
+        presentPlayerCharacter.SendMessage("CharacterStateControll", "RWPlay");
+        presentPlayerCharacter.SendMessage("RWPlayerCharacterAniSpeed", 1);
     }
 
     public void ResultCharacterDestroy()
@@ -50,5 +53,13 @@ public class RWItemResultPanelHandler : MonoBehaviour {
     public void PresentGetHelmetNumberSetting(int nGetHelmetNumber)
     {
         presentGetHelmetNumber = nGetHelmetNumber;
+    }
+
+    public void RWHelmetRaffleResultActiveDelivery()
+    {
+        transform.parent.SendMessage("RWHelmetRaffleResultActive", presentGetHelmetNumber);
+        transform.parent.SendMessage("ResultPanelCloseActive");
+        transform.parent.transform.parent.SendMessage("HelmetRaffleCloseButtonActive");
+        //HelmetRaffleCloseButtonActive
     }
 }

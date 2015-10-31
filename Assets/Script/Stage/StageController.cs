@@ -66,8 +66,8 @@ public class StageController : MonoBehaviour {
 
             SendMessage("StageLevelInitialize");
             baseBlockTransform.SendMessage("DeliveryBaseBlockScrollSpeed", scrollSpeed);    // baseBlock에 속도 전달
-            BaseBlockScrollOnDelivery();    // 오프닝 종료 후 시작
-            StageScrollInialize();
+            //BaseBlockScrollOnDelivery();    // 오프닝 종료 후 시작
+            //StageScrollInialize();
             RWStageFloorColorApplyDelivery();
         }
         else
@@ -89,8 +89,8 @@ public class StageController : MonoBehaviour {
 
                 SendMessage("StageLevelInitialize");
                 baseBlockTransform.SendMessage("DeliveryBaseBlockScrollSpeed", scrollSpeed);    // baseBlock에 속도 전달
-                BaseBlockScrollOnDelivery();    // 오프닝 종료 후 시작
-                StageScrollInialize();
+                //BaseBlockScrollOnDelivery();    // 오프닝 종료 후 시작
+                //StageScrollInialize();
                 RWStageFloorColorApplyDelivery();
             }
         }

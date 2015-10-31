@@ -25,8 +25,12 @@ public class RWHelmetPanelHandler : MonoBehaviour {
     public int prevPlayerCharacterNumber;
 
     public GameObject helmetCounter;
+    public GameObject helmetNameText;
+
+    public GameObject helmetActiveButton;
 
     private int possessHelmetRefreshCount;
+    private GameObject currentHelmetButton;
 
     void Awake()
     {
@@ -52,8 +56,8 @@ public class RWHelmetPanelHandler : MonoBehaviour {
     void helmetBasketInitialize()
     {
         helmetBasket.GetComponent<RectTransform>().sizeDelta = new Vector2(helmetBasketWidthSize, helmetBasketHeightSize);
-        helmetEntityPosition = new Vector3(0 - ((helmetBasketWidthSize / 2) - helmetEntityWidthSize / 2), 0,0);
-        
+        helmetEntityPosition = new Vector3(0 - ((helmetBasketWidthSize / 2) - helmetEntityWidthSize / 2), 0, 0);
+
         baseHelmetBasketPositionX = helmetEntityPosition.x * -1;
         for (int i = 0; i < helmetSpriteCount; i++)
         {
@@ -61,7 +65,7 @@ public class RWHelmetPanelHandler : MonoBehaviour {
 
             presentHelmetEntity[i].GetComponent<RWHelmetButtonHandler>().helmetNumber = i;
             presentHelmetEntity[i].SendMessage("AppearHelmetNumberDelivery", i);
-            presentHelmetEntity[i].SendMessage("HelmetNameSetting", tmpItemHandler.GetComponent<CharacterHelmetBasket>().CharacterHelmetName[i]);
+            
 
             presentHelmetEntity[i].GetComponent<RectTransform>().SetParent(helmetBasket.transform);
             presentHelmetEntity[i].GetComponent<RectTransform>().localPosition = helmetEntityPosition;
@@ -136,6 +140,27 @@ public class RWHelmetPanelHandler : MonoBehaviour {
 
     void HelmetCounterInitialize()
     {
-        helmetCounter.GetComponent<Text>().text = helmetSpriteCount - tmpItemHandler.GetComponent<CharacterHelmetBasket>().nonItemCount +" / " + helmetSpriteCount.ToString();
+        helmetCounter.GetComponent<Text>().text = helmetSpriteCount - tmpItemHandler.GetComponent<CharacterHelmetBasket>().nonItemCount + " / " + helmetSpriteCount.ToString();
+    }
+
+    public void HelmetNameTextInitailize(int nHelmetNameNumber)
+    {
+        helmetNameText.GetComponent<Text>().text = tmpItemHandler.GetComponent<CharacterHelmetBasket>().CharacterHelmetName[nHelmetNameNumber];   //이름 전달
+    }
+
+    public void HelmetActiveButtonInitailize(RWHelmetButtonHandler.HelmetButtonState nState)
+    {
+        helmetActiveButton.SendMessage("ButtonStateControll", nState);
+    }
+
+    public void HelmetSelectButtonActiveDelivery()
+    {
+        currentHelmetButton.SendMessage("HelmetSelectButtonActive");
+        
+    }
+
+    public void CurrentHelmetButtonInitailize(GameObject nCurrentHelmetButton)
+    {
+        currentHelmetButton = nCurrentHelmetButton;
     }
 }
