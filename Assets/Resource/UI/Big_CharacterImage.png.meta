@@ -1,0 +1,144 @@
+fileFormatVersion: 2
+guid: 07ec3ed4677eb024d8ea1478a2794440
+timeCreated: 1446533350
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Big_CharacterImage_0
+    21300002: Big_CharacterImage_1
+    21300004: Big_CharacterImage_2
+    21300006: Big_CharacterImage_3
+    21300008: Big_CharacterImage_4
+    21300010: Big_CharacterImage_5
+    21300012: Big_CharacterImage_6
+    21300014: NameFilm
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Big_CharacterImage_0
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 347
+        width: 89
+        height: 152
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Big_CharacterImage_1
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 346
+        width: 90
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Big_CharacterImage_2
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 346
+        width: 71
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Big_CharacterImage_3
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 346
+        width: 71
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Big_CharacterImage_4
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 169
+        width: 87
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Big_CharacterImage_5
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 171
+        width: 88
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Big_CharacterImage_6
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 169
+        width: 67
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: NameFilm
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 0
+        width: 301
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
