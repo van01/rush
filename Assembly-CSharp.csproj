@@ -166,6 +166,7 @@
      <Compile Include="Assets\Script\Stage\RWGameOverPanelHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWHelmetActiveButtonHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWHelmetButtonHandler.cs" />
+     <Compile Include="Assets\Script\Stage\RWHelmetButtonHandler_New.cs" />
      <Compile Include="Assets\Script\Stage\RWHelmetDrawZoneHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWHelmetPanelHandler.cs" />
      <Compile Include="Assets\Script\Stage\RWHelmetRaffleButtonHandler.cs" />
