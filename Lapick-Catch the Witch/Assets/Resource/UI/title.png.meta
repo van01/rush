@@ -1,0 +1,243 @@
+fileFormatVersion: 2
+guid: 7f066e41488a1e349b0b382c4525cbca
+timeCreated: 1448987582
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: title
+    21300002: Character
+    21300004: Helmet
+    21300006: Raffle
+    21300008: Result
+    21300010: New
+    21300012: Get
+    21300014: NewRecord
+    21300016: Success
+    21300018: Ready
+    21300020: touch
+    21300022: x2
+    21300024: Helmet2
+    21300026: Get!
+    21300028: Start
+    21300030: Subtitle
+    21300032: WitchIcon
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: title
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 316
+        width: 344
+        height: 186
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 243
+        width: 153
+        height: 68
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Helmet
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 247
+        width: 115
+        height: 63
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Raffle
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 245
+        width: 104
+        height: 67
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Result
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 245
+        width: 110
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: New
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 151
+        width: 147
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Get
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 69
+        width: 132
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: NewRecord
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 409
+        width: 146
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Success
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 316
+        width: 152
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Ready
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 65
+        width: 187
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: touch
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1
+        width: 153
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: x2
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 5
+        width: 70
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Helmet2
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 159
+        width: 108
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Get!
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 145
+        width: 137
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Start
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 72
+        width: 175
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Subtitle
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 16
+        width: 166
+        height: 29
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: WitchIcon
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 16
+        width: 46
+        height: 44
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

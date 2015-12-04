@@ -1,0 +1,188 @@
+fileFormatVersion: 2
+guid: 72f1993f140f25547af15239290140b8
+timeCreated: 1447088215
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: TreasureBox_00_Top
+    21300002: TreasureBox_00_Body
+    21300004: TreasureBox_01_Top
+    21300006: TreasureBox_02_Top
+    21300008: TreasureBox_01_Body
+    21300010: TreasureBox_02_Body
+    21300012: TreasureBox_03_Top
+    21300014: TreasureBox_04_Top
+    21300016: TreasureBox_05_Top
+    21300018: TreasureBox_03_Body
+    21300020: TreasureBox_04_Body
+    21300022: TreasureBox_05_Body
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: TreasureBox_00_Top
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 208
+        width: 63
+        height: 48
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: TreasureBox_00_Body
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 165
+        width: 57
+        height: 39
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: TreasureBox_01_Top
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 207
+        width: 62
+        height: 49
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: TreasureBox_02_Top
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 208
+        width: 62
+        height: 48
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: TreasureBox_01_Body
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 166
+        width: 57
+        height: 39
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: TreasureBox_02_Body
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 166
+        width: 57
+        height: 39
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: TreasureBox_03_Top
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 116
+        width: 62
+        height: 47
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: TreasureBox_04_Top
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 116
+        width: 62
+        height: 48
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: TreasureBox_05_Top
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 116
+        width: 62
+        height: 48
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: TreasureBox_03_Body
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 68
+        width: 57
+        height: 39
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: TreasureBox_04_Body
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 68
+        width: 57
+        height: 39
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: TreasureBox_05_Body
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 69
+        width: 58
+        height: 39
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

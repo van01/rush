@@ -1,0 +1,364 @@
+fileFormatVersion: 2
+guid: 15eda15093da7734ca4b3109707434d9
+timeCreated: 1447328175
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: tonado_0
+    21300002: tonado_1
+    21300004: tonado_2
+    21300006: tonado_3
+    21300008: tonado_4
+    21300010: tonado_5
+    21300012: tonado_6
+    21300014: tonado_7
+    21300016: tonado_8
+    21300018: tonado_9
+    21300020: tonado_10
+    21300022: tonado_11
+    21300024: tonado_12
+    21300026: tonado_13
+    21300028: tonado_14
+    21300030: tonado_15
+    21300032: tonado_16
+    21300034: tonado_17
+    21300036: tonado_18
+    21300038: tonado_19
+    21300040: tonado_20
+    21300042: tonado_21
+    21300044: tonado_22
+    21300046: tonado_23
+    21300048: tonado_24
+    21300050: tonado_25
+    21300052: tonado_26
+    21300054: tonado_27
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: tonado_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 768
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tonado_1
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 768
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tonado_2
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 768
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tonado_3
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 768
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tonado_4
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 768
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tonado_5
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 768
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tonado_6
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 768
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tonado_7
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 512
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tonado_8
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 512
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tonado_9
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 512
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tonado_10
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 512
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tonado_11
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 512
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tonado_12
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 512
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tonado_13
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 512
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tonado_14
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 256
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tonado_15
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 256
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tonado_16
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 256
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tonado_17
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 256
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tonado_18
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 256
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tonado_19
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 256
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tonado_20
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 256
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tonado_21
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 0
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tonado_22
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 0
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tonado_23
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 0
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tonado_24
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 0
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tonado_25
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 0
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tonado_26
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 0
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tonado_27
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 0
+        width: 142
+        height: 224
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
