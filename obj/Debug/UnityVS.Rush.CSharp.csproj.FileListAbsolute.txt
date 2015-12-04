@@ -1,0 +1,13 @@
+C:\Users\bAdaso\Documents\NotSlaves\Rush\Temp\UnityVS_bin\Debug\Assembly-CSharp.dll
+C:\Users\bAdaso\Documents\NotSlaves\Rush\Temp\UnityVS_bin\Debug\Assembly-CSharp.pdb
+C:\Users\bAdaso\Documents\NotSlaves\Rush\Temp\UnityVS_bin\Debug\UnityEditor.dll
+C:\Users\bAdaso\Documents\NotSlaves\Rush\Temp\UnityVS_bin\Debug\UnityEditor.iOS.Extensions.Xcode.dll
+C:\Users\bAdaso\Documents\NotSlaves\Rush\Temp\UnityVS_bin\Debug\UnityEngine.dll
+C:\Users\bAdaso\Documents\NotSlaves\Rush\Temp\UnityVS_bin\Debug\UnityEngine.UI.dll
+C:\Users\bAdaso\Documents\NotSlaves\Rush\Temp\UnityVS_bin\Debug\UnityEngine.xml
+C:\Users\bAdaso\Documents\NotSlaves\Rush\Temp\UnityVS_bin\Debug\UnityEditor.xml
+C:\Users\bAdaso\Documents\NotSlaves\Rush\Temp\UnityVS_bin\Debug\UnityEngine.UI.xml
+C:\Users\bAdaso\Documents\NotSlaves\Rush\Temp\UnityVS_bin\Debug\UnityEditor.iOS.Extensions.Xcode.xml
+C:\Users\bAdaso\Documents\NotSlaves\Rush\obj\Debug\UnityVS.Rush.CSharp.csprojResolveAssemblyReference.cache
+C:\Users\bAdaso\Documents\NotSlaves\Rush\obj\Debug\Assembly-CSharp.dll
+C:\Users\bAdaso\Documents\NotSlaves\Rush\obj\Debug\Assembly-CSharp.pdb

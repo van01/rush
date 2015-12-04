@@ -1,0 +1,333 @@
+fileFormatVersion: 2
+guid: 1faf86aed8dd6494aac772683db9fa3e
+timeCreated: 1444113476
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: head
+    21300002: neck
+    21300004: bust
+    21300006: upper_body
+    21300008: lower_body
+    21300010: upper_arm_L
+    21300012: lower_arm_L
+    21300014: hand_L
+    21300016: upper_arm_R
+    21300018: lower_arm_R
+    21300020: hand_R
+    21300022: upper_leg_L
+    21300024: lower_leg_L
+    21300026: upper_leg_R
+    21300028: lower_leg_R
+    21300030: hair_00
+    21300032: hair_01
+    21300034: enemy_witch_nightRose_18
+    21300036: foot_L
+    21300038: foot_R
+    21300040: hair_02
+    21300042: hair_03
+    21300044: enemy_witch_nightRose_23
+    21300046: hair_04
+    21300048: hair_05
+    21300050: hair_06
+    21300052: hair_07
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: head
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 210
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: neck
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 215
+        width: 12
+        height: 26
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bust
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 207
+        width: 32
+        height: 40
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: upper_body
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 206
+        width: 27
+        height: 49
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: lower_body
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 207
+        width: 30
+        height: 49
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: upper_arm_L
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 151
+        width: 46
+        height: 55
+      alignment: 9
+      pivot: {x: .554136455, y: .349074483}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: lower_arm_L
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 157
+        width: 20
+        height: 44
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hand_L
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 167
+        width: 15
+        height: 22
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: upper_arm_R
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 160
+        width: 26
+        height: 39
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: lower_arm_R
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 159
+        width: 28
+        height: 40
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hand_R
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 116
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: upper_leg_L
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 63
+        width: 38
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: lower_leg_L
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 65
+        width: 27
+        height: 80
+      alignment: 9
+      pivot: {x: .550000012, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: upper_leg_R
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 66
+        width: 38
+        height: 83
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: lower_leg_R
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 65
+        width: 26
+        height: 81
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hair_00
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 66
+        width: 32
+        height: 36
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hair_01
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 33
+        width: 55
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: foot_L
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 29
+        width: 29
+        height: 33
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: foot_R
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 29
+        width: 29
+        height: 33
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hair_02
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 0
+        width: 49
+        height: 25
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hair_03
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 2
+        width: 50
+        height: 22
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hair_04
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 5
+        width: 41
+        height: 14
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hair_05
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 5
+        width: 26
+        height: 12
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hair_06
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 6
+        width: 22
+        height: 10
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hair_07
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 7
+        width: 29
+        height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

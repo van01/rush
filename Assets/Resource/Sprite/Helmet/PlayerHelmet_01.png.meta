@@ -1,0 +1,210 @@
+fileFormatVersion: 2
+guid: 045b06cf3f343a941af3c64422b04284
+timeCreated: 1446735275
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Helmet
+    21300002: Crown
+    21300004: Leaf
+    21300006: Snapback
+    21300008: CetectiveCap
+    21300010: BaldMan
+    21300012: DarknessHorn
+    21300014: ShineFeather
+    21300016: RabbitEar
+    21300018: FoxEar
+    21300020: Talisman
+    21300022: Pumpkin
+    21300024: Mummy
+    21300026: Frankenstein
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Helmet
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 445
+        width: 49
+        height: 43
+      alignment: 9
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Crown
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 445
+        width: 49
+        height: 67
+      alignment: 9
+      pivot: {x: .550000012, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Leaf
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 428
+        width: 44
+        height: 80
+      alignment: 9
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Snapback
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 445
+        width: 55
+        height: 54
+      alignment: 9
+      pivot: {x: .610000014, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: CetectiveCap
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 445
+        width: 58
+        height: 57
+      alignment: 9
+      pivot: {x: .629999995, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BaldMan
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 444
+        width: 46
+        height: 44
+      alignment: 9
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DarknessHorn
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 445
+        width: 56
+        height: 43
+      alignment: 9
+      pivot: {x: .529999971, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ShineFeather
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 445
+        width: 55
+        height: 57
+      alignment: 9
+      pivot: {x: .600000024, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RabbitEar
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 354
+        width: 77
+        height: 75
+      alignment: 9
+      pivot: {x: .479999989, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: FoxEar
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 354
+        width: 76
+        height: 62
+      alignment: 9
+      pivot: {x: .49000001, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Talisman
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 357
+        width: 43
+        height: 47
+      alignment: 9
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Pumpkin
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 356
+        width: 78
+        height: 81
+      alignment: 9
+      pivot: {x: .460000008, y: .0500000007}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Mummy
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 360
+        width: 46
+        height: 60
+      alignment: 9
+      pivot: {x: .529999971, y: .280000001}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Frankenstein
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 375
+        width: 70
+        height: 43
+      alignment: 9
+      pivot: {x: .519999981, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
