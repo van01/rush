@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
-
 using GooglePlayGames;
-using UnityEngine.SocialPlatforms;
+using GooglePlayGames.BasicApi.SavedGame;
+using System;
+using GooglePlayGames.BasicApi;
+
 
 public class GPGSManager : MonoBehaviour
 {
@@ -25,11 +27,26 @@ public class GPGSManager : MonoBehaviour
 		}
 	}*/
 
+    void Start()
+    {
+        GPGSInitialize();
+    }
+
     public void GPGSInitialize()
     {
+        PlayGamesPlatform.DebugLogEnabled = true;
         PlayGamesPlatform.Activate();
+        Social.localUser.Authenticate((bool success) =>
+        {
+            if (success)
+            {
+                Debug.Log("Sign in Success");
+                isLogin = true;
+            }
+            else Debug.Log("Sign in Fail");
+        });
 
-        GPGSLogin();
+        //GPGSLogin();
     }
 
     void GPGSLogin()
@@ -169,12 +186,14 @@ public class GPGSManager : MonoBehaviour
 
     public void ShowLeaderboard()
     {
-        ((PlayGamesPlatform)Social.Active).ShowLeaderboardUI(IDs.LB);
+        //GPGSLogin();
+        Social.ShowLeaderboardUI();
     }
 
     public void ShowAchievements()
     {
-        ((PlayGamesPlatform)Social.Active).ShowAchievementsUI();
+        //GPGSLogin();
+        Social.ShowAchievementsUI();
     }
 }
 
@@ -183,23 +202,23 @@ public class IDs
 {
     public const string LB = "CgkI-cOhqfwPEAIQAQ"; // 리더보드 ID
 
-    public const string TP1 = "CgkIvY2w3dwREAIQBw"; // Times play (2)
-    public const string TP2 = "CgkIvY2w3dwREAIQCA"; // 10
-    public const string TP3 = "CgkIvY2w3dwREAIQCQ"; // 100
-    public const string TP4 = "CgkIvY2w3dwREAIQCg"; // 500
-    public const string TP5 = "CgkIvY2w3dwREAIQCw"; // 1000
+    //public const string TP1 = "CgkIvY2w3dwREAIQBw"; // Times play (2)
+    //public const string TP2 = "CgkIvY2w3dwREAIQCA"; // 10
+    //public const string TP3 = "CgkIvY2w3dwREAIQCQ"; // 100
+    //public const string TP4 = "CgkIvY2w3dwREAIQCg"; // 500
+    //public const string TP5 = "CgkIvY2w3dwREAIQCw"; // 1000
 
-    public const string TC1 = "CgkIvY2w3dwREAIQDA"; // Total Coins (20)
-    public const string TC2 = "CgkIvY2w3dwREAIQDQ"; // 100
-    public const string TC3 = "CgkIvY2w3dwREAIQDg"; // 1000
-    public const string TC4 = "CgkIvY2w3dwREAIQDw"; // 5000
-    public const string TC5 = "CgkIvY2w3dwREAIQEA"; // 10000
+    //public const string TC1 = "CgkIvY2w3dwREAIQDA"; // Total Coins (20)
+    //public const string TC2 = "CgkIvY2w3dwREAIQDQ"; // 100
+    //public const string TC3 = "CgkIvY2w3dwREAIQDg"; // 1000
+    //public const string TC4 = "CgkIvY2w3dwREAIQDw"; // 5000
+    //public const string TC5 = "CgkIvY2w3dwREAIQEA"; // 10000
 
-    public const string BS1 = "CgkIvY2w3dwREAIQEQ"; // Best Score (10)
-    public const string BS2 = "CgkIvY2w3dwREAIQEg"; // 30
-    public const string BS3 = "CgkIvY2w3dwREAIQEw"; // 50
-    public const string BS4 = "CgkIvY2w3dwREAIQFA"; // 80
-    public const string BS5 = "CgkIvY2w3dwREAIQFQ";	// 100
+    //public const string BS1 = "CgkIvY2w3dwREAIQEQ"; // Best Score (10)
+    //public const string BS2 = "CgkIvY2w3dwREAIQEg"; // 30
+    //public const string BS3 = "CgkIvY2w3dwREAIQEw"; // 50
+    //public const string BS4 = "CgkIvY2w3dwREAIQFA"; // 80
+    //public const string BS5 = "CgkIvY2w3dwREAIQFQ";	// 100
 }
 
 public enum AchievementType
