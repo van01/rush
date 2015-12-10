@@ -57,12 +57,6 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -74,8 +68,59 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_AngleLimitNode.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_BakeAnimation.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_Bakedmesh.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_EditSkinWeights.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_FFDLineDisplay.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_FFDStoreData.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_GlobalControl.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_HiddenBone.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_IKHandle.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_ParentControl.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_SkinnedVertices.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_SortingLayer.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_SplineControl.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_VertHandler.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\DelaunayTriangle.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\AdvancingFront.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\AdvancingFrontNode.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\DTSweep.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\DTSweepBasin.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\DTSweepConstraint.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\DTSweepContext.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\DTSweepDebugContext.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\DTSweepEdgeEvent.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\DTSweepPointComparator.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Delaunay\Sweep\PointOnEdgeException.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\ITriangulatable.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Orientation.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\P2T.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Polygon\Contour.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Polygon\Polygon.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Polygon\PolygonPoint.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Polygon\PolygonSet.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Polygon\PolygonUtil.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Sets\ConstrainedPointSet.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Sets\PointSet.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\TriangulationAlgorithm.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\TriangulationConstraint.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\TriangulationContext.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\TriangulationDebugContext.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\TriangulationMode.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\TriangulationPoint.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Util\PointGenerator.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Util\PolygonGenerator.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Util\TriangulationUtil.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\FixedArray3.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\FixedBitArray3.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\MathUtil.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\Point2D.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\Point2DList.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\Rect2D.cs" />
     <Compile Include="Assets\Script\CharacterEggParams.cs" />
     <Compile Include="Assets\Script\CharacterMonParams.cs" />
+    <Compile Include="Assets\Script\EggAbility.cs" />
     <Compile Include="Assets\Script\EggBasket.cs" />
     <Compile Include="Assets\Script\EggController.cs" />
     <Compile Include="Assets\Script\EggHandler.cs" />
@@ -85,15 +130,31 @@
     <Compile Include="Assets\Script\HUDBottomHandler.cs" />
     <Compile Include="Assets\Script\HUDController.cs" />
     <Compile Include="Assets\Script\HUDHandler.cs" />
+    <Compile Include="Assets\Script\HUDHomePanelHandler.cs" />
     <Compile Include="Assets\Script\HUDParentSizeSuccession.cs" />
     <Compile Include="Assets\Script\MonsterAbility.cs" />
+    <Compile Include="Assets\Script\MonsterAni.cs" />
     <Compile Include="Assets\Script\MonsterBasket.cs" />
     <Compile Include="Assets\Script\MonsterController.cs" />
+    <Compile Include="Assets\Script\MonsterEvolutionController.cs" />
+    <Compile Include="Assets\Script\MonsterEvolutionHandler.cs" />
+    <Compile Include="Assets\Script\MonsterFaceController.cs" />
     <Compile Include="Assets\Script\MonsterParams.cs" />
+    <Compile Include="Assets\Script\MonsterSpriteColorController.cs" />
+    <Compile Include="Assets\Script\MonsterSpriteColorHandler.cs" />
+    <Compile Include="Assets\Script\MonsterState.cs" />
     <Compile Include="Assets\Script\ObjectInputHandler.cs" />
     <Compile Include="Assets\Script\Timer.cs" />
     <Compile Include="Assets\Script\UserLevelHandler.cs" />
     <Compile Include="Assets\Script\WhitePanelHandler.cs" />
+    <Compile Include="Assets\Script\XMLManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Puppet2D\Shaders\BlackAndWhite.shader" />
+    <None Include="Assets\Puppet2D\Shaders\VertColor.shader" />
+    <None Include="Assets\Puppet2D\Shaders\unlitTransparentDouble.shader" />
+    <None Include="Assets\Resource\Data\EggData.xml" />
+    <None Include="Assets\Resource\Data\MonsterData.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

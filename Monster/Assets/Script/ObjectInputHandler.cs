@@ -3,8 +3,6 @@ using System.Collections;
 
 public class ObjectInputHandler : MonoBehaviour {
 
-    protected int _clickCount;
-
     void Update()
     {
         ProcClick();
@@ -17,34 +15,28 @@ public class ObjectInputHandler : MonoBehaviour {
         if (Input.GetMouseButtonDown(0))
         {
             //print(Input.mousePosition);
-            ClickPosProc(Input.mousePosition);
-            _clickCount = 0;
+            ClickPosProc();
         }
 #else
         for(int i = 0; i < Input.touchCount; i++){
-            ClickPosProc(Input.touches[i].position);
+            ClickPosProc();
         }
-        _clickCount = 0;
 #endif
     }
 
-    void ClickPosProc(Vector3 tPos)
+    void ClickPosProc()
     {
-        _clickCount++;
-        Ray ray = Camera.main.ScreenPointToRay(tPos);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
 
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit))
+        if (hit.collider == null)
         {
-            if (hit.collider.gameObject.tag == "Egg")
-            {
-                //print("Egg");
-                
-                hit.collider.gameObject.SendMessage("CurrentEggItchyDelivery");     //egg 움직이기itchy
-                SendMessage("TimerAccel");      //시간 단축
-            }
-
+            //print("Null");
+        }
+        else if (hit.collider.gameObject.tag == "Egg")
+        {
+            hit.collider.gameObject.SendMessage("CurrentEggItchyDelivery");     //egg 움직이기itchy
+            SendMessage("TimerAccel");      //시간 단축
         }
     }
 }

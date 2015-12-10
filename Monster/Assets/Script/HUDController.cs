@@ -9,4 +9,9 @@ public class HUDController : MonoBehaviour {
     {
         HUD.SendMessage("WhitePanelEffectActiveDelivery", transform);
     }
+
+    public void BottomHomePanelInitializeDelivery()
+    {
+        HUD.SendMessage("BottomHomePanelInitialize");
+    }
 }

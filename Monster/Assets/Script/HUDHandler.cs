@@ -6,6 +6,8 @@ public class HUDHandler : MonoBehaviour {
     public GameObject tmpGameController;
     public GameObject whitePanel;
 
+    public GameObject bottomPanel;
+
     public void WhitePanelEffectActiveDelivery(Transform nTransform)
     {
         whitePanel.SetActive(true);
@@ -20,6 +22,11 @@ public class HUDHandler : MonoBehaviour {
 
     public void CurrentEggDestroyDelivery()
     {
-        tmpGameController.SendMessage("CurrentEggDestroy");
+        tmpGameController.SendMessage("CurrentEggDestroy");     //이 부분이 hudHandler에 있는게 이상함
+    }
+
+    public void BottomHomePanelInitialize()
+    {
+        bottomPanel.GetComponent<HUDBottomHandler>().SendMessage("MonsterInfoInitialIzeRefresh");
     }
 }

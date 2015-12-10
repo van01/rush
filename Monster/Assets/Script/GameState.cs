@@ -2,8 +2,12 @@
 using System.Collections;
 
 public class GameState : MonoBehaviour {
+    protected int hatchMonsterNumber;
+    protected int nextEvolutionMonsterNumber;
 
-	public enum State
+    protected int currentMonsterNumber;
+
+    public enum State
     {
         Title,
         Egg,
@@ -48,6 +52,10 @@ public class GameState : MonoBehaviour {
     void EggAction()
     {
         SendMessage("EggInitialize");
+        SendMessage("BottomHomePanelInitializeDelivery");
+
+        //hatchMonsterNumber = GetComponent<EggController>().currentEgg.GetComponent<EggAbility>().hatchMonsterNumber;
+        currentMonsterNumber = GetComponent<EggController>().currentEgg.GetComponent<EggAbility>().hatchMonsterNumber;
     }
 
     void EggEndAction()
@@ -58,7 +66,16 @@ public class GameState : MonoBehaviour {
 
     void MonsterAction()
     {
-        SendMessage("MonsterInitialize");
+        //SendMessage("MonsterInitialize", hatchMonsterNumber);
+        SendMessage("MonsterInitialize", currentMonsterNumber);
+        SendMessage("BottomHomePanelInitializeDelivery");
+    }
+
+    void MonsterEndAction()
+    {
+        //SendMessage("MonsterInitialize", nextEvolutionMonsterNumber);
+        currentState = State.Monster;
+        CheckGameState();
     }
 
     void RoomOutAction()
@@ -66,8 +83,10 @@ public class GameState : MonoBehaviour {
 
     }
 
-    void MonsterEndAction()
+    public void NextEvolutionMonsterNumberSetting(int nEvolutionMonsterNumber)
     {
-
+        //nextEvolutionMonsterNumber = nEvolutionMonsterNumber;
+        currentMonsterNumber = nEvolutionMonsterNumber;
+        print(nEvolutionMonsterNumber);
     }
 }

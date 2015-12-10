@@ -7,7 +7,7 @@ public class EggController : MonoBehaviour {
     private int _currentUserLevel;
     private int _currentEggNumber;
 
-    private GameObject currentEgg;
+    public GameObject currentEgg;
 
     public void EggInitialize()
     {
@@ -17,6 +17,9 @@ public class EggController : MonoBehaviour {
 
         currentEgg = Instantiate(_eggBasket.GetComponent<EggBasket>().eggObjectArray[_currentEggNumber], _eggBasket.transform.position, _eggBasket.transform.rotation) as GameObject;
         currentEgg.transform.SetParent(_eggBasket.transform);
+
+        EggParams pParams = XMLManager.GetEggParamsById(0);
+        currentEgg.SendMessage("SetParams", pParams);
 
         SendMessage("TimerInitialize");
     }

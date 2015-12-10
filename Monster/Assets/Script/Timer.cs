@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Timer : MonoBehaviour {
 
-    protected float _timer;
+    static float _timer;
 
     void Update()
     {
@@ -20,6 +20,7 @@ public class Timer : MonoBehaviour {
     public void TimerAccel()
     {
         _timer += 1.0f;
+        print("time accel");
     }
 
     protected void MonsterInitTime()
@@ -32,5 +33,10 @@ public class Timer : MonoBehaviour {
                 GetComponent<GameState>().CheckGameState();
             }
         }
+    }
+
+    public static float GetTimer()
+    {
+        return _timer;
     }
 }

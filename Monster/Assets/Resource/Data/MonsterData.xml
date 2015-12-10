@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<rows>
+  <row>
+    <id>0</id>
+    <name>어린 슬라임</name>
+    <monType>slime</monType>
+    <stress>1000</stress>
+    <hunger>100</hunger>
+    <statPow>1</statPow>
+    <statVit>1</statVit>
+    <statDex>1</statDex>
+    <statAgr>1</statAgr>
+    <statInt>1</statInt>
+    <statMal>1</statMal>
+  </row>
+  <row>
+    <id>1</id>
+    <name>슬라임 검사</name>
+    <monType>slime</monType>
+    <stress>1000</stress>
+    <hunger>100</hunger>
+    <statPow>10</statPow>
+    <statVit>1</statVit>
+    <statDex>1</statDex>
+    <statAgr>1</statAgr>
+    <statInt>1</statInt>
+    <statMal>1</statMal>
+  </row>
+  <row>
+    <id>2</id>
+    <name>슬라임 궁수</name>
+    <monType>slime</monType>
+    <stress>1000</stress>
+    <hunger>100</hunger>
+    <statPow>1</statPow>
+    <statVit>1</statVit>
+    <statDex>10</statDex>
+    <statAgr>1</statAgr>
+    <statInt>1</statInt>
+    <statMal>1</statMal>
+  </row>
+</rows>
