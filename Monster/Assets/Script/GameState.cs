@@ -54,6 +54,8 @@ public class GameState : MonoBehaviour {
         SendMessage("EggInitialize");
         SendMessage("BottomHomePanelInitializeDelivery");
 
+        SendMessage("BottomMenuDisable");
+
         //hatchMonsterNumber = GetComponent<EggController>().currentEgg.GetComponent<EggAbility>().hatchMonsterNumber;
         currentMonsterNumber = GetComponent<EggController>().currentEgg.GetComponent<EggAbility>().hatchMonsterNumber;
     }
@@ -66,6 +68,8 @@ public class GameState : MonoBehaviour {
 
     void MonsterAction()
     {
+        SendMessage("BottomMenuAble");
+
         //SendMessage("MonsterInitialize", hatchMonsterNumber);
         SendMessage("MonsterInitialize", currentMonsterNumber);
         SendMessage("BottomHomePanelInitializeDelivery");

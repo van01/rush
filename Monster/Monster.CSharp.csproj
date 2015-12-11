@@ -128,9 +128,11 @@
     <Compile Include="Assets\Script\GameController.cs" />
     <Compile Include="Assets\Script\GameState.cs" />
     <Compile Include="Assets\Script\HUDBottomHandler.cs" />
+    <Compile Include="Assets\Script\HUDButtonHandler.cs" />
     <Compile Include="Assets\Script\HUDController.cs" />
     <Compile Include="Assets\Script\HUDHandler.cs" />
     <Compile Include="Assets\Script\HUDHomePanelHandler.cs" />
+    <Compile Include="Assets\Script\HUDMenuButtonHandler.cs" />
     <Compile Include="Assets\Script\HUDParentSizeSuccession.cs" />
     <Compile Include="Assets\Script\MonsterAbility.cs" />
     <Compile Include="Assets\Script\MonsterAni.cs" />

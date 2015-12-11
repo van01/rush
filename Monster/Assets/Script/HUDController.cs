@@ -14,4 +14,14 @@ public class HUDController : MonoBehaviour {
     {
         HUD.SendMessage("BottomHomePanelInitialize");
     }
+
+    public void BottomMenuDisable()
+    {
+        HUD.GetComponent<HUDHandler>().bottomPanel.GetComponent<HUDBottomHandler>().menuPanel.GetComponent<HUDMenuButtonHandler>().SendMessage("AllButtonDisable");
+    }
+
+    public void BottomMenuAble()
+    {
+        HUD.GetComponent<HUDHandler>().bottomPanel.GetComponent<HUDBottomHandler>().menuPanel.GetComponent<HUDMenuButtonHandler>().SendMessage("AllButtonAble");
+    }
 }

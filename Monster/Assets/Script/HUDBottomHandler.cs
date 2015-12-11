@@ -9,6 +9,8 @@ public class HUDBottomHandler : MonoBehaviour {
     public GameObject adventurePanel;
     public GameObject breakPanel;
 
+    public GameObject menuPanel;
+
     private int currentPanelNumber;
 
     void Start()
