@@ -9,6 +9,7 @@ public class RWBlockDestroyZoneHandler : MonoBehaviour {
         {
             c.SendMessage("CurrentBlockPrefabCountMinusDelivery");
             Destroy(c.gameObject);
+            
         }
         else if (c.tag == "RWCoin")
             Destroy(c.gameObject);
