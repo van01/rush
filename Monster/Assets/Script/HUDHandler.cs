@@ -8,6 +8,8 @@ public class HUDHandler : MonoBehaviour {
 
     public GameObject bottomPanel;
 
+    public GameObject eggBuyPanel;
+
     public void WhitePanelEffectActiveDelivery(Transform nTransform)
     {
         whitePanel.SetActive(true);
@@ -28,5 +30,15 @@ public class HUDHandler : MonoBehaviour {
     public void BottomHomePanelInitialize()
     {
         bottomPanel.GetComponent<HUDBottomHandler>().SendMessage("MonsterInfoInitialIzeRefresh");
+    }
+
+    public void EggBuyPanelOn()
+    {
+        eggBuyPanel.SetActive(true);
+    }
+
+    public void EggBuyPanelOff()
+    {
+        eggBuyPanel.SetActive(false);
     }
 }

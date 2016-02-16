@@ -130,6 +130,9 @@
     <Compile Include="Assets\Script\HUDBottomHandler.cs" />
     <Compile Include="Assets\Script\HUDButtonHandler.cs" />
     <Compile Include="Assets\Script\HUDController.cs" />
+    <Compile Include="Assets\Script\HUDEggMenuButtonHandler.cs" />
+    <Compile Include="Assets\Script\HUDEggPanelHandler.cs" />
+    <Compile Include="Assets\Script\HUDEggScrollPanelHandler.cs" />
     <Compile Include="Assets\Script\HUDHandler.cs" />
     <Compile Include="Assets\Script\HUDHomePanelHandler.cs" />
     <Compile Include="Assets\Script\HUDMenuButtonHandler.cs" />

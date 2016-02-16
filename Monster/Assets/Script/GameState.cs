@@ -46,7 +46,7 @@ public class GameState : MonoBehaviour {
 
     void TitleAction()
     {
-        SendMessage("EggInitialize");
+        SendMessage("EggInitialize");   //eggPanel 완성 시 선택한 egg 생성되도록 수정
     }
 
     void EggAction()
