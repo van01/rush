@@ -9,6 +9,8 @@ public class HUDEggMenuButtonHandler : MonoBehaviour {
 
     private GameObject currentEggImage;
 
+    private int currentEggNumber;
+
     public void MenuButtonInitialize(int nEggNumber)
     {
         currentEggImage = Instantiate(transform.parent.GetComponent<HUDEggScrollPanelHandler>().eggObjectArray[nEggNumber], transform.position, transform.rotation) as GameObject;
@@ -17,6 +19,15 @@ public class HUDEggMenuButtonHandler : MonoBehaviour {
 
         eggImagePosition.GetComponent<Image>().sprite = currentEggImage.GetComponent<SpriteRenderer>().sprite;
 
+        currentEggNumber = nEggNumber;
+
+        GetComponent<Button>().onClick.AddListener(delegate { EggButtonCall(); });
+
         Destroy(currentEggImage);
+    }
+
+    void EggButtonCall()
+    {
+        transform.root.SendMessage("EggBuySuccessDelivery", currentEggNumber);
     }
 }

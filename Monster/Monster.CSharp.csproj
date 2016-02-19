@@ -118,8 +118,10 @@
     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\Point2D.cs" />
     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\Point2DList.cs" />
     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\Rect2D.cs" />
+    <Compile Include="Assets\Script\CameraController.cs" />
     <Compile Include="Assets\Script\CharacterEggParams.cs" />
     <Compile Include="Assets\Script\CharacterMonParams.cs" />
+    <Compile Include="Assets\Script\DishController.cs" />
     <Compile Include="Assets\Script\EggAbility.cs" />
     <Compile Include="Assets\Script\EggBasket.cs" />
     <Compile Include="Assets\Script\EggController.cs" />
@@ -137,6 +139,9 @@
     <Compile Include="Assets\Script\HUDHomePanelHandler.cs" />
     <Compile Include="Assets\Script\HUDMenuButtonHandler.cs" />
     <Compile Include="Assets\Script\HUDParentSizeSuccession.cs" />
+    <Compile Include="Assets\Script\HUDScoutPanelHandler.cs" />
+    <Compile Include="Assets\Script\HUDTrainingResultPopupHandler.cs" />
+    <Compile Include="Assets\Script\HUDTrainingUIHandler.cs" />
     <Compile Include="Assets\Script\MonsterAbility.cs" />
     <Compile Include="Assets\Script\MonsterAni.cs" />
     <Compile Include="Assets\Script\MonsterBasket.cs" />
@@ -148,8 +153,14 @@
     <Compile Include="Assets\Script\MonsterSpriteColorController.cs" />
     <Compile Include="Assets\Script\MonsterSpriteColorHandler.cs" />
     <Compile Include="Assets\Script\MonsterState.cs" />
+    <Compile Include="Assets\Script\MonsterTrainingHandler.cs" />
+    <Compile Include="Assets\Script\ObjectAni.cs" />
     <Compile Include="Assets\Script\ObjectInputHandler.cs" />
+    <Compile Include="Assets\Script\ObjectState.cs" />
     <Compile Include="Assets\Script\Timer.cs" />
+    <Compile Include="Assets\Script\TrainingController.cs" />
+    <Compile Include="Assets\Script\TrainingDramaticHandler.cs" />
+    <Compile Include="Assets\Script\TrainingPowHandler.cs" />
     <Compile Include="Assets\Script\UserLevelHandler.cs" />
     <Compile Include="Assets\Script\WhitePanelHandler.cs" />
     <Compile Include="Assets\Script\XMLManager.cs" />

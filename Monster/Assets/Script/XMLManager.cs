@@ -80,6 +80,8 @@ public class XMLManager : MonoBehaviour {
                     tempParams.statInt = Int16.Parse(childNode.InnerText);
                 if (childNode.Name == "statMal")
                     tempParams.statMal = Int16.Parse(childNode.InnerText);
+                if (childNode.Name == "monPrice")
+                    tempParams.monPrice = Int16.Parse(childNode.InnerText);
             }
             dicMonster[tempParams.id] = tempParams;
         }

@@ -13,15 +13,15 @@ public class HUDMenuButtonHandler : MonoBehaviour {
     {
         dishButton.SendMessage("DisableButton");
         trainingButton.SendMessage("DisableButton");
-        adventureButton.SendMessage("DisableButton");
-        breakButton.SendMessage("DisableButton");
+        //adventureButton.SendMessage("DisableButton");
+        //breakButton.SendMessage("DisableButton");
     }
 
     public void AllButtonAble()
     {
         dishButton.SendMessage("AbleButton");
         trainingButton.SendMessage("AbleButton");
-        adventureButton.SendMessage("AbleButton");
-        breakButton.SendMessage("AbleButton");
+        //adventureButton.SendMessage("AbleButton");
+        //breakButton.SendMessage("AbleButton");
     }
 }

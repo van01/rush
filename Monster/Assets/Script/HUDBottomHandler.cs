@@ -14,65 +14,115 @@ public class HUDBottomHandler : MonoBehaviour {
     private int currentPanelNumber;
 
     void Start()
-    {
+    {   //small on/off에 따라 
         HomeButtonActive();
     }
 
     public void HomeButtonActive()
     {
-        homePanel.SetActive(true);
-        dishPanel.SetActive(false);
-        trainingPanel.SetActive(false);
-        adventurePanel.SetActive(false);
-        breakPanel.SetActive(false);
-
-        currentPanelNumber = 0;
+        if (transform.root.GetComponent<HUDHandler>().isCurrentBottomPanel == true)
+        {
+            homePanel.SetActive(true);
+            dishPanel.SetActive(false);
+            trainingPanel.SetActive(false);
+            adventurePanel.SetActive(false);
+            breakPanel.SetActive(false);
+        }
+        else
+        {
+            homePanel.SetActive(true);
+            dishPanel.SetActive(false);
+            trainingPanel.SetActive(false);
+            adventurePanel.SetActive(false);
+            breakPanel.SetActive(false);
+            currentPanelNumber = 0;
+        }
 
         MonsterInfoInitialIzeRefresh();
     }
 
     public void DishButtonActive()
     {
-        homePanel.SetActive(false);
-        dishPanel.SetActive(true);
-        trainingPanel.SetActive(false);
-        adventurePanel.SetActive(false);
-        breakPanel.SetActive(false);
-
-        currentPanelNumber = 1;
+        if (transform.root.GetComponent<HUDHandler>().isCurrentBottomPanel == true)
+        {
+            homePanel.SetActive(true);
+            dishPanel.SetActive(true);
+            trainingPanel.SetActive(false);
+            adventurePanel.SetActive(false);
+            breakPanel.SetActive(false);
+        }
+        else
+        {
+            homePanel.SetActive(false);
+            dishPanel.SetActive(true);
+            trainingPanel.SetActive(false);
+            adventurePanel.SetActive(false);
+            breakPanel.SetActive(false);
+            currentPanelNumber = 1;
+        }       
     }
 
     public void TrainingButtonActive()
     {
-        homePanel.SetActive(false);
-        dishPanel.SetActive(false);
-        trainingPanel.SetActive(true);
-        adventurePanel.SetActive(false);
-        breakPanel.SetActive(false);
-
-        currentPanelNumber = 2;
+        if (transform.root.GetComponent<HUDHandler>().isCurrentBottomPanel == true)
+        {
+            homePanel.SetActive(true);
+            dishPanel.SetActive(false);
+            trainingPanel.SetActive(true);
+            adventurePanel.SetActive(false);
+            breakPanel.SetActive(false);
+        }
+        else
+        {
+            homePanel.SetActive(false);
+            dishPanel.SetActive(false);
+            trainingPanel.SetActive(true);
+            adventurePanel.SetActive(false);
+            breakPanel.SetActive(false);
+            currentPanelNumber = 2;
+        }
     }
 
     public void AdventureButtonActive()
     {
-        homePanel.SetActive(false);
-        dishPanel.SetActive(false);
-        trainingPanel.SetActive(false);
-        adventurePanel.SetActive(true);
-        breakPanel.SetActive(false);
-
-        currentPanelNumber = 3;
+        if (transform.root.GetComponent<HUDHandler>().isCurrentBottomPanel == true)
+        {
+            homePanel.SetActive(true);
+            dishPanel.SetActive(false);
+            trainingPanel.SetActive(false);
+            adventurePanel.SetActive(true);
+            breakPanel.SetActive(false);
+        }
+        else
+        {
+            homePanel.SetActive(false);
+            dishPanel.SetActive(false);
+            trainingPanel.SetActive(false);
+            adventurePanel.SetActive(true);
+            breakPanel.SetActive(false);
+            currentPanelNumber = 3;
+        }
     }
 
     public void BreakButtonActive()
     {
-        homePanel.SetActive(false);
-        dishPanel.SetActive(false);
-        trainingPanel.SetActive(false);
-        adventurePanel.SetActive(false);
-        breakPanel.SetActive(true);
-
-        currentPanelNumber = 4;
+        if (transform.root.GetComponent<HUDHandler>().isCurrentBottomPanel == true)
+        {
+            homePanel.SetActive(true);
+            dishPanel.SetActive(false);
+            trainingPanel.SetActive(false);
+            adventurePanel.SetActive(false);
+            breakPanel.SetActive(true);
+        }
+        else
+        {
+            homePanel.SetActive(false);
+            dishPanel.SetActive(false);
+            trainingPanel.SetActive(false);
+            adventurePanel.SetActive(false);
+            breakPanel.SetActive(true);
+            currentPanelNumber = 4;
+        }
     }
 
     public void MonsterInfoInitialIzeRefresh()

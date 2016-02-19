@@ -19,4 +19,6 @@ public class CharacterMonParams
     public int statAgr { get; set; }    //민첩, 도둑
     public int statInt { get; set; }    //지능, 마법사
     public int statMal { get; set; }    //악의, 천사/악마
+
+    public int monPrice { get; set; }    //몬스터 가격
 }

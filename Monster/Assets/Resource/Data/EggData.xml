@@ -2,7 +2,32 @@
 <rows>
   <row>
     <id>0</id>
-    <name>흰알</name>
+    <name>슬라임알</name>
+    <hatchTime>10</hatchTime>
+  </row>
+  <row>
+    <id>1</id>
+    <name>고블린알</name>
+    <hatchTime>10</hatchTime>
+  </row>
+  <row>
+    <id>2</id>
+    <name>냥이알</name>
+    <hatchTime>10</hatchTime>
+  </row>
+  <row>
+    <id>3</id>
+    <name>개알</name>
+    <hatchTime>10</hatchTime>
+  </row>
+  <row>
+    <id>4</id>
+    <name>오크알</name>
+    <hatchTime>10</hatchTime>
+  </row>
+  <row>
+    <id>5</id>
+    <name>오우거알</name>
     <hatchTime>10</hatchTime>
   </row>
 </rows>

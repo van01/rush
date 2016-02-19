@@ -41,7 +41,6 @@ public class MonsterController : MonoBehaviour {
 
         SendMessage("TimerInitialize");
 
-        print(currentMonsterParams.name);
         //if (GetComponent<GameState>().currentState == GameState.State.MonsterEnd)
         //{
         //    GetComponent<GameState>().currentState = GameState.State.Monster;
@@ -90,6 +89,8 @@ public class MonsterController : MonoBehaviour {
                 CurrentMonsterAutoConditionChange(MonsterState.Condition.Normal);
             else if (currentMonsterParams.currentHunger / currentMonsterParams.hunger <= 0.8f)
                 CurrentMonsterAutoConditionChange(MonsterState.Condition.Good);
+            else
+                CurrentMonsterAutoConditionChange(MonsterState.Condition.Happy);
         }
     }
 
@@ -103,8 +104,22 @@ public class MonsterController : MonoBehaviour {
         }
     }
 
-    public void MonsterTraining()
+    public void MonsterScoutSuccess()
     {
-        currentMonster.GetComponent<MonsterAbility>().TrainingComplete();
+        Destroy(currentMonster);
+
+        GetComponent<GameState>().currentState = GameState.State.StandBy;
+        GetComponent<GameState>().CheckGameState();
+        //임시, 스카우트 연출 추가 및 재화 증가 처리 필요
+    }
+
+    public void MonsterHidePosition()
+    {
+        _monsterBasket.transform.position = new Vector3(-10.0f, -10.0f, 0);
+    }
+
+    public void MonsterRestorePosition()
+    {
+        _monsterBasket.transform.position = new Vector3(0, 0, 0);
     }
 }

@@ -25,18 +25,32 @@ public class HUDHomePanelHandler : MonoBehaviour {
     protected EggParams currentEggParams;
     protected MonsterParams currentMonsterParams;
 
-    private void Start()
+    void Awake()
     {
         tmpGameController = transform.root.GetComponent<HUDHandler>().tmpGameController;
     }
 
     public void MonsterInfoInitialIze()
     {
-        tmpCurrentEgg = tmpGameController.GetComponent<EggController>().currentEgg;
-        tmpCurrentMonster = tmpGameController.GetComponent<MonsterController>().currentMonster;
-
-        if (tmpGameController.GetComponent<GameState>().currentState == GameState.State.Egg)
+        if (tmpGameController.GetComponent<GameState>().currentState == GameState.State.StandBy)
         {
+            monsterNameTxt.GetComponent<Text>().text = "-";
+
+            stuffedGauge.GetComponent<Scrollbar>().size = 0;
+            stressGauge.GetComponent<Scrollbar>().size = 0;
+
+            statPowValue.GetComponent<Text>().text = "-";
+            statVitValue.GetComponent<Text>().text = "-";
+            statDexValue.GetComponent<Text>().text = "-";
+            statAgrValue.GetComponent<Text>().text = "-";
+            statIntValue.GetComponent<Text>().text = "-";
+            statMalValue.GetComponent<Text>().text = "-";
+        }
+
+        else if (tmpGameController.GetComponent<GameState>().currentState == GameState.State.Egg)
+        {
+            tmpCurrentEgg = tmpGameController.GetComponent<EggController>().currentEgg;
+
             currentEggParams = tmpCurrentEgg.GetComponent<EggAbility>().GetParams();
             monsterNameTxt.GetComponent<Text>().text = currentEggParams.name;
 
@@ -52,9 +66,11 @@ public class HUDHomePanelHandler : MonoBehaviour {
         }
         else if ((tmpGameController.GetComponent<GameState>().currentState == GameState.State.Monster))
         {
+            tmpCurrentMonster = tmpGameController.GetComponent<MonsterController>().currentMonster;
+
             currentMonsterParams = tmpCurrentMonster.GetComponent<MonsterAbility>().GetParams();
             monsterNameTxt.GetComponent<Text>().text = currentMonsterParams.name;
-            
+
             statPowValue.GetComponent<Text>().text = currentMonsterParams.statPow.ToString();
             statVitValue.GetComponent<Text>().text = currentMonsterParams.statVit.ToString();
             statDexValue.GetComponent<Text>().text = currentMonsterParams.statDex.ToString();
@@ -70,6 +86,7 @@ public class HUDHomePanelHandler : MonoBehaviour {
     {
         //배고픔 업데이트
         stuffedGauge.GetComponent<Scrollbar>().size = currentMonsterParams.currentHunger / currentMonsterParams.hunger;
+
         if (currentMonsterParams.currentHunger / currentMonsterParams.hunger <= 0.2f)
             stuffedTxt.GetComponent<Text>().text = "매우 배고픔";
         else if (currentMonsterParams.currentHunger / currentMonsterParams.hunger <= 0.4f)

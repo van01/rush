@@ -1,10 +1,15 @@
 fileFormatVersion: 2
 guid: c2d56fd48c491d24ab0d38207ef4c7ca
-timeCreated: 1449646070
+timeCreated: 1455699921
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: egg_0
+    21300002: egg_1
+    21300004: egg_2
+    21300006: egg_3
+    21300008: egg_4
+    21300010: egg_5
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -56,6 +61,56 @@ TextureImporter:
         serializedVersion: 2
         x: 22
         y: 287
+        width: 130
+        height: 187
+      alignment: 9
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: egg_1
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 287
+        width: 130
+        height: 187
+      alignment: 9
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: egg_2
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 287
+        width: 130
+        height: 187
+      alignment: 9
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: egg_3
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 39
+        width: 130
+        height: 187
+      alignment: 9
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: egg_4
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 39
+        width: 130
+        height: 187
+      alignment: 9
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: egg_5
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 39
         width: 130
         height: 187
       alignment: 9

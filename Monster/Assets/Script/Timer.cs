@@ -9,7 +9,6 @@ public class Timer : MonoBehaviour {
     {
         _timer += Time.deltaTime;
         MonsterInitTime();
-        //print(_timer);
     }
 
     public void TimerInitialize()

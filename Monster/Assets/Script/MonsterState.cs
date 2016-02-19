@@ -13,6 +13,7 @@ public class MonsterState : MonoBehaviour
         Tired,          //피곤
         Move,           //이동
         Attack,		    //공격
+        AttackWait,     //공격 후 대기
         Fall,           //넘어짐
     }
 
@@ -45,6 +46,9 @@ public class MonsterState : MonoBehaviour
                 break;
             case State.Attack:
                 AttackAction();
+                break;
+            case State.AttackWait:
+                AttackWaitAction();
                 break;
             case State.Fall:
                 FallAction();
@@ -127,12 +131,21 @@ public class MonsterState : MonoBehaviour
 
     void MoveAction()
     {
-
+        print("Move");
+        //print("Move Action!!!!!!!!");
+        //현재 훈련 연출용 몬스터가 무브로 갔다가 바로 아이들로 돌아가는 이슈 존재
+        GetComponent<MonsterAni>().SendMessage("ChangeAni", MonsterAni.MOVE);
     }
 
     void AttackAction()
     {
+        //print("Attack Action!!!!!!!!");
+        GetComponent<MonsterAni>().SendMessage("ChangeAni", MonsterAni.ATTACK);
+    }
 
+    void AttackWaitAction()
+    {
+        GetComponent<MonsterAni>().SendMessage("ChangeAni", MonsterAni.ATTACKWAIT);
     }
 
     void FallAction()
@@ -142,8 +155,11 @@ public class MonsterState : MonoBehaviour
 
     void SpawnAniEnd()
     {
-        currentState = State.Idle;
-        CheckMonsterState();
+        if (currentState == State.Spawn)
+        {
+            currentState = State.Idle;
+            CheckMonsterState();
+        }
 
         //if (transform.root.GetComponent<MonsterBasket>().tmpGameController.GetComponent<GameState>().currentState != GameState.State.Monster)
         //{

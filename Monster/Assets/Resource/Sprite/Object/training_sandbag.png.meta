@@ -1,0 +1,155 @@
+fileFormatVersion: 2
+guid: 81a42afef5ffc3e478adcdb430712ce6
+timeCreated: 1455793516
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: body
+    21300002: hair
+    21300004: normal_eye
+    21300006: hit_eye
+    21300008: normal_mouth
+    21300010: hit_mouth
+    21300012: Left_arm
+    21300014: Right_Arm
+    21300016: leg
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: body
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 269
+        width: 126
+        height: 230
+      alignment: 9
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hair
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 396
+        width: 167
+        height: 103
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: normal_eye
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 452
+        width: 75
+        height: 22
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hit_eye
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 445
+        width: 72
+        height: 35
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: normal_mouth
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 398
+        width: 47
+        height: 42
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hit_mouth
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 390
+        width: 71
+        height: 47
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Left_arm
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 271
+        width: 120
+        height: 82
+      alignment: 9
+      pivot: {x: .962872326, y: .934147179}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Right_Arm
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 260
+        width: 133
+        height: 93
+      alignment: 9
+      pivot: {x: .0339841917, y: .958186328}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: leg
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 127
+        width: 42
+        height: 109
+      alignment: 9
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

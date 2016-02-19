@@ -9,19 +9,24 @@ public class EggController : MonoBehaviour {
 
     public GameObject currentEgg;
 
-    public void EggInitialize()
+    public void EggInitialize(int nCurrentEggNumber)
     {
         _currentUserLevel = GetComponent<GameController>().currentUserLevel;
 
-        _currentEggNumber = 0;        // 사용자 레벨 및 기타 점수에 따라 랜덤으로 현재 생성할 몬스터 Egg 설정
+        _currentEggNumber = nCurrentEggNumber;
 
         currentEgg = Instantiate(_eggBasket.GetComponent<EggBasket>().eggObjectArray[_currentEggNumber], _eggBasket.transform.position, _eggBasket.transform.rotation) as GameObject;
         currentEgg.transform.SetParent(_eggBasket.transform);
 
-        EggParams pParams = XMLManager.GetEggParamsById(0);
+        EggParams pParams = XMLManager.GetEggParamsById(nCurrentEggNumber);
         currentEgg.SendMessage("SetParams", pParams);
 
         SendMessage("TimerInitialize");
+
+        GetComponent<GameState>().currentState = GameState.State.Egg;       //임시
+        GetComponent<GameState>().CheckGameState();
+
+        SendMessage("EggPanelAutoClose");   //current Egg 생성 시 자동으로 팝업창 닫기
     }
 
     public void EggEnd()

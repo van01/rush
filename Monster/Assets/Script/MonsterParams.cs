@@ -22,5 +22,7 @@ public class MonsterParams : CharacterMonParams
         this.statAgr = 1;
         this.statInt = 1;
         this.statMal = 1;
+
+        this.monPrice = 10;
     }
 }

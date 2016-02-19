@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour {
     {
         currentUserLevel = GetComponent<UserLevelHandler>()._currentUserLevel;
 
-        GetComponent<GameState>().currentState = GameState.State.Egg;       //임시
+        GetComponent<GameState>().currentState = GameState.State.Title;       //임시
         GetComponent<GameState>().CheckGameState();
     }
 }

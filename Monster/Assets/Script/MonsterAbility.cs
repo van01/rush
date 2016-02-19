@@ -7,7 +7,7 @@ public class MonsterAbility : MonoBehaviour {
 
     MonsterParams myParams = new MonsterParams();
     protected MonsterParams monsterParams;
-    private float _currentTime;
+    private float nextTime;
 
     public void SetParams(MonsterParams tParams)
     {
@@ -19,21 +19,30 @@ public class MonsterAbility : MonoBehaviour {
         return myParams;
     }
 
-    void Start()
-    {
-        _currentTime = Timer.GetTimer();
-    }
-
     void Update()
     {
-        myParams.currentHunger = myParams.currentHunger - _currentTime * 10.0f;
+        if (myParams.currentHunger > 0 )
+        {
+            if (Time.time > nextTime)
+            {
+                nextTime = Time.time + 0.1f;
+                myParams.currentHunger = myParams.currentHunger - 0.1f * 10.0f;
+            }
+        }
     }
 
     public void TrainingComplete()
     {
         myParams.statPow += 9;
-        print(myParams.statPow);
         //연출 후 해당 함수 호출, 팝업 호출 기능 추가, 진화 가능 몬스터 존재여부 체크
         SendMessage("NextEvolutionMonsterCheck");
+    }
+
+    public void ChargeHunger(float nDishPoint)
+    {
+        if (myParams.hunger < myParams.currentHunger)
+            myParams.currentHunger += nDishPoint;
+        else if (myParams.hunger >= myParams.currentHunger)
+            myParams.currentHunger = myParams.hunger;
     }
 }

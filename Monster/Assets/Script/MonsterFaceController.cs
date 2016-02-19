@@ -86,6 +86,9 @@ public class MonsterFaceController : MonoBehaviour {
 
         currentEye.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         currentMouth.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+
+        currentEye.GetComponent<SpriteRenderer>().sortingLayerName = "Monster";
+        currentMouth.GetComponent<SpriteRenderer>().sortingLayerName = "Monster";
     }
 
     void ChildDestroyer()
