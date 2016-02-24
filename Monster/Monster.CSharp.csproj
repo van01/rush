@@ -57,6 +57,12 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -139,7 +145,11 @@
     <Compile Include="Assets\Script\HUDHomePanelHandler.cs" />
     <Compile Include="Assets\Script\HUDMenuButtonHandler.cs" />
     <Compile Include="Assets\Script\HUDParentSizeSuccession.cs" />
+    <Compile Include="Assets\Script\HUDQuestDramaticPanelHandler.cs" />
+    <Compile Include="Assets\Script\HUDQuestMenuButtonHandler.cs" />
+    <Compile Include="Assets\Script\HUDQuestScrollPanelHandler.cs" />
     <Compile Include="Assets\Script\HUDScoutPanelHandler.cs" />
+    <Compile Include="Assets\Script\HUDTopHandler.cs" />
     <Compile Include="Assets\Script\HUDTrainingResultPopupHandler.cs" />
     <Compile Include="Assets\Script\HUDTrainingUIHandler.cs" />
     <Compile Include="Assets\Script\MonsterAbility.cs" />
@@ -157,6 +167,8 @@
     <Compile Include="Assets\Script\ObjectAni.cs" />
     <Compile Include="Assets\Script\ObjectInputHandler.cs" />
     <Compile Include="Assets\Script\ObjectState.cs" />
+    <Compile Include="Assets\Script\QuestBasket.cs" />
+    <Compile Include="Assets\Script\QuestController.cs" />
     <Compile Include="Assets\Script\Timer.cs" />
     <Compile Include="Assets\Script\TrainingController.cs" />
     <Compile Include="Assets\Script\TrainingDramaticHandler.cs" />

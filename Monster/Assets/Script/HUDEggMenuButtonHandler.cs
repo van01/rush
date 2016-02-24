@@ -11,7 +11,7 @@ public class HUDEggMenuButtonHandler : MonoBehaviour {
 
     private int currentEggNumber;
 
-    public void MenuButtonInitialize(int nEggNumber)
+    public void EggMenuButtonInitialize(int nEggNumber)
     {
         currentEggImage = Instantiate(transform.parent.GetComponent<HUDEggScrollPanelHandler>().eggObjectArray[nEggNumber], transform.position, transform.rotation) as GameObject;
         currentEggImage.transform.localPosition = eggImagePosition.transform.position;

@@ -4,6 +4,8 @@ using System.Collections;
 
 public class HUDHomePanelHandler : MonoBehaviour {
 
+    public GameObject monsterLevelTxt;
+
     public GameObject monsterNameTxt;
 
     public GameObject stuffedTxt;

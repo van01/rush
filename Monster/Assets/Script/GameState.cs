@@ -65,6 +65,9 @@ public class GameState : MonoBehaviour {
 
     void StandByAction()
     {
+        //상단 패널 초기화 전달
+        SendMessage("TopPanelInitilaizeDelivery");
+        //하단 패널 초기화 전달
         SendMessage("BottomHomePanelInitializeDelivery");
     }
 

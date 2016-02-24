@@ -16,20 +16,21 @@ public class HUDEggScrollPanelHandler : MonoBehaviour {
     void Start()
     {
         eggObjectArray = eggBasket.GetComponent<EggBasket>().eggObjectArray;
-        eggMenuButtonArray = new GameObject[eggBasket.GetComponent<EggBasket>().eggObjectArray.Length];
+        eggMenuButtonArray = new GameObject[eggObjectArray.Length];
         EggScrollPanelInitialize();
     }
 
 	public void EggScrollPanelInitialize()
     {
-        GetComponent<RectTransform>().sizeDelta = new Vector2(330f, Mathf.Ceil(eggBasket.GetComponent<EggBasket>().eggObjectArray.Length / 2.0f) * 175);
+        GetComponent<RectTransform>().sizeDelta = new Vector2(330f, Mathf.Ceil(eggObjectArray.Length / 2.0f) * 170);
+        //스크롤 사이즈 조정, 175 = 버튼 사이즈 170 + 위+아래 여백 5
 
-        for (int i = 0; i < eggBasket.GetComponent<EggBasket>().eggObjectArray.Length; i++)
+        for (int i = 0; i < eggObjectArray.Length; i++)
         {
             eggMenuButtonArray[i] = Instantiate(eggMenuButton, transform.position , transform.rotation) as GameObject;
             eggMenuButtonArray[i].transform.SetParent(transform);
             eggMenuButtonArray[i].transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-            eggMenuButtonArray[i].SendMessage("MenuButtonInitialize", i);
+            eggMenuButtonArray[i].SendMessage("EggMenuButtonInitialize", i);
 
             if ((i + 1) % 2 == 1)
             {
