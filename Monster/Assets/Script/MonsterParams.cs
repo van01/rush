@@ -6,14 +6,14 @@ public class MonsterParams : CharacterMonParams
 	public MonsterParams()
     {
         this.id = 0;
-        this.name = "어린 슬라임";
 
+        this.name = "어린 슬라임";
         this.monType = "slime";
 
-        this.stress = 1000f;
+        this.fatigue = 100f;
         this.hunger = 100f;
 
-        this.currentStress = this.stress;
+        this.currentFatigue = 0;
         this.currentHunger = this.hunger;
 
         this.statPow = 1;

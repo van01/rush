@@ -4,7 +4,7 @@
     <id>0</id>
     <name>어린 슬라임</name>
     <monType>slime</monType>
-    <stress>1000</stress>
+    <fatigue>100</fatigue>
     <hunger>100</hunger>
     <statPow>1</statPow>
     <statVit>1</statVit>
@@ -18,7 +18,7 @@
     <id>1</id>
     <name>슬라임 검사</name>
     <monType>slime</monType>
-    <stress>1000</stress>
+    <fatigue>100</fatigue>
     <hunger>100</hunger>
     <statPow>10</statPow>
     <statVit>1</statVit>
@@ -32,7 +32,7 @@
     <id>2</id>
     <name>슬라임 궁수</name>
     <monType>slime</monType>
-    <stress>1000</stress>
+    <fatigue>100</fatigue>
     <hunger>100</hunger>
     <statPow>1</statPow>
     <statVit>1</statVit>

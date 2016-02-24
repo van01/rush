@@ -131,7 +131,6 @@ public class MonsterState : MonoBehaviour
 
     void MoveAction()
     {
-        print("Move");
         //print("Move Action!!!!!!!!");
         //현재 훈련 연출용 몬스터가 무브로 갔다가 바로 아이들로 돌아가는 이슈 존재
         GetComponent<MonsterAni>().SendMessage("ChangeAni", MonsterAni.MOVE);

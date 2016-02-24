@@ -9,7 +9,7 @@ public class DishController : MonoBehaviour
     public void Monster00Dish()
     {
         DishInitialize();
-        currentMonster.SendMessage("ChargeHunger", 50.0f);
+        currentMonster.SendMessage("ChangeHunger", 30.0f);
     }
 
     public void DishInitialize()

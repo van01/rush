@@ -15,6 +15,8 @@ public class MonsterController : MonoBehaviour {
     private MonsterParams currentMonsterParams;
     private MonsterState.Condition prevCondition;
 
+    private float _currentMonsterBungerPoint;
+
     public void MonsterInitialize(int _currentMonsterNumber)
     {
         _currentUserLevel = GetComponent<GameController>().currentUserLevel;
@@ -28,16 +30,20 @@ public class MonsterController : MonoBehaviour {
         currentMonster.transform.SetParent(_monsterBasket.transform);
 
         MonsterParams pParams = XMLManager.GetMonsterParamsById(currentMonster.GetComponent<MonsterAbility>().monsterDataID);
+
         currentMonster.SendMessage("SetParams", pParams);
+        currentMonsterParams = currentMonster.GetComponent<MonsterAbility>().GetParams();
+        currentMonsterParams.level = 1;
 
         currentMonster.SendMessage("MonsterSpriteColorApplyDelivery", monsterApplyColor);
 
         currentMonster.GetComponent<MonsterState>().currentState = MonsterState.State.Spawn;
         currentMonster.GetComponent<MonsterState>().CheckMonsterState();
 
-        currentMonster.GetComponent<MonsterState>().currentCondition = MonsterState.Condition.Happy;
+        //배고픔 작동 시작
+        currentMonster.SendMessage("HungryPlay");
 
-        currentMonsterParams = currentMonster.GetComponent<MonsterAbility>().GetParams();
+        //currentMonster.GetComponent<MonsterState>().currentCondition = MonsterState.Condition.Happy;
 
         SendMessage("TimerInitialize");
 
@@ -50,7 +56,9 @@ public class MonsterController : MonoBehaviour {
 
     public void MonsterEnd()
     {
+        //현재 해당 부분 사용하고 있지 않음
         Destroy(currentMonster);
+        currentMonsterParams = null;
     }
 
     void MonsterAttributeRandom()
@@ -81,13 +89,15 @@ public class MonsterController : MonoBehaviour {
     {
         if (currentMonster != null)
         {
-            if (currentMonsterParams.currentHunger / currentMonsterParams.hunger <= 0.2f)
+            //배고픔에 따른 컨디션 조정
+            _currentMonsterBungerPoint = currentMonsterParams.currentHunger / currentMonsterParams.hunger;
+            if (_currentMonsterBungerPoint <= 0.2f)
                 CurrentMonsterAutoConditionChange(MonsterState.Condition.Bad);
-            else if (currentMonsterParams.currentHunger / currentMonsterParams.hunger <= 0.4f)
+            else if (_currentMonsterBungerPoint <= 0.4f)
                 CurrentMonsterAutoConditionChange(MonsterState.Condition.NotBad);
-            else if (currentMonsterParams.currentHunger / currentMonsterParams.hunger <= 0.6f)
+            else if (_currentMonsterBungerPoint <= 0.6f)
                 CurrentMonsterAutoConditionChange(MonsterState.Condition.Normal);
-            else if (currentMonsterParams.currentHunger / currentMonsterParams.hunger <= 0.8f)
+            else if (_currentMonsterBungerPoint <= 0.8f)
                 CurrentMonsterAutoConditionChange(MonsterState.Condition.Good);
             else
                 CurrentMonsterAutoConditionChange(MonsterState.Condition.Happy);
@@ -106,11 +116,13 @@ public class MonsterController : MonoBehaviour {
 
     public void MonsterScoutSuccess()
     {
+        currentMonster.SendMessage("MyParamsInitialize");
         Destroy(currentMonster);
 
         GetComponent<GameState>().currentState = GameState.State.StandBy;
         GetComponent<GameState>().CheckGameState();
         //임시, 스카우트 연출 추가 및 재화 증가 처리 필요
+
     }
 
     public void MonsterHidePosition()
@@ -122,4 +134,15 @@ public class MonsterController : MonoBehaviour {
     {
         _monsterBasket.transform.position = new Vector3(0, 0, 0);
     }
+
+    public void CurrentMonsterHungryPlayDilevery()
+    {
+        currentMonster.SendMessage("HungryPlay");
+    }
+
+    public void CurrentMonsterHungryStopDilevery()
+    {
+        currentMonster.SendMessage("HungryStop");
+    }
+
 }

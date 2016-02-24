@@ -165,6 +165,9 @@ public class HUDHandler : MonoBehaviour {
         //currentQuestNumber에서 해당 퀘스트에 사용될 egg Number 추출 후 적용
         tmpGameController.SendMessage("EggInitialize", currentQuestNumber);
 
+        //QuestMOnster 유무 체크
+        tmpGameController.SendMessage("QuestMonsterOn");
+
         questDramaticPanel.SendMessage("ConfirmPopupOff");
         QuestDramaticPanelOff();
     }
@@ -173,6 +176,8 @@ public class HUDHandler : MonoBehaviour {
     {
         //스카우트 성공
         tmpGameController.SendMessage("MonsterScoutSuccess");
+        ////홈패널의 currentMonster 초기화 전달
+        //bottomPanel.SendMessage("CurrentMonsterParamsInitialize");
 
         scoutPanel.SendMessage("ConfirmPopupOff");
         ScoutPanelOff();
@@ -206,6 +211,8 @@ public class HUDHandler : MonoBehaviour {
 
     public void HUDInitialize()
     {
+        //HUD 초기화, 기본 제공 버튼 활성화, 기타 모든 패널 비활성화
+        questButton.SetActive(true);
         eggBuyButton.SetActive(true);
         ScoutButton.SetActive(true);
 
@@ -214,6 +221,7 @@ public class HUDHandler : MonoBehaviour {
 
         trainingPanel.SetActive(false);
         dishPanel.SetActive(false);
+        breakPanel.SetActive(false);
 
         if (tmpGameController.GetComponent<GameState>().currentState == GameState.State.Monster)
             menu.SetActive(true);  //해당 부분은 메뉴 제공 방식에 따라 수정 필요
@@ -221,6 +229,8 @@ public class HUDHandler : MonoBehaviour {
 
     public void HUDHide()
     {
+        //인게임 버튼 및 메뉴 숨기기
+        questButton.SetActive(false);
         eggBuyButton.SetActive(false);
         ScoutButton.SetActive(false);
 

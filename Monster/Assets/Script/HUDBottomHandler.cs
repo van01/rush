@@ -128,6 +128,7 @@ public class HUDBottomHandler : MonoBehaviour {
     public void MonsterInfoInitialIzeRefresh()
     {
         if (currentPanelNumber == 0)
+            //if (transform.root.GetComponent<HUDHandler>().tmpGameController.GetComponent<MonsterController>().currentMonster != null)
             homePanel.SendMessage("MonsterInfoInitialIze");
     }
 }

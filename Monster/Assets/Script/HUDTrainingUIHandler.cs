@@ -11,7 +11,7 @@ public class HUDTrainingUIHandler : MonoBehaviour {
         resultPopup.SetActive(false);
         resultTxt.SetActive(false);
 
-        GetComponent<HUDHandler>().tmpGameController.SendMessage("RoomOutEnd");    //종료
+        GetComponent<HUDHandler>().tmpGameController.SendMessage("TrainingEnd");    //훈련 종료
     }
 
     public void ResultTxtOn()

@@ -17,6 +17,7 @@ public class MonsterEvolutionHandler : MonoBehaviour {
 
     public void NextEvolutionMonsterCheck()
     {
+        //진화 가능 존재 여부 확인 로직 확인 필요, 진화 조건에 맞지 않는데 진화되는 현상 존재 + minLevel 기능 추가, 동일한 조건일 경우 랜덤 진화
         for (int i = 0; i < nextEvolutionMonster.Length; i++)
         {
             nextMonsterParams = XMLManager.GetMonsterParamsById(nextEvolutionMonster[i].GetComponent<MonsterAbility>().monsterDataID);

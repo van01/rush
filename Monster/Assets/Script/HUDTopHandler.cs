@@ -22,7 +22,7 @@ public class HUDTopHandler : MonoBehaviour {
     {
         if (tmpGameController.GetComponent<GameState>().currentState == GameState.State.StandBy)
         {
-            CurrentDayRefresh("-");
+            CurrentDayRefresh(0);
             questGoalPanel.SetActive(false);
 
             //재화 변화 시 해당 함수 호출
@@ -31,9 +31,9 @@ public class HUDTopHandler : MonoBehaviour {
         }
     }
 
-    public void CurrentDayRefresh(string nCurrentDay)
+    public void CurrentDayRefresh(int nCurrentDay)
     {
-        currentDayTxt.GetComponent<Text>().text = nCurrentDay;
+        currentDayTxt.GetComponent<Text>().text = nCurrentDay.ToString();
     }
 
     public void CurrentGoldRefresh()

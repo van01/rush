@@ -20,6 +20,7 @@ public class GameState : MonoBehaviour {
     }
 
     public State currentState;
+    private State prevState;
 
     public void CheckGameState()
     {
@@ -61,6 +62,8 @@ public class GameState : MonoBehaviour {
         CheckGameState();
         //임시로 StandBy로 변경되도록 고정
         SendMessage("HUDInitializeDelivery");
+
+        prevState = State.Title;
     }
 
     void StandByAction()
@@ -69,6 +72,10 @@ public class GameState : MonoBehaviour {
         SendMessage("TopPanelInitilaizeDelivery");
         //하단 패널 초기화 전달
         SendMessage("BottomHomePanelInitializeDelivery");
+        //퀘스트 몬스터 유무 off
+        SendMessage("QuestMonsterOff");
+
+        prevState = State.StandBy;
     }
 
     void EggAction()
@@ -80,18 +87,22 @@ public class GameState : MonoBehaviour {
 
         if (GetComponent<HUDController>().isSmallBottomPanel == false)
             SendMessage("BottomMenuDisable");
-        
+
+        prevState = State.Egg;
     }
 
     void EggEndAction()
     {
         SendMessage("EggEnd");
         SendMessage("WhitePanelEffectActiveOn");
+
+        prevState = State.EggEnd;
+        //해당 시점부타 current day 측정, 해당 수치는 playerPrefab에 추가
     }
 
     void MonsterAction()
     {
-        if (prevMonsterNumber != currentMonsterNumber)
+        if (prevState == State.EggEnd)
         {
             SendMessage("MonsterInitialize", currentMonsterNumber);
             prevMonsterNumber = currentMonsterNumber;
@@ -102,6 +113,8 @@ public class GameState : MonoBehaviour {
         if (GetComponent<HUDController>().isSmallBottomPanel == true)
             SendMessage("MenuPanelOnDeliver");  //임시
         SendMessage("BottomMenuAble");
+
+        prevState = State.Monster;
     }
 
     void MonsterEndAction()
@@ -114,6 +127,8 @@ public class GameState : MonoBehaviour {
     void RoomOutAction()
     {
         SendMessage("MonsterHidePosition");     //진짜 현재 몬스터 숨겨놓기
+
+        prevState = State.RoomOut;
     }
 
     public void NextEvolutionMonsterNumberSetting(int nEvolutionMonsterNumber)
@@ -122,18 +137,4 @@ public class GameState : MonoBehaviour {
         currentMonsterNumber = nEvolutionMonsterNumber;
     }
 
-    public void RoomOutEnd()
-    {
-        //해당 부분 연출 완료 시점에서 이관 필요
-
-        SendMessage("HUDInitializeDelivery"); //UI 복원
-        GetComponent<MonsterController>().currentMonster.GetComponent<MonsterAbility>().TrainingComplete();
-
-        currentState = State.MonsterEnd;
-        CheckGameState();
-
-        GetComponent<TrainingController>().trainingDramaticHandler.GetComponent<TrainingDramaticHandler>().SendMessage("PowDirectionDestroy");
-        //연출 종료, 현재는 pow 구현중이라 pow에게 직접 쏨, 추후 처리 필요
-        SendMessage("MonsterRestorePosition");     //진짜 현재 몬스터 복구
-    }
 }

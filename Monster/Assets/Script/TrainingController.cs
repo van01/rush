@@ -50,6 +50,7 @@ public class TrainingController : MonoBehaviour {
 
     public void TrainingInitialize()
     {
+        //훈련 시작
         currentMonster = GetComponent<MonsterController>().currentMonster;
 
         //모든 UIclose
@@ -57,7 +58,44 @@ public class TrainingController : MonoBehaviour {
 
         GetComponent<GameState>().currentState = GameState.State.RoomOut;
         GetComponent<GameState>().CheckGameState();
+
+        //훈련 시작 시 배고픔 멈춤
+        SendMessage("CurrentMonsterHungryStopDilevery");
     }
+
+    public void TrainingEnd()
+    {
+        //훈련 완료
+
+        SendMessage("HUDInitializeDelivery"); //UI 복원
+        GetComponent<MonsterController>().currentMonster.SendMessage("TrainingComplete");
+        GetComponent<MonsterController>().currentMonster.SendMessage("HungryPlay");
+
+        GetComponent<GameState>().currentState = GameState.State.MonsterEnd;
+        GetComponent<GameState>().CheckGameState();
+
+
+        switch (currentTraining)
+        {
+            case TrainingType.Pow:
+                trainingDramaticHandler.GetComponent<TrainingDramaticHandler>().SendMessage("PowDirectionDestroy");
+                break;
+            case TrainingType.Vit:
+                VitAction();
+                break;
+            case TrainingType.Dex:
+                DexAction();
+                break;
+            case TrainingType.Agr:
+                AgrAction();
+                break;
+            case TrainingType.Int:
+                IntAction();
+                break;
+        }
+        SendMessage("MonsterRestorePosition");     //진짜 현재 몬스터 복구
+    }
+
 
     void PowAction()
     {

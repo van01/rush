@@ -57,12 +57,6 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -124,8 +118,10 @@
     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\Point2D.cs" />
     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\Point2DList.cs" />
     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\Rect2D.cs" />
+    <Compile Include="Assets\Script\BreakController.cs" />
     <Compile Include="Assets\Script\CameraController.cs" />
     <Compile Include="Assets\Script\CharacterEggParams.cs" />
+    <Compile Include="Assets\Script\CharacterMonLevelParams.cs" />
     <Compile Include="Assets\Script\CharacterMonParams.cs" />
     <Compile Include="Assets\Script\DishController.cs" />
     <Compile Include="Assets\Script\EggAbility.cs" />
@@ -159,6 +155,8 @@
     <Compile Include="Assets\Script\MonsterEvolutionController.cs" />
     <Compile Include="Assets\Script\MonsterEvolutionHandler.cs" />
     <Compile Include="Assets\Script\MonsterFaceController.cs" />
+    <Compile Include="Assets\Script\MonsterLevelController.cs" />
+    <Compile Include="Assets\Script\MonsterLevelParams.cs" />
     <Compile Include="Assets\Script\MonsterParams.cs" />
     <Compile Include="Assets\Script\MonsterSpriteColorController.cs" />
     <Compile Include="Assets\Script\MonsterSpriteColorHandler.cs" />
@@ -183,6 +181,7 @@
     <None Include="Assets\Puppet2D\Shaders\unlitTransparentDouble.shader" />
     <None Include="Assets\Resource\Data\EggData.xml" />
     <None Include="Assets\Resource\Data\MonsterData.xml" />
+    <None Include="Assets\Resource\Data\Monsterlevel.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

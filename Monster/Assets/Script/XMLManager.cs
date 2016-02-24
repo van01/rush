@@ -11,13 +11,18 @@ public class XMLManager : MonoBehaviour {
 
     static Dictionary<int, EggParams> dicEgg = new Dictionary<int, EggParams>();
     static Dictionary<int, MonsterParams> dicMonster = new Dictionary<int, MonsterParams>();
+    static Dictionary<int, MonsterLevelParams> dicMonsterLevel = new Dictionary<int, MonsterLevelParams>();
+
+    static Dictionary<int, MonsterLevelParams> dicCurrentMonsterLevel = new Dictionary<int, MonsterLevelParams>();
 
     public TextAsset eggXmlData;
     public TextAsset monsterXmlData;
+    public TextAsset monsterLevelXmlData;
 
     void Awake () {
         MakeEggXML();
         MakeMonsterXML();
+        MonsterLevelParamsXML();
     }
 	
 	void MakeEggXML()
@@ -64,8 +69,10 @@ public class XMLManager : MonoBehaviour {
                     tempParams.name = childNode.InnerText;
                 if (childNode.Name == "monType")
                     tempParams.monType = childNode.InnerText;
-                if (childNode.Name == "stress")
-                    tempParams.stress = float.Parse(childNode.InnerText);
+                if (childNode.Name == "minLevel")
+                    tempParams.minLevel = Int16.Parse(childNode.InnerText);
+                if (childNode.Name == "fatigue")
+                    tempParams.fatigue = float.Parse(childNode.InnerText);
                 if (childNode.Name == "hunger")
                     tempParams.hunger = float.Parse(childNode.InnerText);
                 if (childNode.Name == "statPow")
@@ -87,6 +94,33 @@ public class XMLManager : MonoBehaviour {
         }
     }
 
+    void MonsterLevelParamsXML()
+    {
+        XmlDocument monLevelXml = new XmlDocument();
+        monLevelXml.LoadXml(monsterLevelXmlData.text);
+
+        XmlNodeList monsterLevelList = monLevelXml.GetElementsByTagName("row");
+
+        foreach (XmlNode monsterLevelNode in monsterLevelList)
+        {
+            MonsterLevelParams tempParams = new MonsterLevelParams();
+
+            foreach (XmlNode childNode in monsterLevelNode.ChildNodes)
+            {
+                if (childNode.Name == "id")
+                    tempParams.id = Int16.Parse(childNode.InnerText);
+                if (childNode.Name == "monType")
+                    tempParams.monType = childNode.InnerText;
+                if (childNode.Name == "level")
+                    tempParams.level = Int16.Parse(childNode.InnerText);
+                if (childNode.Name == "totalStat")
+                    tempParams.totalStat = Int16.Parse(childNode.InnerText);
+            }
+
+            dicMonsterLevel[tempParams.id] = tempParams;
+        }
+    }
+
     public static EggParams GetEggParamsById(int reqId)
     {
         return dicEgg[reqId];
@@ -95,5 +129,28 @@ public class XMLManager : MonoBehaviour {
     public static MonsterParams GetMonsterParamsById(int reqId)
     {
         return dicMonster[reqId];
+    }
+
+    public static MonsterLevelParams GetMonsterLevelParamsByMonType(string nMonType, int nLevel)
+    {
+        MonsterLevelParams tempParams = new MonsterLevelParams();
+
+        foreach (KeyValuePair<int, MonsterLevelParams> kv in dicMonsterLevel)
+        {
+            if (nMonType == kv.Value.monType)
+            {
+                if (nLevel == kv.Value.level)
+                {
+                    return dicMonsterLevel[kv.Key];
+                }
+            }
+        }
+
+        return tempParams;
+    }
+
+    void Start()
+    {
+        
     }
 }
