@@ -96,7 +96,7 @@ public class MonsterState : MonoBehaviour
 
     void SpawnAction()
     {
-        GetComponent<MonsterAni>().SendMessage("ChangeAni", MonsterAni.SPAWN);
+        SendMessage("ChangeAni", MonsterAni.SPAWN);
 
         GetComponent<MonsterFaceController>().currentFaceState = MonsterFaceController.FaceState.Funny;
         GetComponent<MonsterFaceController>().CheckFaceState();
@@ -104,7 +104,7 @@ public class MonsterState : MonoBehaviour
 
     void IdleAction()
     {
-        GetComponent<MonsterAni>().SendMessage("ChangeAni", MonsterAni.IDLE);
+        SendMessage("ChangeAni", MonsterAni.IDLE);
 
         CheckMonsterCondition();
     }
@@ -133,23 +133,24 @@ public class MonsterState : MonoBehaviour
     {
         //print("Move Action!!!!!!!!");
         //현재 훈련 연출용 몬스터가 무브로 갔다가 바로 아이들로 돌아가는 이슈 존재
-        GetComponent<MonsterAni>().SendMessage("ChangeAni", MonsterAni.MOVE);
+        SendMessage("ChangeAni", MonsterAni.MOVE);
     }
 
     void AttackAction()
     {
         //print("Attack Action!!!!!!!!");
-        GetComponent<MonsterAni>().SendMessage("ChangeAni", MonsterAni.ATTACK);
+        SendMessage("ChangeAni", MonsterAni.ATTACK);
     }
 
     void AttackWaitAction()
     {
-        GetComponent<MonsterAni>().SendMessage("ChangeAni", MonsterAni.ATTACKWAIT);
+        SendMessage("ChangeAni", MonsterAni.ATTACKWAIT);
     }
 
     void FallAction()
     {
-
+        if (transform.root.GetComponent<TrainingDramaticHandler>().gameContoller.GetComponent<TrainingController>().currentTraining == TrainingController.TrainingType.Pow)
+            SendMessage("ChangeAni", MonsterAni.ATTACKFAIL);
     }
 
     void SpawnAniEnd()

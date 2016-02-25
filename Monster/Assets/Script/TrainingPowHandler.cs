@@ -52,8 +52,9 @@ public class TrainingPowHandler : MonoBehaviour {
                 isMonsterMove = false;
                 isSandbagMove = false;
 
-                currentMonster.GetComponent<MonsterState>().currentState = MonsterState.State.Attack;
-                currentMonster.GetComponent<MonsterState>().CheckMonsterState();
+                //최초 공격, 증가될 능력치 판단
+                GetComponent<TrainingDramaticHandler>().gameContoller.SendMessage("CurrentTrainingTurnMountTotalValueInitialize");
+                AttackSuccessJudgment();
             }
         }
         //currentSandbag.transform.Translate(scrollValue, Space.World);
@@ -89,10 +90,15 @@ public class TrainingPowHandler : MonoBehaviour {
         attackCount++;
         
         StartCoroutine(AttackSuccessWait());
+
         currentSandbag.GetComponent<ObjectState>().currentState = ObjectState.State.Hit;
         currentSandbag.GetComponent<ObjectState>().CheckObjectState();
+    }
 
-        print(attackCount);
+    public void AttackFail()
+    {
+        attackCount++;
+        StartCoroutine(AttackSuccessWait());
     }
 
     IEnumerator AttackSuccessWait()
@@ -104,8 +110,7 @@ public class TrainingPowHandler : MonoBehaviour {
         yield return new WaitForSeconds(0.6f);
         if (attackCount < 5)
         {
-            currentMonster.GetComponent<MonsterState>().currentState = MonsterState.State.Attack;
-            currentMonster.GetComponent<MonsterState>().CheckMonsterState();
+            AttackSuccessJudgment();
         }
         else
         {
@@ -125,4 +130,17 @@ public class TrainingPowHandler : MonoBehaviour {
         SendMessage("SuccessUIOnDelivery");
     }
 
+    public void AttackSuccessJudgment()
+    {
+        //훈련 성공여부 판단 호출
+        bool isSuccess = GetComponent<TrainingDramaticHandler>().gameContoller.GetComponent<TrainingController>().TrainingSuccessJudgment();
+
+        if (isSuccess == true)
+        {
+            currentMonster.GetComponent<MonsterState>().currentState = MonsterState.State.Attack;
+        }
+        else
+            currentMonster.GetComponent<MonsterState>().currentState = MonsterState.State.Fall;
+        currentMonster.GetComponent<MonsterState>().CheckMonsterState();
+    }
 }

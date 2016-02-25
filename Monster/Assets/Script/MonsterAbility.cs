@@ -23,7 +23,7 @@ public class MonsterAbility : MonoBehaviour {
         myParams.monType = tParams.monType;
 
         myParams.level = tParams.level;
-        myParams.minLevel = tParams.minLevel;
+        myParams.evolMinLevel = tParams.evolMinLevel;
 
         myParams.fatigue = tParams.fatigue;
         myParams.hunger = tParams.hunger;

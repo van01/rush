@@ -10,6 +10,8 @@ public class MonsterParams : CharacterMonParams
         this.name = "어린 슬라임";
         this.monType = "slime";
 
+        this.evolMinLevel = 0;
+        this.level = 1;
         this.fatigue = 100f;
         this.hunger = 100f;
 

@@ -4,6 +4,7 @@
     <id>0</id>
     <name>어린 슬라임</name>
     <monType>slime</monType>
+    <evolMinLevel>0</evolMinLevel>
     <fatigue>100</fatigue>
     <hunger>100</hunger>
     <statPow>1</statPow>
@@ -18,9 +19,10 @@
     <id>1</id>
     <name>슬라임 검사</name>
     <monType>slime</monType>
+    <evolMinLevel>10</evolMinLevel>
     <fatigue>100</fatigue>
     <hunger>100</hunger>
-    <statPow>10</statPow>
+    <statPow>1</statPow>
     <statVit>1</statVit>
     <statDex>1</statDex>
     <statAgr>1</statAgr>
@@ -32,11 +34,42 @@
     <id>2</id>
     <name>슬라임 궁수</name>
     <monType>slime</monType>
+    <evolMinLevel>10</evolMinLevel>
     <fatigue>100</fatigue>
     <hunger>100</hunger>
     <statPow>1</statPow>
     <statVit>1</statVit>
-    <statDex>10</statDex>
+    <statDex>1</statDex>
+    <statAgr>1</statAgr>
+    <statInt>1</statInt>
+    <statMal>1</statMal>
+    <monPrice>10</monPrice>
+  </row>
+  <row>
+    <id>3</id>
+    <name>슬라임 기사</name>
+    <monType>slime</monType>
+    <evolMinLevel>10</evolMinLevel>
+    <fatigue>100</fatigue>
+    <hunger>100</hunger>
+    <statPow>1</statPow>
+    <statVit>1</statVit>
+    <statDex>1</statDex>
+    <statAgr>1</statAgr>
+    <statInt>1</statInt>
+    <statMal>1</statMal>
+    <monPrice>10</monPrice>
+  </row>
+  <row>
+    <id>4</id>
+    <name>슬라임 전사</name>
+    <monType>slime</monType>
+    <evolMinLevel>10</evolMinLevel>
+    <fatigue>100</fatigue>
+    <hunger>100</hunger>
+    <statPow>1</statPow>
+    <statVit>1</statVit>
+    <statDex>1</statDex>
     <statAgr>1</statAgr>
     <statInt>1</statInt>
     <statMal>1</statMal>

@@ -3,587 +3,593 @@
   <row>
     <id>0</id>
     <monType>slime</monType>
+    <level>1</level>
+    <totalStat>6</totalStat>
+  </row>
+  <row>
+    <id>1</id>
+    <monType>slime</monType>
     <level>2</level>
     <totalStat>10</totalStat>
   </row>
   <row>
-    <id>1</id>
+    <id>2</id>
     <monType>slime</monType>
     <level>3</level>
     <totalStat>14</totalStat>
   </row>
   <row>
-    <id>2</id>
+    <id>3</id>
     <monType>slime</monType>
     <level>4</level>
     <totalStat>18</totalStat>
   </row>
   <row>
-    <id>3</id>
+    <id>4</id>
     <monType>slime</monType>
     <level>5</level>
     <totalStat>22</totalStat>
   </row>
   <row>
-    <id>4</id>
+    <id>5</id>
     <monType>slime</monType>
     <level>6</level>
     <totalStat>26</totalStat>
   </row>
   <row>
-    <id>5</id>
+    <id>6</id>
     <monType>slime</monType>
     <level>7</level>
     <totalStat>30</totalStat>
   </row>
   <row>
-    <id>6</id>
+    <id>7</id>
     <monType>slime</monType>
     <level>8</level>
     <totalStat>34</totalStat>
   </row>
   <row>
-    <id>7</id>
+    <id>8</id>
     <monType>slime</monType>
     <level>9</level>
     <totalStat>38</totalStat>
   </row>
   <row>
-    <id>8</id>
+    <id>9</id>
     <monType>slime</monType>
     <level>10</level>
     <totalStat>42</totalStat>
   </row>
   <row>
-    <id>9</id>
+    <id>10</id>
     <monType>slime</monType>
     <level>11</level>
     <totalStat>46</totalStat>
   </row>
   <row>
-    <id>10</id>
+    <id>11</id>
     <monType>slime</monType>
     <level>12</level>
     <totalStat>50</totalStat>
   </row>
   <row>
-    <id>11</id>
+    <id>12</id>
     <monType>slime</monType>
     <level>13</level>
     <totalStat>54</totalStat>
   </row>
   <row>
-    <id>12</id>
+    <id>13</id>
     <monType>slime</monType>
     <level>14</level>
     <totalStat>58</totalStat>
   </row>
   <row>
-    <id>13</id>
+    <id>14</id>
     <monType>slime</monType>
     <level>15</level>
     <totalStat>62</totalStat>
   </row>
   <row>
-    <id>14</id>
+    <id>15</id>
     <monType>slime</monType>
     <level>16</level>
     <totalStat>66</totalStat>
   </row>
   <row>
-    <id>15</id>
+    <id>16</id>
     <monType>slime</monType>
     <level>17</level>
     <totalStat>70</totalStat>
   </row>
   <row>
-    <id>16</id>
+    <id>17</id>
     <monType>slime</monType>
     <level>18</level>
     <totalStat>74</totalStat>
   </row>
   <row>
-    <id>17</id>
+    <id>18</id>
     <monType>slime</monType>
     <level>19</level>
     <totalStat>78</totalStat>
   </row>
   <row>
-    <id>18</id>
+    <id>19</id>
     <monType>slime</monType>
     <level>20</level>
     <totalStat>82</totalStat>
   </row>
   <row>
-    <id>19</id>
+    <id>20</id>
     <monType>slime</monType>
     <level>21</level>
     <totalStat>86</totalStat>
   </row>
   <row>
-    <id>20</id>
+    <id>21</id>
     <monType>slime</monType>
     <level>22</level>
     <totalStat>90</totalStat>
   </row>
   <row>
-    <id>21</id>
+    <id>22</id>
     <monType>slime</monType>
     <level>23</level>
     <totalStat>94</totalStat>
   </row>
   <row>
-    <id>22</id>
+    <id>23</id>
     <monType>slime</monType>
     <level>24</level>
     <totalStat>98</totalStat>
   </row>
   <row>
-    <id>23</id>
+    <id>24</id>
     <monType>slime</monType>
     <level>25</level>
     <totalStat>102</totalStat>
   </row>
   <row>
-    <id>24</id>
+    <id>25</id>
     <monType>slime</monType>
     <level>26</level>
     <totalStat>106</totalStat>
   </row>
   <row>
-    <id>25</id>
+    <id>26</id>
     <monType>slime</monType>
     <level>27</level>
     <totalStat>110</totalStat>
   </row>
   <row>
-    <id>26</id>
+    <id>27</id>
     <monType>slime</monType>
     <level>28</level>
     <totalStat>114</totalStat>
   </row>
   <row>
-    <id>27</id>
+    <id>28</id>
     <monType>slime</monType>
     <level>29</level>
     <totalStat>118</totalStat>
   </row>
   <row>
-    <id>28</id>
+    <id>29</id>
     <monType>slime</monType>
     <level>30</level>
     <totalStat>122</totalStat>
   </row>
   <row>
-    <id>29</id>
+    <id>30</id>
     <monType>slime</monType>
     <level>31</level>
     <totalStat>126</totalStat>
   </row>
   <row>
-    <id>30</id>
+    <id>31</id>
     <monType>slime</monType>
     <level>32</level>
     <totalStat>130</totalStat>
   </row>
   <row>
-    <id>31</id>
+    <id>32</id>
     <monType>slime</monType>
     <level>33</level>
     <totalStat>134</totalStat>
   </row>
   <row>
-    <id>32</id>
+    <id>33</id>
     <monType>slime</monType>
     <level>34</level>
     <totalStat>138</totalStat>
   </row>
   <row>
-    <id>33</id>
+    <id>34</id>
     <monType>slime</monType>
     <level>35</level>
     <totalStat>142</totalStat>
   </row>
   <row>
-    <id>34</id>
+    <id>35</id>
     <monType>slime</monType>
     <level>36</level>
     <totalStat>146</totalStat>
   </row>
   <row>
-    <id>35</id>
+    <id>36</id>
     <monType>slime</monType>
     <level>37</level>
     <totalStat>150</totalStat>
   </row>
   <row>
-    <id>36</id>
+    <id>37</id>
     <monType>slime</monType>
     <level>38</level>
     <totalStat>154</totalStat>
   </row>
   <row>
-    <id>37</id>
+    <id>38</id>
     <monType>slime</monType>
     <level>39</level>
     <totalStat>158</totalStat>
   </row>
   <row>
-    <id>38</id>
+    <id>39</id>
     <monType>slime</monType>
     <level>40</level>
     <totalStat>162</totalStat>
   </row>
   <row>
-    <id>39</id>
+    <id>40</id>
     <monType>slime</monType>
     <level>41</level>
     <totalStat>166</totalStat>
   </row>
   <row>
-    <id>40</id>
+    <id>41</id>
     <monType>slime</monType>
     <level>42</level>
     <totalStat>170</totalStat>
   </row>
   <row>
-    <id>41</id>
+    <id>42</id>
     <monType>slime</monType>
     <level>43</level>
     <totalStat>174</totalStat>
   </row>
   <row>
-    <id>42</id>
+    <id>43</id>
     <monType>slime</monType>
     <level>44</level>
     <totalStat>178</totalStat>
   </row>
   <row>
-    <id>43</id>
+    <id>44</id>
     <monType>slime</monType>
     <level>45</level>
     <totalStat>182</totalStat>
   </row>
   <row>
-    <id>44</id>
+    <id>45</id>
     <monType>slime</monType>
     <level>46</level>
     <totalStat>186</totalStat>
   </row>
   <row>
-    <id>45</id>
+    <id>46</id>
     <monType>slime</monType>
     <level>47</level>
     <totalStat>190</totalStat>
   </row>
   <row>
-    <id>46</id>
+    <id>47</id>
     <monType>slime</monType>
     <level>48</level>
     <totalStat>194</totalStat>
   </row>
   <row>
-    <id>47</id>
+    <id>48</id>
     <monType>slime</monType>
     <level>49</level>
     <totalStat>198</totalStat>
   </row>
   <row>
-    <id>48</id>
+    <id>49</id>
     <monType>slime</monType>
     <level>50</level>
     <totalStat>202</totalStat>
   </row>
   <row>
-    <id>49</id>
+    <id>50</id>
     <monType>slime</monType>
     <level>51</level>
     <totalStat>206</totalStat>
   </row>
   <row>
-    <id>50</id>
+    <id>51</id>
     <monType>slime</monType>
     <level>52</level>
     <totalStat>210</totalStat>
   </row>
   <row>
-    <id>51</id>
+    <id>52</id>
     <monType>slime</monType>
     <level>53</level>
     <totalStat>214</totalStat>
   </row>
   <row>
-    <id>52</id>
+    <id>53</id>
     <monType>slime</monType>
     <level>54</level>
     <totalStat>218</totalStat>
   </row>
   <row>
-    <id>53</id>
+    <id>54</id>
     <monType>slime</monType>
     <level>55</level>
     <totalStat>222</totalStat>
   </row>
   <row>
-    <id>54</id>
+    <id>55</id>
     <monType>slime</monType>
     <level>56</level>
     <totalStat>226</totalStat>
   </row>
   <row>
-    <id>55</id>
+    <id>56</id>
     <monType>slime</monType>
     <level>57</level>
     <totalStat>230</totalStat>
   </row>
   <row>
-    <id>56</id>
+    <id>57</id>
     <monType>slime</monType>
     <level>58</level>
     <totalStat>234</totalStat>
   </row>
   <row>
-    <id>57</id>
+    <id>58</id>
     <monType>slime</monType>
     <level>59</level>
     <totalStat>238</totalStat>
   </row>
   <row>
-    <id>58</id>
+    <id>59</id>
     <monType>slime</monType>
     <level>60</level>
     <totalStat>242</totalStat>
   </row>
   <row>
-    <id>59</id>
+    <id>60</id>
     <monType>slime</monType>
     <level>61</level>
     <totalStat>246</totalStat>
   </row>
   <row>
-    <id>60</id>
+    <id>61</id>
     <monType>slime</monType>
     <level>62</level>
     <totalStat>250</totalStat>
   </row>
   <row>
-    <id>61</id>
+    <id>62</id>
     <monType>slime</monType>
     <level>63</level>
     <totalStat>254</totalStat>
   </row>
   <row>
-    <id>62</id>
+    <id>63</id>
     <monType>slime</monType>
     <level>64</level>
     <totalStat>258</totalStat>
   </row>
   <row>
-    <id>63</id>
+    <id>64</id>
     <monType>slime</monType>
     <level>65</level>
     <totalStat>262</totalStat>
   </row>
   <row>
-    <id>64</id>
+    <id>65</id>
     <monType>slime</monType>
     <level>66</level>
     <totalStat>266</totalStat>
   </row>
   <row>
-    <id>65</id>
+    <id>66</id>
     <monType>slime</monType>
     <level>67</level>
     <totalStat>270</totalStat>
   </row>
   <row>
-    <id>66</id>
+    <id>67</id>
     <monType>slime</monType>
     <level>68</level>
     <totalStat>274</totalStat>
   </row>
   <row>
-    <id>67</id>
+    <id>68</id>
     <monType>slime</monType>
     <level>69</level>
     <totalStat>278</totalStat>
   </row>
   <row>
-    <id>68</id>
+    <id>69</id>
     <monType>slime</monType>
     <level>70</level>
     <totalStat>282</totalStat>
   </row>
   <row>
-    <id>69</id>
+    <id>70</id>
     <monType>slime</monType>
     <level>71</level>
     <totalStat>286</totalStat>
   </row>
   <row>
-    <id>70</id>
+    <id>71</id>
     <monType>slime</monType>
     <level>72</level>
     <totalStat>290</totalStat>
   </row>
   <row>
-    <id>71</id>
+    <id>72</id>
     <monType>slime</monType>
     <level>73</level>
     <totalStat>294</totalStat>
   </row>
   <row>
-    <id>72</id>
+    <id>73</id>
     <monType>slime</monType>
     <level>74</level>
     <totalStat>298</totalStat>
   </row>
   <row>
-    <id>73</id>
+    <id>74</id>
     <monType>slime</monType>
     <level>75</level>
     <totalStat>302</totalStat>
   </row>
   <row>
-    <id>74</id>
+    <id>75</id>
     <monType>slime</monType>
     <level>76</level>
     <totalStat>306</totalStat>
   </row>
   <row>
-    <id>75</id>
+    <id>76</id>
     <monType>slime</monType>
     <level>77</level>
     <totalStat>310</totalStat>
   </row>
   <row>
-    <id>76</id>
+    <id>77</id>
     <monType>slime</monType>
     <level>78</level>
     <totalStat>314</totalStat>
   </row>
   <row>
-    <id>77</id>
+    <id>78</id>
     <monType>slime</monType>
     <level>79</level>
     <totalStat>318</totalStat>
   </row>
   <row>
-    <id>78</id>
+    <id>79</id>
     <monType>slime</monType>
     <level>80</level>
     <totalStat>322</totalStat>
   </row>
   <row>
-    <id>79</id>
+    <id>80</id>
     <monType>slime</monType>
     <level>81</level>
     <totalStat>326</totalStat>
   </row>
   <row>
-    <id>80</id>
+    <id>81</id>
     <monType>slime</monType>
     <level>82</level>
     <totalStat>330</totalStat>
   </row>
   <row>
-    <id>81</id>
+    <id>82</id>
     <monType>slime</monType>
     <level>83</level>
     <totalStat>334</totalStat>
   </row>
   <row>
-    <id>82</id>
+    <id>83</id>
     <monType>slime</monType>
     <level>84</level>
     <totalStat>338</totalStat>
   </row>
   <row>
-    <id>83</id>
+    <id>84</id>
     <monType>slime</monType>
     <level>85</level>
     <totalStat>342</totalStat>
   </row>
   <row>
-    <id>84</id>
+    <id>85</id>
     <monType>slime</monType>
     <level>86</level>
     <totalStat>346</totalStat>
   </row>
   <row>
-    <id>85</id>
+    <id>86</id>
     <monType>slime</monType>
     <level>87</level>
     <totalStat>350</totalStat>
   </row>
   <row>
-    <id>86</id>
+    <id>87</id>
     <monType>slime</monType>
     <level>88</level>
     <totalStat>354</totalStat>
   </row>
   <row>
-    <id>87</id>
+    <id>88</id>
     <monType>slime</monType>
     <level>89</level>
     <totalStat>358</totalStat>
   </row>
   <row>
-    <id>88</id>
+    <id>89</id>
     <monType>slime</monType>
     <level>90</level>
     <totalStat>362</totalStat>
   </row>
   <row>
-    <id>89</id>
+    <id>90</id>
     <monType>slime</monType>
     <level>91</level>
     <totalStat>366</totalStat>
   </row>
   <row>
-    <id>90</id>
+    <id>91</id>
     <monType>slime</monType>
     <level>92</level>
     <totalStat>370</totalStat>
   </row>
   <row>
-    <id>91</id>
+    <id>92</id>
     <monType>slime</monType>
     <level>93</level>
     <totalStat>374</totalStat>
   </row>
   <row>
-    <id>92</id>
+    <id>93</id>
     <monType>slime</monType>
     <level>94</level>
     <totalStat>378</totalStat>
   </row>
   <row>
-    <id>93</id>
+    <id>94</id>
     <monType>slime</monType>
     <level>95</level>
     <totalStat>382</totalStat>
   </row>
   <row>
-    <id>94</id>
+    <id>95</id>
     <monType>slime</monType>
     <level>96</level>
     <totalStat>386</totalStat>
   </row>
   <row>
-    <id>95</id>
+    <id>96</id>
     <monType>slime</monType>
     <level>97</level>
     <totalStat>390</totalStat>
   </row>
   <row>
-    <id>96</id>
+    <id>97</id>
     <monType>slime</monType>
     <level>98</level>
     <totalStat>394</totalStat>
   </row>
   <row>
-    <id>97</id>
+    <id>98</id>
     <monType>slime</monType>
     <level>99</level>
     <totalStat>398</totalStat>

@@ -3,7 +3,8 @@ using System.Collections;
 
 public class TrainingController : MonoBehaviour {
 
-    private GameObject currentMonster;
+    private GameObject _currentMonster;
+    private MonsterParams _cParams;
 
     public enum TrainingType
     {
@@ -40,6 +41,9 @@ public class TrainingController : MonoBehaviour {
 
     public GameObject trainingDramaticHandler;
 
+    private int _currentMountValue;
+    private int _currentTrainingTurnMountTotalValue;
+
     public void MonsterPowTraining()
     {
         TrainingInitialize();
@@ -51,7 +55,7 @@ public class TrainingController : MonoBehaviour {
     public void TrainingInitialize()
     {
         //훈련 시작
-        currentMonster = GetComponent<MonsterController>().currentMonster;
+        _currentMonster = GetComponent<MonsterController>().currentMonster;
 
         //모든 UIclose
         SendMessage("HUDHideDelivery");
@@ -94,6 +98,8 @@ public class TrainingController : MonoBehaviour {
                 break;
         }
         SendMessage("MonsterRestorePosition");     //진짜 현재 몬스터 복구
+
+        SendMessage("NextEvolutionMonsterCheck");
     }
 
 
@@ -101,8 +107,10 @@ public class TrainingController : MonoBehaviour {
     {
         //현재 트레이닝 비용 및 레벨 불러오기, 이번 트레이닝에서 증가될 능력치 계산
         //배경 바꾸기, 캐릭터 상태 바꾸기 추가 필요
-        trainingDramaticHandler.SendMessage("PowDirectionStart");
+
         //연출 호출
+        trainingDramaticHandler.SendMessage("PowDirectionStart");
+        _currentMountValue = PowTrainingValue();
     }
 
     void VitAction()
@@ -123,5 +131,55 @@ public class TrainingController : MonoBehaviour {
     void IntAction()
     {
         //배경 바꾸기, 캐릭터 상태 바꾸기 추가 필요
+    }
+
+    public bool TrainingSuccessJudgment()
+    {
+        //훈련 성공여부 판단
+        bool isTriningSuccess;
+        float _currentHungerPoint;
+        float _currentFatiguePoint;
+
+        float _currentchanceValue;
+        float _chanceMaxValue = 2.0f;
+
+        _currentchanceValue = Random.RandomRange(0, _chanceMaxValue);
+
+        _cParams = _currentMonster.GetComponent<MonsterAbility>().GetParams();
+
+        _currentHungerPoint = _cParams.currentHunger / _cParams.hunger;
+        _currentFatiguePoint = 1 - _cParams.currentFatigue / _cParams.fatigue;
+
+        if (_currentchanceValue <= _currentHungerPoint + _currentFatiguePoint)
+        {
+            isTriningSuccess = true;
+            TrainingSuccessCurrentValueMount();
+        }
+        else
+            isTriningSuccess = false;
+
+        return isTriningSuccess;
+    }
+
+    public int PowTrainingValue()
+    {
+        //훈련장 Level에 따라 판단, 회당 증가될 힘의 크기
+        return 3;
+    }
+
+    protected void TrainingSuccessCurrentValueMount()
+    {
+        //GetComponent<MonsterAbility>().myParams.statPow += 20;
+        _currentTrainingTurnMountTotalValue += _currentMountValue;
+    }
+
+    public void CurrentTrainingTurnMountTotalValueInitialize()
+    {
+        _currentTrainingTurnMountTotalValue = 0;
+    }
+
+    public int TrainingResultTotalValue()
+    {
+        return _currentTrainingTurnMountTotalValue;
     }
 }

@@ -8,8 +8,8 @@ public class CharacterMonParams
     public string name { get; set; }
     public string monType { get; set; }
 
+    public int evolMinLevel { get; set; }
     public int level { get; set; }
-    public int minLevel { get; set; }
 
     public float fatigue { get; set; }
     public float hunger { get; set; }

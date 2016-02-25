@@ -8,6 +8,8 @@ public class GameState : MonoBehaviour {
     protected int currentMonsterNumber;
     protected int prevMonsterNumber;
 
+    public bool isEvolutionActive = false;
+
     public enum State
     {
         Title,
@@ -119,9 +121,16 @@ public class GameState : MonoBehaviour {
 
     void MonsterEndAction()
     {
-        //SendMessage("MonsterInitialize", nextEvolutionMonsterNumber);
+        if (isEvolutionActive == true)
+        {
+            SendMessage("MonsterInitialize", nextEvolutionMonsterNumber);
+            isEvolutionActive = false;
+        }
+
         currentState = State.Monster;
         CheckGameState();
+
+        prevState = State.MonsterEnd;
     }
 
     void RoomOutAction()
@@ -133,8 +142,8 @@ public class GameState : MonoBehaviour {
 
     public void NextEvolutionMonsterNumberSetting(int nEvolutionMonsterNumber)
     {
-        //nextEvolutionMonsterNumber = nEvolutionMonsterNumber;
-        currentMonsterNumber = nEvolutionMonsterNumber;
+        nextEvolutionMonsterNumber = nEvolutionMonsterNumber;
+        //currentMonsterNumber = nEvolutionMonsterNumber;
     }
 
 }

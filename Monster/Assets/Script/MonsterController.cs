@@ -33,7 +33,10 @@ public class MonsterController : MonoBehaviour {
 
         currentMonster.SendMessage("SetParams", pParams);
         currentMonsterParams = currentMonster.GetComponent<MonsterAbility>().GetParams();
-        currentMonsterParams.level = 1;
+
+        //몬스터의 현재 능력치에 따라 레벨 설정
+        SendMessage("CompulsionLevelCheck");
+        //currentMonsterParams.level = 1;
 
         currentMonster.SendMessage("MonsterSpriteColorApplyDelivery", monsterApplyColor);
 
@@ -45,7 +48,11 @@ public class MonsterController : MonoBehaviour {
 
         //currentMonster.GetComponent<MonsterState>().currentCondition = MonsterState.Condition.Happy;
 
+        //타이머 초기화
         SendMessage("TimerInitialize");
+
+        //진화 정보 초기화
+        SendMessage("NextEvolutionMonsterInitilize");
 
         //if (GetComponent<GameState>().currentState == GameState.State.MonsterEnd)
         //{

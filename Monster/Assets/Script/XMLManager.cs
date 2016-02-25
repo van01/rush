@@ -69,8 +69,8 @@ public class XMLManager : MonoBehaviour {
                     tempParams.name = childNode.InnerText;
                 if (childNode.Name == "monType")
                     tempParams.monType = childNode.InnerText;
-                if (childNode.Name == "minLevel")
-                    tempParams.minLevel = Int16.Parse(childNode.InnerText);
+                if (childNode.Name == "evolMinLevel")
+                    tempParams.evolMinLevel = Int16.Parse(childNode.InnerText);
                 if (childNode.Name == "fatigue")
                     tempParams.fatigue = float.Parse(childNode.InnerText);
                 if (childNode.Name == "hunger")
@@ -131,7 +131,7 @@ public class XMLManager : MonoBehaviour {
         return dicMonster[reqId];
     }
 
-    public static MonsterLevelParams GetMonsterLevelParamsByMonType(string nMonType, int nLevel)
+    public static MonsterLevelParams GetMonsterLevelParamsByMonType(string nMonType, int nTotalStat)
     {
         MonsterLevelParams tempParams = new MonsterLevelParams();
 
@@ -139,16 +139,24 @@ public class XMLManager : MonoBehaviour {
         {
             if (nMonType == kv.Value.monType)
             {
-                if (nLevel == kv.Value.level)
+                if (nTotalStat == kv.Value.totalStat)
                 {
                     return dicMonsterLevel[kv.Key];
+                }
+
+                else if (nTotalStat < kv.Value.totalStat)
+                {
+                    if (dicMonsterLevel[kv.Key].level == 1)
+                        return dicMonsterLevel[kv.Key];
+                    else
+                        return dicMonsterLevel[kv.Key - 1];
                 }
             }
         }
 
         return tempParams;
     }
-
+    
     void Start()
     {
         
