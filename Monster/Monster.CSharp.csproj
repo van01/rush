@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.2.3f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -141,6 +139,7 @@
     <Compile Include="Assets\Script\HUDEggScrollPanelHandler.cs" />
     <Compile Include="Assets\Script\HUDHandler.cs" />
     <Compile Include="Assets\Script\HUDHomePanelHandler.cs" />
+    <Compile Include="Assets\Script\HUDInfoPanelHandler.cs" />
     <Compile Include="Assets\Script\HUDMenuButtonHandler.cs" />
     <Compile Include="Assets\Script\HUDParentSizeSuccession.cs" />
     <Compile Include="Assets\Script\HUDQuestDramaticPanelHandler.cs" />
@@ -182,9 +181,7 @@
     <None Include="Assets\Puppet2D\Shaders\VertColor.shader" />
     <None Include="Assets\Puppet2D\Shaders\unlitTransparentDouble.shader" />
     <None Include="Assets\Resource\Data\EggData.xml" />
-    <None Include="Assets\Resource\Data\MonsterData.xml">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="Assets\Resource\Data\MonsterData.xml" />
     <None Include="Assets\Resource\Data\Monsterlevel.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />

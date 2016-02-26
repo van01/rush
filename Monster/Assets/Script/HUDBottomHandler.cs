@@ -8,6 +8,7 @@ public class HUDBottomHandler : MonoBehaviour {
     public GameObject trainingPanel;
     public GameObject adventurePanel;
     public GameObject breakPanel;
+    public GameObject infoPanel;
 
     public GameObject menuPanel;
 
@@ -27,6 +28,7 @@ public class HUDBottomHandler : MonoBehaviour {
             trainingPanel.SetActive(false);
             adventurePanel.SetActive(false);
             breakPanel.SetActive(false);
+            infoPanel.SetActive(false);
         }
         else
         {
@@ -35,6 +37,7 @@ public class HUDBottomHandler : MonoBehaviour {
             trainingPanel.SetActive(false);
             adventurePanel.SetActive(false);
             breakPanel.SetActive(false);
+            infoPanel.SetActive(false);
             currentPanelNumber = 0;
         }
 
@@ -50,6 +53,7 @@ public class HUDBottomHandler : MonoBehaviour {
             trainingPanel.SetActive(false);
             adventurePanel.SetActive(false);
             breakPanel.SetActive(false);
+            infoPanel.SetActive(false);
         }
         else
         {
@@ -58,6 +62,7 @@ public class HUDBottomHandler : MonoBehaviour {
             trainingPanel.SetActive(false);
             adventurePanel.SetActive(false);
             breakPanel.SetActive(false);
+            infoPanel.SetActive(false);
             currentPanelNumber = 1;
         }       
     }
@@ -71,6 +76,7 @@ public class HUDBottomHandler : MonoBehaviour {
             trainingPanel.SetActive(true);
             adventurePanel.SetActive(false);
             breakPanel.SetActive(false);
+            infoPanel.SetActive(false);
         }
         else
         {
@@ -79,6 +85,7 @@ public class HUDBottomHandler : MonoBehaviour {
             trainingPanel.SetActive(true);
             adventurePanel.SetActive(false);
             breakPanel.SetActive(false);
+            infoPanel.SetActive(false);
             currentPanelNumber = 2;
         }
     }
@@ -92,6 +99,7 @@ public class HUDBottomHandler : MonoBehaviour {
             trainingPanel.SetActive(false);
             adventurePanel.SetActive(true);
             breakPanel.SetActive(false);
+            infoPanel.SetActive(false);
         }
         else
         {
@@ -100,6 +108,7 @@ public class HUDBottomHandler : MonoBehaviour {
             trainingPanel.SetActive(false);
             adventurePanel.SetActive(true);
             breakPanel.SetActive(false);
+            infoPanel.SetActive(false);
             currentPanelNumber = 3;
         }
     }
@@ -113,6 +122,7 @@ public class HUDBottomHandler : MonoBehaviour {
             trainingPanel.SetActive(false);
             adventurePanel.SetActive(false);
             breakPanel.SetActive(true);
+            infoPanel.SetActive(false);
         }
         else
         {
@@ -121,7 +131,31 @@ public class HUDBottomHandler : MonoBehaviour {
             trainingPanel.SetActive(false);
             adventurePanel.SetActive(false);
             breakPanel.SetActive(true);
+            infoPanel.SetActive(false);
             currentPanelNumber = 4;
+        }
+    }
+
+    public void InfoButtonActive()
+    {
+        if (transform.root.GetComponent<HUDHandler>().isCurrentBottomPanel == true)
+        {
+            homePanel.SetActive(true);
+            dishPanel.SetActive(false);
+            trainingPanel.SetActive(false);
+            adventurePanel.SetActive(false);
+            breakPanel.SetActive(false);
+            infoPanel.SetActive(true);
+        }
+        else
+        {
+            homePanel.SetActive(false);
+            dishPanel.SetActive(false);
+            trainingPanel.SetActive(false);
+            adventurePanel.SetActive(false);
+            breakPanel.SetActive(false);
+            infoPanel.SetActive(true);
+            currentPanelNumber = 5;
         }
     }
 

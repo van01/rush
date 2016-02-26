@@ -24,6 +24,7 @@ public class HUDHandler : MonoBehaviour {
     public GameObject trainingPanel;
     public GameObject dishPanel;
     public GameObject breakPanel;
+    public GameObject infoPanel;
 
     public GameObject menu;
 
@@ -197,6 +198,11 @@ public class HUDHandler : MonoBehaviour {
     public void BreakPanelOff()
     {
         breakPanel.SetActive(false);
+    }
+
+    public void InfoPanelOff()
+    {
+        infoPanel.SetActive(false);
     }
 
     public void MenuPanelOn()

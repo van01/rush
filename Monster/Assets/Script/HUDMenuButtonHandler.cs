@@ -8,11 +8,14 @@ public class HUDMenuButtonHandler : MonoBehaviour {
     public GameObject trainingButton;
     public GameObject adventureButton;
     public GameObject breakButton;
+    public GameObject infoButton;
 
     public void AllButtonDisable()
     {
         dishButton.SendMessage("DisableButton");
         trainingButton.SendMessage("DisableButton");
+        breakButton.SendMessage("DisableButton");
+        infoButton.SendMessage("DisableButton");
         //adventureButton.SendMessage("DisableButton");
         //breakButton.SendMessage("DisableButton");
     }
@@ -21,6 +24,8 @@ public class HUDMenuButtonHandler : MonoBehaviour {
     {
         dishButton.SendMessage("AbleButton");
         trainingButton.SendMessage("AbleButton");
+        breakButton.SendMessage("AbleButton");
+        infoButton.SendMessage("AbleButton");
         //adventureButton.SendMessage("AbleButton");
         //breakButton.SendMessage("AbleButton");
     }

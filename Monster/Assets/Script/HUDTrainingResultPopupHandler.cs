@@ -13,7 +13,6 @@ public class HUDTrainingResultPopupHandler : MonoBehaviour {
     public GameObject detailCallButton;
     public GameObject detailCloseButton;
 
-    public GameObject[] prevStat;
     public GameObject[] crrentStat;
     public GameObject[] changeStat;
 
