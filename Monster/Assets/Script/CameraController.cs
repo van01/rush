@@ -9,11 +9,11 @@ public class CameraController : MonoBehaviour {
     {
         if (GetComponent<HUDController>().isSmallBottomPanel == true)
         {
-            mainCamera.transform.position = new Vector3(0, 2.4f, -5.5f);
+            mainCamera.transform.position = new Vector3(0, 1.0f, -5.5f);
         }
         else
         {
-            mainCamera.transform.position = new Vector3(0, 1.5f, -5.5f);
+            mainCamera.transform.position = new Vector3(0, 1.0f, -5.5f);
         }
     }
 }
