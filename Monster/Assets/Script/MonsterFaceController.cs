@@ -89,6 +89,9 @@ public class MonsterFaceController : MonoBehaviour {
 
         currentEye.GetComponent<SpriteRenderer>().sortingLayerName = "Monster";
         currentMouth.GetComponent<SpriteRenderer>().sortingLayerName = "Monster";
+
+        //표정 변경할 때 마다 색상 재적용
+        SendMessage("MonsterColorApply");
     }
 
     void ChildDestroyer()

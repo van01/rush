@@ -11,11 +11,13 @@ public class MonsterSpriteColorController : MonoBehaviour {
         myAllSpriteColorHandler = GetComponentsInChildren<MonsterSpriteColorHandler>();
     }
 
-    void MonsterColorApply()
+    public void MonsterColorApply()
     {
+        myAllSpriteColorHandler = GetComponentsInChildren<MonsterSpriteColorHandler>();
+
         for (int i = 0; i < myAllSpriteColorHandler.Length; i++)
         {
-            if (myAllSpriteColorHandler[i].GetComponent<MonsterSpriteColorHandler>().isSpriteColocActive == true)
+            if (myAllSpriteColorHandler[i].GetComponent<MonsterSpriteColorHandler>().isSpriteColorActive == true)
             {
                 myAllSpriteColorHandler[i].SendMessage("SpriteColorActive", applyColor);
             }

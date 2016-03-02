@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MonsterSpriteColorHandler : MonoBehaviour {
 
-    public bool isSpriteColocActive;
+    public bool isSpriteColorActive;
 
     public bool isMeshRenderer;
 
