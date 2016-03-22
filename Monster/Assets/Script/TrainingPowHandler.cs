@@ -7,11 +7,13 @@ public class TrainingPowHandler : MonoBehaviour {
     private GameObject currentSandbag;
     private GameObject currentMonster;
 
+	private GameObject _currentBackground;
+
     public GameObject monsterPosition;
     public GameObject sandbagPosition;
 
     public float sandbagGoalPositionX;
-    public float scorollSpeed;
+    public float scrollSpeed;
 
     private bool isMonsterMove;
     private bool isSandbagMove;
@@ -31,7 +33,7 @@ public class TrainingPowHandler : MonoBehaviour {
         {
             if (monsterPosition.transform.position.x <= 0)
             {
-                Vector3 monsterScrollValue = Vector3.right * scorollSpeed * Time.deltaTime;
+                Vector3 monsterScrollValue = Vector3.right * scrollSpeed * Time.deltaTime;
                 monsterPosition.transform.Translate(monsterScrollValue, Space.World);
             }
             else
@@ -44,13 +46,19 @@ public class TrainingPowHandler : MonoBehaviour {
         {
             if (currentSandbag.transform.position.x >= sandbagGoalPositionX)
             {
-                Vector3 sandbagScrollValue = Vector3.left * scorollSpeed * Time.deltaTime;
+				Vector3 sandbagScrollValue = Vector3.left * scrollSpeed * Time.deltaTime;
                 currentSandbag.transform.Translate(sandbagScrollValue, Space.World);
+
+				//배경 스크롤 on
+				_currentBackground.GetComponent<BackGroundHandler>().isScrollOn = true;
             }
             else
             {
                 isMonsterMove = false;
                 isSandbagMove = false;
+
+				//배경 스크롤 off
+				_currentBackground.GetComponent<BackGroundHandler>().isScrollOn = false;
 
                 //최초 공격, 증가될 능력치 판단
                 GetComponent<TrainingDramaticHandler>().gameContoller.SendMessage("CurrentTrainingTurnMountTotalValueInitialize");
@@ -72,6 +80,9 @@ public class TrainingPowHandler : MonoBehaviour {
         currentSandbag = Instantiate(sandbagPrefab) as GameObject;
         currentSandbag.transform.position = sandbagPosition.transform.position;
         currentSandbag.transform.SetParent(sandbagPosition.transform);
+
+		//현재 배경 찾기
+		_currentBackground = GetComponent<TrainingDramaticHandler> ().gameContoller.GetComponent<BackGroundController> ()._currentBackGround;
 
         isMonsterMove = true;
         attackCount = 0;

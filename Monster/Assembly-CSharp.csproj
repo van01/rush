@@ -95,8 +95,14 @@
      <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\Point2D.cs" />
      <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\Point2DList.cs" />
      <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\Rect2D.cs" />
+     <Compile Include="Assets\Script\BackGroundBasket.cs" />
+     <Compile Include="Assets\Script\BackGroundController.cs" />
+     <Compile Include="Assets\Script\BackGroundHandler.cs" />
+     <Compile Include="Assets\Script\BackGroundScrollHandler.cs" />
+     <Compile Include="Assets\Script\BreakController.cs" />
      <Compile Include="Assets\Script\CameraController.cs" />
      <Compile Include="Assets\Script\CharacterEggParams.cs" />
+     <Compile Include="Assets\Script\CharacterMonLevelParams.cs" />
      <Compile Include="Assets\Script\CharacterMonParams.cs" />
      <Compile Include="Assets\Script\DishController.cs" />
      <Compile Include="Assets\Script\EggAbility.cs" />
@@ -114,9 +120,14 @@
      <Compile Include="Assets\Script\HUDEggScrollPanelHandler.cs" />
      <Compile Include="Assets\Script\HUDHandler.cs" />
      <Compile Include="Assets\Script\HUDHomePanelHandler.cs" />
+     <Compile Include="Assets\Script\HUDInfoPanelHandler.cs" />
      <Compile Include="Assets\Script\HUDMenuButtonHandler.cs" />
      <Compile Include="Assets\Script\HUDParentSizeSuccession.cs" />
+     <Compile Include="Assets\Script\HUDQuestDramaticPanelHandler.cs" />
+     <Compile Include="Assets\Script\HUDQuestMenuButtonHandler.cs" />
+     <Compile Include="Assets\Script\HUDQuestScrollPanelHandler.cs" />
      <Compile Include="Assets\Script\HUDScoutPanelHandler.cs" />
+     <Compile Include="Assets\Script\HUDTopHandler.cs" />
      <Compile Include="Assets\Script\HUDTrainingResultPopupHandler.cs" />
      <Compile Include="Assets\Script\HUDTrainingUIHandler.cs" />
      <Compile Include="Assets\Script\MonsterAbility.cs" />
@@ -126,6 +137,8 @@
      <Compile Include="Assets\Script\MonsterEvolutionController.cs" />
      <Compile Include="Assets\Script\MonsterEvolutionHandler.cs" />
      <Compile Include="Assets\Script\MonsterFaceController.cs" />
+     <Compile Include="Assets\Script\MonsterLevelController.cs" />
+     <Compile Include="Assets\Script\MonsterLevelParams.cs" />
      <Compile Include="Assets\Script\MonsterParams.cs" />
      <Compile Include="Assets\Script\MonsterSpriteColorController.cs" />
      <Compile Include="Assets\Script\MonsterSpriteColorHandler.cs" />
@@ -134,6 +147,8 @@
      <Compile Include="Assets\Script\ObjectAni.cs" />
      <Compile Include="Assets\Script\ObjectInputHandler.cs" />
      <Compile Include="Assets\Script\ObjectState.cs" />
+     <Compile Include="Assets\Script\QuestBasket.cs" />
+     <Compile Include="Assets\Script\QuestController.cs" />
      <Compile Include="Assets\Script\Timer.cs" />
      <Compile Include="Assets\Script\TrainingController.cs" />
      <Compile Include="Assets\Script\TrainingDramaticHandler.cs" />
@@ -142,6 +157,7 @@
      <Compile Include="Assets\Script\WhitePanelHandler.cs" />
      <Compile Include="Assets\Script\XMLManager.cs" />
      <None Include="Assets\Puppet2D\Shaders\BlackAndWhite.shader" />
+     <None Include="Assets\Resource\Data\Monsterlevel.xml" />
      <None Include="Assets\Puppet2D\Shaders\VertColor.shader" />
      <None Include="Assets\Resource\Data\MonsterData.xml" />
      <None Include="Assets\Puppet2D\Shaders\unlitTransparentDouble.shader" />

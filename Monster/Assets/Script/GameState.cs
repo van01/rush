@@ -77,6 +77,10 @@ public class GameState : MonoBehaviour {
         //퀘스트 몬스터 유무 off
         SendMessage("QuestMonsterOff");
 
+		//홈 배경 적용
+		SendMessage("BackGroundSetting", "Home");
+		SendMessage("CurrentBackGroundInitialize");
+
         prevState = State.StandBy;
     }
 
@@ -116,7 +120,13 @@ public class GameState : MonoBehaviour {
             SendMessage("MenuPanelOnDeliver");  //임시
         SendMessage("BottomMenuAble");
 
-        prevState = State.Monster;
+		if (prevState == State.RoomOut) {
+			//홈 배경 적용
+			SendMessage("BackGroundSetting", "Home");
+			SendMessage("CurrentBackGroundInitialize");
+
+		}
+        prevState = State.Monster;	
     }
 
     void MonsterEndAction()
@@ -138,6 +148,12 @@ public class GameState : MonoBehaviour {
         SendMessage("MonsterHidePosition");     //진짜 현재 몬스터 숨겨놓기
 
         prevState = State.RoomOut;
+
+		if (GetComponent<TrainingController>().currentTraining == TrainingController.TrainingType.Pow){
+			//power 훈련 배경 적용
+			SendMessage("BackGroundSetting", "TPow");
+			SendMessage("CurrentBackGroundInitialize");
+		}
     }
 
     public void NextEvolutionMonsterNumberSetting(int nEvolutionMonsterNumber)

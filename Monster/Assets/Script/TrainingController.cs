@@ -106,7 +106,7 @@ public class TrainingController : MonoBehaviour {
     void PowAction()
     {
         //현재 트레이닝 비용 및 레벨 불러오기, 이번 트레이닝에서 증가될 능력치 계산
-        //배경 바꾸기, 캐릭터 상태 바꾸기 추가 필요
+		//배경 바꾸기, 캐릭터 상태 바꾸기 추가 필요. (배경 바꾸기는 gamestate)
 
         //연출 호출
         trainingDramaticHandler.SendMessage("PowDirectionStart");
